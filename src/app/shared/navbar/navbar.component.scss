@@ -1,0 +1,27 @@
+.dropdown-menu {
+    width: 200px !important;
+    height: 300px !important;
+}
+
+.logo-text{
+   font-weight: bold;
+   color: red;
+   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-item :hover{
+  color: red;
+
+}
+.rotate {
+    animation: rotation 8s infinite linear;
+  }
+  
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
