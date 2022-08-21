@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Route } from '@angular/router';
 
 @Component({
@@ -7,10 +7,30 @@ import { Route } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  public screenWidth: any;
+  public navBtnCollapse:Boolean=false;
+  @HostListener('window:resize', ['$event'])
+  onResizes(event:any) {
+    this.screenWidth = window.innerWidth;
+    console.log(this.screenWidth);
+    
+  }
 
   constructor() { }
 
   ngOnInit(): void {
+
+    this.screenWidth = window.innerWidth;
+    console.log("screenSize", this.screenWidth);
+
+
+
+
+  }
+
+  public toggleNavBtn(){
+    this.navBtnCollapse=!this.navBtnCollapse
+
   }
 
 }

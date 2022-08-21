@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'agriedue';
+  title = 'Waywall';
+
+  constructor(){
+    console.log("Starting App");
+    
+
+  }
+  
+  
 }
