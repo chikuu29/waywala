@@ -7,21 +7,35 @@
       <img src="assets/img/logo2.png" height="45" alt="" loading="lazy" class="rotate" style="margin-top: -1px;" />
       <span class="logo-text"> Waywala</span>
     </a>
-
-
-
     <!-- Toggle button -->
-
     <div class="navbar">
 
-      <div class="d-flex align-items-center " [ngClass]="screenWidth>900?'d-none':''">
+      <div class="d-flex align-items-center " [ngClass]="screenWidth>990?'d-none':''">
         <!-- Icon -->
         <a class="nav-item m-1" style="cursor: pointer;">
           <!-- <a class="nav-link hover" href="#"> -->
-            <span style="color: black;"><i class="fas fa-shopping-cart fs-6"> <span
+            <span style="color: black;"><i class="fas fa-shopping-cart fs-5"> <span
                   class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
                   style="font-size: 8px;">5</span></i></span>
           <!-- </a> -->
+        </a>
+        <a class="nav-item m-1 dropdown ">
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+              alt="Black and White Portrait of a Man" loading="lazy" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item" href="#">My profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Settings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Logout</a>
+            </li>
+          </ul>
         </a>
 
         <!-- Notifications -->
@@ -56,11 +70,6 @@
      
 
     </div>
-
-
-
-
-
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <!-- Left links -->
@@ -85,13 +94,11 @@
         </li>
       </ul>
       <!-- Left links -->
-
-
       <ul class="navbar-nav me-left mb-2 mb-lg-0">
         <li class="nav-item m-1">
           <a class="btn btn-danger" href="" routerLink="/auth/login" style="font-weight: bold;">Login/Register</a>
         </li>
-        <li class="nav-item  m-1 " [ngClass]="screenWidth<900?'d-none':''">
+        <li class="nav-item  m-1 " [ngClass]="screenWidth<990?'d-none':''">
           <a class="nav-link hover" href="#">
             <span><i class="fas fa-shopping-cart fs-5"> <span
                   class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
@@ -125,7 +132,7 @@
             </li>
           </ul>
         </li> -->
-        <li class="nav-item m-1 dropdown pt-2">
+        <li class="nav-item m-1 dropdown pt-2" [ngClass]="screenWidth<990?'d-none':''">
           <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
