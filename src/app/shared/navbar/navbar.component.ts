@@ -12,25 +12,15 @@ export class NavbarComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResizes(event:any) {
     this.screenWidth = window.innerWidth;
-    console.log(this.screenWidth);
-    
   }
-
   constructor() { }
 
   ngOnInit(): void {
-
     this.screenWidth = window.innerWidth;
-    console.log("screenSize", this.screenWidth);
-
-
-
-
   }
 
   public toggleNavBtn(){
-    this.navBtnCollapse=!this.navBtnCollapse
-
+    this.navBtnCollapse=!this.navBtnCollapse;
   }
 
 }
