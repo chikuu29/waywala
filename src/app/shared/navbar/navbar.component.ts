@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Route } from '@angular/router';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,19 +9,25 @@ import { Route } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   public screenWidth: any;
-  public navBtnCollapse:Boolean=false;
+  public navBtnCollapse: Boolean = false;
   @HostListener('window:resize', ['$event'])
-  onResizes(event:any) {
+  onResizes(event: any) {
     this.screenWidth = window.innerWidth;
   }
-  constructor() { }
+  public isLogin:Boolean;
+  constructor(private appservices:AppService) {
+
+    this.isLogin=appservices.isLogin
+
+
+  }
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
   }
 
-  public toggleNavBtn(){
-    this.navBtnCollapse=!this.navBtnCollapse;
+  public toggleNavBtn() {
+    this.navBtnCollapse = !this.navBtnCollapse;
   }
 
 }

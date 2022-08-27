@@ -7,10 +7,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './shared/home/home.component';
 import { AppService } from './services/app.service';
-
-
-
-
+import { MaterialModule } from './material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +20,10 @@ import { AppService } from './services/app.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MaterialModule
+   
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

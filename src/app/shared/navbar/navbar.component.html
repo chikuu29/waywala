@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg  navbar-light bg-light">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
@@ -14,12 +14,12 @@
         <!-- Icon -->
         <a class="nav-item m-1" style="cursor: pointer;">
           <!-- <a class="nav-link hover" href="#"> -->
-            <span style="color: black;"><i class="fas fa-shopping-cart fs-5"> <span
-                  class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
-                  style="font-size: 8px;">5</span></i></span>
+          <span style="color: black;"><i class="fas fa-shopping-cart fs-5"> <span
+                class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
+                style="font-size: 8px;">5</span></i></span>
           <!-- </a> -->
         </a>
-        <a class="nav-item m-1 dropdown ">
+        <a class="nav-item m-1 dropdown " [hidden]="!isLogin">
           <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
@@ -38,36 +38,17 @@
           </ul>
         </a>
 
-        <!-- Notifications -->
-        <!-- <div class="dropdown">
-          <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
-            data-mdb-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-bell"></i>
-            <span class="badge rounded-pill badge-notification bg-danger">1</span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-            <li>
-              <a class="dropdown-item" href="#">Some news</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Another news</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </li>
-          </ul>
-        </div> -->
-        <!-- Avatar -->
       </div>
-      <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavBtn()">
+      <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+        (click)="toggleNavBtn()">
         <!-- <i class="navbar-toggler-icon " *ngIf="!navBtnCollapse"></i> -->
-        <i class="fa fa-bars "  *ngIf="!navBtnCollapse"></i>
+        <i class="fa fa-bars " *ngIf="!navBtnCollapse"></i>
         <!-- <span class="btn-close fs-1" *ngIf="navBtnCollapse"></span> -->
-        <i class="fa fa-close "  *ngIf="navBtnCollapse"></i>
+        <i class="fa fa-close " *ngIf="navBtnCollapse"></i>
 
       </button>
-     
+
 
     </div>
     <!-- Collapsible wrapper -->
@@ -94,9 +75,10 @@
         </li>
       </ul>
       <!-- Left links -->
-      <ul class="navbar-nav me-left mb-2 mb-lg-0">
-        <li class="nav-item m-1">
-          <a class="btn btn-danger" href="" routerLink="/auth/login" style="font-weight: bold;">Login/Register</a>
+      <ul class="navbar-nav me-left mb-2 mb-lg-0 justify-content-center">
+        <li class="nav-item m-1" [hidden]="isLogin">
+          <!-- <a class="btn btn-danger" href="" routerLink="/auth/login" style="font-weight: bold;">Login/Register</a> -->
+          <a mat-raised-button color="accent" href="" routerLink="/auth/login">Login/Register</a>
         </li>
         <li class="nav-item  m-1 " [ngClass]="screenWidth<990?'d-none':''">
           <a class="nav-link hover" href="#">
@@ -105,34 +87,7 @@
                   style="font-size: 8px;">5</span></i></span>
           </a>
         </li>
-        <!-- <li class="nav-item m-1 dropdown hover">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user fs-5"></i>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end ">
-            <li>
-              <a class="dropdown-item active" href="#">Surynarayan Biswal</a>
-            </li>
-            <li>
-              <a class="dropdown-item p-2" href="#"><i class="far fa-address-card"></i> Profile</a>
-            </li>
-            <li>
-              <a class="dropdown-item p-2" href="#"><i class="fas fa-tag"></i> Subscription</a>
-            </li>
-            <li>
-              <a class="dropdown-item p-2" href="#"><i class="fas fa-tag"></i> Reset Password</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item p-2" href="#">
-                <i class="fas fa-sign-out-alt"></i> logout</a>
-            </li>
-          </ul>
-        </li> -->
-        <li class="nav-item m-1 dropdown pt-2" [ngClass]="screenWidth<990?'d-none':''">
+        <li class="nav-item m-1 dropdown pt-1" [ngClass]="screenWidth<990?'d-none':''" [hidden]="!isLogin">
           <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
@@ -160,5 +115,3 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
-
-

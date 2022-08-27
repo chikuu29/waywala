@@ -3,19 +3,27 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { CommingSoonComponent } from './comming-soon/comming-soon.component';
+import { RegisterComponent } from './register/register.component';
+import { MaterialModule } from '../material/material.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     ErrorPageComponent,
-    CommingSoonComponent
+    CommingSoonComponent,
+    RegisterComponent
+  ],
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
+    
   ],
   exports: [
     CommingSoonComponent
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule
-  ]
 })
 export class PagesModule { }

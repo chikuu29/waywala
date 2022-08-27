@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
+@Injectable({
+  providedIn: 'root'
+})
 export class AppService {
 
-  constructor() { 
+
+  public isLogin:Boolean=false
+
+  constructor(private router:Router) { 
     console.log("App Services Calling");
+   
     
   }
 
-  private getApiPath(){
 
-  }
+  
+
+
 }
