@@ -11,13 +11,7 @@ export class AgricultureComponent implements OnInit {
   constructor(private ngxService: NgxUiLoaderService) { }
 
   ngOnInit(): void {
-    this.ngxService.start();
-
-
-    setTimeout(() => {
-      this.ngxService.stop();
-      
-    }, 2000);
+  
 
   }
 

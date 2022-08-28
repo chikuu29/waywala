@@ -6,8 +6,9 @@ import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 import { RegisterComponent } from './register/register.component';
 import { MaterialModule } from '../material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 @NgModule({
   declarations: [
     ErrorPageComponent,
@@ -19,11 +20,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     PagesRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // ToastrModule.forRoot(),
+    NgxUiLoaderModule
     
   ],
   exports: [
     CommingSoonComponent
   ],
+  providers:[]
 })
 export class PagesModule { }

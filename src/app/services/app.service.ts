@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { observable, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -7,16 +10,24 @@ import { Router } from '@angular/router';
 export class AppService {
 
 
-  public isLogin:Boolean=false
+  public isLogin: Boolean = false
 
-  constructor(private router:Router) { 
+  constructor() {
     console.log("App Services Calling");
-   
-    
+
   }
 
+  public getApipath() {
+    return environment.baseApiURL;
+  }
+  public getApiKey() {
+    return environment.apiKey;
+  }
 
   
+
+
+
 
 
 }

@@ -33,7 +33,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <mat-form-field appearance="outline" class="flex-fill">
                       <mat-label>Enter Your Phone No</mat-label>
-                      <input matInput placeholder="Placeholder" formControlName="phone" required type="number">
+                      <input matInput placeholder="Placeholder" formControlName="phone" required type="text" maxlength="10">
                       <mat-icon matSuffix>{{registerForm.controls.phone.valid
                         ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
                       <mat-error *ngIf="registerForm.controls.phone.invalid">{{getErrorMessage()}}</mat-error>
@@ -98,3 +98,5 @@
     <!-- </mat-card> -->
   </div>
 </section>
+<ngx-ui-loader></ngx-ui-loader>
+

@@ -4,7 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+// import { ToastrModule, ToastrService } from 'ngx-toastr';
 const routes: Routes = [
   {path:"login",component:LoginComponent,pathMatch:'full'},
   {path:"login:returnUrl",component:LoginComponent}
@@ -19,7 +21,10 @@ const routes: Routes = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    HttpClientModule,
+    NgxUiLoaderModule,
+    RouterModule.forChild(routes),
+    // ToastrModule.forRoot()
   ],
   providers:[]
 })

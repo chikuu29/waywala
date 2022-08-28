@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 import Swal from 'sweetalert2';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +14,13 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   hide = true;
+  private userData:any={
+    email:'',
+    password:''
 
-  constructor() {}
+  }
+
+  constructor(private auth:AuthService,  private loader:NgxUiLoaderService,  private toastr: ToastrService,private router:Router) {}
 
   loginForm = new FormGroup({
 
@@ -23,8 +31,6 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    
   }
 
   getErrorMessage() {
@@ -38,15 +44,28 @@ export class LoginComponent implements OnInit {
 
   public submitLoginBtn(){
 
-    if(this.loginForm.valid){
-      console.log(this.loginForm.value);
+    if(this.loginForm.valid){     
+      this.loader.start() 
+      this.userData.email=this.loginForm.value.email;
+      this.userData.password=this.loginForm.value.password;
+
+      console.log(this.userData);
       
-    //   Swal.fire({
-    //   title: 'Great!',
-    //   text: 'Login Success',
-    //   icon: 'success',
-     
-    // })
+      this.auth.login(this.userData).subscribe((res)=>{
+        this.loader.stop() ;
+        if(res.status){
+          this.toastr.success(res.message,"Done");
+          res['isLogin']=true;
+          localStorage.setItem('loginiinfo',JSON.stringify(res))
+          this.router.navigateByUrl('/')
+        }else{
+          this.toastr.error(res.message);
+
+        }
+    
+      })
+
+
 
     }
       
