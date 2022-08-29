@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { HashLocationStrategy,LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     ToastrModule.forRoot()
    
   ],
-  providers: [AppService],
+  providers: [AppService,{provide:LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
