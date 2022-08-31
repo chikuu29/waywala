@@ -10,11 +10,15 @@ import { AppService } from './services/app.service';
 export class AppComponent {
   title = 'Waywall';
   
-  constructor(public _router:Router,private appservices:AppService){
+  constructor(public _router:Router){
     console.log("App Start");
    
   }
 
+  ngOnInit():void{
+    console.log("app componet");
+    
+  }
   
   
 }

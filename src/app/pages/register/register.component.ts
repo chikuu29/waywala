@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     private appservices: AppService,
     private registrationService: RegistrationService,
     private toastr: ToastrService,
-    private loader:NgxUiLoaderService
+    private loader: NgxUiLoaderService
   ) { }
 
   registerForm = new FormGroup({
@@ -48,11 +48,6 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       if (this.registerForm.value.password != this.registerForm.value.confirm_password) {
         this.toastr.error("Mismatch Confirm Password")
-        // Swal.fire({
-        //   title: 'Sorry!',
-        //   text: 'Mismatch Confirm Password',
-        //   icon: 'error',
-        // })
       } else {
         this.loader.start()
         this.userData.name = this.registerForm.value.name;
@@ -61,13 +56,13 @@ export class RegisterComponent implements OnInit {
         this.userData.password = this.registerForm.value.password;
         this.registrationService.signUp(this.userData).subscribe((res) => {
           this.loader.stop();
-          if(res.status){
+          if (res.status) {
 
-          }else{
-             Swal.fire({icon:'info',title:res.message})
+          } else {
+            Swal.fire({ icon: 'info', title: res.message })
           }
 
-          
+
 
         })
       }

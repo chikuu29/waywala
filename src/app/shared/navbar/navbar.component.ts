@@ -20,13 +20,14 @@ export class NavbarComponent implements OnInit {
     this.screenWidth = window.innerWidth;
   }
 
-  constructor(private appservices: AppService, public toast: ToastrService, private auth: AuthService) {
+  constructor(public toast: ToastrService, private auth: AuthService) {
   }
 
   ngOnInit(): void {
+    console.log("calling navbar");
+    
     this.screenWidth = window.innerWidth;
     this.auth.getLoginInfo('loginiinfo').subscribe((res: any) => {
-
       if (res.success) {
         this.isLogin=JSON.parse(res.data)['isLogin'];
       } else {
@@ -39,6 +40,7 @@ export class NavbarComponent implements OnInit {
   public toggleNavBtn() {
     this.navBtnCollapse = !this.navBtnCollapse;
   }
+  
 
   public logout() {
     this.auth.clearLoginInfo().subscribe((res: any) => {
