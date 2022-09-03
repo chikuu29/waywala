@@ -9,6 +9,7 @@
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                <p class="text-danger" style="margin-left: 22px;">It's Take Less a minute</p>
 
                 <form class="mx-1 mx-md-4" [formGroup]="registerForm">
 
@@ -55,7 +56,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <mat-form-field appearance="outline" class="flex-fill">
                       <mat-label>Enter Your Re-Password</mat-label>
-                      <input matInput placeholder="Placeholder" placeholder="repassword" required="" formControlName="confirm_password">
+                      <input matInput placeholder="Placeholder" placeholder="repassword" required="" formControlName="confirm_password" [type]="hide2 ? 'password' : 'text'">
                       <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2"
                         [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>

@@ -11,12 +11,10 @@ import { AppService } from '../services/app.service';
 export class AuthService {
 
   user = new Subject<User>();
-
-
   constructor(private http:HttpClient,private appaservices:AppService) { }
 
-  public login(email:any,password:any){
-    return this.http.post<AuthRespose>(`${this.appaservices.getApipath()}login.php`,{
+  public signIn(email:any,password:any){
+    return this.http.post<AuthRespose>(`${this.appaservices.getApipath()}auth/login.php`,{
       email:email,
       password:password,
       isReturnSecureToken:true
