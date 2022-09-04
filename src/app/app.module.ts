@@ -14,6 +14,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { ToastrModule } from 'ngx-toastr';
 import { HashLocationStrategy,LocationStrategy } from '@angular/common';
 import { OtpComponent } from './shared/otp/otp.component';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { OtpComponent } from './shared/otp/otp.component';
     MaterialModule,
     HttpClientModule,
     LoadingBarRouterModule,
+    NgxUiLoaderModule,
     ToastrModule.forRoot()
    
   ],

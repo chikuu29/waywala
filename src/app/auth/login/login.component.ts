@@ -4,7 +4,7 @@ import { AppService } from 'src/app/services/app.service';
 import Swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   hide = true;
+
 
 
   constructor(private auth: AuthService, private loader: NgxUiLoaderService, private toastr: ToastrService, private router: Router) { }
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+
   }
 
   getErrorMessage() {
@@ -40,27 +42,21 @@ export class LoginComponent implements OnInit {
 
   public submitLoginBtn() {
 
+
     if (this.loginForm.valid) {
       this.loader.start()
+      this.auth.signIn(this.loginForm.value.email, this.loginForm.value.password).subscribe((res: any) => {
+        console.log(res);
+        this.loader.stop();
+        if (res.status) {
+          this.toastr.success(res.message, "Done");
+          res['isLogin'] = true;
+          localStorage.setItem('loginiinfo', JSON.stringify(res))
+          this.router.navigateByUrl('/')
+        } else {
+          this.toastr.error(res.message);
 
-      //this.loginForm.value.password;
-
-      //console.log(this.userData);
-
-      this.auth.signIn(this.loginForm.value.email, this.loginForm.value.password).subscribe((res:any) => {
-
-          console.log(res);
-      
-        this.loader.stop() ;
-        //if(res.status){
-        this.toastr.success(res.message,"Done");
-        res['isLogin']=true;
-        localStorage.setItem('loginiinfo',JSON.stringify(res))
-        this.router.navigateByUrl('/')
-        // }else{
-        //  this.toastr.error(res.message);
-
-        // }
+        }
 
       })
 

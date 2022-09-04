@@ -25,6 +25,13 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("calling navbar");
+    this.auth.user.subscribe((res)=>{
+      
+
+      
+      console.log('hello',res);
+      
+    })
     
     this.screenWidth = window.innerWidth;
     this.auth.getLoginInfo('loginiinfo').subscribe((res: any) => {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, tap } from 'rxjs';
+import { catchError, Observable, Subject, tap } from 'rxjs';
 import { AuthRespose } from '../appInterface/Auth-Respons';
 import { User } from '../appModules/userModules';
 import { AppService } from '../services/app.service';
@@ -19,7 +19,11 @@ export class AuthService {
       password:password,
       isReturnSecureToken:true
     }).pipe(
-      tap(res=>{
+      catchError(err=>{
+        return err
+
+      }),
+      tap((res:any)=>{
         this.authenticatedUser(res.name,res.email,res.refreshToken?'':'')
         
       })
