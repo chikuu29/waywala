@@ -1,0 +1,24 @@
+
+.zoom{
+    cursor: pointer;
+    color: skyblue;
+    transition: transform .2s; /* Animation */
+}
+.zoom:hover{
+    color: red;
+    transform: scale(1.5);
+   
+}
+
+
+.farmer-image{
+    position: absolute;
+    top: 10px;
+    bottom: 0;
+    z-index: 9;
+}
+.farmer-image2{
+    position: relative;
+    bottom:0;
+    z-index: 99;
+}

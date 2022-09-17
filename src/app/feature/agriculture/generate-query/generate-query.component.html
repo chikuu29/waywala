@@ -1,0 +1,44 @@
+<div class="main mt-5">
+
+    <div class="container">
+        <h1 class="text-center fs-3 fw-bold mb-3" style="color: #888;"> Hear you just Upload your crop photo</h1>
+        <mat-card class="border-top border-primary mt-5">
+            <form [formGroup]="fileuploadForm">
+
+                <div class="mb-3">
+                    <!-- <label for="formFile" class="form-label">Hear upload your file</label> -->
+                    <mat-form-field appearance="outline" class="flex-fill d-block">
+
+                        <textarea matInput placeholder="Comment" formControlName="desc" required></textarea>
+                        <!-- <input matInput placeholder="Tell Us What happened" formControlName="desc" type="text" required> -->
+                        <mat-error *ngIf="fileuploadForm.controls.desc.invalid">Please Enter only text</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Hear upload your file</label>
+                    <input class="form-control" type="file" id="file" multiple="" formControlName="file"
+                        (change)="onFileChange($event)" required>
+                </div>
+                <ng-container *ngIf="true">
+                    <div class='upload__img-box d-flex'>
+                        <div *ngFor='let url of images' class="card m-1" style="width: 8rem;">
+                            <button type="button" class="btn-close" aria-label="Close"></button>
+                            <img [src]="url" class="card-img-top" alt="...">
+
+                        </div>
+
+                    </div>
+
+                </ng-container>
+
+
+
+                <button mat-raised-button color="accent" type="button" class="m-3" (click)="submit()">Upload</button>
+                <button mat-raised-button color="primary" lass="m-3" type="reset">Reset</button>
+
+            </form>
+
+        </mat-card>
+    </div>
+
+</div>
