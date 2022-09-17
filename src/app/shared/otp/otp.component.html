@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Hi, {{modalTitle}}</h4>
+    <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card">
+            <h5 class="m-0">{{OtpType}} OTP verification</h5><span class="mobile-text">Enter the code we just send on
+                your {{OtpType}} <b class="text-danger">{{otpSendTo}}</b></span>
+            <div class="d-flex flex-row mt-5">
+                <input type="text" class="form-control" id="pc0" (keyup)="jumpTo(0,$event)" maxlength="1">
+                <input type="text" class="form-control" id="pc1" (keyup)="jumpTo(1,$event)"  maxlength="1">
+                <input type="text" class="form-control" id="pc2" (keyup)="jumpTo(2,$event)" maxlength="1">
+                <input type="text" class="form-control" id="pc3" (keyup)="jumpTo(3,$event)" maxlength="1">
+                <input type="text" class="form-control" id="pc4" (keyup)="jumpTo(4,$event)" maxlength="1">
+                <input type="text" class="form-control" id="pc5" (keyup)="jumpTo(5,$event)" maxlength="1">
+            
+            </div>
+            <div class="text-center mt-5"><span class="d-block mobile-text">Don't receive the code?</span><span
+                    class="font-weight-bold text-danger cursor" (click)="reSendOTP()">Resend</span></div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button mat-raised-button color="accent"  (click)="validateOTP()">Validate</button>
+   
+</div>
+<ngx-ui-loader  [fgsType]="SP" [loaderId]="'loader-01'" [text]="'Validating OTP'"></ngx-ui-loader>

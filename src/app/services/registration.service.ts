@@ -9,6 +9,11 @@ export class RegistrationService {
 
   constructor(private http:HttpClient,private appservices:AppService) { }
   public signUp(userData:any){
-    return this.http.post<any>(`${this.appservices.getApipath()}signup.php?key=${this.appservices.getApiKey()}`,userData)
+    return this.http.post<any>(`${this.appservices.getApipath()}auth/signup.php?key=${this.appservices.getApiKey()}`,userData)
   }
+  public otpValidate(data:any){
+    return this.http.post<any>(`${this.appservices.getApipath()}auth/otpvalidate.php`,data)
+  }
+
+  
 }

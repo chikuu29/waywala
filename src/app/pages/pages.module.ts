@@ -6,9 +6,10 @@ import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 import { RegisterComponent } from './register/register.component';
 import { MaterialModule } from '../material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { OtpComponent } from '../shared/otp/otp.component';
+
 @NgModule({
   declarations: [
     ErrorPageComponent,
@@ -28,6 +29,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
   exports: [
     CommingSoonComponent
   ],
-  providers:[]
+  providers:[],
+  entryComponents:[OtpComponent]
 })
 export class PagesModule { }

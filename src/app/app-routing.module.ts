@@ -23,6 +23,11 @@ const routes: Routes = [
 
   },
   {
+    path:"education",
+    loadChildren:()=>import ('./feature/education/education.module').then(m=>m.EducationModule)
+
+  },
+  {
     path: "**",
     redirectTo:"/pages/error",
     pathMatch:'full'
