@@ -20,12 +20,14 @@
                         (change)="onFileChange($event)" required>
                 </div>
                 <ng-container *ngIf="true">
+
                     <div class='upload__img-box d-flex'>
-                        <div *ngFor='let url of images' class="card m-1" style="width: 8rem;">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        <div *ngFor='let url of images ;let i=index' class="card m-1" style="width: 8rem;">
+                            <button type="button" class="btn-close" aria-label="Close" (click)="removefile(i)"></button>
                             <img [src]="url" class="card-img-top" alt="...">
 
                         </div>
+                        
 
                     </div>
 
@@ -42,3 +44,4 @@
     </div>
 
 </div>
+

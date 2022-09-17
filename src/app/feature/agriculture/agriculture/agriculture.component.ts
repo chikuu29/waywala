@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-agriculture',
@@ -7,7 +7,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   styleUrls: ['./agriculture.component.scss']
 })
 export class AgricultureComponent implements OnInit {
-
+  SP = SPINNER.squareJellyBox;
   constructor(private ngxService: NgxUiLoaderService) { }
 
   ngOnInit(): void {

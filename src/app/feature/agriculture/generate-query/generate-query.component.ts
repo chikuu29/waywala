@@ -2,15 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-
+import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 @Component({
   selector: 'app-generate-query',
   templateUrl: './generate-query.component.html',
   styleUrls: ['./generate-query.component.scss']
 })
 export class GenerateQueryComponent implements OnInit {
-
-
+ 
   images: String[] = [];
   fileuploadForm = new FormGroup({
     desc: new FormControl('', [Validators.required]),
@@ -18,12 +17,13 @@ export class GenerateQueryComponent implements OnInit {
     fileSource: new FormControl('', [Validators.required])
 
   })
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private loader:NgxUiLoaderService) { }
 
   ngOnInit(): void {
   }
 
   public onFileChange(event: any) {
+    this.loader.start();
     if (event.target.files && event.target.files[0]) {
       var noOfFileSelected = event.target.files.length;
       console.log("hi", noOfFileSelected);
@@ -44,6 +44,7 @@ export class GenerateQueryComponent implements OnInit {
       setTimeout(() => {
         console.log("image", this.images);
       }, 2000);
+      this.loader.stop()
 
 
 
@@ -52,11 +53,16 @@ export class GenerateQueryComponent implements OnInit {
 
 
   }
+  public removefile(data:any){
+    this.images.splice(data,1)
+    
+
+  }
   public submit() {
     console.log(this.fileuploadForm);
     console.log(this.fileuploadForm.value);
     
-    if (this.fileuploadForm.valid) {
+    if (this.fileuploadForm.valid && (this.fileuploadForm.value['fileSource'] && this.fileuploadForm.value['fileSource'].length>0)) {
      
       this.http.post('http://localhost/api/upload.php', this.fileuploadForm.value)
       .subscribe(res => {
