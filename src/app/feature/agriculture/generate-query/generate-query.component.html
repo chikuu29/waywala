@@ -1,7 +1,7 @@
 <div class="main mt-5">
 
     <div class="container">
-        <h1 class="text-center fs-3 fw-bold mb-3" style="color: #888;"> Hear you just Upload your crop photo</h1>
+        <h1 class="text-center fs-2 fw-bold mb-3" style="color: #888;"> Hear you just Upload your crop photo</h1>
         <mat-card class="border-top border-primary mt-5">
             <form [formGroup]="fileuploadForm">
 
@@ -9,7 +9,7 @@
                     <!-- <label for="formFile" class="form-label">Hear upload your file</label> -->
                     <mat-form-field appearance="outline" class="flex-fill d-block">
 
-                        <textarea matInput placeholder="Comment" formControlName="desc" required></textarea>
+                        <textarea matInput placeholder="Tell Us What happened" formControlName="desc" rows="10" required></textarea>
                         <!-- <input matInput placeholder="Tell Us What happened" formControlName="desc" type="text" required> -->
                         <mat-error *ngIf="fileuploadForm.controls.desc.invalid">Please Enter only text</mat-error>
                     </mat-form-field>
