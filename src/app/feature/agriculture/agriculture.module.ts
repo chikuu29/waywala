@@ -8,6 +8,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { GenerateQueryComponent } from './generate-query/generate-query.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CheckStatusComponent } from './check-status/check-status.component';
 
 
 
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AgricultureComponent,
-    GenerateQueryComponent
+    GenerateQueryComponent,
+    CheckStatusComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 
 @Component({
@@ -8,11 +9,15 @@ import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 })
 export class AgricultureComponent implements OnInit {
   SP = SPINNER.squareJellyBox;
-  constructor(private ngxService: NgxUiLoaderService) { }
+  constructor(private ngxService: NgxUiLoaderService,private _route:Router) { }
 
   ngOnInit(): void {
   
+    console.log(this._route);
+    
 
   }
-
+  navigateTostatusPage(){
+    this._route.navigateByUrl('/agriculture/check-status')
+  }
 }
