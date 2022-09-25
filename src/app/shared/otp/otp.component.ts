@@ -17,6 +17,7 @@ export class OtpComponent implements OnInit {
   public modalTitle: String = ''
   public otpSendTo: any;
   SP = SPINNER.squareJellyBox;
+  public loaderText='Validating OTP';
 
   constructor
     (
@@ -32,6 +33,7 @@ export class OtpComponent implements OnInit {
   }
 
   public validateOTP() {
+    this.loaderText='Validating OTP';
     this.loader.startLoader('loader-01');
     var otp = "";
     var otpInput = document.getElementsByClassName('form-control');
@@ -64,7 +66,23 @@ export class OtpComponent implements OnInit {
   }
 
   public reSendOTP() {
-    console.log("reSendOTP");
+    this.loaderText="Resend OTP Sending"
+    this.loader.startLoader('loader-01');
+    var data = {
+      "email": this.otpSendTo
+  
+    }
+    this.registrationService.resendOTP(data).subscribe((res:any)=>{
+      this.loader.stopLoader('loader-01');
+      if(res.success){
+        this.toastr.success(res.message)
+      }else{
+        this.toastr.error(res.message)
+      }
+      
+
+    })
+  
 
 
 

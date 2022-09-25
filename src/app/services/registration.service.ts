@@ -15,5 +15,10 @@ export class RegistrationService {
     return this.http.post<any>(`${this.appservices.getApipath()}auth/otpvalidate.php`,data)
   }
 
+  public resendOTP(data:any){
+    return this.http.post<any>(`${this.appservices.getApipath()}auth/resendotp.php`,data)
+
+  }
+
   
 }
