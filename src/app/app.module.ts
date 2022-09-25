@@ -15,6 +15,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { HashLocationStrategy,LocationStrategy } from '@angular/common';
 import { OtpComponent } from './shared/otp/otp.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auth/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,10 +36,12 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     HttpClientModule,
     LoadingBarRouterModule,
     NgxUiLoaderModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+
    
   ],
   providers: [AppService,{provide:LocationStrategy,useClass:HashLocationStrategy}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './auth/auth.service';
 import { AppService } from './services/app.service';
 
 @Component({
@@ -9,16 +10,19 @@ import { AppService } from './services/app.service';
 })
 export class AppComponent {
   title = 'Waywall';
-  
-  constructor(public _router:Router){
+
+  constructor(public _router: Router, private _auth: AuthService) {
     console.log("App Start");
-   
+
   }
 
-  ngOnInit():void{
+  ngOnInit(): void {
+
+
     console.log("app componet");
-    
+ 
+
   }
-  
-  
+
+
 }
