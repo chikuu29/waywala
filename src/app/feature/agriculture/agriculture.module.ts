@@ -9,6 +9,8 @@ import { GenerateQueryComponent } from './generate-query/generate-query.componen
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CheckStatusComponent } from './check-status/check-status.component';
+import { PrimengModule } from 'src/app/primeng/primeng.module';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 
@@ -27,9 +29,9 @@ import { CheckStatusComponent } from './check-status/check-status.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule 
-
- 
+    HttpClientModule ,
+    PrimengModule
   ]
+
 })
 export class AgricultureModule { }

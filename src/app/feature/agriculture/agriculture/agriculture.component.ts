@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-agriculture',
@@ -13,11 +14,20 @@ export class AgricultureComponent implements OnInit {
 
   ngOnInit(): void {
   
-    console.log(this._route);
+    // console.log(this._route);
     
 
   }
   navigateTostatusPage(){
     this._route.navigateByUrl('/agriculture/check-status')
   }
+
+
+  // onUpload(event:any) {
+  //   for(let file of event.files) {
+  //       this.uploadedFiles.push(file);
+  //   }
+
+    // this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+// }
 }

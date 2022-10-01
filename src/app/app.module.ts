@@ -17,6 +17,7 @@ import { OtpComponent } from './shared/otp/otp.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
+import { PrimengModule } from './primeng/primeng.module';
 
 @NgModule({
   declarations: [
@@ -36,11 +37,12 @@ import { AuthService } from './auth/auth.service';
     HttpClientModule,
     LoadingBarRouterModule,
     NgxUiLoaderModule,
+    PrimengModule,
     ToastrModule.forRoot(),
 
    
   ],
-  providers: [AppService,{provide:LocationStrategy,useClass:HashLocationStrategy}],
+  providers: [AppService,AuthService,{provide:LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent],
 
 })

@@ -11,8 +11,6 @@ import { AppService } from '../services/app.service';
 })
 export class AuthService {
 
-
-
   constructor(private http: HttpClient, private appaservices: AppService) { }
 
   public signIn(email: any, password: any) {
