@@ -18,6 +18,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { PrimengModule } from './primeng/primeng.module';
+import { RegistrationService } from './services/registration.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { PrimengModule } from './primeng/primeng.module';
 
    
   ],
-  providers: [AppService,AuthService,{provide:LocationStrategy,useClass:HashLocationStrategy}],
+  providers: [AppService,{provide:LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent],
 
 })

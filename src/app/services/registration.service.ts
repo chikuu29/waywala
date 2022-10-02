@@ -6,6 +6,7 @@ import { AppService } from './app.service';
   providedIn: 'root'
 })
 export class RegistrationService {
+  
 
   constructor(private http:HttpClient,private appservices:AppService) { }
   public signUp(userData:any){
