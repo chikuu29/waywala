@@ -1,7 +1,9 @@
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 import { AppService } from 'src/app/services/app.service';
+import { AgricultureService } from '../services/agriculture.service';
 
 @Component({
   selector: 'app-agriculture',
@@ -9,25 +11,19 @@ import { AppService } from 'src/app/services/app.service';
   styleUrls: ['./agriculture.component.scss']
 })
 export class AgricultureComponent implements OnInit {
-  SP = SPINNER.squareJellyBox;
-  constructor(private ngxService: NgxUiLoaderService,private _route:Router) { }
-
+  SP = SPINNER.threeStrings;
+  loadertext:any=''
+  constructor(private ngxService: NgxUiLoaderService,private _route:Router,private agriculture:AgricultureService) { }
+  
   ngOnInit(): void {
   
-    // console.log(this._route);
     
-
+    this.agriculture.loadertext.subscribe(res=>{
+        this.loadertext=res;
+    })
   }
   navigateTostatusPage(){
     this._route.navigateByUrl('/agriculture/check-status')
   }
 
-
-  // onUpload(event:any) {
-  //   for(let file of event.files) {
-  //       this.uploadedFiles.push(file);
-  //   }
-
-    // this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-// }
 }

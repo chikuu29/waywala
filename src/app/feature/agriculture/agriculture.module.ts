@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CheckStatusComponent } from './check-status/check-status.component';
 import { PrimengModule } from 'src/app/primeng/primeng.module';
 import { AuthService } from 'src/app/auth/auth.service';
+import { AgricultureService } from './services/agriculture.service';
 
 
 
@@ -32,6 +33,7 @@ import { AuthService } from 'src/app/auth/auth.service';
     HttpClientModule ,
     PrimengModule
   ]
+
 
 })
 export class AgricultureModule { }

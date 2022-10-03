@@ -47,6 +47,7 @@ export class NavbarComponent implements OnInit {
       if (res.success) {
         this.toast.success('Logout Successfull');
         this.ngOnInit()
+        window.location.reload()
       }
 
     })

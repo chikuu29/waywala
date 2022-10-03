@@ -1,5 +1,5 @@
-
 <p-toast></p-toast>
+<ngx-ui-loader  [fgsType]="SP" [loaderId]="'loader-02'" [text]="loaderText"></ngx-ui-loader>
 <div class="main mt-5">
     <div class="container">
         <h1 class="text-center fs-2 fw-bold mb-3" style="color: #888;"> Create Case</h1>
@@ -17,44 +17,26 @@
                     </mat-form-field>
                 </div>
                 <div class="mb-3">
-                    <!-- <label for="formFile" class="form-label">Hear upload your file</label>
-                    <input class="form-control" type="file" id="file" multiple="" formControlName="file"
-                        (change)="onFileChange($event)" required> -->
-
-                    
-                    <p-fileUpload name="uploadfile[]" [url]="uploadURL" (onUpload)="onUpload($event)"  accept="image/*"
-                      [multiple]="multiple"  [maxFileSize]="1000000">
+                    <p-fileUpload name="uploadfile[]" [url]="uploadURL" (onUpload)="onUpload($event)" accept="image/*"
+                        [multiple]="multiple" [maxFileSize]="1000000">
                         <ng-template pTemplate="content">
                             <ul *ngIf="uploadedFiles.length">
                                 <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
                             </ul>
                         </ng-template>
                     </p-fileUpload>
-
-
-
                 </div>
-                <!-- <ng-container *ngIf="true">
-
-                    <div class='upload__img-box d-flex'>
-                        <div *ngFor='let url of images ;let i=index' class="card m-1" style="width: 8rem;">
-                            <button type="button" class="btn-close" aria-label="Close" (click)="removefile(i)"></button>
-                            <img [src]="url" class="card-img-top" alt="...">
-
-                        </div>
-
-
-                    </div>
-
-                </ng-container> -->
                 <div class="mb-3">
-                <p-button label="Create Case" type="button" icon="pi pi-check" class="m-3" (click)="createCase()"></p-button>
-                <p-button label="Cancle" type="reset" icon="pi pi-times" class="p-button-danger"></p-button>
-                <!-- <button mat-raised-button color="accent" type="button" class="m-3" style="padding:7px 18px ;" (click)="submit()">Upload</button>
-                <button mat-raised-button color="primary" lass="m-3" type="reset" style="padding:7px 18px ;">Reset</button> -->
+                    <mat-card [hidden]="!isfileUploaded">
+                        <button pButton pRipple type="button" label="Create Case" class="me-3"
+                            (click)="createCase()"></button>
+                        <button pButton pRipple type="button" type="reset" label="Cancle" icon="pi pi-times"
+                            class="p-button-danger" (click)="cancle()"></button>
+                    </mat-card>
                 </div>
             </form>
 
         </mat-card>
     </div>
 </div>
+
