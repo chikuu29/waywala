@@ -9,9 +9,6 @@ export class User{
     ){
     
     }
-
-
-
     get token(){
 
         if (moment().format('MMMM Do YYYY, h:mm:ss a') >= moment(this._tokenExpiration).format('MMMM Do YYYY, h:mm:ss a')) {

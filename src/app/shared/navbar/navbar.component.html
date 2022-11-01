@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light border-bottom border-danger">
   <!-- Container wrapper -->
-  <div class="container">
+  <div class="container-fluid">
     <!-- Navbar brand -->
     <a class="navbar-brand me-2 text-primary" href="#" style="font-weight: bold;">
       <img src="assets/img/logo2.png" height="45" alt="" loading="lazy" class="rotate" style="margin-top: -1px;" />
@@ -20,9 +20,9 @@
           <!-- </a> -->
         </a>
         <a class="nav-item m-1 dropdown " [hidden]="!isLogin">
-          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow " href="#" id="navbarDropdownMenuAvatar"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+            <img src="https://waywala.com/assets/auth/permission.png" class="rounded-circle border border-primary" height="25"
               alt="Black and White Portrait of a Man" loading="lazy" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -40,12 +40,14 @@
 
       </div>
       <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation"
         (click)="toggleNavBtn()">
         <!-- <i class="navbar-toggler-icon " *ngIf="!navBtnCollapse"></i> -->
         <i class="fa fa-bars " *ngIf="!navBtnCollapse"></i>
-        <!-- <span class="btn-close fs-1" *ngIf="navBtnCollapse"></span> -->
-        <i class="fa fa-close " *ngIf="navBtnCollapse"></i>
+        <span class="fa fa-close " *ngIf="navBtnCollapse"></span>
+        <!-- <i class="fa-solid fa-code-pull-request-closed" *ngIf="navBtnCollapse"></i> -->
+        <!-- <i class="fa-sharp fa-solid fa-code-pull-request-closed"></i> -->
+        <!-- <i class="fa fa-close fs-1" ></i> -->
 
       </button>
 
@@ -56,11 +58,11 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0  menu">
         <li class="nav-item hover">
-          <a class="nav-link" href='' routerLink="">Home</a>
+          <a class="nav-link" routerLink="">Home</a>
         </li>
 
         <li class="nav-item hover">
-          <a class="nav-link" href='' routerLinkActive="activenavitem" routerLink="agriculture">Agriculture</a>
+          <a class="nav-link"  routerLinkActive="activenavitem" routerLink="agriculture">Agriculture</a>
         </li>
         <li class="nav-item hover">
           <a class="nav-link hover" href="" routerLinkActive="activenavitem"
@@ -89,9 +91,9 @@
           <a mat-raised-button color="accent" href="" routerLink="/auth/login">Login/Register</a>
         </li>
         <li class="nav-item m-1 dropdown pt-1" [ngClass]="screenWidth<990?'d-none':''" [hidden]="!isLogin">
-          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow"  id="navbarDropdownMenuAvatar"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+            <img src="https://waywala.com/assets/auth/permission.png" class="rounded-circle border border-primary" height="25"
               alt="Black and White Portrait of a Man" loading="lazy" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
