@@ -15,10 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HashLocationStrategy,LocationStrategy } from '@angular/common';
 import { OtpComponent } from './shared/otp/otp.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
-import { AuthModule } from './auth/auth.module';
-import { AuthService } from './auth/auth.service';
 import { PrimengModule } from './primeng/primeng.module';
-import { RegistrationService } from './services/registration.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +40,7 @@ import { RegistrationService } from './services/registration.service';
 
    
   ],
-  providers: [AppService,{provide:LocationStrategy,useClass:HashLocationStrategy}],
+  providers: [AppService],
   bootstrap: [AppComponent],
 
 })
