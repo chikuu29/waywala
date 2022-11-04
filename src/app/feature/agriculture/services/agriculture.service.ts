@@ -18,4 +18,7 @@ export class AgricultureService {
     return this.http.post<any>(`${this.appservices.getApipath()}agri/createcase.php`, caseData)
 
   }
+
+
+  
 }
