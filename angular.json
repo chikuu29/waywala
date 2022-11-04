@@ -24,7 +24,7 @@
               "lodash",
               "sweetalert2"
             ],
-            "outputPath": "C:/xampp/htdocs/waywala",
+            "outputPath": "dist/waywala",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
