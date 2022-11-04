@@ -17,8 +17,8 @@
                     </mat-form-field>
                 </div>
                 <div class="mb-3">
-                    <p-fileUpload name="uploadfile[]" [url]="uploadURL" (onUpload)="onUpload($event)" accept="image/*"
-                        [multiple]="multiple" [maxFileSize]="1000000">
+                    <p-fileUpload name="uploadfile[]" [url]="uploadURL" (onUpload)="onUpload($event)" accept="image/*" 
+                        [multiple]="multiple" [maxFileSize]="1000000" styleClass="text-center" [chooseStyleClass]="'d-block mb-2'" [uploadStyleClass]="'d-block'" [cancelStyleClass]="'d-block'">
                         <ng-template pTemplate="content">
                             <ul *ngIf="uploadedFiles.length">
                                 <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>

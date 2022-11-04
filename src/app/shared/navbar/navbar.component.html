@@ -9,7 +9,6 @@
     </a>
     <!-- Toggle button -->
     <div class="navbar">
-
       <div class="d-flex align-items-center " [ngClass]="screenWidth>990?'d-none':''">
         <!-- Icon -->
         <a class="nav-item m-1" style="cursor: pointer;">
@@ -42,36 +41,30 @@
       <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation"
         (click)="toggleNavBtn()">
-        <!-- <i class="navbar-toggler-icon " *ngIf="!navBtnCollapse"></i> -->
-        <i class="fa fa-bars " *ngIf="!navBtnCollapse"></i>
-        <span class="fa fa-close " *ngIf="navBtnCollapse"></span>
-        <!-- <i class="fa-solid fa-code-pull-request-closed" *ngIf="navBtnCollapse"></i> -->
-        <!-- <i class="fa-sharp fa-solid fa-code-pull-request-closed"></i> -->
-        <!-- <i class="fa fa-close fs-1" ></i> -->
 
+        <i class="fa-solid fa-bars-staggered fs-2 text-primary " *ngIf="navBtnCollapse"></i>
+        <i class="fa-solid fa-bars fs-2 text-primary"  *ngIf="!navBtnCollapse"></i>
+ 
       </button>
-
-
     </div>
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0  menu">
-        <li class="nav-item hover">
+        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link" routerLink="">Home</a>
         </li>
-
-        <li class="nav-item hover">
+        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link"  routerLinkActive="activenavitem" routerLink="agriculture">Agriculture</a>
         </li>
-        <li class="nav-item hover">
+        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link hover" href="" routerLinkActive="activenavitem"
             routerLink="education">Education</a>
         </li>
-        <li class="nav-item hover">
+        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link" href="" routerLinkActive="activenavitem" routerLink="feature/shop">E-Commerce</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link" href="#"><span style="color:#f55b4a">Offer</span> <span class="notification-badge ">UPTO
               85% off</span></a>
         </li>
@@ -110,8 +103,6 @@
         </li>
 
       </ul>
-
-
     </div>
     <!-- Collapsible wrapper -->
   </div>
