@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 import { Router } from '@angular/router';
-import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
 
 
 @Component({

@@ -17,10 +17,7 @@ import * as moment from 'moment';
 })
 export class LoginComponent implements OnInit {
   hide = true;
-
-
-
-  constructor(private auth: AuthService, private loader: NgxUiLoaderService, private toastr: ToastrService, private router: Router,private modalService: NgbModal) { }
+  constructor(private auth: AuthService, private loader: NgxUiLoaderService, private toastr: ToastrService, private router: Router, private modalService: NgbModal) { }
 
   loginForm = new FormGroup({
 
@@ -54,21 +51,23 @@ export class LoginComponent implements OnInit {
         if (res.status) {
           this.toastr.success(res.message, "Done");
           res['isLogin'] = true;
-          localStorage.setItem('loginiinfo', JSON.stringify(res))
-          this.router.navigateByUrl('/')
+          // localStorage.setItem('loginiinfo', JSON.stringify(res))
+          var expiration_date = new Date(new Date().getTime() + 86400 * 1000).toString();
+          this.auth.authentication(res.username, res.useremail, true, "user", res.token, expiration_date);
+          this.router.navigateByUrl('agriculture')
         } else {
           this.toastr.error(res.message);
-          var needOTPValidation=res.needOTPValidation==undefined ? false:true;
+          var needOTPValidation = res.needOTPValidation == undefined ? false : true;
           console.log(needOTPValidation);
-          
-          if(needOTPValidation){
+
+          if (needOTPValidation) {
 
             const modalRef = this.modalService.open(OtpComponent);
             modalRef.componentInstance.modalTitle = "You Need To Valiadte Your OTP";
             modalRef.componentInstance.OtpType = "Email",
             modalRef.componentInstance.otpSendTo = this.loginForm.value.email
             modalRef.result.then((modalInstance: any) => {
-              if(modalInstance.success){
+              if (modalInstance.success) {
                 this.router.navigateByUrl('auth/login')
               }
             })

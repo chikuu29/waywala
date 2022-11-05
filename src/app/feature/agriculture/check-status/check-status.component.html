@@ -3,16 +3,34 @@
 <br><br>
 
 <div class="container">
-        <h3 class="text-center fw-bold">Check Your Case Status</h3>
-        <form  class="text-center" [formGroup]="searchForm">
-            <div class="input-group m-auto  mb-1">
-                <input type="text" class="form-control me-1" formControlName="case_id" placeholder="Enter Your Case ID....">
-                <p-button label="Search" icon="pi pi-search" [loading]="loading" [disabled]="!searchForm.valid" (onClick)="search(searchForm.value.case_id)"></p-button>
-            </div>
-            <span class="text-danger m-1" *ngIf="searchForm.controls.case_id.invalid">{{getErrorMessage()}}</span>
+    <h3 class="text-center fw-bold">Check Your Case Status</h3>
+    <form class="text-center" [formGroup]="searchForm">
+        <div class="input-group m-auto  mb-1">
+            <input type="text" class="form-control me-1" formControlName="case_id" placeholder="Enter Your Case ID....">
+            <p-button label="Search" icon="pi pi-search" [loading]="loading" [disabled]="!searchForm.valid"
+                (onClick)="search(searchForm.value.case_id)"></p-button>
+        </div>
+        <span class="text-danger m-1" *ngIf="searchForm.controls.case_id.invalid">{{getErrorMessage()}}</span>
 
-           
 
-        </form>
+
+    </form>
+
+    <ng-container *ngIf="loading">
+        <div class="field col-12 md:col-6">
+            <p-skeleton styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="10rem" height="4rem"></p-skeleton>
+        </div><br>
+        <div class="field col-12 md:col-6">
+            <p-skeleton styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="10rem" height="4rem"></p-skeleton>
+        </div>
+    </ng-container>
    
 </div>

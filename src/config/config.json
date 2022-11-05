@@ -1,0 +1,59 @@
+{
+   "appName": "Waywala",
+   "roleConfig": {
+      "admin": {
+         "sideNavConfigId": [
+            "admin-01",
+            "agri-01"
+         ],
+         "authorizationDBAcess": [
+            "agriculture_case",
+            "medicine",
+            "agriculture_case_status"
+         ],
+         "authorizationDBAcessForUpdate": [
+            "medicine",
+            "agriculture_case_status"
+         ],
+         "authorizationDBAcessForDelet": [
+            
+         ]
+
+      },
+      "agri": {
+         "sideNavConfigId": [
+            "agri-01"
+         ],
+         "authorizationDBAcess": [
+            "agriculture_case",
+            "medicine",
+            "agriculture_case_status"
+
+         ],
+         "authorizationDBAcessForUpdate": [
+            "agriculture_case",
+            "agriculture_case_status"
+
+            
+         ],
+         "authorizationDBAcessForDelet": [
+            
+         ]
+      },
+      "user": {
+         "sideNavConfigId": [
+           
+         ],
+         "authorizationDBAcess": [
+            "agriculture_case",
+            "medicine",
+            "agriculture_case_status"
+         ],
+         "authorizationDBAcessForUpdate": [
+         ],
+         "authorizationDBAcessForDelet": [
+            
+         ]
+      }
+   }
+}

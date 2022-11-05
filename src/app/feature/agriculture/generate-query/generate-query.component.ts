@@ -32,7 +32,8 @@ export class GenerateQueryComponent implements OnInit {
  
   ngOnInit(): void {
   
-    this.uploadURL = `https://waywala.com/api/agri/upload.php?token=${this.appservices.loginUserData.token ? this.appservices.loginUserData.token : ''}`;
+    this.uploadURL = `https://waywala.com/api/agri/upload.php?token=${this.appservices.authStatus ? this.appservices.authStatus._refreshkey : ''}`;
+    // console.log(this.uploadURL);
     
   }
 
@@ -42,7 +43,7 @@ export class GenerateQueryComponent implements OnInit {
     this.agriculture.loadertext.next('Case Creating')
     if (this.fileuploadForm.valid && this.uploadedFiles.length > 0) {
       this.caseData={
-        email:this.appservices.loginUserData.useremail,
+        email:this.appservices.authStatus.email,
         description:this.fileuploadForm.value.desc
       }
       this.agriculture.createCase(this.caseData).subscribe((res)=>{

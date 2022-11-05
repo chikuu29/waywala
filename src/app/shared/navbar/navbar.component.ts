@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   public navBtnCollapse: Boolean = false;
   public isLogin: Boolean = false;
   public LoginInformation: any;
+  public authInfo:any
   @HostListener('window:resize', ['$event'])
   onResizes(event: any) {
     this.screenWidth = window.innerWidth;
@@ -24,17 +25,17 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("calling navbar");
-    
     this.screenWidth = window.innerWidth;
-    this.auth.getLoginInfo('loginiinfo').subscribe((res: any) => {
-      if (res.success) {
-        this.isLogin=JSON.parse(res.data)['isLogin'];
-      } else {
-        this.isLogin = false
+    this.auth.user.subscribe((res: any) => {
+      if (res) {
+        // console.log(res);
+        this.isLogin = res.token != null ? true : false;
       }
-
     })
+    this.authInfo = this.auth.getAuthStatus();
+    // console.log(this.authInfo);
+
+
   }
 
   public toggleNavBtn() {
@@ -43,14 +44,7 @@ export class NavbarComponent implements OnInit {
   
 
   public logout() {
-    this.auth.clearLoginInfo().subscribe((res: any) => {
-      if (res.success) {
-        this.toast.success('Logout Successfull');
-        this.ngOnInit()
-        window.location.reload()
-      }
-
-    })
+    this.auth.logout()
   }
 
 }

@@ -12,14 +12,15 @@ export class AppComponent {
   title = 'Waywall';
 
   constructor(public _router: Router, private _auth: AuthService) {
-    console.log("App Start");
+
 
   }
 
   ngOnInit(): void {
 
 
-    console.log("app componet");
+    console.log("app Start");
+    this._auth.autoSignIn();
  
 
   }

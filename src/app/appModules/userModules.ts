@@ -1,21 +1,23 @@
-import * as moment from "moment";
 
-export class User{
+export class user{
     constructor(
         public name:String ,
         public email:String,
-        private _token:String ,
-        private _tokenExpiration:any
+        public isLogin:boolean,
+        public role:any,
+        private _refreshkey:any,
+        public expiration_date:any
+
     ){
     
     }
-    get token(){
 
-        if (moment().format('MMMM Do YYYY, h:mm:ss a') >= moment(this._tokenExpiration).format('MMMM Do YYYY, h:mm:ss a')) {
-            return this._token;
-        }else{
-            return null;
+    get token(){
+        var currentDate=new Date().getTime();             
+        if( new Date(this.expiration_date).getTime() > currentDate){
+            return this._refreshkey;
         }
-       
+        return null
     }
+
 }
