@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Route } from '@angular/router';
+import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AppService } from 'src/app/services/app.service';
@@ -11,6 +12,7 @@ import { AppService } from 'src/app/services/app.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  public version:any
   public screenWidth: any;
   public navBtnCollapse: Boolean = false;
   public isLogin: Boolean = false;
@@ -21,10 +23,11 @@ export class NavbarComponent implements OnInit {
     this.screenWidth = window.innerWidth;
   }
 
-  constructor(public toast: ToastrService, private auth: AuthService) {
+  constructor(public toast: ToastrService, private auth: AuthService,private app:AppService) {
   }
 
   ngOnInit(): void {
+    this.version=this.app.getappVersion['version']
     this.screenWidth = window.innerWidth;
     this.auth.user.subscribe((res: any) => {
       if (res) {
