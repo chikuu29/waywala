@@ -32,8 +32,61 @@
             <p-skeleton width="10rem" height="4rem"></p-skeleton>
         </div>
     </ng-container>
-    <div class="card">
-        
-    </div>
-   
+
+    <ng-container *ngIf="caseAllDeatails['caseInformation']?true:false">
+        <div class="card p-3" id="chiku">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <button pButton pRipple type="button" label="{{caseAllDeatails['satus'] | uppercase}}" pTooltip="Download"
+                        class="p-button-raised p-button-text" [ngClass]="caseAllDeatails['satus']=='completed'?'p-button-success':'p-button-danger'"></button>
+                </div>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-download" pTooltip="Download"
+                        class="p-button-raised p-button-text m-1"></button>
+                    <button pButton pRipple type="button" icon="pi pi-print" pTooltip="Print"
+                        class="p-button-raised p-button-text m-1" (click)="print(window)"></button>
+                </div>
+            </div>
+            <div id="print-section" class="mt-5">
+                <div class="text-center">
+                    <span class="d-block fs-5 fw-bold mb-2" style="font-family: Arial, Helvetica, sans-serif;">Report
+                        For</span>
+                    <span [ngClass]="caseAllDeatails['satus']=='completed'?'text-success':'text-danger'">{{caseAllDeatails['case_id']}}</span>
+                </div>
+                <div class="case-details">
+                    <span>Information:-</span>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">CaseID</th>
+                                <th scope="col">Recived Date</th>
+                                <th scope="col">Review By</th>
+                                <th scope="col">Current Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let case of caseAllDeatails['caseInformation']">
+
+                                <td>{{case.case_id}}</td>
+                                <td>{{case.case_received_date | date:"MM/dd/yyyy"}}</td>
+                                <td>{{case.case_assign}}</td>
+                                <td [ngClass]="case.case_status=='completed'?'text-success':'text-danger'">{{case.case_status | uppercase}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="case-resolution">
+                    <span>Resolution:-</span>
+                    <p>No Data Availble</p>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="caseAllDeatails['caseInformation']?false:true">
+        <div class="text-center">
+            <span>No Data Availble</span>
+        </div>
+    </ng-container>
+
 </div>
