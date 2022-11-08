@@ -26,13 +26,13 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li class="dropdown-item">
-              <a class="btn btn-primary d-block">Suryanarayan Biswal</a>
+              <a class="btn btn-primary d-block">{{authInfo.name}}</a>
             </li>
             <li class="dropdown-item">
               <a class="btn btn-light d-block"> <i class="fa-solid fa-suitcase me-2"></i>My Order</a>
             </li>
             <li class="dropdown-item">
-              <a class="btn btn-light d-block"><i class="fa-solid fa-hand-holding-hand me-2"></i>My Case</a>
+              <a class="btn btn-light d-block"><i class="fa-solid fa-hand-holding-hand me-2" routerLink="agriculture/mycase"></i>My Case</a>
             </li>
             <li class="dropdown-item">
               <a class="btn btn-light d-block"><i class="fa-solid fa-gears me-2"></i>Settings</a>
@@ -103,13 +103,13 @@
 
           <ul class="dropdown-menu dropdown-menu-end">
             <li class="dropdown-item">
-              <a class="btn btn-primary d-block">Suryanarayan Biswal</a>
+              <a class="btn btn-primary d-block">{{authInfo.name}}</a>
             </li>
 
             <li class="dropdown-item">
               <a class="btn btn-light d-block"> <i class="fa-solid fa-suitcase me-2"></i>My Order</a>
             </li>
-            <li class="dropdown-item">
+            <li class="dropdown-item" routerLink="/agriculture/mycase">
               <a class="btn btn-light d-block"><i class="fa-solid fa-hand-holding-hand me-2"></i>My Case</a>
             </li>
             <li class="dropdown-item">

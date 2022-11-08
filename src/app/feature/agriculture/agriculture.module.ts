@@ -12,6 +12,7 @@ import { CheckStatusComponent } from './check-status/check-status.component';
 import { PrimengModule } from 'src/app/primeng/primeng.module';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AgricultureService } from './services/agriculture.service';
+import { MycaseComponent } from './mycase/mycase.component';
 
 
 
@@ -20,7 +21,8 @@ import { AgricultureService } from './services/agriculture.service';
   declarations: [
     AgricultureComponent,
     GenerateQueryComponent,
-    CheckStatusComponent
+    CheckStatusComponent,
+    MycaseComponent
   ],
   imports: [
     CommonModule,

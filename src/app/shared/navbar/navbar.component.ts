@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
       }
     })
     this.authInfo = this.auth.getAuthStatus();
-    // console.log(this.authInfo);
+    console.log(this.authInfo);
 
 
   }

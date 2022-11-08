@@ -1,5 +1,6 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
 import { AgricultureService } from '../services/agriculture.service';
@@ -19,13 +20,23 @@ export class CheckStatusComponent implements OnInit {
 
     private agriculture: AgricultureService,
     private appservices: AppService,
-    private apiParameterScript: ApiParameterScript
+    private apiParameterScript: ApiParameterScript,
+    private _rout: ActivatedRoute,
 
   ) { }
 
   ngOnInit(): void {
 
     this.window = window
+    this._rout.params.subscribe((res:any)=>{
+      if(res.caseID){
+        this.searchForm.setValue({case_id:res.caseID})
+        console.log(res.caseID);
+        this.search(this.searchForm.value.case_id)
+      }
+      
+      
+    })
     
 
 
