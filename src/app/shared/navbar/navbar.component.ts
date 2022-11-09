@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   public navBtnCollapse: Boolean = false;
   public isLogin: Boolean = false;
   public LoginInformation: any;
-  public authInfo:any
+  public authInfo:any={"name":""}
   @HostListener('window:resize', ['$event'])
   onResizes(event: any) {
     this.screenWidth = window.innerWidth;
@@ -33,9 +33,10 @@ export class NavbarComponent implements OnInit {
       if (res) {
         // console.log(res);
         this.isLogin = res.token != null ? true : false;
+        this.authInfo = this.auth.getAuthStatus();
       }
     })
-    this.authInfo = this.auth.getAuthStatus();
+    
     console.log(this.authInfo);
 
 

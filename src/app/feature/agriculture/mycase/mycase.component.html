@@ -1,2 +1,71 @@
 <br><br><br><br>
-<p>mycase works!</p>
+<!-- <div class="container">
+    <h1 class=" fw-bold mt-2">All Case:</h1>
+    <table class="table table-hover table-bordered " style="box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;">
+        <thead class="table-primary">
+            <tr>
+                <th scope="col">Created date</th>
+                <th scope="col">Case Id</th>
+                <th scope="col">Chaek Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let data of caseData">
+                <tr>
+                    <th>{{data.case_received_date | date:'medium'}}</th>
+                    <td>{{data.case_id}}</td>
+                    <td>
+                        <a class="text-decoration-none" [routerLink]="'/agriculture/check-status/'+data.case_id">Status</a>
+                    </td>
+
+                </tr>
+
+            </ng-container>
+        </tbody>
+    </table>
+    <ng-container *ngIf="caseData.length==0">
+        <p class="text-center">No Data Availble</p>
+    </ng-container>
+</div> -->
+
+
+<div class="container">
+    <p-table [value]="caseData"  [resizableColumns]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                All Case
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" class="justify-content-center">
+            <tr >
+                <th>Created date</th>
+                <th>Case Id</th>
+                <th>Image</th>
+                <th>Reviews</th>
+                <th>Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-case >
+            <tr class="border" style="box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;">
+                <td class="justify-content-center">{{case.case_received_date | date:'medium'}}</td>
+                <td class="justify-content-center">{{case.case_id}}</td>
+                <td class="justify-content-center">
+                    <img [src]="'https://waywala.com/assets/auth/permission.png'"  width="100" class="shadow-4" />
+
+                </td>
+                
+                <td class="justify-content-center">
+                    <p-rating [ngModel]="4" (onRate)="onrate($event,case.case_id)" [readonly]="false" [cancel]="false"></p-rating>
+                </td>
+                <td class="justify-content-center">
+                    <a class="text-decoration-none" [routerLink]="'/agriculture/check-status/'+case.case_id">Status</a>
+                   
+                </td>
+            </tr>
+        </ng-template>
+        
+    </p-table>
+    <ng-container *ngIf="caseData.length==0">
+        <p class="text-center">No Data Availble</p>
+    </ng-container>
+</div>
