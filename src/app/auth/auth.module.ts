@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { AuthService } from './auth.service';
 // import { ToastrModule, ToastrService } from 'ngx-toastr';
 const routes: Routes = [
   {path:"login",component:LoginComponent,pathMatch:'full'},
@@ -25,7 +26,6 @@ const routes: Routes = [
     NgxUiLoaderModule,
     RouterModule.forChild(routes),
     // ToastrModule.forRoot()
-  ],
-  providers:[]
+  ]
 })
 export class AuthModule { }

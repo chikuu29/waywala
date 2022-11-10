@@ -1,44 +1,42 @@
+<p-toast></p-toast>
+<ngx-ui-loader  [fgsType]="SP" [loaderId]="'loader-02'" [text]="loaderText"></ngx-ui-loader>
 <div class="main mt-5">
-
     <div class="container">
-        <h1 class="text-center fs-3 fw-bold mb-3" style="color: #888;"> Hear you just Upload your crop photo</h1>
+        <h1 class="text-center fs-2 fw-bold mb-3" style="color: #888;"> Create Case</h1>
         <mat-card class="border-top border-primary mt-5">
-            <form [formGroup]="fileuploadForm">
+            <form [formGroup]="fileuploadForm" enctype="multipart/form-data">
 
                 <div class="mb-3">
                     <!-- <label for="formFile" class="form-label">Hear upload your file</label> -->
                     <mat-form-field appearance="outline" class="flex-fill d-block">
 
-                        <textarea matInput placeholder="Comment" formControlName="desc" required></textarea>
+                        <textarea matInput placeholder="Tell Us What happened" formControlName="desc" rows="10"
+                            required></textarea>
                         <!-- <input matInput placeholder="Tell Us What happened" formControlName="desc" type="text" required> -->
                         <mat-error *ngIf="fileuploadForm.controls.desc.invalid">Please Enter only text</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Hear upload your file</label>
-                    <input class="form-control" type="file" id="file" multiple="" formControlName="file"
-                        (change)="onFileChange($event)" required>
+                    <p-fileUpload name="uploadfile[]" [url]="uploadURL" (onUpload)="onUpload($event)" accept="image/*" 
+                        [multiple]="multiple" [maxFileSize]="1000000" styleClass="text-center" [chooseStyleClass]="'d-block mb-2'" [uploadStyleClass]="'d-block'" [cancelStyleClass]="'d-block'">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
                 </div>
-                <ng-container *ngIf="true">
-                    <div class='upload__img-box d-flex'>
-                        <div *ngFor='let url of images' class="card m-1" style="width: 8rem;">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
-                            <img [src]="url" class="card-img-top" alt="...">
-
-                        </div>
-
-                    </div>
-
-                </ng-container>
-
-
-
-                <button mat-raised-button color="accent" type="button" class="m-3" (click)="submit()">Upload</button>
-                <button mat-raised-button color="primary" lass="m-3" type="reset">Reset</button>
-
+                <div class="mb-3">
+                    <mat-card [hidden]="!isfileUploaded">
+                        <button pButton pRipple type="button" label="Create Case" class="me-3"
+                            (click)="createCase()"></button>
+                        <button pButton pRipple type="button" type="reset" label="Cancle" icon="pi pi-times"
+                            class="p-button-danger" (click)="cancle()"></button>
+                    </mat-card>
+                </div>
             </form>
 
         </mat-card>
     </div>
-
 </div>
+

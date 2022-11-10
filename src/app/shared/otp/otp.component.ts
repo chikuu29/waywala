@@ -3,6 +3,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,13 +16,15 @@ export class OtpComponent implements OnInit {
   public modalTitle: String = ''
   public otpSendTo: any;
   SP = SPINNER.squareJellyBox;
+  public loaderText='Validating OTP';
 
   constructor
     (
       public activeModal: NgbActiveModal,
       private registrationService: RegistrationService,
       private toastr: ToastrService,
-      private loader: NgxUiLoaderService
+      private loader: NgxUiLoaderService,
+      private router:Router
     ) { }
 
   ngOnInit(): void {
@@ -29,6 +32,7 @@ export class OtpComponent implements OnInit {
   }
 
   public validateOTP() {
+    this.loaderText='Validating OTP';
     this.loader.startLoader('loader-01');
     var otp = "";
     var otpInput = document.getElementsByClassName('form-control');
@@ -41,8 +45,14 @@ export class OtpComponent implements OnInit {
       this.registrationService.otpValidate(data).subscribe((res: any) => {
         console.log(res);
         this.loader.stopLoader('loader-01')
+       
         if (res.success) {
-          this.toastr.success(res.message)
+          
+          if(this.router.url=='/auth/login'){
+            this.toastr.success("Your Account is Now Activated Your Can Login Now")
+          }else{
+            this.toastr.success(res.message)
+          }
           this.activeModal.close({ "success": true })
         } else {
           this.toastr.error(res.message)
@@ -55,7 +65,23 @@ export class OtpComponent implements OnInit {
   }
 
   public reSendOTP() {
-    console.log("reSendOTP");
+    this.loaderText="Resend OTP Sending"
+    this.loader.startLoader('loader-01');
+    var data = {
+      "email": this.otpSendTo
+  
+    }
+    this.registrationService.resendOTP(data).subscribe((res:any)=>{
+      this.loader.stopLoader('loader-01');
+      if(res.success){
+        this.toastr.success(res.message)
+      }else{
+        this.toastr.error(res.message)
+      }
+      
+
+    })
+  
 
 
 

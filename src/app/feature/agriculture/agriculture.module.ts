@@ -8,6 +8,11 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { GenerateQueryComponent } from './generate-query/generate-query.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CheckStatusComponent } from './check-status/check-status.component';
+import { PrimengModule } from 'src/app/primeng/primeng.module';
+import { AuthService } from 'src/app/auth/auth.service';
+import { AgricultureService } from './services/agriculture.service';
+import { MycaseComponent } from './mycase/mycase.component';
 
 
 
@@ -15,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AgricultureComponent,
-    GenerateQueryComponent
+    GenerateQueryComponent,
+    CheckStatusComponent,
+    MycaseComponent
   ],
   imports: [
     CommonModule,
@@ -25,9 +32,10 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule 
-
- 
+    HttpClientModule ,
+    PrimengModule
   ]
+
+
 })
 export class AgricultureModule { }

@@ -6,6 +6,7 @@ import { AppService } from './app.service';
   providedIn: 'root'
 })
 export class RegistrationService {
+  
 
   constructor(private http:HttpClient,private appservices:AppService) { }
   public signUp(userData:any){
@@ -13,6 +14,11 @@ export class RegistrationService {
   }
   public otpValidate(data:any){
     return this.http.post<any>(`${this.appservices.getApipath()}auth/otpvalidate.php`,data)
+  }
+
+  public resendOTP(data:any){
+    return this.http.post<any>(`${this.appservices.getApipath()}auth/resendotp.php`,data)
+
   }
 
   

@@ -1,15 +1,14 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light border-bottom border-danger">
   <!-- Container wrapper -->
-  <div class="container">
+  <div class="container-fluid">
     <!-- Navbar brand -->
     <a class="navbar-brand me-2 text-primary" href="#" style="font-weight: bold;">
       <img src="assets/img/logo2.png" height="45" alt="" loading="lazy" class="rotate" style="margin-top: -1px;" />
-      <span class="logo-text"> Waywala</span>
+      <span class="logo-text"> Waywala <span class="badge rounded-pill text-bg-danger" style="font-size: 9px;letter-spacing: 3px;">{{version}}</span></span>
     </a>
     <!-- Toggle button -->
     <div class="navbar">
-
       <div class="d-flex align-items-center " [ngClass]="screenWidth>990?'d-none':''">
         <!-- Icon -->
         <a class="nav-item m-1" style="cursor: pointer;">
@@ -20,66 +19,73 @@
           <!-- </a> -->
         </a>
         <a class="nav-item m-1 dropdown " [hidden]="!isLogin">
-          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow " href="#" id="navbarDropdownMenuAvatar"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
-              alt="Black and White Portrait of a Man" loading="lazy" />
+            <img src="https://waywala.com/assets/auth/permission.png" class="rounded-circle border border-primary"
+              height="25" alt="Black and White Portrait of a Man" loading="lazy" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <a class="dropdown-item" href="#">My profile</a>
+            <li class="dropdown-item">
+              <a class="btn btn-primary d-block">{{authInfo.name}}</a>
             </li>
-            <li>
-              <a class="dropdown-item" href="#">Settings</a>
+            <li class="dropdown-item">
+              <a class="btn btn-light d-block"> <i class="fa-solid fa-suitcase me-2"></i>My Order</a>
             </li>
-            <li>
-              <a class="dropdown-item" (click)="logout()">Logout</a>
+            <li class="dropdown-item">
+              <a class="btn btn-light d-block"><i class="fa-solid fa-hand-holding-hand me-2" routerLink="agriculture/mycase"></i>My Case</a>
+            </li>
+            <li class="dropdown-item">
+              <a class="btn btn-light d-block"><i class="fa-solid fa-gears me-2"></i>Settings</a>
+            </li>
+            <li class="dropdown-item">
+              <a class="btn btn-danger d-block" (click)="logout()"><i
+                  class="fa-solid fa-right-from-bracket me-2"></i>Logout</a>
             </li>
           </ul>
         </a>
 
       </div>
       <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation"
         (click)="toggleNavBtn()">
-        <!-- <i class="navbar-toggler-icon " *ngIf="!navBtnCollapse"></i> -->
-        <i class="fa fa-bars " *ngIf="!navBtnCollapse"></i>
-        <!-- <span class="btn-close fs-1" *ngIf="navBtnCollapse"></span> -->
-        <i class="fa fa-close " *ngIf="navBtnCollapse"></i>
+
+        <i class="fa-solid fa-bars-staggered fs-2 text-primary " *ngIf="navBtnCollapse"></i>
+        <i class="fa-solid fa-bars fs-2 text-primary" *ngIf="!navBtnCollapse"></i>
 
       </button>
-
-
     </div>
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0  menu">
-        <li class="nav-item hover">
-          <a class="nav-link" href='' routerLink="">Home</a>
+        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav"
+          aria-expanded="true">
+          <a class="nav-link" routerLink="">Home</a>
         </li>
-
-        <li class="nav-item hover">
-          <a class="nav-link" href='' routerLinkActive="activenavitem" routerLink="agriculture">Agriculture</a>
+        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav"
+          aria-expanded="true">
+          <a class="nav-link" routerLinkActive="activenavitem" routerLink="agriculture">Agriculture</a>
         </li>
-        <li class="nav-item hover">
-          <a class="nav-link hover" href="" routerLinkActive="activenavitem"
-            routerLink="education">Education</a>
+        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav"
+          aria-expanded="true">
+          <a class="nav-link hover" href="" routerLinkActive="activenavitem" routerLink="education">Education</a>
         </li>
-        <li class="nav-item hover">
+        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav"
+          aria-expanded="true">
           <a class="nav-link" href="" routerLinkActive="activenavitem" routerLink="feature/shop">E-Commerce</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav"
+          aria-expanded="true">
           <a class="nav-link" href="#"><span style="color:#f55b4a">Offer</span> <span class="notification-badge ">UPTO
               85% off</span></a>
         </li>
       </ul>
       <!-- Left links -->
       <ul class="navbar-nav me-left mb-2 mb-lg-0 justify-content-center">
-     
+
         <li class="nav-item  m-1 " [ngClass]="screenWidth<990?'d-none':''">
           <a class="nav-link hover" href="#">
-            <span><i class="fas fa-shopping-cart fs-5"> <span
+            <span><i class="fas fa-shopping-cart fs-2"> <span
                   class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
                   style="font-size: 8px;">5</span></i></span>
           </a>
@@ -89,27 +95,34 @@
           <a mat-raised-button color="accent" href="" routerLink="/auth/login">Login/Register</a>
         </li>
         <li class="nav-item m-1 dropdown pt-1" [ngClass]="screenWidth<990?'d-none':''" [hidden]="!isLogin">
-          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
-            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
-              alt="Black and White Portrait of a Man" loading="lazy" />
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" id="navbarDropdownMenuAvatar" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://waywala.com/assets/auth/permission.png" class="rounded-circle border border-primary"
+              height="35" alt="Black and White Portrait of a Man" loading="lazy" />
           </a>
+
           <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <a class="dropdown-item" href="#">My profile</a>
+            <li class="dropdown-item">
+              <a class="btn btn-primary d-block">{{authInfo.name}}</a>
             </li>
-            <li>
-              <a class="dropdown-item" href="#">Settings</a>
+
+            <li class="dropdown-item">
+              <a class="btn btn-light d-block"> <i class="fa-solid fa-suitcase me-2"></i>My Order</a>
             </li>
-            <li>
-              <a class="btn btn-danger dropdown-item"  (click)="logout()">Logout</a>
+            <li class="dropdown-item" routerLink="/agriculture/mycase">
+              <a class="btn btn-light d-block"><i class="fa-solid fa-hand-holding-hand me-2"></i>My Case</a>
+            </li>
+            <li class="dropdown-item">
+              <a class="btn btn-light d-block"><i class="fa-solid fa-gears me-2"></i>Settings</a>
+            </li>
+            <li class="dropdown-item">
+              <a class="btn btn-danger d-block" (click)="logout()"><i
+                  class="fa-solid fa-right-from-bracket me-2"></i>Logout</a>
             </li>
           </ul>
         </li>
 
       </ul>
-
-
     </div>
     <!-- Collapsible wrapper -->
   </div>

@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Route } from '@angular/router';
+import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AppService } from 'src/app/services/app.service';
@@ -11,37 +12,34 @@ import { AppService } from 'src/app/services/app.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  public version:any
   public screenWidth: any;
   public navBtnCollapse: Boolean = false;
   public isLogin: Boolean = false;
   public LoginInformation: any;
+  public authInfo:any={"name":""}
   @HostListener('window:resize', ['$event'])
   onResizes(event: any) {
     this.screenWidth = window.innerWidth;
   }
 
-  constructor(public toast: ToastrService, private auth: AuthService) {
+  constructor(public toast: ToastrService, private auth: AuthService,private app:AppService) {
   }
 
   ngOnInit(): void {
-    console.log("calling navbar");
-    this.auth.user.subscribe((res)=>{
-      
-
-      
-      console.log('hello',res);
-      
+    this.version=this.app.getappVersion['version']
+    this.screenWidth = window.innerWidth;
+    this.auth.user.subscribe((res: any) => {
+      if (res) {
+        // console.log(res);
+        this.isLogin = res.token != null ? true : false;
+        this.authInfo = this.auth.getAuthStatus();
+      }
     })
     
-    this.screenWidth = window.innerWidth;
-    this.auth.getLoginInfo('loginiinfo').subscribe((res: any) => {
-      if (res.success) {
-        this.isLogin=JSON.parse(res.data)['isLogin'];
-      } else {
-        this.isLogin = false
-      }
+    console.log(this.authInfo);
 
-    })
+
   }
 
   public toggleNavBtn() {
@@ -50,13 +48,7 @@ export class NavbarComponent implements OnInit {
   
 
   public logout() {
-    this.auth.clearLoginInfo().subscribe((res: any) => {
-      if (res.success) {
-        this.toast.success('Logout Successfull');
-        this.ngOnInit()
-      }
-
-    })
+    this.auth.logout()
   }
 
 }

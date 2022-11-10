@@ -1,16 +1,23 @@
-export class User{
+
+export class user{
     constructor(
-        public name:String,
+        public name:String ,
         public email:String,
-        private _token:String,
-        //private _tokenExpiration:Date
+        public isLogin:boolean,
+        public role:any,
+        private _refreshkey:any,
+        public expiration_date:any
+
     ){
     
     }
 
-
-
     get token(){
-        return this._token;
+        var currentDate=new Date().getTime();             
+        if( new Date(this.expiration_date).getTime() > currentDate){
+            return this._refreshkey;
+        }
+        return null
     }
+
 }
