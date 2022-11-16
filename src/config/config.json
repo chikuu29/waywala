@@ -47,9 +47,11 @@
          "authorizationDBAcess": [
             "agriculture_case",
             "medicine",
-            "agriculture_case_status"
+            "agriculture_case_status",
+            "agriculture_case_review"
          ],
          "authorizationDBAcessForUpdate": [
+            "agriculture_case_review"
          ],
          "authorizationDBAcessForDelet": [
             

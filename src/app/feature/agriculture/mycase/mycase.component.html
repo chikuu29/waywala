@@ -55,7 +55,7 @@
                 </td>
                 
                 <td class="justify-content-center">
-                    <p-rating [ngModel]="4" (onRate)="onrate($event,case.case_id)" [readonly]="false" [cancel]="false"></p-rating>
+                    <p-rating [ngModel]="case.case_review"  (onRate)="onrate($event,case.case_id)" [readonly]="case.case_status !='completed'" [disabled]="case.case_status !='completed'" [cancel]="false"></p-rating>
                 </td>
                 <td class="justify-content-center">
                     <a class="text-decoration-none" [routerLink]="'/agriculture/check-status/'+case.case_id">Status</a>
