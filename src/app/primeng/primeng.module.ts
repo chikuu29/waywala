@@ -5,6 +5,7 @@ import {ToastModule} from 'primeng/toast';
 import {SkeletonModule} from 'primeng/skeleton';
 import {TableModule} from 'primeng/table';
 import {RatingModule} from 'primeng/rating';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 @NgModule({
   declarations: [],
   imports: [
@@ -13,14 +14,16 @@ import {RatingModule} from 'primeng/rating';
     ToastModule,
     SkeletonModule,
     TableModule,
-    RatingModule
+    RatingModule,
+    InputTextareaModule
   ],
   exports:[
     FileUploadModule,
     ToastModule,
     SkeletonModule,
     TableModule,
-    RatingModule
+    RatingModule,
+    InputTextareaModule
   ]
 })
 export class PrimengModule { }

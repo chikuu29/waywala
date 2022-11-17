@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h4 class="modal-title text-danger" id="modal-basic-title">{{modalTitle}}</h4>
+    <button type="button" class="btn-close" (click)="activeModal.dismiss({res:false,msg:'close'})"></button>
+    
+</div>
+<div class="modal-body">
+    <!-- <div class="d-flex justify-content-center align-items-center"> -->
+        <div class="card">
+            <textarea class="form-control" [(ngModel)]="feedBack" rows="6" placeholder="Please sear your experience"></textarea>
+        </div>
+    <!-- </div> -->
+</div>
+<div class="modal-footer justify-content-center">
+    <!-- <div class="row justify-content-center"> -->
+        <p-rating [ngModel]="rating" [disabled]="true" [cancel]="false"></p-rating>
+        <button mat-raised-button color="primary"  class="w-100" (click)="submit()">Send</button>
+    <!-- </div> -->
+
+   
+</div>
+<!-- <ngx-ui-loader  [fgsType]="SP" [loaderId]="'loader-01'" [text]="loaderText"></ngx-ui-loader> -->

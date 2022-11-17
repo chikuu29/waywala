@@ -12,11 +12,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { ToastrModule } from 'ngx-toastr';
-import { HashLocationStrategy,LocationStrategy } from '@angular/common';
 import { OtpComponent } from './shared/otp/otp.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { PrimengModule } from './primeng/primeng.module';
-
+import { CaseReviewComponent } from './shared/case-review/case-review.component';
+import { FormsModule } from '@angular/forms';
+import { AgricultureModule } from './feature/agriculture/agriculture.module';
+import { BlockUIModule } from 'ng-block-ui';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import { PrimengModule } from './primeng/primeng.module';
     FooterComponent,
     HomeComponent,
     OtpComponent,
+    CaseReviewComponent,
    
   ],
   imports: [
@@ -31,12 +34,16 @@ import { PrimengModule } from './primeng/primeng.module';
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
+    AgricultureModule,
     MaterialModule,
     HttpClientModule,
     LoadingBarRouterModule,
     NgxUiLoaderModule,
     PrimengModule,
+    FormsModule,
+    BlockUIModule.forRoot(),
     ToastrModule.forRoot(),
+   
 
    
   ],

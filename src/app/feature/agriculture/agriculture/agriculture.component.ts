@@ -16,7 +16,6 @@ export class AgricultureComponent implements OnInit {
   constructor(private ngxService: NgxUiLoaderService,private _route:Router,private agriculture:AgricultureService) { }
   
   ngOnInit(): void {
-  
     
     this.agriculture.loadertext.subscribe(res=>{
         this.loadertext=res;
