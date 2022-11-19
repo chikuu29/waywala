@@ -1,34 +1,37 @@
-<div class="feedback mt-5">
+<div class="container feedback mt-5">
     <div class="container">
         <h1 class="text-center fs-3 fw-bold " style="color: #888;cursor: pointer;">What people are saying...</h1>
 
-        <div class="row justify-content-center mt-5">
-            <ng-container *ngFor="let feed of feedback">
-                <div class="comment-box col-lg-3">
-                    <div class="d-flex pb-3 align-items-center border-bottom">
-                        <img src="assets/agri/man.png" width="40" height="40" alt="">
-                        <div class="ms-2  ">
-                            <span class="d-block">{{feed.feedback_by | uppercase}}</span>
-                            <span style="font-size: 12px;">{{feed.case_review_time=='0'?'not availble':feed.case_review_time}}</span>
-
-                            <p-rating [ngModel]="feed.case_review" [cancel]="false" [readonly]="true"></p-rating>
-
+       
+            <div class="row justify-content-center mt-5">
+                <ng-container *ngFor="let feed of feedback">
+                    <div class="comment-box col-lg-3">
+                        <div class="d-flex pb-3 align-items-center border-bottom">
+                            <img src="assets/agri/man.png" width="40" height="40" alt="">
+                            <div class="ms-2  ">
+                                <span class="d-block">{{feed.feedback_by | uppercase}}</span>
+                                <span style="font-size: 12px;">{{feed.case_review_time=='0'?'not availble':feed.case_review_time}}</span>
+    
+                                <p-rating [ngModel]="feed.case_review" [cancel]="false" [readonly]="true"></p-rating>
+    
+                            </div>
+                        </div>
+                        <div class="text-content">
+                            {{feed.case_review_note}}
                         </div>
                     </div>
-                    <div class="text-content">
-                        {{feed.case_review_note}}
+                </ng-container>
+    
+                <ng-container *ngIf="feedback.length==0">
+                    <div class="alert alert-warning">
+                        No Information Availble
                     </div>
-                </div>
-            </ng-container>
-
-            <ng-container *ngIf="feedback.length==0">
-                <div class="alert alert-warning">
-                    No Information Availble
-                </div>
-            </ng-container>
-
-
-        </div>
+                </ng-container>
+    
+    
+            </div>
+       
+     
    
 
     </div>

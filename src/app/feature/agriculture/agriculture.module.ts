@@ -6,7 +6,7 @@ import { PagesModule } from 'src/app/pages/pages.module';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { MaterialModule } from 'src/app/material/material.module';
 import { GenerateQueryComponent } from './generate-query/generate-query.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CheckStatusComponent } from './check-status/check-status.component';
 import { PrimengModule } from 'src/app/primeng/primeng.module';
@@ -33,7 +33,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule ,
+    HttpClientModule,
     PrimengModule
 
   ]
