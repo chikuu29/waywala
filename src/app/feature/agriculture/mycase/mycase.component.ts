@@ -114,7 +114,7 @@ export class MycaseComponent implements OnInit {
       }
       else {
         var insertData = {
-          "data": `case_review=${event.value},case_id='${case_id}',feedback_by='${this.appservices.authStatus ? this.appservices.authStatus.name : this.reviewBy},case_review_time='${moment().format('MMMM Do YYYY, h:mm:ss a').toString()}''`
+          "data": `case_review=${event.value},case_id='${case_id}',feedback_by='${this.appservices.authStatus ? this.appservices.authStatus.name : this.reviewBy}',case_review_time='${moment().format('MMMM Do YYYY, h:mm:ss a').toString()}'`
         }
         // console.log(insertData);
         this.apiParameterScript.savedate("agriculture_case_review", insertData).subscribe((insertRes: any) => {
@@ -123,7 +123,7 @@ export class MycaseComponent implements OnInit {
           this.toster.info(`You Gave ${event.value} Star Rating`)
           if (insertRes.success) {
             const modalRef = this.modalService.open(CaseReviewComponent);
-            modalRef.componentInstance.msodalTitle = "Please Give Your FeedBack!";
+            modalRef.componentInstance.modalTitle = "Please Give Your FeedBack!";
             modalRef.componentInstance.rating = event.value;
             modalRef.componentInstance.case_id = case_id;
             modalRef.result.then((modalInstance: any) => {

@@ -1,4 +1,4 @@
-<ngx-ui-loader [fgsType]="SP"  [text]="loadertext"></ngx-ui-loader>
+<ngx-ui-loader [fgsType]="SP" [text]="loadertext"></ngx-ui-loader>
 
 <div class="page-header bg-light mt-5">
     <div class="container pt-5">
@@ -10,24 +10,24 @@
                             class="fw-bold">"You Just Upload You Crop Photo"</span></p>
 
                     <button mat-stroked-button color="accent" type="button" class="d-block m-auto"
-                        style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="navigateTostatusPage()">Check Status</button>
+                        style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="navigateTostatusPage()">Check
+                        Status</button>
                 </div>
 
             </div>
             <div class="col-lg-5 text-start">
                 <div class="" style="position: relative;">
-                    <img src="assets/agri/farmer.png.png" alt="" height="330" width="350"
-                        class="farmer-image">
-                    <img src="assets/agri/farmer2.png.png" alt="" class="farmer-image2" height="330" >
+                    <img src="assets/agri/farmer.png.png" alt="" height="330" width="350" class="farmer-image">
+                    <img src="assets/agri/farmer2.png.png" alt="" class="farmer-image2" height="330">
                 </div>
 
             </div>
 
-           
+
 
         </div>
 
-        
+
 
     </div>
 
@@ -36,38 +36,8 @@
 
 <app-generate-query></app-generate-query>
 
-<div class="feedback mt-5">
-    <div class="container">
-        <h1 class="text-center fs-3 fw-bold " style="color: #888;cursor: pointer;">What people are saying...</h1>
+<app-feedback></app-feedback>
 
-        <div class="row justify-content-center mt-5">
-            <mat-card class="example-card m-3 col-lg-3">
-                <div class="d-flex pb-3 align-items-center border-bottom">
-                    <img src="assets/img/man.png" width="40" height="40" alt=""> 
-                    <div class="ms-2  " >
-                        <span class="d-block">Suryanarayan Biswal</span>
-                        <span style="font-size: 12px;">06-10-2022</span>
-                        
-                    </div>
 
-                </div>
-                <!-- <mat-card-subtitle>06-10-2022</mat-card-subtitle> -->
-                <mat-card-content class="p-2">
-                    <p>This card indeterminates progress bar.</p>
-           
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button><mat-icon>thumb_up</mat-icon></button>
-                    <button mat-button><mat-icon>thumb_down</mat-icon></button>
-                </mat-card-actions>
-            </mat-card>
-            
 
-        </div>
-
-    </div>
-
-</div>
-
-<!-- <ngx-ui-loader  [fgsType]="SP" [bgsType]="SP" [loaderId]="'loader-01'" [text]="'Uploading'"></ngx-ui-loader> -->
-
+<ngx-ui-loader [fgsType]="SP" [bgsType]="SP" [loaderId]="'loader-01'" [text]="'Uploading'"></ngx-ui-loader>

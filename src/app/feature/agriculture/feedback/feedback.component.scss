@@ -1,0 +1,15 @@
+.comment-box{
+    box-shadow: 0.063rem 0 1.25rem 0 #c7ccd5;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 14px;
+    .text-content{
+        padding: 5px;
+        text-indent: 50px;
+        text-align: justify;
+    }
+}
+
+.comment-box:hover{
+    box-shadow: 0.063rem 0 1.25rem 0 #837ded;
+}

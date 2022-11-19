@@ -1,4 +1,3 @@
-import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
@@ -12,16 +11,23 @@ import { AgricultureService } from '../services/agriculture.service';
 })
 export class AgricultureComponent implements OnInit {
   SP = SPINNER.threeStrings;
-  loadertext:any=''
-  constructor(private ngxService: NgxUiLoaderService,private _route:Router,private agriculture:AgricultureService) { }
-  
+  loadertext: any = ''
+
+  constructor(
+    private ngxService: NgxUiLoaderService,
+    private _route: Router,
+    private agriculture: AgricultureService
+
+  ) { }
+
+
   ngOnInit(): void {
-    
-    this.agriculture.loadertext.subscribe(res=>{
-        this.loadertext=res;
+
+    this.agriculture.loadertext.subscribe(res => {
+      this.loadertext = res;
     })
   }
-  navigateTostatusPage(){
+  navigateTostatusPage() {
     this._route.navigateByUrl('/agriculture/check-status')
   }
 

@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CheckStatusComponent } from './check-status/check-status.component';
 import { PrimengModule } from 'src/app/primeng/primeng.module';
 import { MycaseComponent } from './mycase/mycase.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+
 
 
 
@@ -20,7 +22,8 @@ import { MycaseComponent } from './mycase/mycase.component';
     AgricultureComponent,
     GenerateQueryComponent,
     CheckStatusComponent,
-    MycaseComponent
+    MycaseComponent,
+    FeedbackComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { MycaseComponent } from './mycase/mycase.component';
     ReactiveFormsModule,
     HttpClientModule ,
     PrimengModule
+
   ]
 })
 export class AgricultureModule { }
