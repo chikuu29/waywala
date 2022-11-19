@@ -47,7 +47,12 @@ export class ApiParameterScript {
             try {
                 apiData['db'] = db;
                 const appConfig = this.appservices.getappconfig;
-                const loginInfo = this.appservices.authStatus
+                var loginInfo:any ={}
+                if(apiData['auth'] && apiData['auth']){
+                    loginInfo  = {role:'user'}
+                }else{
+                    loginInfo=this.appservices.authStatus
+                }
                 let getrole = loginInfo['role'] ? loginInfo['role'] : 'user';
                 let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
                 if (appConfig['roleConfig'][getrole] && outh) {

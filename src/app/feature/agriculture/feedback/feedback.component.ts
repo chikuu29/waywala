@@ -17,7 +17,7 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.apiParameterScript.fetchdata("agriculture_case_review",{select:"case_review,case_review_time,case_review_note,feedback_by",order:'id'}).subscribe((res:any)=>{
+    this.apiParameterScript.fetchdata("agriculture_case_review",{select:"case_review,case_review_time,case_review_note,feedback_by",order:'id',auth:true}).subscribe((res:any)=>{
       console.log(res);
 
       if(res.success){

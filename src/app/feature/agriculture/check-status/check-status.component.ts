@@ -48,7 +48,8 @@ export class CheckStatusComponent implements OnInit {
     this.loading = true;
     var apiData = {
       "select": "*",
-      "projection": `case_id='${case_id}'`
+      "projection": `case_id='${case_id}'`,
+      "auth":true
     }
     this.apiParameterScript.fetchdata('agriculture_case', apiData).subscribe((res: any) => {
       this.loading = false;
