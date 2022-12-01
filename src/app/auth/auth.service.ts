@@ -49,6 +49,12 @@ export class AuthService {
     })
   }
 
+  public forgotpassword(apidata : any , req: any){
+    return this.http.post<any>(`${this.getApipath()}auth/forgetpassword.php?req=${req}`, apidata ) 
+    
+  
+  }
+
   public getAuthStatus() {
 
     try {
