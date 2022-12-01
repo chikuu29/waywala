@@ -121,6 +121,7 @@ export class MycaseComponent implements OnInit {
           console.log(insertRes);
           this.blockUI.stop()
           this.toster.info(`You Gave ${event.value} Star Rating`)
+          this.blockUI.stop()
           if (insertRes.success) {
             const modalRef = this.modalService.open(CaseReviewComponent);
             modalRef.componentInstance.modalTitle = "Please Give Your FeedBack!";

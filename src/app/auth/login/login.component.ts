@@ -9,6 +9,11 @@ import { ToastrService } from 'ngx-toastr';
 import { OtpComponent } from 'src/app/shared/otp/otp.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
+import { result } from 'lodash';
+import { HttpClient } from '@angular/common/http';
+import { observable } from 'rxjs';
+import * as $ from "jquery";
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +22,17 @@ import * as moment from 'moment';
 })
 export class LoginComponent implements OnInit {
   hide = true;
-  constructor(private auth: AuthService, private loader: NgxUiLoaderService, private toastr: ToastrService, private router: Router, private modalService: NgbModal) { }
+  requstdata: any;
+  params: {};
+  @BlockUI() blockUI: NgBlockUI;
+  constructor(
+    private auth: AuthService,
+    private loader: NgxUiLoaderService,
+    private toastr: ToastrService,
+    private router: Router,
+    private modalService: NgbModal,
+    private HttpClient: HttpClient
+  ) { }
 
   loginForm = new FormGroup({
 
@@ -26,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   });
 
-
+  password: any;
   ngOnInit(): void {
 
   }
@@ -65,7 +80,7 @@ export class LoginComponent implements OnInit {
             const modalRef = this.modalService.open(OtpComponent);
             modalRef.componentInstance.modalTitle = "You Need To Valiadte Your OTP";
             modalRef.componentInstance.OtpType = "Email",
-            modalRef.componentInstance.otpSendTo = this.loginForm.value.email
+              modalRef.componentInstance.otpSendTo = this.loginForm.value.email
             modalRef.result.then((modalInstance: any) => {
               if (modalInstance.success) {
                 this.router.navigateByUrl('auth/login')
@@ -86,6 +101,107 @@ export class LoginComponent implements OnInit {
 
   }
 
+  public forgetPassword() {
+    Swal.fire({
+      title: '<strong>Enter Your Email ID</strong>',
+      icon: 'info',
+      input: 'email',
+      inputPlaceholder: 'Enter Email ID',
+      confirmButtonText: 'Send OTP',
+      cancelButtonColor: "#DD6B55",
+      showCancelButton: true,
+      backdrop: false,
+    }).then((result) => {
+      this.params = {
+        'email': result.value,
+        'password': ''
+      }
+      if (result.isConfirmed) {
+        // this.loader.start()
+        this.blockUI.start("Validating Email ID...")
+        this.auth.forgotpassword(this.params, 102).subscribe((res) => {
+          this.blockUI.stop()
+          if (res.isOTPSend) {
+            Swal.fire({
+              title: '<strong>Enter OTP</strong>',
+              html: `<span style = 'color: red ;' >Please Check Your ${result.value} ID<span>`,
+              input: 'text',
+              inputPlaceholder: 'Enter OTP',
+              confirmButtonText: 'Submit',
+              showCancelButton: true,
+              backdrop: false,
+            }).then((otp) => {
+              this.params = {
+                'email': result.value,
+                'password': ''
+              }
+              if (otp.isConfirmed) {
+                this.blockUI.start("Validating OTP...")
+                this.auth.forgotpassword(this.params, 103).subscribe((res) => {
+                  this.blockUI.stop()
+                  if (res.otp == otp.value) {
 
+                    Swal.fire({
+                      title: 'Set New Password',
+                      html: '<input type = "text" id="password" class="swal2-input" placeholder="Enter Password">' + '<input type = "text" id="cpassword" class="swal2-input" placeholder="Conform Password">',
+                      confirmButtonText: "Submit",
+                      showConfirmButton: true,
+                      showCancelButton: true,
+                      focusConfirm: false,
+                      backdrop: false,
+                      preConfirm: () => {
+                        if ($('#password').val() != $('#cpassword').val()) {
+                          Swal.showValidationMessage('password and conformpassword not match');
+                        }
+                      },
+
+
+                    }).then((password) => {
+                      this.params = {
+                        'email': result.value,
+                        'password': $('#password').val(),
+                      }
+                      if (password.isConfirmed) {
+                        this.blockUI.start("Saving Your Deatils...")
+                        this.auth.forgotpassword(this.params, 104).subscribe((res) => {
+                          this.blockUI.stop()
+                          if (res.isOTPSend) {
+                            Swal.fire({
+                              icon: 'success',
+                              text: res.message
+                            });
+                          }
+                        });
+                      }
+                    });
+
+                  } else {
+                    Swal.fire({
+                      title: 'Sorry!',
+                      icon: 'error',
+                      text: "OTP Doesn't Match!"
+                    });
+                  }
+
+                });
+              }
+
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: `${res.message}`,
+            })
+          }
+
+        });
+      }
+
+
+    });
+
+  }
 
 }
+
+
