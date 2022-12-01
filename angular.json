@@ -22,7 +22,8 @@
           "options": {
             "allowedCommonJsDependencies": [
               "lodash",
-              "sweetalert2"
+              "sweetalert2",
+              "jquery"
             ],
             "outputPath": "dist/waywala",
             "index": "src/index.html",

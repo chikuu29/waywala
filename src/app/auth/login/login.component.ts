@@ -13,6 +13,7 @@ import { result } from 'lodash';
 import { HttpClient } from '@angular/common/http';
 import { observable } from 'rxjs';
 import * as $ from "jquery";
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,15 @@ export class LoginComponent implements OnInit {
   hide = true;
   requstdata: any;
   params: {};
-  constructor(private auth: AuthService, private loader: NgxUiLoaderService, private toastr: ToastrService, private router: Router, private modalService: NgbModal, private HttpClient: HttpClient) { }
+  @BlockUI() blockUI: NgBlockUI;
+  constructor(
+    private auth: AuthService,
+    private loader: NgxUiLoaderService,
+    private toastr: ToastrService,
+    private router: Router,
+    private modalService: NgbModal,
+    private HttpClient: HttpClient
+  ) { }
 
   loginForm = new FormGroup({
 
@@ -92,16 +101,14 @@ export class LoginComponent implements OnInit {
 
   }
 
-  forgetPassword() {
-
-
-
+  public forgetPassword() {
     Swal.fire({
-      title: '<strong>Enter u r mail id</strong>',
+      title: '<strong>Enter Your Email ID</strong>',
       icon: 'info',
       input: 'email',
-      inputPlaceholder: 'Enter Email iD',
-      confirmButtonText: 'Send otp',
+      inputPlaceholder: 'Enter Email ID',
+      confirmButtonText: 'Send OTP',
+      cancelButtonColor: "#DD6B55",
       showCancelButton: true,
       backdrop: false,
     }).then((result) => {
@@ -109,113 +116,90 @@ export class LoginComponent implements OnInit {
         'email': result.value,
         'password': ''
       }
-      this.auth.forgotpassword(this.params, 102).subscribe((res) => {
-        if (res.isOTPSend) {
-          Swal.fire({
-            title: '<strong>Enter otp</strong>',
-            html: `<span style = 'color: red ;' >Otp is send to  ${result.value}<span>`,
-            input: 'text',
-            inputPlaceholder: 'Enter Otp',
-            confirmButtonText: 'Submit',
-            showCancelButton: true,
-            backdrop: false,
-          }).then((otp) => {
-            this.params = {
-              'email': result.value,
-              'password': ''
-            }
-            if (otp.isConfirmed) {
-              this.auth.forgotpassword(this.params, 103).subscribe((res) => {
+      if (result.isConfirmed) {
+        // this.loader.start()
+        this.blockUI.start("Validating Email ID...")
+        this.auth.forgotpassword(this.params, 102).subscribe((res) => {
+          this.blockUI.stop()
+          if (res.isOTPSend) {
+            Swal.fire({
+              title: '<strong>Enter OTP</strong>',
+              html: `<span style = 'color: red ;' >Please Check Your ${result.value} ID<span>`,
+              input: 'text',
+              inputPlaceholder: 'Enter OTP',
+              confirmButtonText: 'Submit',
+              showCancelButton: true,
+              backdrop: false,
+            }).then((otp) => {
+              this.params = {
+                'email': result.value,
+                'password': ''
+              }
+              if (otp.isConfirmed) {
+                this.blockUI.start("Validating OTP...")
+                this.auth.forgotpassword(this.params, 103).subscribe((res) => {
+                  this.blockUI.stop()
+                  if (res.otp == otp.value) {
 
-                if (res.otp == otp.value) {
-
-                  Swal.fire({
-                    title: 'Set New Password',
-                    html: '<input type = "text" id="password" class="swal2-input" placeholder="New Password">' + '<input type = "text" id="cpassword" class="swal2-input" placeholder="Conform Password">',
-                    confirmButtonText: "Submit",
-                    showConfirmButton: true,
-                    showCancelButton: true,
-                    focusConfirm: false,
-                    backdrop: false,
-                    preConfirm: () => {
-                      if ($('#password').val() != $('#cpassword').val()) {
-                        Swal.showValidationMessage('password and conformpassword not match');
-                      }
-                    },
-                    //text : `${showmessage}`,
-
-                  }).then((password) => {
-                    //console.log($('#password').val());
-                    console.log(password);
-
-                    this.params = {
-                      'email': result.value,
-                      'password': $('#password').val(),
-                    }
-
-                    if (password.isConfirmed) {
-
-                      this.auth.forgotpassword(this.params, 104).subscribe((res) => {
-                        if (res.isOTPSend) {
-                          Swal.fire({
-                            icon: 'success',
-                            text: res.message
-                          });
+                    Swal.fire({
+                      title: 'Set New Password',
+                      html: '<input type = "text" id="password" class="swal2-input" placeholder="Enter Password">' + '<input type = "text" id="cpassword" class="swal2-input" placeholder="Conform Password">',
+                      confirmButtonText: "Submit",
+                      showConfirmButton: true,
+                      showCancelButton: true,
+                      focusConfirm: false,
+                      backdrop: false,
+                      preConfirm: () => {
+                        if ($('#password').val() != $('#cpassword').val()) {
+                          Swal.showValidationMessage('password and conformpassword not match');
                         }
-                      });
-                    } else {
+                      },
 
-                    }
-                  });
 
-                } else {
-                  Swal.fire({
-                    icon: 'error',
-                    text: "otp doesn't match"
-                  });
-                }
+                    }).then((password) => {
+                      this.params = {
+                        'email': result.value,
+                        'password': $('#password').val(),
+                      }
+                      if (password.isConfirmed) {
+                        this.blockUI.start("Saving Your Deatils...")
+                        this.auth.forgotpassword(this.params, 104).subscribe((res) => {
+                          this.blockUI.stop()
+                          if (res.isOTPSend) {
+                            Swal.fire({
+                              icon: 'success',
+                              text: res.message
+                            });
+                          }
+                        });
+                      }
+                    });
 
-              
+                  } else {
+                    Swal.fire({
+                      title: 'Sorry!',
+                      icon: 'error',
+                      text: "OTP Doesn't Match!"
+                    });
+                  }
+
+                });
+              }
 
             });
-          }else{
-            
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: `${res.message}`,
+            })
           }
 
         });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        text: `${res.message}`,
-      })
-    }
+      }
 
-      });
-});
-    //   console.log('------');
-    //   //  console.log(this.requstdata);
-    //   if(this.requstdata){
-    //     if (result.isConfirmed) {
-    //     // alert(result.value);
-    //     Swal.fire({
-    //       title: '<strong>Enter otp</strong>',
-    //       html: `<span style = 'color: red ;' >Otp is send to  ${result.value}<span>`,
-    //       input: 'text',
-    //       footer : `${this.requstdata}`,
-    //       inputPlaceholder: 'Enter Otp',
-    //       confirmButtonText: 'Submit',
-    //       showCancelButton: true,
-    //     }).then((result) => {
 
-    //     });
-    //   }
-    // }else{
-    //   Swal.fire({
-    //     title: '<strong>Try After Some Time</strong>',
-    //     icon: 'error',
-    //   })
-    // }
-    // });
+    });
+
   }
 
 }

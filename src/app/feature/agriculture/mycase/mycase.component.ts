@@ -79,7 +79,7 @@ export class MycaseComponent implements OnInit {
       "select": "case_id,case_review_note",
       "projection": `case_id='${case_id}'`
     }
-    
+    this.blockUI.start()
     this.apiParameterScript.fetchdata("agriculture_case_review", apiData).subscribe((res: any) => {
       if (res.success && res['data'].length > 0) {
         var updateData = {
@@ -89,6 +89,7 @@ export class MycaseComponent implements OnInit {
         // console.log(updateData);
         this.apiParameterScript.updatedata("agriculture_case_review", updateData).subscribe((updateRes: any) => {
           console.log(updateRes);
+          this.blockUI.stop()
           this.toster.info(`You Gave ${event.value} Star Rating`)
           if (updateRes.success) {
 
@@ -117,6 +118,7 @@ export class MycaseComponent implements OnInit {
         this.apiParameterScript.savedate("agriculture_case_review", insertData).subscribe((insertRes: any) => {
           console.log(insertRes);
           this.toster.info(`You Gave ${event.value} Star Rating`)
+          this.blockUI.stop()
           if (insertRes.success) {
             const modalRef = this.modalService.open(CaseReviewComponent);
             modalRef.componentInstance.msodalTitle = "Please Give Your FeedBack!";
