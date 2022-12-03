@@ -23,6 +23,7 @@
             "allowedCommonJsDependencies": [
               "lodash",
               "sweetalert2",
+              "moment",
               "jquery"
             ],
             "outputPath": "dist/waywala",
