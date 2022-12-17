@@ -49,6 +49,7 @@ export class MycaseComponent implements OnInit {
             "select": "case_id,case_review",
             "projection": ""
           }).subscribe((casereview: any) => {
+            this.blockUI.stop()
             if (casereview.success && casereview['data'].length > 0) {
               var case_review = casereview['data']
               caseData.forEach((el: any) => {
@@ -60,7 +61,6 @@ export class MycaseComponent implements OnInit {
                   this.tempCasedata.push(el)
                 }
               })
-              this.blockUI.stop()
               this.caseData = this.tempCasedata
             }
 
