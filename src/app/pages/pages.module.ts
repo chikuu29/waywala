@@ -9,12 +9,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { OtpComponent } from '../shared/otp/otp.component';
+import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 
 @NgModule({
   declarations: [
     ErrorPageComponent,
     CommingSoonComponent,
-    RegisterComponent
+    RegisterComponent,
+    NoDataAvailableComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { OtpComponent } from '../shared/otp/otp.component';
     
   ],
   exports: [
-    CommingSoonComponent
+    CommingSoonComponent,
+    NoDataAvailableComponent
   ],
   providers:[],
   entryComponents:[OtpComponent]

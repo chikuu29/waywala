@@ -16,6 +16,22 @@ export class CheckStatusComponent implements OnInit {
     case_id: new FormControl('', [Validators.required, Validators.pattern("^WAC[0-9]{4,13}$")])
   })
   caseAllDeatails: any={};
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 1
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 1
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1
+    }
+  ];
+  displayBasic: boolean = false;
+  selectedImage:any[]=[]
   constructor(
 
     private agricultureService: AgricultureService,
@@ -106,10 +122,26 @@ export class CheckStatusComponent implements OnInit {
 
   }
 
+  viewimage(image:any){
+
+    this.selectedImage=[]
+    this.displayBasic=true
+    image.forEach((e: any) => {
+      this.selectedImage.push(
+        {
+          "previewImageSrc": `https://admin.waywala.com/api/medicine/upload/${e}`,
+          "thumbnailImageSrc": `https://admin.waywala.com/api/medicine/upload/${e}`,
+          "alt": e,
+          "title": e
+        }
+      )
+    })
+  }
+
   print(doc: any) {
     console.log(doc);
 
-    var printContents = document.getElementById("chiku")?.innerHTML;
+    var printContents = document.getElementById("print-section")?.innerHTML;
     var originalContents = document.body.innerHTML;
     document.body.innerHTML = printContents ? printContents : '';
     doc.print()

@@ -12,7 +12,6 @@ import { CheckStatusComponent } from './check-status/check-status.component';
 import { PrimengModule } from 'src/app/primeng/primeng.module';
 import { MycaseComponent } from './mycase/mycase.component';
 import { FeedbackComponent } from './feedback/feedback.component';
-import { NoDataAvailbleComponent } from 'src/app/shared/no-data-availble/no-data-availble.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 
@@ -39,7 +38,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
         ReactiveFormsModule,
         HttpClientModule,
         SharedModule,
-        PrimengModule
+        PrimengModule,
+        PagesModule
     ]
 })
 export class AgricultureModule { }

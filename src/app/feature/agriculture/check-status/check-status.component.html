@@ -10,11 +10,9 @@
             <p-button label="Search" icon="pi pi-search" [loading]="loading" [disabled]="!searchForm.valid"
                 (onClick)="search(searchForm.value.case_id)"></p-button>
         </div>
-        <span class="text-danger m-1" *ngIf="searchForm.controls.case_id.invalid">{{getErrorMessage()}}</span>
-
-
-
     </form>
+    <span class="text-danger m-1" *ngIf="searchForm.controls.case_id.invalid">{{getErrorMessage()}}</span>
+
 
     <ng-container *ngIf="loading">
         <div class="field col-12 md:col-6">
@@ -78,16 +76,66 @@
                 </div>
                 <div class="case-resolution">
                     <span>Resolution:-</span>
-                    <p>No Data Availble</p>
+                    
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>No</th>
+                                <th scope="col">Medicine Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Against</th>
+                                <th scope="col">Image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let medicine of caseAllDeatails['caseResolution']['medicine'],let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{medicine.tradeName}}</td>
+                                <td>{{medicine.category}}</td>
+                                <td>{{medicine.against}}</td>
+                                <td>
+                                    <ng-container *ngIf="medicine.medicine_img.length>0">
+                                        <p-image [pTooltip]='"Click To View"'
+                                            [src]="'https://admin.waywala.com/api/medicine/upload/'+medicine.medicine_img[0]"
+                                            alt="Image" width="100" height="50" [preview]="false"
+                                            (click)="viewimage(medicine.medicine_img)"></p-image>
+                                    </ng-container>
+                                    <ng-container *ngIf="medicine.medicine_img.length==0">
+                                        <span>No image available</span>
+                                    </ng-container>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <h2 class="text-center taitel">Message</h2>
+                    <p class="text-center">{{caseAllDeatails['caseResolution']['caseSuggestion']}}</p>
+                    
+                </div>
+                <div>
+                    <p class="text-center text-danger fw-bold">GOOD LUCK!</p>
                 </div>
             </div>
         </div>
     </ng-container>
     <ng-container *ngIf="!loading && caseAllDeatails['caseInformation'] == undefined">
-        <div class="text-center mt-3">
-            <span>No Data Availble</span>
-        </div>
-        <app-no-data-availble></app-no-data-availble>
+        <app-no-data-available></app-no-data-available>
     </ng-container>
 
 </div>
+
+<p-galleria [value]="selectedImage" [(visible)]="displayBasic" [responsiveOptions]="responsiveOptions"
+    [containerStyle]="{'max-width': '100%'}" [numVisible]="selectedImage.length" [circular]="true" [fullScreen]="true"
+    [showItemNavigators]="true" [baseZIndex]="100000">
+    <ng-template pTemplate="item" let-item>
+        <p-image [src]="item.previewImageSrc" alt="Image" width="600" height="350" [preview]="false"></p-image>
+        <!-- <img [src]="item.previewImageSrc" style=" display: block;" width="600" height="350"/> -->
+    </ng-template>
+    <ng-template pTemplate="thumbnail" let-item>
+        <div class="grid grid-nogutter justify-content-center">
+            <img [src]="item.thumbnailImageSrc" style="display: block;" width="50" height="50" />
+        </div>
+    </ng-template>
+</p-galleria>

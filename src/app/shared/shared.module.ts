@@ -4,7 +4,6 @@ import { CaseReviewComponent } from './case-review/case-review.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NoDataAvailbleComponent } from './no-data-availble/no-data-availble.component';
 import { OtpComponent } from './otp/otp.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { FormsModule } from '@angular/forms';
@@ -19,8 +18,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
     FooterComponent,
     HomeComponent,
     OtpComponent,
-    CaseReviewComponent,
-    NoDataAvailbleComponent,
+    CaseReviewComponent
   ],
   imports: [
     CommonModule,
@@ -35,9 +33,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
     FooterComponent,
     HomeComponent,
     OtpComponent,
-    CaseReviewComponent,
-    NoDataAvailbleComponent,
-    
+    CaseReviewComponent
 
   ]
 })

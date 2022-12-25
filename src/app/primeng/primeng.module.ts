@@ -6,6 +6,9 @@ import {SkeletonModule} from 'primeng/skeleton';
 import {TableModule} from 'primeng/table';
 import {RatingModule} from 'primeng/rating';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {GalleriaModule} from 'primeng/galleria';
+import {ImageModule} from 'primeng/image';
+import {TooltipModule} from 'primeng/tooltip';
 @NgModule({
   declarations: [],
   imports: [
@@ -15,7 +18,10 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     SkeletonModule,
     TableModule,
     RatingModule,
-    InputTextareaModule
+    InputTextareaModule,
+    GalleriaModule,
+    ImageModule,
+    TooltipModule
   ],
   exports:[
     FileUploadModule,
@@ -23,7 +29,10 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     SkeletonModule,
     TableModule,
     RatingModule,
-    InputTextareaModule
+    InputTextareaModule,
+    GalleriaModule,
+    ImageModule,
+    TooltipModule
   ]
 })
 export class PrimengModule { }
