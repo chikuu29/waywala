@@ -18,8 +18,7 @@ export class CheckStatusComponent implements OnInit {
   caseAllDeatails: any={};
   constructor(
 
-    private agriculture: AgricultureService,
-    private appservices: AppService,
+    private agricultureService: AgricultureService,
     private apiParameterScript: ApiParameterScript,
     private _rout: ActivatedRoute,
 
@@ -45,21 +44,53 @@ export class CheckStatusComponent implements OnInit {
   loading = false;
 
   search(case_id: any) {
+    this.caseAllDeatails={}
     this.loading = true;
-    var apiData = {
+    let apiData = {
       "select": "*",
       "projection": `case_id='${case_id}'`,
       "auth":true
     }
     this.apiParameterScript.fetchdata('agriculture_case', apiData).subscribe((res: any) => {
-      this.loading = false;
+     
+      console.log(res);
+      
       if (res.success && res['data'].length>0) {
         this.caseAllDeatails['caseInformation'] = res['data']
         this.caseAllDeatails['case_id']=res['data'][0]['case_id']
         this.caseAllDeatails['satus']=res['data'][0]['case_status']
-        console.log(this.caseAllDeatails);
         
+        if(this.caseAllDeatails['satus'] =='completed'){
+          let apiData = {
+            "select": "medicine,caseSuggestion",
+            "projection": `case_id='${case_id}' AND status='completed'`,
+            "auth":true
+          }
+          this.apiParameterScript.fetchdata('agriculture_case_status',apiData).subscribe((caseResolution:any)=>{
+            // console.log(caseResolution);
+            this.loading = false;
+            if(caseResolution.success && caseResolution['data'].length>0){
+                var resolutionData=caseResolution['data'][0];
+                if(resolutionData['medicine'] !=''){
+                  resolutionData['medicine'] =JSON.parse(window.atob(resolutionData['medicine']))
+                }
+                this.caseAllDeatails['caseResolution']=resolutionData
+                console.log(this.caseAllDeatails);
+            }else{
+              this.caseAllDeatails['caseResolution']=[]
+              console.log("no data found");
+              
+            }
+            
+          })
+        }else{
+          this.loading = false;
+          console.log('no Case Resolution Found');
+          
+        }
       } else {
+        this.loading = false;
+        this.caseAllDeatails={}
         
       }
     })

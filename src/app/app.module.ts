@@ -19,15 +19,11 @@ import { CaseReviewComponent } from './shared/case-review/case-review.component'
 import { FormsModule } from '@angular/forms';
 import { AgricultureModule } from './feature/agriculture/agriculture.module';
 import { BlockUIModule } from 'ng-block-ui';
+import { NoDataAvailbleComponent } from './shared/no-data-availble/no-data-availble.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    HomeComponent,
-    OtpComponent,
-    CaseReviewComponent,
-   
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -41,12 +37,12 @@ import { BlockUIModule } from 'ng-block-ui';
     NgxUiLoaderModule,
     PrimengModule,
     FormsModule,
+    SharedModule,
     BlockUIModule.forRoot(),
     ToastrModule.forRoot(),
    
-
-   
   ],
+ 
   providers: [AppService],
   bootstrap: [AppComponent],
 

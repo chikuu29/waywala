@@ -33,8 +33,8 @@
         </div>
     </ng-container>
 
-    <ng-container *ngIf="caseAllDeatails['caseInformation']?true:false">
-        <div class="card p-3" id="chiku">
+    <ng-container *ngIf="!loading && caseAllDeatails['caseInformation']!=undefined">
+        <div class="card p-3">
             <div class="d-flex justify-content-between">
                 <div>
                     <button pButton pRipple type="button" label="{{caseAllDeatails['satus'] | uppercase}}" pTooltip="Download"
@@ -83,10 +83,11 @@
             </div>
         </div>
     </ng-container>
-    <ng-container *ngIf="caseAllDeatails['caseInformation']?false:true">
-        <div class="text-center">
+    <ng-container *ngIf="!loading && caseAllDeatails['caseInformation'] == undefined">
+        <div class="text-center mt-3">
             <span>No Data Availble</span>
         </div>
+        <app-no-data-availble></app-no-data-availble>
     </ng-container>
 
 </div>

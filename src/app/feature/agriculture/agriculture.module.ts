@@ -12,30 +12,34 @@ import { CheckStatusComponent } from './check-status/check-status.component';
 import { PrimengModule } from 'src/app/primeng/primeng.module';
 import { MycaseComponent } from './mycase/mycase.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { NoDataAvailbleComponent } from 'src/app/shared/no-data-availble/no-data-availble.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+
 
 
 
 
 
 @NgModule({
-  declarations: [
-    AgricultureComponent,
-    GenerateQueryComponent,
-    CheckStatusComponent,
-    MycaseComponent,
-    FeedbackComponent
-  ],
-  imports: [
-    CommonModule,
-    AgricultureRoutingModule,
-    PagesModule,
-    NgxUiLoaderModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    PrimengModule
-
-  ]
+    declarations: [
+        AgricultureComponent,
+        GenerateQueryComponent,
+        CheckStatusComponent,
+        MycaseComponent,
+        FeedbackComponent
+        
+    ],
+    imports: [
+        CommonModule,
+        AgricultureRoutingModule,
+        PagesModule,
+        NgxUiLoaderModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        SharedModule,
+        PrimengModule
+    ]
 })
 export class AgricultureModule { }
