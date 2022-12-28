@@ -10,13 +10,15 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { OtpComponent } from '../shared/otp/otp.component';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     ErrorPageComponent,
     CommingSoonComponent,
     RegisterComponent,
-    NoDataAvailableComponent
+    NoDataAvailableComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
