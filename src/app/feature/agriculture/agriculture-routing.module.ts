@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgricultureComponent } from './agriculture/agriculture.component';
 import { CheckStatusComponent } from './check-status/check-status.component';
+import { KvksComponent } from './kvks/kvks.component';
 import { MycaseComponent } from './mycase/mycase.component';
 
 const routes: Routes = [
@@ -16,6 +17,11 @@ const routes: Routes = [
   {
     path:'check-status/:caseID',
     component:CheckStatusComponent
+
+  },
+  {
+    path:'kvks',
+    component:KvksComponent
 
   },
   {

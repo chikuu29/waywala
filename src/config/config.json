@@ -48,7 +48,8 @@
             "agriculture_case",
             "medicine",
             "agriculture_case_status",
-            "agriculture_case_review"
+            "agriculture_case_review",
+            "Kvks_Details"
          ],
          "authorizationDBAcessForUpdate": [
             "agriculture_case_review"

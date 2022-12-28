@@ -1,0 +1,172 @@
+<br><br><br><br>
+<div class="container mt-3">
+
+    <h1 class="text-center header-text">Address of Krishi Vigyan Kendras</h1>
+
+    <div class="">
+        <form class="d-flex flex-wrap justify-content-center" [formGroup]="kvkdetailsForm">
+            <div class="m-3">
+                <p-dropdown [options]="countries" optionLabel="name" [filter]="false" filterBy="name"
+                    [showClear]="false" placeholder="Country" formControlName="country">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="country-item country-item-value">
+                            <div>{{kvkdetailsForm.value.country?.name}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-country pTemplate="item">
+                        <div class="country-item">
+                            <div>{{country.name}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="m-3">
+
+                <p-dropdown [options]="state" optionLabel="name" [filter]="false" filterBy="name" [showClear]="false"
+                    placeholder="State" formControlName="state">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="country-item country-item-value">
+                            <div>{{kvkdetailsForm.value.state?.name}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-state pTemplate="item">
+                        <div class="country-item">
+                            <div>{{state.name}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+
+            </div>
+            <div class="m-3">
+
+                <p-dropdown [options]="district" optionLabel="name" [filter]="true" filterBy="name" [showClear]="false"
+                    placeholder="District" formControlName="district">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="country-item country-item-value">
+                            <div>{{kvkdetailsForm.value.district?.name}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-district pTemplate="item">
+                        <div class="country-item">
+                            <div>{{district.name}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="m-3">
+                <p-button icon="pi pi-search" [loading]="serchloading" (onClick)="search()"
+                    [disabled]="!kvkdetailsForm.valid"></p-button>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- <div class="kvks-details">
+        <table class="table table-borderless ">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th scope="col">Sn</th>
+                    <th scope="col">State</th>
+                    <th scope="col">District</th>
+                    <th scope="col">Kvk Name</th>
+                    <th scope="col">Contact Details</th>
+                    <th scope="col">Landline Number</th>
+                    <th scope="col">Fax No.</th>
+                    <th scope="col">Pincode</th>
+                    <th scope="col">ATRIA Address</th>
+                    <th scope="col">Host Institute Address</th>
+
+                </tr>
+            </thead>
+            <tbody class="table-light">
+                <ng-container *ngFor="let kvk of totalKvksDetails;let i=index">
+                    <tr>
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{kvk.state}}</td>
+                        <td>{{kvk.district}}</td>
+                        <td>{{kvk.kvks_name}}</td>
+                        <td>{{kvk.contact_details}}</td>
+                        <td>{{kvk.landline_no}}</td>
+                        <td>{{kvk.fax_no}}</td>
+                        <td>{{kvk.pincode}}</td>
+                        <td>{{kvk.atari_address}}</td>
+                        <td>{{kvk.host_institute_address}}</td>
+                    
+                       
+    
+                    </tr>
+                </ng-container>
+              
+           
+            </tbody>
+        </table>
+    </div> -->
+</div>
+<div class="container-fluid">
+    <ng-container *ngIf="totalKvksDetails.length>0">
+        <p-table #dt [value]="totalKvksDetails" [rows]="10" [paginator]="true" responsiveLayout="scroll"
+            scrollHeight="500px" [globalFilterFields]="['kvks_name','district']" [rowHover]="true" dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [showCurrentPageReport]="true">
+            <ng-template pTemplate="caption">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fs-2">Manage Kvks Details</h5>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                            placeholder="Search..." />
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="state">State <p-sortIcon field="state">
+                        </p-sortIcon>
+                    </th>
+                    <th pSortableColumn="distinct">District <p-sortIcon field="distinct">
+                        </p-sortIcon>
+                    </th>
+                    <th pSortableColumn="kvks_name">KVK Name <p-sortIcon field="kvks_name"></p-sortIcon>
+                    </th>
+                    <th style="min-width:10rem">Contact Details
+                    </th>
+                    <th style="min-width:10rem">Landline Number
+                    </th>
+                    <th style="min-width:10rem">Fax No.</th>
+                    <th pSortableColumn="pincode" style="min-width:10rem">Pincode <p-sortIcon
+                            field="pincode"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="atari_address">ATARI Address <p-sortIcon field="atari_address"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="host_institute_address">Host Institute Address <p-sortIcon
+                            field="host_institute_address"></p-sortIcon>
+                    </th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-kvk>
+                <tr>
+                    <td>{{kvk.state}}</td>
+                    <td>{{kvk.district}}</td>
+                    <td>{{kvk.kvks_name}}</td>
+                    <td>{{kvk.contact_details}}</td>
+                    <td>{{kvk.landline_no}}</td>
+                    <td>{{kvk.fax_no}}</td>
+                    <td>{{kvk.pincode}}</td>
+                    <td>{{kvk.atari_address}}</td>
+                    <td>{{kvk.host_institute_address}}</td>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">
+                    In total there are {{totalKvksDetails ? totalKvksDetails.length : 0 }} KVKS.
+                </div>
+            </ng-template>
+        </p-table>
+    </ng-container>
+    <ng-container *ngIf="totalKvksDetails.length==0">
+        <app-no-data-available></app-no-data-available>
+    </ng-container>
+
+</div>

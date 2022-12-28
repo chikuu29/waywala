@@ -4,14 +4,19 @@
     <div class="container pt-5">
         <div class="row">
             <div class="col-lg-7">
-                <div class="container-fluid py-5 mt-5">
+                <div class="container py-5 mt-5">
                     <h3 class="display-5 fw-bold text-center fs-1">Welcome To <span class="zoom">waywala.com</span></h3>
                     <p class="text-center font-size-base text-wrap p-3 fst-bold">We help you to grow your farming <span
                             class="fw-bold">"You Just Upload You Crop Photo"</span></p>
 
-                    <button mat-stroked-button color="accent" type="button" class="d-block m-auto"
-                        style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="navigateTostatusPage()">Check
-                        Status</button>
+                    <div class="d-grid gap-2 d-md-block text-center">
+                        <button mat-raised-button color="warn" type="button" class="m-2"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="navigateTostatusPage()">Check
+                            Status</button>
+                        <button mat-raised-button color="primary" type="button" class="m-2"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;" routerLink="/agriculture/kvks">Kvks Detail's</button>
+                    </div>
+
                 </div>
 
             </div>

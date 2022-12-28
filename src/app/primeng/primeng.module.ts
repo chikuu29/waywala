@@ -9,6 +9,9 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {GalleriaModule} from 'primeng/galleria';
 import {ImageModule} from 'primeng/image';
 import {TooltipModule} from 'primeng/tooltip';
+import {DropdownModule} from 'primeng/dropdown';
+import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
 @NgModule({
   declarations: [],
   imports: [
@@ -21,7 +24,10 @@ import {TooltipModule} from 'primeng/tooltip';
     InputTextareaModule,
     GalleriaModule,
     ImageModule,
-    TooltipModule
+    TooltipModule,
+    DropdownModule,
+    ButtonModule,
+    InputTextModule
   ],
   exports:[
     FileUploadModule,
@@ -32,7 +38,10 @@ import {TooltipModule} from 'primeng/tooltip';
     InputTextareaModule,
     GalleriaModule,
     ImageModule,
-    TooltipModule
+    TooltipModule,
+    DropdownModule,
+    ButtonModule,
+    InputTextModule
   ]
 })
 export class PrimengModule { }
