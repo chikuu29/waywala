@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import Swal from 'sweetalert2';
 import { kvks } from './kvks';
@@ -10,13 +11,12 @@ import { kvks } from './kvks';
   styleUrls: ['./kvks.component.scss']
 })
 export class KvksComponent implements OnInit {
-
+  @BlockUI() blockUI: NgBlockUI;
   kvkdetailsForm=new FormGroup({
     country: new FormControl({name:'India'}, [Validators.required]),
     state: new FormControl({name:'odisha'}, [Validators.required]),
     district: new FormControl({name:''}, [Validators.required])
   }) 
-  // selectedCountry: any ={name: 'India'};
   allDistricts:any[]= [
     "Angul",
     "Balangir",
@@ -49,8 +49,6 @@ export class KvksComponent implements OnInit {
     "Sonepur",
     "Sundargarh"
   ]
-  // selectedState:any
-  // selectedDistrict:any
   countries: any[];
   district:any=[]
   state:any[]
@@ -76,10 +74,11 @@ export class KvksComponent implements OnInit {
   public getKvks(apiData:any){
 
    
-
+    this.blockUI.start('loading...')
     this.apiparameter.fetchdata('Kvks_Details',apiData).subscribe((res:any)=>{
       console.log(res);
       this.serchloading=false;
+      this.blockUI.stop()
       if(res.success){
         this.totalKvksDetails=res['data']
       }else{
@@ -103,6 +102,7 @@ export class KvksComponent implements OnInit {
       this.serchloading=true;
       this.getKvks(apidata)
     }else{
+      console.log("please slecte details");
       
     }
     
