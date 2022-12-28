@@ -66,7 +66,7 @@ export class KvksComponent implements OnInit {
       this.district.push({name:district})
     })
    
-    this.getKvks({"select":"*","projection":""})
+    this.getKvks({"select":"*","projection":"","auth":true})
     console.log(this.kvkdetailsForm.value);
     
   }
@@ -97,7 +97,8 @@ export class KvksComponent implements OnInit {
     if(district!='' && state !=''){
       let apidata={
         "select":"*",
-        "projection":`district='${this.kvkdetailsForm.value.district?.name}' AND state='${this.kvkdetailsForm.value.state?.name}'`
+        "projection":`district='${this.kvkdetailsForm.value.district?.name}' AND state='${this.kvkdetailsForm.value.state?.name}'`,
+        "auth":true
       }
       this.serchloading=true;
       this.getKvks(apidata)
