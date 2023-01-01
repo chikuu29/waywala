@@ -53,7 +53,8 @@
             "user"
          ],
          "authorizationDBAcessForUpdate": [
-            "agriculture_case_review"
+            "agriculture_case_review",
+            "user"
          ],
          "authorizationDBAcessForDelet": [
             
