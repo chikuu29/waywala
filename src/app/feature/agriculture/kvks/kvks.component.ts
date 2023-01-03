@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
@@ -55,9 +55,17 @@ export class KvksComponent implements OnInit {
  
   totalKvksDetails: kvks[] = [];
   serchloading:boolean=false
+  screenWidth:any;
+  @HostListener('window:resize', ['$event'])
+  onResizes(event: any) {
+    this.screenWidth = window.innerWidth;
+  }
   constructor(private apiparameter:ApiParameterScript) { }
 
   ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+    console.log(this.screenWidth);
+    
     this.countries = [
       { name: 'India' }
     ];

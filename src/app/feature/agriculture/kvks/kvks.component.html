@@ -108,16 +108,19 @@
             scrollHeight="500px" [globalFilterFields]="['kvks_name','district']" [rowHover]="true" dataKey="id"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [showCurrentPageReport]="true">
-            <ng-template pTemplate="caption">
-                <div class="d-flex align-items-center justify-content-between">
-                    <h5 class="m-0 fs-2">Manage Kvks Details</h5>
-                    <span class="p-input-icon-left">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                            placeholder="Search..." />
-                    </span>
-                </div>
-            </ng-template>
+            <ng-container *ngIf="screenWidth > 390">
+                <ng-template pTemplate="caption">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h5 class="m-0 fs-2">Manage Kvks Details</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text"
+                                (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                placeholder="Search..." />
+                        </span>
+                    </div>
+                </ng-template>
+            </ng-container>
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="state">State <p-sortIcon field="state">

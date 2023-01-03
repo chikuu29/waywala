@@ -10,13 +10,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
+  allowprofileUpdate:boolean=false
   profile: any;
   email: string;
-  edit: any = 'btn btn-info';
-  update: any = 'btn btn-info d-noun';
-  showtext: any = 'col-sm-9 text-secondary';
-  showtextbox: any = 'col-sm-9 text-secondary d-noun';
   name: string;
   phone: number;
   address: string;
@@ -24,10 +20,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.appservices.authStatus)
-   this.fatchdata();
+    this.getprofile();
   }
 
-  fatchdata(){
+  getprofile() {
     var apiData = {
       "select": "*",
       "projection": `email='${this.appservices.authStatus.email}'`
@@ -46,45 +42,57 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  updateuser() {
-    this.edit = 'btn btn-info d-noun';
-    this.update = 'btn btn-info';
-    this.showtext = 'col-sm-9 text-secondary d-noun';
-    this.showtextbox = 'col-sm-9 text-secondary';
+  edit() {
+
+    this.allowprofileUpdate=true
+
   }
 
-   onclickupdatebtn(){
+  updateprofile() {
     var apiData = {
-     'data' : `name='${this.name}' ,mobile_no='${this.phone}',address='${this.address}'`,
+      'data': `name='${this.name}',mobile_no='${this.phone}',address='${this.address}'`,
       "projection": `email='${this.profile.email}'`
     }
-         this.apiparameter.updatedata('user' , apiData ).subscribe((res : any)=>{
-            //console.log(res);
+    console.log("apiData",apiData);
+    this.apiparameter.updatedata('user', apiData).subscribe((res: any) => {
+      //console.log(res);
 
-            if(res.success){
-              const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              
-              Toast.fire({
-                icon: 'success',
-                title: 'Updated  successfully'
-              })
-            }
+      if (res.success) {
+        this.allowprofileUpdate=false
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        Toast.fire({
+          icon: 'success',
+          title: 'Updated  successfully'
+        })
+      }else{
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        Toast.fire({
+          icon: 'error',
+          title: res.message
+        })
+      }
+      this.getprofile();
+    });
+  }
 
-            this.update = 'btn btn-info d-noun';
-            this.edit = 'btn btn-info';
-            this.showtextbox= 'col-sm-9 text-secondary d-noun';
-            this.showtext = 'col-sm-9 text-secondary';
-            this.fatchdata();
-         });
-   }
-
+  cancle(){
+    this.allowprofileUpdate=false
+  }
 
 }

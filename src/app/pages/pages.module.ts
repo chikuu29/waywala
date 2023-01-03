@@ -11,6 +11,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { OtpComponent } from '../shared/otp/otp.component';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PrimengModule } from '../primeng/primeng.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
     PagesRoutingModule,
     MaterialModule,
     FormsModule,
+    PrimengModule,
     ReactiveFormsModule,
     // ToastrModule.forRoot(),
     NgxUiLoaderModule

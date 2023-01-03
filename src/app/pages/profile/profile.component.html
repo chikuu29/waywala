@@ -1,35 +1,23 @@
 <br><br><br><br>
 <div class="container">
-    <div class="main-body">
+  <div class="main-body mt-3">
+    <div class="row gutters-sm">
+      <ng-container *ngIf="profile">
+        <div class="col-md-4 mb-3">
 
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <img src="assets/agri/man.png" alt="Admin" class="rounded-circle" width="150">
+                <div class="mt-3">
+                  <h4 class="fw-bold">{{profile.name}}</h4>
+                  <button class="btn btn-outline-primary">Message</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                <li class="breadcrumb-item active" aria-current="page">Profile</li>
-            </ol>
-        </nav>
-        <!-- /Breadcrumb -->
-
-        <div class="row gutters-sm">
-            <ng-container *ngIf="profile">
-                <div class="col-md-4 mb-3">
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
-                                    class="rounded-circle" width="150">
-                                <div class="mt-3">
-                                    <h4>{{profile.name}}</h4>
-                                    <button class="btn btn-outline-primary">Message</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="card mt-3">
+          <!-- <div class="card mt-3">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
@@ -53,65 +41,93 @@
                   </li>
                 </ul>
               </div> -->
+        </div>
+        <div class="col-md-8">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div>
+                <h2 class="text-center fw-bold fs-4">Profile</h2>
+              </div>
+              <div>
+                <div class="row m-2">
+                  <div class="col-sm-3">
+                    <h3 class="mb-0">Full Name</h3>
+                  </div>
+                  <div *ngIf="!allowprofileUpdate" class="col-sm-9">
+                    {{profile.name}}
+                  </div>
+                  <div *ngIf="allowprofileUpdate" class="col-sm-9">
+                    <mat-form-field appearance="outline" class="flex-fill w-100">
+                      <mat-label>Update Your Name</mat-label>
+                      <input matInput placeholder="Placeholder" [value]="profile.name" [(ngModel)]="name">
+                    </mat-form-field>
+                  </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
-                                </div>
-                                <div [ngClass]="showtext">
-                                    {{profile.name}}
-                                </div>
-                                <div [ngClass]="showtextbox">
-                                  <input type="text" name="" id="" value="{{profile.name}}" [(ngModel)]="name">
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{profile.email}}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone</h6>
-                                </div>
-                                <div [ngClass]="showtext">
-                                    {{profile.mobile_no}}
-                                </div>
-                                <div [ngClass]="showtextbox">
-                                  <input type="text" name="" id="" value="{{profile.mobile_no}}" [(ngModel)]="phone">
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
-                                </div>
-                                <div [ngClass]="showtext">
-                                   {{profile.address}}
-                                </div>
-                                <div [ngClass]="showtextbox">
-                                  <input type="text" name="" id="" value="{{profile.address}}" [(ngModel)]="address">
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a (click)="updateuser()" [ngClass]="edit" target="__blank">Edit</a>
-                                    <a [ngClass]="update" (click)="onclickupdatebtn()" target="__blank">Update</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- <div class="row gutters-sm">
+                <div class="row m-2">
+                  <div class="col-sm-3">
+                    <h3 class="mb-0">Email</h3>
+                  </div>
+                  <div *ngIf="!allowprofileUpdate" class="col-sm-9 text-secondary">
+
+                    {{profile.email}}
+                  </div>
+                  <div *ngIf="allowprofileUpdate" class="col-sm-9 text-secondary">
+                    <mat-form-field appearance="outline" class="flex-fill w-100">
+                      <mat-label>Update Your Email</mat-label>
+                      <input matInput placeholder="Placeholder" [value]="profile.email" disabled="true">
+                    </mat-form-field>
+                    <!-- <input type="text" name="" id="" value="{{profile.mobile_no}}" [(ngModel)]="phone"> -->
+                  </div>
+                </div>
+
+                <div class="row m-2">
+                  <div class="col-sm-3">
+                    <h3 class="mb-0">Phone</h3>
+                  </div>
+                  <div *ngIf="!allowprofileUpdate" class="col-sm-9 text-secondary">
+
+                    {{profile.mobile_no}}
+                  </div>
+                  <div *ngIf="allowprofileUpdate" class="col-sm-9 text-secondary">
+                    <mat-form-field appearance="outline" class="flex-fill w-100">
+                      <mat-label>Update Your Phone</mat-label>
+                      <input matInput placeholder="Placeholder" [value]="profile.mobile_no" [(ngModel)]="phone">
+                    </mat-form-field>
+                    <!-- <input type="text" name="" id="" value="{{profile.mobile_no}}" [(ngModel)]="phone"> -->
+                  </div>
+                </div>
+
+                <div class="row m-2">
+                  <div class="col-sm-3">
+                    <h3 class="mb-0">Address</h3>
+                  </div>
+                  <div *ngIf="!allowprofileUpdate" class="col-sm-9 text-secondary">
+                    {{profile.address}}
+                  </div>
+                  <div *ngIf="allowprofileUpdate" class="col-sm-9 text-secondary">
+                    <mat-form-field appearance="outline" class="flex-fill w-100">
+                      <mat-label>Update Your Address</mat-label>
+                      <input matInput placeholder="Placeholder" [value]="profile.address" [(ngModel)]="address">
+                    </mat-form-field>
+                    <!-- <input type="text" name="" id="" value="{{profile.address}}" [(ngModel)]="address"> -->
+                  </div>
+                </div>
+
+                <div class="row m-2">
+                  <div class="col-sm-12">
+                    <button pButton pRipple type="button" label="Edit" class="me-2" (click)="edit()"
+                      [hidden]="allowprofileUpdate"></button>
+                    <button pButton pRipple type="button" label="Update" class="p-button-success me-2"
+                      (click)="updateprofile()" [hidden]="!allowprofileUpdate"></button>
+                    <button pButton pRipple type="button" label="Cancle" class="p-button-danger"
+                      [hidden]="!allowprofileUpdate" (click)="cancle()"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
@@ -170,9 +186,9 @@
 
 
 
-                </div>
-            </ng-container>
         </div>
-
+      </ng-container>
     </div>
+
+  </div>
 </div>
