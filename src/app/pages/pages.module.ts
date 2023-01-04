@@ -12,6 +12,8 @@ import { OtpComponent } from '../shared/otp/otp.component';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PrimengModule } from '../primeng/primeng.module';
+import { AboutComponent } from './about/about.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { PrimengModule } from '../primeng/primeng.module';
     CommingSoonComponent,
     RegisterComponent,
     NoDataAvailableComponent,
-    ProfileComponent
+    ProfileComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,
