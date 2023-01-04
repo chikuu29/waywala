@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { user } from 'src/app/appModules/userModules';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
@@ -10,26 +11,31 @@ import Swal from 'sweetalert2';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  allowprofileUpdate:boolean=false
+  @BlockUI() blockUI: NgBlockUI;
+  allowprofileUpdate: boolean = false
   profile: any;
-  email: string;
-  name: string;
+  email: string='';
+  name: string='';
   phone: number;
-  address: string;
-  constructor(private apiparameter: ApiParameterScript, private appservices: AppService) { }
+  address: string='';
+  constructor(
+    private apiparameter: ApiParameterScript,
+    private appservices: AppService
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.appservices.authStatus)
     this.getprofile();
   }
 
   getprofile() {
+
     var apiData = {
       "select": "*",
       "projection": `email='${this.appservices.authStatus.email}'`
     }
+    this.blockUI.start("Fetching Profile...")
     this.apiparameter.fetchdata('user', apiData).subscribe((res: any) => {
-
+      this.blockUI.stop()
       //console.log(res)
       if (res.success) {
         this.profile = res['data'][0]
@@ -44,7 +50,7 @@ export class ProfileComponent implements OnInit {
 
   edit() {
 
-    this.allowprofileUpdate=true
+    this.allowprofileUpdate = true
 
   }
 
@@ -53,12 +59,14 @@ export class ProfileComponent implements OnInit {
       'data': `name='${this.name}',mobile_no='${this.phone}',address='${this.address}'`,
       "projection": `email='${this.profile.email}'`
     }
-    console.log("apiData",apiData);
+    this.blockUI.start("Updating Profile...")
+
+    console.log("apiData", apiData);
     this.apiparameter.updatedata('user', apiData).subscribe((res: any) => {
       //console.log(res);
-
+      this.blockUI.stop()
       if (res.success) {
-        this.allowprofileUpdate=false
+        this.allowprofileUpdate = false
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -72,7 +80,7 @@ export class ProfileComponent implements OnInit {
           icon: 'success',
           title: 'Updated  successfully'
         })
-      }else{
+      } else {
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -91,8 +99,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  cancle(){
-    this.allowprofileUpdate=false
+  cancle() {
+    this.allowprofileUpdate = false
   }
 
 }

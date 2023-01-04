@@ -59,6 +59,8 @@ export class KvksComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResizes(event: any) {
     this.screenWidth = window.innerWidth;
+    console.log(this.screenWidth);
+    
   }
   constructor(private apiparameter:ApiParameterScript) { }
 
