@@ -6,9 +6,9 @@ import { HomeComponent } from './shared/home/home.component';
 const routes: Routes = [
   {
     path: '',
-    // component: HomeComponent
-    redirectTo:'agriculture',
-    pathMatch:'full'
+    component: HomeComponent
+    // redirectTo:'agriculture',
+    // pathMatch:'full'
   },
   {
     path: "auth",
