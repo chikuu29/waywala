@@ -4,40 +4,60 @@
 //   width: 200px !important;
 //   height: 300px !important;
 // }
+.navbar {
+  background-color: #fff;
+  // box-shadow: 0.063rem 0 1.25rem 0 #c7ccd5;
+  li{
+    margin: 2px !important;
+  }
+
+  .activenavitem {
+    // padding: 2px 20px;
+    border-radius: 5px;
+    background-color:  rgba(77,89,149,.06);
+   
+    a{
+      color: #5d78ff !important;
+    }
+  }
+
+}
 
 .logo-text {
   font-weight: 700;
 
   font-size: 25px;
   // line-height: 20px;
-  color: #222 ;
+  color: #222;
   cursor: pointer;
-  font-family: 'Lobster Two', cursive;;
+  font-family: 'Lobster Two', cursive;
+  ;
   // font-weight: bold;
   // color: red;
   // font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.activenavitem{
-  color: #f55b4a !important;
-}
 
-.logo-text:hover{
+
+
+.logo-text:hover {
   color: #f55b4a;
 }
-.menu li{
+
+.menu li {
   margin: 10px;
 }
 
 .nav-link {
   // margin-left: 10px 10px;
-  font-family:'Manrope',sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 700;
   font-size: 15px;
   line-height: 20px;
-  color: #222 ;
+  color: #222;
   cursor: pointer;
 
 }
+
 span.notification-badge {
   background-color: #f55b4a;
   color: #fff;
@@ -54,14 +74,25 @@ span.notification-badge {
   margin-top: -33px;
 }
 
-
+.nav-item{
+  margin: 0px;
+  padding: 2px 20px;
+}
+.nav-item:hover{
+  border-radius: 5px;
+  background-color:  rgba(77,89,149,.06);
+  
+}
 .hover a:hover {
-  color:#f55b4a;
+  color: #5d78ff;
 
 }
-.hover :hover{
-  color:#f55b4a;
-}
+
+// .hover :hover {
+//   color: #5d78ff;
+//   // color: #f55b4a;
+//   // color:#646c9a
+// }
 
 .rotate {
   animation: rotation 8s infinite linear;

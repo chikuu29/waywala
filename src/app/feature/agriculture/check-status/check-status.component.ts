@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
 import { AgricultureService } from '../services/agriculture.service';
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
+import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-check-status',
   templateUrl: './check-status.component.html',
@@ -140,16 +143,29 @@ export class CheckStatusComponent implements OnInit {
 
   print(doc: any) {
     console.log(doc);
-
     var printContents = document.getElementById("print-section")?.innerHTML;
     var originalContents = document.body.innerHTML;
     document.body.innerHTML = printContents ? printContents : '';
     doc.print()
     document.body.innerHTML = originalContents;
-    // location.reload()
+    location.reload()
 
 
 
+  }
+
+  dowonload(case_id:any){
+    let DATA: any = document.getElementById('print-section');
+    
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 209;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save(case_id+'.pdf');
+    });
   }
 
 

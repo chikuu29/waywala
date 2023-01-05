@@ -32,7 +32,7 @@
     </ng-container>
 
     <ng-container *ngIf="!loading && caseAllDeatails['caseInformation']!=undefined">
-        <div class="card p-3">
+        <div class="card p-3 resolution">
             <div class="d-flex justify-content-between">
                 <div>
                     <button pButton pRipple type="button" label="{{caseAllDeatails['satus'] | uppercase}}" pTooltip="Download"
@@ -40,7 +40,7 @@
                 </div>
                 <div>
                     <button pButton pRipple type="button" icon="pi pi-download" pTooltip="Download"
-                        class="p-button-raised p-button-text m-1"></button>
+                        class="p-button-raised p-button-text m-1" (click)="dowonload(searchForm.value.case_id)"></button>
                     <button pButton pRipple type="button" icon="pi pi-print" pTooltip="Print"
                         class="p-button-raised p-button-text m-1" (click)="print(window)"></button>
                 </div>

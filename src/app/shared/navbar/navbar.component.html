@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light border-bottom border-danger">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light ">
   <!-- Container wrapper -->
   <div class="container-fluid">
     <!-- Navbar brand -->
@@ -11,14 +11,14 @@
     <div class="navbar">
       <div class="d-flex align-items-center " [ngClass]="screenWidth>990?'d-none':''">
         <!-- Icon -->
-        <a class="nav-item m-1" style="cursor: pointer;">
+        <a class="nav-ite" style="cursor: pointer;">
           <!-- <a class="nav-link hover" href="#"> -->
           <span style="color: black;"><i class="fas fa-shopping-cart fs-5"> <span
                 class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
                 style="font-size: 8px;">5</span></i></span>
           <!-- </a> -->
         </a>
-        <a class="nav-item m-1 dropdown " [hidden]="!isLogin">
+        <a class="nav-ite m-1 dropdown " [hidden]="!isLogin">
           <a class="dropdown-toggle d-flex align-items-center hidden-arrow " href="#" id="navbarDropdownMenuAvatar"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://waywala.com/assets/auth/permission.png" class="rounded-circle border border-primary"
@@ -62,19 +62,19 @@
           aria-expanded="true">
           <a class="nav-link" routerLink="">Home</a>
         </li>
-        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav"
+        <li class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse" aria-controls="navbarNav"
           aria-expanded="true">
-          <a class="nav-link" routerLinkActive="activenavitem" routerLink="agriculture">Agriculture</a>
+          <a class="nav-link"  routerLink="agriculture">Agriculture</a>
         </li>
-        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav"
+        <li class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse" aria-controls="navbarNav"
           aria-expanded="true">
-          <a class="nav-link hover" href="" routerLinkActive="activenavitem" routerLink="education">Education</a>
+          <a class="nav-link hover" href=""  routerLink="education">Education</a>
         </li>
-        <li class="nav-item hover" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav"
+        <li class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse" aria-controls="navbarNav"
           aria-expanded="true">
-          <a class="nav-link" href="" routerLinkActive="activenavitem" routerLink="feature/shop">E-Commerce</a>
+          <a class="nav-link" href="" routerLink="feature/shop">E-Commerce</a>
         </li>
-        <li class="nav-item" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav"
+        <li class="nav-item" data-bs-target="#navbarNav"  routerLinkActive="activenavitem" data-bs-toggle="collapse" aria-controls="navbarNav"
           aria-expanded="true">
           <a class="nav-link" href="#"><span style="color:#f55b4a">Offer</span> <span class="notification-badge ">UPTO
               85% off</span></a>
@@ -83,18 +83,18 @@
       <!-- Left links -->
       <ul class="navbar-nav me-left mb-2 mb-lg-0 justify-content-center">
 
-        <li class="nav-item  m-1 " [ngClass]="screenWidth<990?'d-none':''">
+        <li class="nav-ite  m-1 " [ngClass]="screenWidth<990?'d-none':''">
           <a class="nav-link hover" href="#">
             <span><i class="fas fa-shopping-cart fs-2"> <span
                   class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
                   style="font-size: 8px;">5</span></i></span>
           </a>
         </li>
-        <li class="nav-item m-1" [hidden]="isLogin">
+        <li class="nav-ite m-1" [hidden]="isLogin">
           <!-- <a class="btn btn-danger" href="" routerLink="/auth/login" style="font-weight: bold;">Login/Register</a> -->
           <a mat-raised-button color="accent" href="" routerLink="/auth/login">Login/Register</a>
         </li>
-        <li class="nav-item m-1 dropdown pt-1" [ngClass]="screenWidth<990?'d-none':''" [hidden]="!isLogin">
+        <li class="nav-ite m-1 dropdown pt-1" [ngClass]="screenWidth<990?'d-none':''" [hidden]="!isLogin">
           <a class="dropdown-toggle d-flex align-items-center hidden-arrow" id="navbarDropdownMenuAvatar" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://waywala.com/assets/auth/permission.png" class="rounded-circle border border-primary"

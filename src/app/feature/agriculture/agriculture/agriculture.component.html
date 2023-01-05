@@ -1,10 +1,16 @@
 <ngx-ui-loader [fgsType]="SP" [text]="loadertext"></ngx-ui-loader>
+<div [hidden]="false" class="message">
+    <marquee width="100%" direction="left" height="50px" class="text-marquee">
+        <a class="missedCall" href="tel:180030002434"><span class="design missedCallText text-danger">Missed Call
+                For Help: 1800-3000-2434</span></a>
+    </marquee>
+</div>
+<div class="page-header">
+    <div class="container">
 
-<div class="page-header bg-light mt-5">
-    <div class="container pt-5">
         <div class="row">
             <div class="col-lg-7">
-                <div class="container py-5 mt-5">
+                <div class="container py-5">
                     <h3 class="display-5 fw-bold text-center fs-1">Welcome To <span class="zoom">waywala.com</span></h3>
                     <p class="text-center font-size-base text-wrap p-3 fst-bold">We help you to grow your farming <span
                             class="fw-bold">"You Just Upload You Crop Photo"</span></p>
@@ -14,7 +20,8 @@
                             style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="navigateTostatusPage()">Check
                             Status</button>
                         <button mat-raised-button color="primary" type="button" class="m-2"
-                            style="padding-left: 2.5rem; padding-right: 2.5rem;" routerLink="/agriculture/kvks">Kvks Detail's</button>
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;" routerLink="/agriculture/kvks">Kvks
+                            Detail's</button>
                     </div>
 
                 </div>
@@ -35,7 +42,6 @@
 
 
     </div>
-
 </div>
 
 
