@@ -3,7 +3,11 @@
     margin-top: 0.5rem;
 }
 .message{
-    margin-top: 5.5rem;
+    margin-top: 4.9rem;
+    marquee {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 .text-marquee{
     background-color: #ffff;

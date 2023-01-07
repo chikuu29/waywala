@@ -50,7 +50,8 @@
             "agriculture_case_status",
             "agriculture_case_review",
             "Kvks_Details",
-            "user"
+            "user",
+            "banner"
          ],
          "authorizationDBAcessForUpdate": [
             "agriculture_case_review",

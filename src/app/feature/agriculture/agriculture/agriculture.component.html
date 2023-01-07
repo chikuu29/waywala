@@ -1,13 +1,19 @@
 <ngx-ui-loader [fgsType]="SP" [text]="loadertext"></ngx-ui-loader>
-<div [hidden]="false" class="message">
-    <marquee width="100%" direction="left" height="50px" class="text-marquee">
-        <a class="missedCall" href="tel:180030002434"><span class="design missedCallText text-danger">Missed Call
-                For Help: 1800-3000-2434</span></a>
+<div class="message" *ngIf="displayBanner">
+    <marquee width="100%" direction="left" height="50px" class="text-marquee" onmouseover="this.stop()" onmouseout="this.start()">
+        <ng-container *ngFor="let banner of allbannerData">
+               <span *ngIf="banner.display_banner=='Yes' && banner.display_phone_no=='No'">
+                {{banner.message}}
+               </span>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <a *ngIf="banner.display_banner=='Yes' && banner.display_phone_no=='Yes'" class="missedCall" href="tel:{{banner.phone_no}}">
+                <span class="design missedCallText text-danger">{{banner.message}}</span></a>
+        </ng-container>
+       
     </marquee>
 </div>
-<div class="page-header">
+<div class="page-header" [ngStyle]="{'margin-top': !displayBanner ? '4.5rem' : '0.5rem' }">
     <div class="container">
-
         <div class="row">
             <div class="col-lg-7">
                 <div class="container py-5">
@@ -34,21 +40,9 @@
                 </div>
 
             </div>
-
-
-
         </div>
-
-
-
     </div>
 </div>
-
-
 <app-generate-query></app-generate-query>
-
 <app-feedback></app-feedback>
-
-
-
 <ngx-ui-loader [fgsType]="SP" [bgsType]="SP" [loaderId]="'loader-01'" [text]="'Uploading'"></ngx-ui-loader>
