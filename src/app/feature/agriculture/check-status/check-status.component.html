@@ -35,12 +35,14 @@
         <div class="card p-3 resolution">
             <div class="d-flex justify-content-between">
                 <div>
-                    <button pButton pRipple type="button" label="{{caseAllDeatails['satus'] | uppercase}}" pTooltip="Download"
-                        class="p-button-raised p-button-text" [ngClass]="caseAllDeatails['satus']=='completed'?'p-button-success':'p-button-danger'"></button>
+                    <button pButton pRipple type="button" label="{{caseAllDeatails['satus'] | uppercase}}"
+                        pTooltip="Download" class="p-button-raised p-button-text"
+                        [ngClass]="caseAllDeatails['satus']=='completed'?'p-button-success':'p-button-danger'"></button>
                 </div>
                 <div>
                     <button pButton pRipple type="button" icon="pi pi-download" pTooltip="Download"
-                        class="p-button-raised p-button-text m-1" (click)="dowonload(searchForm.value.case_id)"></button>
+                        class="p-button-raised p-button-text m-1"
+                        (click)="dowonload(searchForm.value.case_id)"></button>
                     <button pButton pRipple type="button" icon="pi pi-print" pTooltip="Print"
                         class="p-button-raised p-button-text m-1" (click)="print(window)"></button>
                 </div>
@@ -49,7 +51,8 @@
                 <div class="text-center">
                     <span class="d-block fs-5 fw-bold mb-2" style="font-family: Arial, Helvetica, sans-serif;">Report
                         For</span>
-                    <span [ngClass]="caseAllDeatails['satus']=='completed'?'text-success':'text-danger'">{{caseAllDeatails['case_id']}}</span>
+                    <span
+                        [ngClass]="caseAllDeatails['satus']=='completed'?'text-success':'text-danger'">{{caseAllDeatails['case_id']}}</span>
                 </div>
                 <div class="case-details">
                     <span>Information:-</span>
@@ -68,7 +71,8 @@
                                 <td>{{case.case_id}}</td>
                                 <td>{{case.case_received_date | date:"MM/dd/yyyy"}}</td>
                                 <td>{{case.case_assign}}</td>
-                                <td [ngClass]="case.case_status=='completed'?'text-success':'text-danger'">{{case.case_status | uppercase}}</td>
+                                <td [ngClass]="case.case_status=='completed'?'text-success':'text-danger'">
+                                    {{case.case_status | uppercase}}</td>
                             </tr>
 
                         </tbody>
@@ -76,47 +80,54 @@
                 </div>
                 <div class="case-resolution">
                     <span>Resolution:-</span>
-                    
 
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>No</th>
-                                <th scope="col">Medicine Name</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Against</th>
-                                <th scope="col">Image</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let medicine of caseAllDeatails['caseResolution']['medicine'],let i=index">
-                                <td>{{i+1}}</td>
-                                <td>{{medicine.tradeName}}</td>
-                                <td>{{medicine.category}}</td>
-                                <td>{{medicine.against}}</td>
-                                <td>
-                                    <ng-container *ngIf="medicine.medicine_img.length>0">
-                                        <p-image [pTooltip]='"Click To View"'
-                                            [src]="'https://admin.waywala.com/api/medicine/upload/'+medicine.medicine_img[0]"
-                                            alt="Image" width="100" height="50" [preview]="false"
-                                            (click)="viewimage(medicine.medicine_img)"></p-image>
-                                    </ng-container>
-                                    <ng-container *ngIf="medicine.medicine_img.length==0">
-                                        <span>No image available</span>
-                                    </ng-container>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-                    <h2 class="text-center taitel">Message</h2>
-                    <p class="text-center">{{caseAllDeatails['caseResolution']['caseSuggestion']}}</p>
-                    
+                    <ng-container *ngIf="caseAllDeatails['caseResolution']">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>No</th>
+                                    <th scope="col">Medicine Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Against</th>
+                                    <th scope="col">Image</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container>
+                                    <tr
+                                        *ngFor="let medicine of caseAllDeatails['caseResolution']['medicine'],let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{medicine.tradeName}}</td>
+                                        <td>{{medicine.category}}</td>
+                                        <td>{{medicine.against}}</td>
+                                        <td>
+                                            <ng-container *ngIf="medicine.medicine_img.length>0">
+                                                <p-image [pTooltip]='"Click To View"'
+                                                    [src]="'https://admin.waywala.com/api/medicine/upload/'+medicine.medicine_img[0]"
+                                                    alt="Image" width="100" height="50" [preview]="false"
+                                                    (click)="viewimage(medicine.medicine_img)"></p-image>
+                                            </ng-container>
+                                            <ng-container *ngIf="medicine.medicine_img.length==0">
+                                                <span>No image available</span>
+                                            </ng-container>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                        <h2 class="text-center taitel">Message</h2>
+                        <p class="text-center">{{caseAllDeatails['caseResolution']['caseSuggestion']}}</p>
+                        <div>
+                            <p class="text-center text-danger fw-bold">GOOD LUCK!</p>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!caseAllDeatails['caseResolution']">
+                        <p>No Data Availble</p>
+                           
+                    </ng-container>
+                   
                 </div>
-                <div>
-                    <p class="text-center text-danger fw-bold">GOOD LUCK!</p>
-                </div>
+               
             </div>
         </div>
     </ng-container>

@@ -11,6 +11,12 @@ const routes: Routes = [
     // pathMatch:'full'
   },
   {
+    path: 'home',
+    component: HomeComponent
+    // redirectTo:'agriculture',
+    // pathMatch:'full'
+  },
+  {
     path: "auth",
     component: LoginComponent,
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
