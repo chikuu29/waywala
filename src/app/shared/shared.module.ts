@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { MaterialModule } from '../material/material.module';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
-
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,13 +27,15 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
     FormsModule,
     MaterialModule,
     LoadingBarRouterModule,
+    NgbModule
   ],
   exports:[
     NavbarComponent,
     FooterComponent,
     HomeComponent,
     OtpComponent,
-    CaseReviewComponent
+    CaseReviewComponent,
+    NgbModule
 
   ]
 })

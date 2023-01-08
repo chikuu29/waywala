@@ -1,7 +1,7 @@
 <ngx-loading-bar [height]="'5px'" [includeSpinner]="false"></ngx-loading-bar>
 
 <block-ui>
-    <app-navbar *ngIf="_router.url !=='/auth/login' && _router.url !=='/pages/register' "></app-navbar>
-    <router-outlet></router-outlet>
-    <app-footer *ngIf="_router.url !=='/auth/login' && _router.url !=='/pages/register' "></app-footer>
+        <app-navbar *ngIf="_router.url !=='/auth/login' && _router.url !=='/pages/register' "></app-navbar>
+        <router-outlet></router-outlet>
+        <app-footer *ngIf="_router.url !=='/auth/login' && _router.url !=='/pages/register' "></app-footer>
 </block-ui>
