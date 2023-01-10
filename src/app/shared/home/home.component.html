@@ -1,88 +1,31 @@
-<br><br><br>
-<!-- <section>
-    <div style="background-color: rgb(146, 152, 228);">
-        <div class="container">
-            <img src="assets/img/shoping-removebg-preview.png" alt="" style="width:100%;">
-        </div>
-    </div>
-</section> -->
-
+<br><br>
 <div class="header_section background_bg">
 
     <div class="banner_section">
         <div class="container">
-            <!-- <ngb-carousel *ngIf="images">
-                <ng-template ngbSlide>
-                    <div class="picsum-img-wrapper">
-                        <img [src]="images[0]" alt="Random first slide" />
-                    </div>
-                    <div class="carousel-caption">
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                </ng-template>
-                <ng-template ngbSlide>
-                    <div class="picsum-img-wrapper">
-                        <img [src]="images[1]" alt="Random second slide" />
-                    </div>
-                    <div class="carousel-caption">
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </ng-template>
-                <ng-template ngbSlide>
-                    <div class="picsum-img-wrapper">
-                        <img [src]="images[2]" alt="Random third slide" />
-                    </div>
-                    <div class="carousel-caption">
-                        <h3>Third slide label</h3>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div>
-                </ng-template>
-            </ngb-carousel> -->
-            <div id="my_slider" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1 class="retailer_text">Retailers</h1>
-                                <h1 class="retailer_text_1">Directory</h1>
-                                <p class="search_text">SEARCH FOR PRODUCERS AND RETAILERS ON WORLD WIDE BASIS</p>
-                            </div>
-                            <div class="col-md-6">
-                                <div><img src="assets/images/img-1.png" class="image_1"></div>
+            <div id="my_slider" class="carousel slide">
+                <ngb-carousel #ngcarousel [showNavigationArrows]="false">
+
+                    <ng-template ngbSlide *ngFor="let image of images">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h1 class="retailer_text">Retailers</h1>
+                                    <h1 class="retailer_text_1">Directory</h1>
+                                    <p class="search_text">SEARCH FOR PRODUCERS AND RETAILERS ON WORLD WIDE BASIS</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div><img src="assets/images/img-1.png" class="image_1"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1 class="retailer_text">Retailers</h1>
-                                <h1 class="retailer_text_1">Directory</h1>
-                                <p class="search_text">SEARCH FOR PRODUCERS AND RETAILERS ON WORLD WIDE BASIS</p>
-                            </div>
-                            <div class="col-md-6">
-                                <div><img src="assets/images/img-1.png" class="image_1"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1 class="retailer_text">Retailers</h1>
-                                <h1 class="retailer_text_1">Directory</h1>
-                                <p class="search_text">SEARCH FOR PRODUCERS AND RETAILERS ON WORLD WIDE BASIS</p>
-                            </div>
-                            <div class="col-md-6">
-                                <div><img src="assets/images/img-1.png" class="image_1"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+                    </ng-template>
+
+                </ngb-carousel>
+                <a class="carousel-control-prev" role="button" (click)="getToPrev()">
                     <i class="fa fa-left"><img src="assets/images/left-icon.png"></i>
                 </a>
-                <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                <a class="carousel-control-next" role="button" (click)="goToNext()" >
                     <i class="fa fa-right"><img src="assets/images/right-icon.png"></i>
                 </a>
             </div>
@@ -125,8 +68,9 @@
 
 
 
+
 <!-- Categories section start -->
-<div class="Categories_section layout_padding">
+<div class="Categories_section layout_padding mt-3">
     <div class="container">
         <h1 class="categories_text">Retailers Categories <span><img src="assets/images/img-2.png"></span></h1>
         <p class="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -206,10 +150,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1 class="about_text">About FarmFund <span><img src="assets/images/img-2.png"></span></h1>
+                <h1 class="about_text">About Waywala <span><img src="assets/images/img-2.png"></span></h1>
                 <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                     incididunt ut labore et dolore magna aliqua.</p>
-                <div class="read_bt"><a href="#">Read More</a></div>
+                <div class="read_bt"><a href="#" routerLink="/pages/about">Read More</a></div>
             </div>
             <div class="col-md-6">
                 <div><img src="assets/images/img-3.png" class="image_3"></div>
@@ -218,7 +162,40 @@
     </div>
 </div>
 <!-- about section end -->
-
+<!-- !-- services section start -->
+  <div class="about_section layout_padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 padding_left_0">
+          <div class="overflow-hidden"><img src="assets/images/img-4.png" class="image_3"></div>
+        </div>
+        <div class="col-md-6">
+          <h1 class="about_text">Our Service <span><img src="assets/images/img-2.png"></span></h1>
+          <div class="product_section layout_padding">
+            <div class="row">
+              <div class="col-sm-4">
+                <h4 class="product_text">Products</h4>
+                <div class="box_image"></div>
+                <p class="tend_text">tend to repeat predefined chunks as necessary, making this the first true </p>
+              </div>
+              <div class="col-sm-4">
+                <h4 class="product_text">Retailer</h4>
+                <div class="box_image_1"></div>
+                <p class="tend_text">tend to repeat predefined chunks as necessary, making this the first true </p>
+              </div>
+              <div class="col-sm-4">
+                <h4 class="product_text">Agriculture</h4>
+                <div class="box_image"></div>
+                <p class="tend_text">tend to repeat predefined chunks as necessary, making this the first true </p>
+              </div>
+            </div>
+            <div class="read_bt"><a href="#">Read More</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- services section end -->
 <!-- newsletter section start -->
 <div class="newsletter_section layout_padding">
     <div class="container">
@@ -239,16 +216,16 @@
             <div class="input_main">
                 <div class="container">
                     <form action="/action_page.php">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <input type="text" class="email-bt" placeholder="Name" name="Name">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <input type="text" class="email-bt" placeholder="Phone Numbar" name="Phone Numbar">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <input type="text" class="email-bt" placeholder="Email Address" name="Email Address">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment"
                                 name="Massage"></textarea>
                         </div>
@@ -261,61 +238,3 @@
 </div>
 <!-- Contact section end -->
 
-<div class="footer_section layout_padding">
-    <div class="container">
-        <div class="footer_logo">Waywala</div>
-        <div class="footer_taital">
-            <div class="row">
-                <div class="col-sm-6 col-lg-3 border_left_0">
-                    <div class="location_text"><img src="assets/images/map-icon.png"><span
-                            class="padding_left_15">Locations</span>
-                    </div>
-                    <div class="location_text"><img src="assets/images/call-icon.png"><span class="padding_left_15">+
-                            9876543210</span>
-                    </div>
-                    <div class="location_text"><img src="assets/images/mail-icon.png"><span
-                            class="padding_left_15">demo@gmail.com</span></div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <h3 class="useful_text">Useful Link</h3>
-                    <div class="footer_menu">
-                        <ul>
-                            <li><a href="#">humour, or</a></li>
-                            <li><a href="#">randomised</a></li>
-                            <li><a href="#">words which</a></li>
-                            <li><a href="#">don't look even</a></li>
-                            <li><a href="#">slightly</a></li>
-                            <li><a href="#">believable. If</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3 border_right_0">
-                    <h3 class="useful_text">Menus</h3>
-                    <div class="footer_menu">
-                        <ul>
-                            <li><a href="#">humour, or</a></li>
-                            <li><a href="#">randomised</a></li>
-                            <li><a href="#">words which</a></li>
-                            <li><a href="#">don't look even</a></li>
-                            <li><a href="#">slightly</a></li>
-                            <li><a href="#">believable. If</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <h3 class="useful_text">Follow Us</h3>
-                    <div class="social_icon">
-                        <ul>
-                            <li><a href="#"><img src="assets/images/fb-icon.png"></a></li>
-                            <li><a href="#"><img src="assets/images/twitter-icon.png"></a></li>
-                            <li><a href="#"><img src="assets/images/linkedin-icon.png"></a></li>
-                            <li><a href="#"><img src="assets/images/instagram-icon.png"></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright_text">Copyright 2020 All Right Reserved By <a href="https://html.design">Free html
-                Templates</a></div>
-    </div>
-</div>
