@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EducationRoutingModule } from './education-routing.module';
 import { EducationComponent } from './education/education.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PagesModule } from 'src/app/pages/pages.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     NgbModule,
     CommonModule,
-    EducationRoutingModule
+    EducationRoutingModule,
+    PagesModule
   ]
 })
 export class EducationModule { }
