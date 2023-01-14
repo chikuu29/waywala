@@ -1,13 +1,18 @@
 <!-- Navbar -->
+<!-- <div> -->
+
+
 <nav class="navbar navbar-expand-lg fixed-top navbar-light ">
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
     <a class="navbar-brand me-2 text-primary" href="#" style="font-weight: bold;">
       <img src="assets/img/logo2.png" height="45" alt="" loading="lazy" class="rotate" style="margin-top: -1px;" />
-      <span class="logo-text"> Waywala <span class="badge rounded-pill text-bg-danger" style="font-size: 9px;letter-spacing: 3px;">{{version}}</span></span>
+      <span class="logo-text"> Waywala <span class="badge rounded-pill text-bg-danger"
+          style="font-size: 9px;letter-spacing: 3px;">{{version}}</span></span>
     </a>
     <!-- Toggle button -->
+
     <div class="navbar">
       <div class="d-flex align-items-center " [ngClass]="screenWidth>990?'d-none':''">
         <!-- Icon -->
@@ -54,32 +59,37 @@
 
       </button>
     </div>
+
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0  menu">
-        <li class="nav-item hover activenavitem " data-bs-target="#navbarNav"  data-bs-toggle="collapse" aria-controls="navbarNav"
-          aria-expanded="true">
+        <li class="nav-item hover activenavitem " data-bs-target="#navbarNav" data-bs-toggle="collapse"
+          aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link" routerLink="home">Home</a>
         </li>
-        <li class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse" aria-controls="navbarNav"
-          aria-expanded="true">
-          <a class="nav-link"  routerLink="agriculture">Agriculture</a>
+        <li *ngIf="_router.url.includes('/agriculture') || _router.url == '/' || _router.url == '/home'"
+          class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse"
+          aria-controls="navbarNav" aria-expanded="true">
+          <a class="nav-link" routerLink="agriculture">Agriculture</a>
         </li>
-        <li class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse" aria-controls="navbarNav"
-          aria-expanded="true">
-          <a class="nav-link hover" href=""  routerLink="education">Education</a>
+        <li *ngIf="_router.url.includes('/education') ||  _router.url == '/' || _router.url == '/home'"
+          class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse"
+          aria-controls="navbarNav" aria-expanded="true">
+          <a class="nav-link hover" href="" routerLink="education">Education</a>
         </li>
-        <li class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse" aria-controls="navbarNav"
-          aria-expanded="true">
-          <a class="nav-link" href="" routerLink="feature/shop">E-Commerce</a>
+        <li *ngIf="_router.url.includes('/e-commerce')  ||  _router.url == '/' ||  _router.url == '/home'"
+          class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse"
+          aria-controls="navbarNav" aria-expanded="true">
+          <a class="nav-link" href="" routerLink="e-commerce">E-Commerce</a>
         </li>
-        <li class="nav-item" data-bs-target="#navbarNav"  routerLinkActive="activenavitem" data-bs-toggle="collapse" aria-controls="navbarNav"
-          aria-expanded="true">
+        <li *ngIf="false" class="nav-item" data-bs-target="#navbarNav" routerLinkActive="activenavitem"
+          data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link" href="#"><span style="color:#f55b4a">Offer</span> <span class="notification-badge ">UPTO
               85% off</span></a>
         </li>
       </ul>
+
       <!-- Left links -->
       <ul class="navbar-nav me-left mb-2 mb-lg-0 justify-content-center">
 
@@ -125,7 +135,14 @@
       </ul>
     </div>
     <!-- Collapsible wrapper -->
+
   </div>
   <!-- Container wrapper -->
 </nav>
+
+
+
+<!-- </div> -->
+
+
 <!-- Navbar -->

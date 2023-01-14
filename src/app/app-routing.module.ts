@@ -36,6 +36,11 @@ const routes: Routes = [
 
   },
   {
+    path:"e-commerce",
+    loadChildren:()=>import ('./feature/e-commerce/e-commerce.module').then(m=>m.ECommerceModule)
+
+  },
+  {
     path: "**",
     redirectTo:"/pages/error",
     pathMatch:'full'
