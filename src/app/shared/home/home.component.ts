@@ -7,10 +7,11 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeComponent implements OnInit {
   @ViewChild('ngcarousel', { static: true }) ngCarousel!: NgbCarousel;
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  sliders:any[]=[]
   
   constructor() { }
   ngOnInit(): void {
+    this.sliders=[{},{},{}]
   }
 
   getToPrev() {

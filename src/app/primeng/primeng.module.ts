@@ -12,7 +12,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {DropdownModule} from 'primeng/dropdown';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
-
+import {BadgeModule} from 'primeng/badge';
 @NgModule({
   declarations: [],
   imports: [
@@ -28,7 +28,9 @@ import {InputTextModule} from 'primeng/inputtext';
     TooltipModule,
     DropdownModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    BadgeModule
+   
   ],
   exports:[
     FileUploadModule,
@@ -42,7 +44,8 @@ import {InputTextModule} from 'primeng/inputtext';
     TooltipModule,
     DropdownModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    BadgeModule
   ]
 })
 export class PrimengModule { }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from 'src/app/auth/authentication.guard';
 import { AgricultureComponent } from './agriculture/agriculture.component';
 import { CheckStatusComponent } from './check-status/check-status.component';
 import { KvksComponent } from './kvks/kvks.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   },
   {
     path:'mycase',
+    canActivate:[AuthenticationGuard],
     component:MycaseComponent
 
   }

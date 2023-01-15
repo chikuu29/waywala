@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
           // localStorage.setItem('loginiinfo', JSON.stringify(res))
           var expiration_date = new Date(new Date().getTime() + 86400 * 1000).toString();
           this.auth.authentication(res.username, res.useremail, true, "user", res.token, expiration_date);
-          this.router.navigateByUrl('agriculture')
+          this.router.navigateByUrl('/')
         } else {
           this.toastr.error(res.message);
           var needOTPValidation = res.needOTPValidation == undefined ? false : true;
