@@ -1,23 +1,22 @@
-
-
-.shopping-category-holder{
-
+.shopping-category-holder {
     display: flex;
     justify-content: center;
     align-items: center;
-    .category-item{
+    overflow-x: scroll;
+
+    .category-item {
         margin: 15px;
         cursor: pointer;
         text-align: center;
 
 
 
-        a{
+        a {
             text-decoration: none;
-            
-           
 
-            .category-item-taitel{
+
+
+            .category-item-taitel {
                 font-weight: 500;
                 color: black;
             }
@@ -26,55 +25,82 @@
 
 }
 
+.shopping-category-holder::-webkit-scrollbar {
+    display: none;
+}
+
+.coupon-container {
+    .coupon-flex-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        .copon-item {
+            margin: 5px;
+            border-radius: 14px;
+            padding: 10px;
+            // max-width: 200px;
+            background-color: #50C878;
+            .copon-taitel{
+                margin: 0;
+                color: #fff;
+                font-weight: bold;
+                font-size: medium;
+            }
+            .copon-subtaitel{
+
+                // font-weight: bold;
+                font-size: 9px;
+                // font-family: 'Times New Roman', Times, serif;
+                // font-size: small;
+            }
+            .copon-code{
+               cursor: pointer;
+                background-color: #fff;
+                padding: 6px;
+                border: 2px dotted #fff;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
 
 
 
 /*------------------------------------------------------------------- 599px x 280px ---------------------------------------------------------------------*/
 
-@media only screen and (min-width: 280px) and (max-width: 599px) {
+@media only screen and (min-width: 280px) and (max-width: 599px) {}
 
+@media (min-width: 992px) and (max-width: 1199px) {}
 
-}
+@media (min-width: 768px) and (max-width: 991px) {}
 
-@media (min-width: 992px) and (max-width: 1199px) {
-
-
-
-
-
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-
-
-}
-
-@media (min-width: 576px) and (max-width: 767px) {
-   
-
-}
+@media (min-width: 576px) and (max-width: 767px) {}
 
 
 @media (max-width: 575px) {
-  
-    .shopping-category-holder{
+
+    .shopping-category-holder {
 
         // display: flex;
         // justify-content: center;
         // align-items: center;
-        .category-item{
+        .category-item {
             margin: 5px;
             cursor: pointer;
             text-align: center;
-            a{
+
+            a {
                 text-decoration: none;
-                .category-item-taitel{
+
+                .category-item-taitel {
                     font-weight: 500;
                     color: black;
                 }
             }
         }
-    
+
     }
 
 }

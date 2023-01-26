@@ -6,6 +6,7 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { PrimengModule } from 'src/app/primeng/primeng.module';
 import { FormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ECommerceRoutingModule,
     PrimengModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ]
 })
 export class ECommerceModule { }
