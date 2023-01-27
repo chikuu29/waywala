@@ -34,6 +34,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        overflow-x: scroll;
         align-items: center;
         .copon-item {
             margin: 5px;
@@ -62,6 +63,9 @@
                 border-radius: 5px;
             }
         }
+    }
+    .coupon-flex-box::-webkit-scrollbar {
+        display: none;
     }
 }
 

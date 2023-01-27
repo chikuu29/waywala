@@ -146,16 +146,21 @@ export class ApiParameterScript {
     * @author Suryanarayan Biswal
     * @since 20-10-2022
     */
-    public savedate(db: string, apiData: any) {
+    public savedata(db: string, apiData: any) {
         const simpleObservable = new Observable((observer) => {
             try {
                 apiData['db'] = db;
                 const appConfig = this.appservices.getappconfig;
-                const loginInfo = this.appservices.authStatus;
+                var loginInfo:any ={}
+                if(apiData['auth'] && apiData['auth']){
+                    loginInfo  = {role:'user'}
+                }else{
+                    loginInfo=this.appservices.authStatus
+                }
                 let getrole = loginInfo['role'] ? loginInfo['role'] : '';
                 let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
                 let outhForUpdate = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'].includes(db) : false : false;
-                if (appConfig['roleConfig'][getrole] && (outh && outhForUpdate)) {
+                if (appConfig['roleConfig'][getrole] && (outh || outhForUpdate)) {
                     apiData['loginInfo'] = loginInfo;
                     this.apiservices.save(apiData).subscribe((res: any) => {
                         observer.next(res);

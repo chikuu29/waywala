@@ -2,10 +2,7 @@
    "appName": "Waywala",
    "roleConfig": {
       "admin": {
-         "sideNavConfigId": [
-            "admin-01",
-            "agri-01"
-         ],
+         
          "authorizationDBAcess": [
             "agriculture_case",
             "medicine",
@@ -21,9 +18,7 @@
 
       },
       "agri": {
-         "sideNavConfigId": [
-            "agri-01"
-         ],
+        
          "authorizationDBAcess": [
             "agriculture_case",
             "medicine",
@@ -41,9 +36,6 @@
          ]
       },
       "user": {
-         "sideNavConfigId": [
-           
-         ],
          "authorizationDBAcess": [
             "agriculture_case",
             "medicine",
@@ -52,10 +44,12 @@
             "Kvks_Details",
             "user",
             "banner"
+            
          ],
          "authorizationDBAcessForUpdate": [
             "agriculture_case_review",
-            "user"
+            "user",
+            "contact_us"
          ],
          "authorizationDBAcessForDelet": [
             

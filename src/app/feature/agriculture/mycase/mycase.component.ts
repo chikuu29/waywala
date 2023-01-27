@@ -117,7 +117,7 @@ export class MycaseComponent implements OnInit {
           "data": `case_review=${event.value},case_id='${case_id}',feedback_by='${this.appservices.authStatus ? this.appservices.authStatus.name : this.reviewBy}',case_review_time='${moment().format('MMMM Do YYYY, h:mm:ss a').toString()}'`
         }
         // console.log(insertData);
-        this.apiParameterScript.savedate("agriculture_case_review", insertData).subscribe((insertRes: any) => {
+        this.apiParameterScript.savedata("agriculture_case_review", insertData).subscribe((insertRes: any) => {
           console.log(insertRes);
           this.blockUI.stop()
           this.toster.info(`You Gave ${event.value} Star Rating`)
