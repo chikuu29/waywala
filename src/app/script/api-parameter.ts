@@ -14,7 +14,7 @@ export class ApiParameterScript {
     constructor(
         private http: HttpClient,
         private appservices: AppService,
-        private apiservices:ApiService
+        private apiservices: ApiService
     ) {
         console.log("Calling API Parametere");
     }
@@ -47,16 +47,16 @@ export class ApiParameterScript {
             try {
                 apiData['db'] = db;
                 const appConfig = this.appservices.getappconfig;
-                var loginInfo:any ={}
-                if(apiData['auth'] && apiData['auth']){
-                    loginInfo  = {role:'user'}
-                }else{
-                    loginInfo=this.appservices.authStatus
+                var loginInfo: any = {}
+                if (apiData['auth'] && apiData['auth']) {
+                    loginInfo = { role: 'user' }
+                } else {
+                    loginInfo = this.appservices.authStatus
                 }
                 let getrole = loginInfo['role'] ? loginInfo['role'] : 'user';
                 let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
                 if (appConfig['roleConfig'][getrole] && outh) {
-                    apiData['loginInfo'] = loginInfo;    
+                    apiData['loginInfo'] = loginInfo;
                     this.apiservices.getdata(apiData).subscribe((res: any) => {
                         observer.next(res);
                         observer.complete();
@@ -129,17 +129,8 @@ export class ApiParameterScript {
     * {
         "data":"case_status='accepted'",
         "db":"agriculture_case",
-        "projection":"case_id='WAC4641665460808ggggddd'",
-        "loginInfo":{
-                        "email":"cchiku1999@gmail.com",
-                            "id": "SURYA1234",
-                            "isLogin": true,
-                            "name": "SURYANARAYAN BISWAL",
-                            "role": "agri"
-                    }
-        
-        }
-
+        "auth":true
+      }
     * @param db 
     * @param apiData 
     * @returns 
@@ -151,11 +142,11 @@ export class ApiParameterScript {
             try {
                 apiData['db'] = db;
                 const appConfig = this.appservices.getappconfig;
-                var loginInfo:any ={}
-                if(apiData['auth'] && apiData['auth']){
-                    loginInfo  = {role:'user'}
-                }else{
-                    loginInfo=this.appservices.authStatus
+                var loginInfo: any = {}
+                if (apiData['auth'] && apiData['auth']) {
+                    loginInfo = { role: 'user' }
+                } else {
+                    loginInfo = this.appservices.authStatus
                 }
                 let getrole = loginInfo['role'] ? loginInfo['role'] : '';
                 let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
@@ -171,7 +162,7 @@ export class ApiParameterScript {
                     observer.complete();
                 }
             } catch (error) {
-                console.log({ "methodName": "ApiParameterScript.fetchdata", "error": error });
+                console.log({ "methodName": "ApiParameterScript.savedata", "error": error });
                 observer.next(error);
                 observer.complete();
             }

@@ -5,6 +5,7 @@ import { AgricultureComponent } from './agriculture/agriculture.component';
 import { CheckStatusComponent } from './check-status/check-status.component';
 import { KvksComponent } from './kvks/kvks.component';
 import { MycaseComponent } from './mycase/mycase.component';
+import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
 
 const routes: Routes = [
   { 
@@ -24,6 +25,10 @@ const routes: Routes = [
     path:'kvks',
     component:KvksComponent
 
+  },
+  { 
+    path:'weather',
+    component:WeatherForecastComponent
   },
   {
     path:'mycase',

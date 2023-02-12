@@ -18,9 +18,9 @@
         <!-- Icon -->
         <a class="me-2" style="cursor: pointer;">
           <!-- <a class="nav-link hover" href="#"> -->
-          <i class="pi pi-shopping-cart p-text-secondary fs-2" pBadge  style="font-size: 2rem" [value]="'10+'"
+          <i class="pi pi-shopping-cart p-text-secondary fs-2" pBadge style="font-size: 2rem" [value]="'10+'"
             severity="danger"></i>
-<!-- 
+          <!-- 
           <span style="color: black;"><i class="fas fa-shopping-cart fs-5"> <span
                 class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
                 style="font-size: 8px;">5</span></i></span> -->
@@ -76,7 +76,7 @@
           aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link" routerLink="agriculture"> <i class="fa-solid fa-wheat-awn me-2"></i>Agriculture</a>
         </li>
-        <li *ngIf="_router.url.includes('/education') ||  _router.url == '/' || _router.url == '/home'"
+        <li hidden *ngIf="_router.url.includes('/education') ||  _router.url == '/' || _router.url == '/home'"
           class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse"
           aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link hover" href="" routerLink="education"><i

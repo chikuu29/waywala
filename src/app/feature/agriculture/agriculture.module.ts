@@ -14,6 +14,7 @@ import { MycaseComponent } from './mycase/mycase.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { KvksComponent } from './kvks/kvks.component';
+import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
 
 
 
@@ -27,7 +28,8 @@ import { KvksComponent } from './kvks/kvks.component';
         CheckStatusComponent,
         MycaseComponent,
         FeedbackComponent,
-        KvksComponent
+        KvksComponent,
+        WeatherForecastComponent
         
     ],
     imports: [
