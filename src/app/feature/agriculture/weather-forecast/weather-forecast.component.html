@@ -3,7 +3,36 @@
     <p class="text-center fs-1 fw-bold mt-2">Weather Forecasting</p>
     <p class="fs-2 fw-bold mt-2"><i class="fa-solid fa-map-location-dot me-2"></i>{{locationInfo.city}} ,{{locationInfo.state}}</p>
     <div class="current-weather-info">
-        
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div id="divWeatherMain"> 
+                        <div *ngIf="WeatherData.isDay" class="text-center">
+                            <i class="fas fa-6x fa-sun sun"></i>  
+                        </div>   
+                        <div *ngIf="!WeatherData.isDay" class="text-center">
+                            <i class="fas fa-6x fa-moon moon"></i>  
+                        </div>    
+                        <div class="cloudDiv text-center">
+                            <i class="fas fa-cloud fa-2x cloud"></i>
+                        </div>
+                        <div class="text-center fs-3 fw-bold mt-4 text-warning">{{WeatherData.temp_celcius}}°</div>
+                        <div class="text-center m-2">{{WeatherData.temp_min}}° / {{WeatherData.temp_max}}°</div>
+                        <div class="text-center m-2">Feels Like: {{WeatherData.temp_feels_like}}°</div>
+                        <div class="text-center fs-2 fw-bold m-3">{{WeatherData.name}}</div>
+                        <div class="text-center m-2"><span class="bg-warning p-1" style="border-radius: 7px;color: black;">Humidity: {{WeatherData.main.humidity}}%</span> </div>
+                    </div>
 
+                </div>
+
+            </div>
+            <div class="col-md-8 mb-3">
+                <p>No Information Availble </p>
+                
+            </div>
+        </div>
+        
     </div>
 </div>
+
+
