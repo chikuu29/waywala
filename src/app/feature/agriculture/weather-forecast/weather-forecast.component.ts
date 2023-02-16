@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import _ from 'lodash';
+import moment from 'moment';
 import { WeatherForcastService } from '../services/weather-forcast.service';
 
 @Component({
@@ -16,7 +18,10 @@ export class WeatherForecastComponent implements OnInit {
     'countryCode': '',
     'locality': ''
   }
+  public todayWeatherReport: any[] = []
   WeatherData: any;
+  public currentDateTime: any = moment().format('YYYY-MM-DD').toString()
+  public currentWeatherData:any={}
   constructor(private weatherForcastService: WeatherForcastService) { }
 
   ngOnInit(): void {
@@ -46,9 +51,13 @@ export class WeatherForecastComponent implements OnInit {
               this.locationInfo['country'] = res.countryName;
               this.locationInfo['countryCode'] = res.countryCode;
               this.locationInfo['locality'] = res.locality;
-              this.weatherForcastService.currentWeatherReportThroughCity(res.city).subscribe((weatherdata)=>{
-                console.log('weatherdata',weatherdata);
+              this.weatherForcastService.currentWeatherReportThroughCity(res.city).subscribe((weatherdata) => {
+                console.log('weatherdata', weatherdata);
                 this.setWeatherData(weatherdata)
+              })
+              this.weatherForcastService.getfutureWeatherData(res.city).subscribe((futureWeatherData: any) => {
+                console.log("futureWeatherData", futureWeatherData);
+                this.setPredictionWeatherData(futureWeatherData)
               })
             }
           })
@@ -77,6 +86,27 @@ export class WeatherForecastComponent implements OnInit {
     this.WeatherData.temp_min = (this.WeatherData.main.temp_min - 273.15).toFixed(0);
     this.WeatherData.temp_max = (this.WeatherData.main.temp_max - 273.15).toFixed(0);
     this.WeatherData.temp_feels_like = (this.WeatherData.main.feels_like - 273.15).toFixed(0);
+  }
+
+  setPredictionWeatherData(data: any) {
+    // console.log("setPredictionWeatherData", data);
+    // console.log("moment", moment().format('YYYY-MM-DD').toString());
+    this.todayWeatherReport = _.filter(data['list'], (e) => {
+      return e['dt_txt'].includes(moment().format('YYYY-MM-DD').toString())
+    })
+    this.todayWeatherReport.forEach((i: any) => {
+      let hour = new Date(i.dt_txt).getHours();
+      i['isday'] = hour >= 6 && hour <= 18
+
+    })
+    console.log("findToaday Date", this.todayWeatherReport);
+
+   this.currentWeatherData=this.todayWeatherReport[0]
+
+  }
+
+  getweatherDataBaseOntime(data:any){
+    this.currentWeatherData=data
   }
 
 }

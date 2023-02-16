@@ -15,6 +15,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { KvksComponent } from './kvks/kvks.component';
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
+import { TemperatureConverterPipe } from './weather-forecast/temperature-converter.pipe';
 
 
 
@@ -29,7 +30,8 @@ import { WeatherForecastComponent } from './weather-forecast/weather-forecast.co
         MycaseComponent,
         FeedbackComponent,
         KvksComponent,
-        WeatherForecastComponent
+        WeatherForecastComponent,
+        TemperatureConverterPipe
         
     ],
     imports: [

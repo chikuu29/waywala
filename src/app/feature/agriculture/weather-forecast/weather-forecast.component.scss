@@ -5,7 +5,7 @@
     border: none;
 }
 
-#divWeatherMain{
+#divWeatherMain,#divWeatherDetails{
     // display: block;
     padding: 5px;
     border-radius: 10px;
@@ -15,7 +15,30 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.currectDayWeatherReport_holder{
+    display: flex;
+    // justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: scroll;
+    padding:10px;
+    .currectDayWeatherReport{
+        cursor: pointer;
+    }
+}
 
+.currectDayWeatherReport_holder::-webkit-scrollbar {
+    display: none;
+}
+
+.AllcurrectDayWeatherReport_holder{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4px;
+    .item{
+        margin: 3px;
+    }
+}
 
 .sun{
     margin-top: 10px;
@@ -47,3 +70,61 @@
     from{margin-left: -55px;}
     to{margin-left: 65px;}
 }
+
+.hover:hover{
+    color: #c1c3c5;
+}
+
+
+// .img-fluid{
+//     float: right;
+//     width: 65px;
+//     display: flex;
+//     align-items: center;
+// }
+// .row2 .img-fluid{
+//     margin: 10% 0;
+//     // opacity: 0.5;
+//     width: 60px;
+// }
+// .card-2 .row{
+//     justify-content: center;
+// }
+// .row1{
+//     font-size: 0.7rem;
+//     font-weight: bold;
+//     // color: black;
+// }
+// .row3{
+//     font-size: 0.9rem;
+//     font-weight: bold;
+//     // color: black;
+// }
+// @media(max-width:400px)
+// {
+//     .row3{
+//         font-size: 0.7rem;
+//         font-weight: bold;
+//         // color: black;
+//     }
+// }
+// @media(max-width:320px)
+// {
+//     .row3{
+//         font-size: 0.6rem;
+//         font-weight: bold;
+//         // color: black;
+//     }
+// }
+// .row4{
+//     font-size: 0.6rem;
+//     color: rgb(196, 196, 196);
+//     margin: 5% 0 2.5rem;
+// }
+
+// .col{
+//     overflow: visible;
+// }
+// .row{
+//     overflow: visible;
+// }

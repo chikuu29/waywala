@@ -18,5 +18,9 @@ export class WeatherForcastService {
 
   }
 
+  public getfutureWeatherData(city:string){
+    return this.http.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city.toLowerCase()}&appid=${this.apiKey}`)
+  }
+
 
 }

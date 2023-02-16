@@ -1,18 +1,22 @@
 <br><br><br><br>
 <div class="container">
-    <p class="text-center fs-1 fw-bold mt-2">Weather Forecasting</p>
-    <p class="fs-2 fw-bold mt-2"><i class="fa-solid fa-map-location-dot me-2"></i>{{locationInfo.city}} ,{{locationInfo.state}}</p>
+    <!-- <p class="text-center fs-1 fw-bold mt-2">Weather Forecasting</p> -->
     <div class="current-weather-info">
+        <p class="fs-5 fw-bold ms-2 mt-2 text-primary" style="cursor: pointer;"><i
+                class="fa-solid fa-map-location-dot me-2"></i>{{locationInfo.city}},&nbsp;{{locationInfo.state}}</p>
         <div class="row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-2 test">
                 <div class="card">
-                    <div id="divWeatherMain"> 
+                    <div id="divWeatherMain" class="p-3">
+                        <p class="text-center"><span class="bg-danger p-1 fw-bold "
+                                style="border-radius: 7px">{{currentDateTime}}</span></p>
+
                         <div *ngIf="WeatherData.isDay" class="text-center">
-                            <i class="fas fa-6x fa-sun sun"></i>  
-                        </div>   
+                            <i class="fas fa-6x fa-sun sun"></i>
+                        </div>
                         <div *ngIf="!WeatherData.isDay" class="text-center">
-                            <i class="fas fa-6x fa-moon moon"></i>  
-                        </div>    
+                            <i class="fas fa-6x fa-moon moon"></i>
+                        </div>
                         <div class="cloudDiv text-center">
                             <i class="fas fa-cloud fa-2x cloud"></i>
                         </div>
@@ -20,19 +24,78 @@
                         <div class="text-center m-2">{{WeatherData.temp_min}}° / {{WeatherData.temp_max}}°</div>
                         <div class="text-center m-2">Feels Like: {{WeatherData.temp_feels_like}}°</div>
                         <div class="text-center fs-2 fw-bold m-3">{{WeatherData.name}}</div>
-                        <div class="text-center m-2"><span class="bg-warning p-1" style="border-radius: 7px;color: black;">Humidity: {{WeatherData.main.humidity}}%</span> </div>
+                        <div class="text-center mt-2"><span class="bg-warning p-1"
+                                style="border-radius: 7px;color: black;">Humidity: {{WeatherData.main.humidity}}%</span>
+                        </div>
                     </div>
 
                 </div>
 
             </div>
-            <div class="col-md-8 mb-3">
-                <p>No Information Availble </p>
-                
+            <div class="col-md-8 mb-2 test">
+
+                <!-- <div class="cards"> -->
+                <div id="divWeatherDetails">
+                    <div class="currectDayWeatherReport_holder">
+                        <ng-container *ngFor="let today of todayWeatherReport">
+                            <div class="currectDayWeatherReport me-2" (click)="getweatherDataBaseOntime(today)">
+                                <div class="text-center fs-5 fw-bold text-warning">{{today.main.feels_like |
+                                    temperatureConverter:"K-C"}}&deg;</div>
+                                <div class="m-3 text-center hover" [hidden]="!today.isday"><i class="fa-solid fa-sun fa-2x"></i></div>
+                                <div class="m-3 text-center hover" [hidden]="today.isday"><i class="fa-solid fa-moon fa-2x"></i></div>
+                                <div class="text-center">{{today.dt_txt | date:"hh.mm"}}</div>
+                                <div class="text-center">{{today.dt_txt | date:"a"}}</div>
+                            </div>
+                        </ng-container>
+
+                    </div>
+                    <div class="AllcurrectDayWeatherReport_holder">
+                        <!-- <div class=""> -->
+                        <div class=" m-2">
+                            <div class="m-2">
+                                <i class="fa-solid fa-temperature-half text-danger"><span
+                                        class="ms-2">{{currentWeatherData?.main?.feels_like | temperatureConverter:"K-C"}}&deg;</span></i>
+                                <!-- <i class="fa-solid fa-wind"><span class="ms-2">25</span></i> -->
+                            </div>
+                            <div class="m-2">
+                                <p>Max: <strong>{{currentWeatherData?.main?.temp_max | temperatureConverter:"K-C"}}&deg;C</strong></p>
+                                <p>Min: <strong>{{currentWeatherData?.main?.temp_min | temperatureConverter:"K-C"}}&deg;C</strong></p>
+                                <!-- <i class="fa-solid fa-temperature-half text-danger"><span class="ms-2">25&deg;</span></i> -->
+                                <!-- <i class="fa-solid fa-wind"><span class="ms-2">25</span></i> -->
+                            </div>
+
+
+                        </div>
+                        <div class="m-2">
+                            <div class="m-2">
+                                <i class="fa-solid fa-wind"><span class="ms-2">{{currentWeatherData?.wind?.speed}} Km/h</span></i>
+                            </div>
+                            <div class="m-2">
+                                <p>Humidity: <strong>{{currentWeatherData?.main?.humidity}}</strong></p>
+                                <p>Pressure: <strong>{{currentWeatherData?.main?.pressure}}&deg;</strong></p>
+
+                            </div>
+                            
+                        </div>
+                        <div class=" m-2">
+                            <div class="m-2">
+                                <i class="fa-solid fa-cloud"></i>
+                            </div>
+                            <div class="m-2">
+                                <p class="text-warning">Visibility: <strong>{{currentWeatherData?.visibility}}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- </div>0. -->
+
+
+                </div>
+
+                <!-- </div> -->
+
             </div>
         </div>
-        
+
     </div>
 </div>
-
-
