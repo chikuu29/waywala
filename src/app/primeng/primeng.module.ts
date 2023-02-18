@@ -13,6 +13,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {BadgeModule} from 'primeng/badge';
+import {DividerModule} from 'primeng/divider';
 @NgModule({
   declarations: [],
   imports: [
@@ -29,7 +30,8 @@ import {BadgeModule} from 'primeng/badge';
     DropdownModule,
     ButtonModule,
     InputTextModule,
-    BadgeModule
+    BadgeModule,
+    DividerModule
    
   ],
   exports:[
@@ -45,7 +47,8 @@ import {BadgeModule} from 'primeng/badge';
     DropdownModule,
     ButtonModule,
     InputTextModule,
-    BadgeModule
+    BadgeModule,
+    DividerModule
   ]
 })
 export class PrimengModule { }

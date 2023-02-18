@@ -15,13 +15,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { KvksComponent } from './kvks/kvks.component';
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
-import { TemperatureConverterPipe } from './weather-forecast/temperature-converter.pipe';
-
-
-
-
-
-
+import { CustomPipeModule } from 'src/app/customPipe/custom-pipe.module';
 @NgModule({
     declarations: [
         AgricultureComponent,
@@ -30,8 +24,8 @@ import { TemperatureConverterPipe } from './weather-forecast/temperature-convert
         MycaseComponent,
         FeedbackComponent,
         KvksComponent,
-        WeatherForecastComponent,
-        TemperatureConverterPipe
+        WeatherForecastComponent
+       
         
     ],
     imports: [
@@ -45,7 +39,9 @@ import { TemperatureConverterPipe } from './weather-forecast/temperature-convert
         HttpClientModule,
         SharedModule,
         PrimengModule,
-        PagesModule
+        PagesModule,
+        CustomPipeModule
     ]
+
 })
 export class AgricultureModule { }

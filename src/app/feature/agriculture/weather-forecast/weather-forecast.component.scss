@@ -1,9 +1,9 @@
 
-.card{
-    box-shadow: 0.063rem 0 1.25rem 0 #c1c3c5;
-    border-radius: 14px;
-    border: none;
-}
+// .card{
+//     box-shadow: 0.063rem 0 1.25rem 0 #c1c3c5;
+//     border-radius: 14px;
+//     border: none;
+// }
 
 #divWeatherMain,#divWeatherDetails{
     // display: block;
@@ -13,12 +13,13 @@
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100%;
 }
 
 .currectDayWeatherReport_holder{
     display: flex;
     // justify-content: center;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     overflow-x: scroll;
     padding:10px;
@@ -39,15 +40,23 @@
         margin: 3px;
     }
 }
-
+.futureForcast{
+    padding: 5px;
+    border-radius: 10px;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+}
 .sun{
-    margin-top: 10px;
+    // margin-top: 10px;
     color: yellow;
     filter: drop-shadow( 1px 1px 10px yellow);
 }
 
 .moon{
-    margin-top: 10px;
+    // margin-top: 10px;
     color: white;
     filter: drop-shadow( 1px 1px 10px white);
 }

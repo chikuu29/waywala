@@ -5,95 +5,188 @@
         <p class="fs-5 fw-bold ms-2 mt-2 text-primary" style="cursor: pointer;"><i
                 class="fa-solid fa-map-location-dot me-2"></i>{{locationInfo.city}},&nbsp;{{locationInfo.state}}</p>
         <div class="row">
-            <div class="col-md-4 mb-2 test">
-                <div class="card">
-                    <div id="divWeatherMain" class="p-3">
-                        <p class="text-center"><span class="bg-danger p-1 fw-bold "
-                                style="border-radius: 7px">{{currentDateTime}}</span></p>
-
-                        <div *ngIf="WeatherData.isDay" class="text-center">
-                            <i class="fas fa-6x fa-sun sun"></i>
-                        </div>
-                        <div *ngIf="!WeatherData.isDay" class="text-center">
-                            <i class="fas fa-6x fa-moon moon"></i>
-                        </div>
-                        <div class="cloudDiv text-center">
-                            <i class="fas fa-cloud fa-2x cloud"></i>
-                        </div>
-                        <div class="text-center fs-3 fw-bold mt-4 text-warning">{{WeatherData.temp_celcius}}°</div>
-                        <div class="text-center m-2">{{WeatherData.temp_min}}° / {{WeatherData.temp_max}}°</div>
-                        <div class="text-center m-2">Feels Like: {{WeatherData.temp_feels_like}}°</div>
-                        <div class="text-center fs-2 fw-bold m-3">{{WeatherData.name}}</div>
-                        <div class="text-center mt-2"><span class="bg-warning p-1"
-                                style="border-radius: 7px;color: black;">Humidity: {{WeatherData.main.humidity}}%</span>
-                        </div>
+            <div class="col-md-4 mb-2">
+                <div id="divWeatherMain" class="p-4">
+                    <div *ngIf="WeatherData.isDay" class="text-center">
+                        <i class="fas fa-6x fa-sun sun"></i>
+                    </div>
+                    <div *ngIf="!WeatherData.isDay" class="text-center">
+                        <i class="fas fa-6x fa-moon moon"></i>
+                    </div>
+                    <div class="cloudDiv text-center">
+                        <i class="fas fa-cloud fa-2x cloud"></i>
+                    </div>
+                    <div class="text-center fs-3 fw-bold mt-4 text-warning">{{WeatherData.temp_celcius}}°C</div>
+                    <div class="text-center m-2">{{WeatherData.temp_min}}° / {{WeatherData.temp_max}}°C</div>
+                    <div class="text-center m-2">Feels Like: {{WeatherData.temp_feels_like}}°C</div>
+                    <div class="text-center fs-2 fw-bold m-4">{{WeatherData.name}}</div>
+                    <div class="text-center mt-2"><span class="bg-warning p-1"
+                            style="border-radius: 7px;color: black;">Humidity: {{WeatherData.main.humidity}}%</span>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p class="text-center p-2 "><span class="bg-danger p-2 fw-bold "
+                                style="border-radius: 7px">Today</span></p>
                     </div>
 
                 </div>
-
             </div>
-            <div class="col-md-8 mb-2 test">
-
-                <!-- <div class="cards"> -->
+            <div class="col-md-8 mb-2">
                 <div id="divWeatherDetails">
                     <div class="currectDayWeatherReport_holder">
                         <ng-container *ngFor="let today of todayWeatherReport">
-                            <div class="currectDayWeatherReport me-2" (click)="getweatherDataBaseOntime(today)">
+                            <div class="currectDayWeatherReport p-3" (click)="getweatherDataBaseOntime(today)">
                                 <div class="text-center fs-5 fw-bold text-warning">{{today.main.feels_like |
-                                    temperatureConverter:"K-C"}}&deg;</div>
-                                <div class="m-3 text-center hover" [hidden]="!today.isday"><i class="fa-solid fa-sun fa-2x"></i></div>
-                                <div class="m-3 text-center hover" [hidden]="today.isday"><i class="fa-solid fa-moon fa-2x"></i></div>
+                                    temperatureConverter:"K-C"}}&deg;C</div>
+                                <div class="m-3 text-center hover" [hidden]="!today.isday" pTooltip="it is a Day"><i
+                                        class="fa-solid fa-sun fa-2x sun"></i></div>
+                                <div class="m-3 text-center hover" [hidden]="today.isday" pTooltip="it is a Night"><i
+                                        class="fa-solid fa-moon fa-2x moon"></i></div>
+                                <div class="text-center" [pTooltip]="today?.weather[0]?.description">
+                                    <img [src]="today.image" [alt]="today?.weather[0]?.main">
+                                </div>
+
                                 <div class="text-center">{{today.dt_txt | date:"hh.mm"}}</div>
                                 <div class="text-center">{{today.dt_txt | date:"a"}}</div>
                             </div>
                         </ng-container>
-
+                        <ng-container *ngIf="todayWeatherReport.length==0">
+                            <p>No Weather Information Availble For The Time Being</p>
+                        </ng-container>
+                    </div>
+                    <div>
+                        <p-divider [align]="'center'" type="dashed">
+                            <b class="text-danger">{{currentDateTime}}</b>
+                        </p-divider>
                     </div>
                     <div class="AllcurrectDayWeatherReport_holder">
-                        <!-- <div class=""> -->
-                        <div class=" m-2">
+                        <ng-container *ngIf="todayWeatherReport.length>0">
                             <div class="m-2">
-                                <i class="fa-solid fa-temperature-half text-danger"><span
-                                        class="ms-2">{{currentWeatherData?.main?.feels_like | temperatureConverter:"K-C"}}&deg;</span></i>
-                                <!-- <i class="fa-solid fa-wind"><span class="ms-2">25</span></i> -->
-                            </div>
-                            <div class="m-2">
-                                <p>Max: <strong>{{currentWeatherData?.main?.temp_max | temperatureConverter:"K-C"}}&deg;C</strong></p>
-                                <p>Min: <strong>{{currentWeatherData?.main?.temp_min | temperatureConverter:"K-C"}}&deg;C</strong></p>
-                                <!-- <i class="fa-solid fa-temperature-half text-danger"><span class="ms-2">25&deg;</span></i> -->
-                                <!-- <i class="fa-solid fa-wind"><span class="ms-2">25</span></i> -->
-                            </div>
+                                <div class="m-2">
+                                    <i class="fa-solid fa-temperature-half text-danger"></i><span
+                                        class="ms-2">{{currentWeatherData?.main?.feels_like |
+                                        temperatureConverter:"K-C"}}&deg;C</span>
+
+                                </div>
+                                <div class="m-2">
+                                    <p>Max: <strong>{{currentWeatherData?.main?.temp_max |
+                                            temperatureConverter:"K-C"}}&deg;C</strong></p>
+                                    <p>Min: <strong>{{currentWeatherData?.main?.temp_min |
+                                            temperatureConverter:"K-C"}}&deg;C</strong></p>
+
+                                </div>
 
 
-                        </div>
-                        <div class="m-2">
-                            <div class="m-2">
-                                <i class="fa-solid fa-wind"><span class="ms-2">{{currentWeatherData?.wind?.speed}} Km/h</span></i>
                             </div>
                             <div class="m-2">
-                                <p>Humidity: <strong>{{currentWeatherData?.main?.humidity}}</strong></p>
-                                <p>Pressure: <strong>{{currentWeatherData?.main?.pressure}}&deg;</strong></p>
+                                <div class="m-2">
+                                    <i class="fa-solid fa-wind"></i><span class="ms-2">{{currentWeatherData?.wind?.speed
+                                        |
+                                        speedMeasurement:'m/s-km/h'}}</span>
+                                </div>
+                                <div class="m-2">
+                                    <p>Humidity: <strong>{{currentWeatherData?.main?.humidity}}%</strong></p>
+                                    <p>Pressure: <strong>{{currentWeatherData?.main?.pressure}}&deg; hPa</strong></p>
+
+                                </div>
 
                             </div>
-                            
-                        </div>
-                        <div class=" m-2">
                             <div class="m-2">
-                                <i class="fa-solid fa-cloud"></i>
+                                <div class="m-2">
+                                    <p><img [src]="currentWeatherData.image" alt=""
+                                            srcset="">{{currentWeatherData?.weather?.[0]?.main}}</p>
+                                </div>
+                                <div class="m-2">
+                                    <p class="text-warning">Visibility:
+                                        <strong>{{currentWeatherData?.visibility}}</strong>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="m-2">
-                                <p class="text-warning">Visibility: <strong>{{currentWeatherData?.visibility}}</strong></p>
-                            </div>
-                        </div>
+                        </ng-container>
+                        <ng-container *ngIf="todayWeatherReport.length==0">
+                            <p>No Weather Information Availble For The Time Being</p>
+
+                        </ng-container>
+
                     </div>
+                </div>
 
-                    <!-- </div>0. -->
+            </div>
+        </div>
+
+        <div class="futureForcast">
+            <div class="currectDayWeatherReport_holder">
+                <ng-container *ngFor="let date of predictionDate,let i=index">
+                    <div class="currectDayWeatherReport p-3" (click)="getFeatureweatherDataBaseOntime(i)">
+                        <div class="text-center fw-bold">{{date}}</div>
+                        <!-- <div class="text-center fs-5 fw-bold text-warning">{{forcast.main.feels_like |
+                            temperatureConverter:"K-C"}}&deg;C</div> -->
+                        <ng-container *ngIf="i==0">
+                            <div class="m-3 text-center hover" [hidden]="!isdayNight" pTooltip="it is a Day"><i
+                                    class="fa-solid fa-sun fa-2x sun"></i></div>
+                            <div class="m-3 text-center hover" [hidden]="isdayNight" pTooltip="it is a Night"><i
+                                    class="fa-solid fa-moon fa-2x moon"></i></div>
+                        </ng-container>
+                        <ng-container *ngIf="i!=0">
+                            <div class="m-3 text-center hover"><i class="fa-solid fa-sun fa-2x sun"></i></div>
+                        </ng-container>
+                        <p class="text-center"><button pButton pRipple type="button" label="View"
+                                class="p-button-primary p-button-text" (click)="view(i)"
+                                [disabled]="predictionfutureData[i].length==0"></button></p>
+
+
+                        <!-- <div class="text-center" [pTooltip]="forcast?.weather[0]?.description">
+                            <img [src]="forcast.image" [alt]="forcast?.weather[0]?.main">
+                        </div> -->
+
+                        <!-- <div class="text-center">{{forcast.dt_txt | date:"hh.mm"}}</div>
+                        <div class="text-center">{{forcast.dt_txt | date:"a"}}</div> -->
+                    </div>
+                </ng-container>
+
+            </div>
+            <div class="AllcurrectDayWeatherReport_holder" [hidden]="selectfutureCurrentWeatherData.length==0">
+                <!-- <div class=""> -->
+                <div class="m-2">
+                    <div class="m-2">
+                        <i class="fa-solid fa-temperature-half text-danger"></i><span
+                            class="ms-2">{{selectfutureCurrentWeatherData?.main?.feels_like |
+                            temperatureConverter:"K-C"}}&deg;C</span>
+
+                    </div>
+                    <div class="m-2">
+                        <p>Max: <strong>{{selectfutureCurrentWeatherData?.main?.temp_max |
+                                temperatureConverter:"K-C"}}&deg;C</strong></p>
+                        <p>Min: <strong>{{selectfutureCurrentWeatherData?.main?.temp_min |
+                                temperatureConverter:"K-C"}}&deg;C</strong></p>
+
+                    </div>
 
 
                 </div>
+                <div class="m-2">
+                    <div class="m-2">
+                        <i class="fa-solid fa-wind"></i><span class="ms-2">{{selectfutureCurrentWeatherData?.wind?.speed
+                            |
+                            speedMeasurement:'m/s-km/h'}}</span>
+                    </div>
+                    <div class="m-2">
+                        <p>Humidity: <strong>{{selectfutureCurrentWeatherData?.main?.humidity}}%</strong></p>
+                        <p>Pressure: <strong>{{selectfutureCurrentWeatherData?.main?.pressure}}&deg; hPa</strong></p>
 
-                <!-- </div> -->
+                    </div>
 
+                </div>
+                <div class="m-2">
+                    <div class="m-2">
+                        <p><img [src]="selectfutureCurrentWeatherData.image" alt=""
+                                srcset="">{{selectfutureCurrentWeatherData?.weather?.[0]?.main}}</p>
+                    </div>
+                    <div class="m-2">
+                        <p class="text-warning">Visibility:
+                            <strong>{{selectfutureCurrentWeatherData?.visibility}}</strong>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 

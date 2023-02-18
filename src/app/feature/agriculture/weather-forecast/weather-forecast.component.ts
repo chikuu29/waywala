@@ -1,14 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import _ from 'lodash';
 import moment from 'moment';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { WeatherForcastService } from '../services/weather-forcast.service';
+moment.locale('yourlang', {
+  calendar: {
+    nextDay: function () {
+      return '[Tomorrow]';
+    },
+    sameDay: function () {
+      return '[Today]';
+    },
+    lastWeek: function () {
+      return '[last] dddd';
+    },
+    nextWeek: function () {
+      return 'MMMM Do YYYY';
+    }
+  }
+});
 
+// lastDay : '[Yesterday]',
+//     sameDay : '[Today]',
+//     nextDay : '[Tomorrow]',
+//     lastWeek : '[last] dddd',
+//     nextWeek : 'dddd',
+//     sameElse : 'L'
 @Component({
   selector: 'app-weather-forecast',
   templateUrl: './weather-forecast.component.html',
   styleUrls: ['./weather-forecast.component.scss']
 })
 export class WeatherForecastComponent implements OnInit {
+  @BlockUI() blockUI: NgBlockUI;
   public lat: any;
   public lng: any;
   public locationInfo: any = {
@@ -20,11 +44,18 @@ export class WeatherForecastComponent implements OnInit {
   }
   public todayWeatherReport: any[] = []
   WeatherData: any;
-  public currentDateTime: any = moment().format('YYYY-MM-DD').toString()
-  public currentWeatherData:any={}
+  public currentDateTime: any = moment().calendar()
+  public currentWeatherData: any = {}
+  public selectfutureCurrentWeatherData: any = {}
+  public predictionfutureData: any[] = []
+  public predictionDate: any[] = []
+  public isdayNight: boolean = moment().hours() >= 6 && moment().hours() <= 18;
+
   constructor(private weatherForcastService: WeatherForcastService) { }
 
   ngOnInit(): void {
+    // let hour = moment().hours();
+    // this.isdayNight = moment().hours() >= 6 && moment().hours() <= 18
     this.WeatherData = {
       main: {},
       isDay: true
@@ -43,6 +74,7 @@ export class WeatherForecastComponent implements OnInit {
             "Longitude: " + position.coords.longitude);
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
+          this.blockUI.start("Fetching Weather Data...")
           this.weatherForcastService.getaddressFormLogitudeAndLatiture(this.lng, this.lat).subscribe((res: any) => {
             console.log(res);
             if (res) {
@@ -52,13 +84,19 @@ export class WeatherForecastComponent implements OnInit {
               this.locationInfo['countryCode'] = res.countryCode;
               this.locationInfo['locality'] = res.locality;
               this.weatherForcastService.currentWeatherReportThroughCity(res.city).subscribe((weatherdata) => {
-                console.log('weatherdata', weatherdata);
+                // console.log('weatherdata', weatherdata);
                 this.setWeatherData(weatherdata)
               })
               this.weatherForcastService.getfutureWeatherData(res.city).subscribe((futureWeatherData: any) => {
-                console.log("futureWeatherData", futureWeatherData);
-                this.setPredictionWeatherData(futureWeatherData)
+                // console.log("futureWeatherData", futureWeatherData);
+                this.setCurrentPredictionWeatherData(futureWeatherData['list'], true);
+                this.setPredictionWeatherData(futureWeatherData);
+
               })
+            }else{
+              alert("Some Things Went Wrong")
+              console.log(res);
+              
             }
           })
 
@@ -88,25 +126,81 @@ export class WeatherForecastComponent implements OnInit {
     this.WeatherData.temp_feels_like = (this.WeatherData.main.feels_like - 273.15).toFixed(0);
   }
 
-  setPredictionWeatherData(data: any) {
+  setCurrentPredictionWeatherData(data: any, today: boolean) {
     // console.log("setPredictionWeatherData", data);
     // console.log("moment", moment().format('YYYY-MM-DD').toString());
-    this.todayWeatherReport = _.filter(data['list'], (e) => {
-      return e['dt_txt'].includes(moment().format('YYYY-MM-DD').toString())
-    })
+    if (today) {
+      this.todayWeatherReport = _.filter(data, (e) => {
+        return e['dt_txt'].includes(moment().format('YYYY-MM-DD').toString())
+      })
+    } else {
+      this.todayWeatherReport = data
+    }
+
+
     this.todayWeatherReport.forEach((i: any) => {
       let hour = new Date(i.dt_txt).getHours();
       i['isday'] = hour >= 6 && hour <= 18
+      if (hour >= 6 && hour <= 18) {
+        i['image'] = `https://openweathermap.org/img/w/${i.weather[0].icon.replace('n', 'd')}.png`
+
+      } else {
+        i['image'] = `https://openweathermap.org/img/w/${i.weather[0].icon.replace('d', 'n')}.png`
+      }
+
 
     })
+
     console.log("findToaday Date", this.todayWeatherReport);
 
-   this.currentWeatherData=this.todayWeatherReport[0]
+    this.currentWeatherData = this.todayWeatherReport[0]
 
   }
 
-  getweatherDataBaseOntime(data:any){
-    this.currentWeatherData=data
+  getweatherDataBaseOntime(data: any) {
+    console.log("data", data);
+
+    this.currentWeatherData = data
+  }
+
+  //set pediction weather infomation
+  setPredictionWeatherData(data: any) {
+    this.blockUI.stop()
+    console.log("setPredictionWeatherData", data);
+    var tempFuretureData = {}
+    // Get today's date
+    let today = moment();
+
+    // Loop through the next n days, adding each date to the array
+    for (let i = 0; i < 7; i++) {
+      // Create a new moment object for the current day
+      let date = moment(today).add(i, 'days');
+      // Add the date to the array
+      tempFuretureData = _.filter(data['list'], (e) => {
+        return e['dt_txt'].includes(date.format('YYYY-MM-DD').toString())
+      })
+      this.predictionfutureData.push(tempFuretureData)
+      this.predictionDate.push(date.calendar());
+    }
+    console.log("futureDate", this.predictionDate);
+
+    console.log("predictionfutureData", this.predictionfutureData);
+    this.selectfutureCurrentWeatherData=this.predictionfutureData[0][0]
+
+
+
+
+
+  }
+  getFeatureweatherDataBaseOntime(i: any) {
+    this.selectfutureCurrentWeatherData=this.predictionfutureData[i][0]
+    // console.log("getFeatureweatherDataBaseOntime",this.predictionfutureData[i][0]);
+  }
+
+  view(i: any) {
+    console.log();
+    this.currentDateTime=this.predictionDate[i]
+    this.setCurrentPredictionWeatherData(this.predictionfutureData[i], false)
   }
 
 }
