@@ -19,7 +19,7 @@
 .currectDayWeatherReport_holder{
     display: flex;
     // justify-content: center;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     overflow-x: scroll;
     padding:10px;
@@ -34,7 +34,7 @@
 
 .AllcurrectDayWeatherReport_holder{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 4px;
     .item{
         margin: 3px;
