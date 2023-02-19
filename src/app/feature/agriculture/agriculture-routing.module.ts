@@ -4,6 +4,7 @@ import { AuthenticationGuard } from 'src/app/auth/authentication.guard';
 import { AgricultureComponent } from './agriculture/agriculture.component';
 import { CheckStatusComponent } from './check-status/check-status.component';
 import { KvksComponent } from './kvks/kvks.component';
+import { MarketPlaceComponent } from './market-place/market-place.component';
 import { MycaseComponent } from './mycase/mycase.component';
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
 
@@ -34,6 +35,11 @@ const routes: Routes = [
     path:'mycase',
     canActivate:[AuthenticationGuard],
     component:MycaseComponent
+
+  },
+  {
+    path:'market-place',
+    component:MarketPlaceComponent
 
   }
 ];

@@ -12,7 +12,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { PrimengModule } from './primeng/primeng.module';
 import { FormsModule } from '@angular/forms';
-import { AgricultureModule } from './feature/agriculture/agriculture.module';
 import { BlockUIModule } from 'ng-block-ui';
 import { SharedModule } from './shared/shared.module';
 @NgModule({
@@ -24,7 +23,6 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    AgricultureModule,
     MaterialModule,
     HttpClientModule,
     LoadingBarRouterModule,
@@ -36,7 +34,6 @@ import { SharedModule } from './shared/shared.module';
     ToastrModule.forRoot(),
    
   ],
- 
   providers: [AppService,NgbActiveModal],
   bootstrap: [AppComponent],
 

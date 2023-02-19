@@ -1,0 +1,99 @@
+<br><br><br><br>
+<h1 class="text-center fs-2 fw-bold mb-3" style="color: #888;">Market status</h1>
+<div class="container mt-3 mb-5">
+    <form class="marketDataSelected-dropdown" [formGroup]="marketdetailsForm">
+        <div class="marketDataSelected-item">
+            <p-dropdown [options]="category" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+                placeholder="Category" formControlName="category" [style]="{'width':'100%'}" (onChange)="fetchcrop()">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value">
+                        <div>{{marketdetailsForm.value.category?.name}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-category pTemplate="item">
+                    <div class="country-item">
+                        <div>{{category.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="marketDataSelected-item">
+            <p-dropdown [options]="cropName" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+                placeholder="Crop" formControlName="cropName" [style]="{'width':'100%'}" (onChange)="fetchstate()">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value">
+                        <div>{{marketdetailsForm.value.cropName?.name}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-cropName pTemplate="item">
+                    <div class="country-item">
+                        <div>{{cropName.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="marketDataSelected-item">
+            <p-dropdown [options]="state" optionLabel="state" [filter]="true" filterBy="name" [showClear]="true"
+                placeholder="State" formControlName="state" [style]="{'width':'100%'}">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value">
+                        <div>{{marketdetailsForm.value.state?.name}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-state pTemplate="item">
+                    <div class="country-item">
+                        <div>{{state.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="col-4 m-3">
+            <p-button label="Search" icon="pi pi-search" [loading]="false" (onClick)="search()"></p-button>
+            <!-- <p-button icon="pi pi-search" [loading]="true" (onClick)="search()"
+                    [disabled]="!marketdetailsForm.valid"></p-button> -->
+        </div>
+    </form>
+    <p-table [value]="marketData" [resizableColumns]="true">
+        <ng-template pTemplate="caption">
+            <!-- <div class="flex align-items-center justify-content-between">
+                Market Status
+            </div> -->
+            <div class="caption-item">
+                <i class="fa-solid fa-chart-simple me-2 text-primary fs-5"></i>
+                <span class="fs-5">Showing {{marketData.length}} of {{marketData.length}} results</span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" class="justify-content-center">
+            <tr>
+                <th>State</th>
+                <th>District</th>
+                <th>Date</th>
+                <th>Item</th>
+                <th>Price Per Q</th>
+                <th>Graph</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr class="border" style="margin: 2px;">
+                <td class="justify-content-center">
+                    {{item.state | uppercase}}
+                </td>
+                <td class="justify-content-center">{{item.district | uppercase}}</td>
+                <td class="justify-content-center">
+                    {{item.date}}
+                </td>
+                <td class="justify-content-center">
+                    {{item.crop | uppercase}}: <strong>Average</strong>
+                </td>
+                <td class="justify-content-center">{{item.price}}</td>
+                <td class="justify-content-center">
+                    <a class="text-decoration-none" [routerLink]="'/agriculture/check-status/'+item.case_id">View Graph</a>
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+    <ng-container *ngIf="marketData.length==0">
+        <app-no-data-available></app-no-data-available>
+    </ng-container>
+</div>

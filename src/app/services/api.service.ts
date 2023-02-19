@@ -34,7 +34,7 @@ export class ApiService {
   public addmedicine(apiData:any){
     return this.http.post(this.appservices.getApipath()+ 'medicine/creatmed.php',apiData,{ headers: this.headers })
   }
-
+  
 
 
 

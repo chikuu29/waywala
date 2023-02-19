@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   baseApiURL:"http://localhost/waywala-api/",
-  apiKey:"$2y$10$R33dyQxSYwp58Bx97WHjXu2JNIcZ0lllH3kvgjL5wuSP5hnNHiZO6"
+  apiKey:"$2y$10$R33dyQxSYwp58Bx97WHjXu2JNIcZ0lllH3kvgjL5wuSP5hnNHiZO6",
+  marketPlaceApiKey:"waywala"
 };
 
 /*

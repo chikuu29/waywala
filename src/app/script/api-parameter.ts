@@ -220,5 +220,16 @@ export class ApiParameterScript {
     }
 
 
+    /**
+    * @param requestid 
+    * @param data 
+    * @returns 
+    * @author Suryanarayan Biswal
+    * @since 01-11-2022
+    */
+    public marketPlaceApi(requestid:number,apidata:any){
+        return this.http.get(this.appservices.getApipath()+`agri/market-place/market.php?requestid=${requestid}&apikey=${this.appservices.marketPlaceApiKey()}&query=${encodeURIComponent(JSON.stringify(apidata))}`)
+    }
+
 
 }

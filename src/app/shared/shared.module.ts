@@ -11,6 +11,8 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { MaterialModule } from '../material/material.module';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AgricultureModule } from '../feature/agriculture/agriculture.module';
+import { AgricultureRoutingModule } from '../feature/agriculture/agriculture-routing.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     OtpComponent,
     CaseReviewComponent,
-    NgbModule,
+    NgbModule
     
     
 

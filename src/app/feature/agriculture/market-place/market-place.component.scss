@@ -1,0 +1,55 @@
+.marketDataSelected-dropdown{
+    display: flex;
+    flex-wrap: wrap;
+
+
+    .marketDataSelected-item{
+        margin: 5px;
+        min-width:100%;
+        // width: 100%;
+    
+    }
+}
+
+.table-holder {
+    background: #fff;
+    padding: 9px;
+    margin: 10px;
+    box-shadow: 0.063rem 0 1.25rem 0 #c1c3c5;
+    border-radius: 5px;
+
+    .caption-header {
+        // box-shadow: 0.063rem 0 1.25rem 0 #c1c3c5;
+        padding: 7px;
+        // padding-bottom: 7px;
+        border-bottom: 2px solid #c1c3c5;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .table-header {
+        background: #5d78ff;
+
+        th {
+            padding: 14px 14px;
+            color: #fff;
+            font-weight: 500;
+        }
+    }
+
+    .table-body {
+        tr {
+            align-items: center;
+        }
+
+        td {
+            height: 80px;
+            width: 160px;
+            vertical-align: middle;
+            background: rgba(77, 89, 149, .06);
+            padding: 14px 14px;
+            font-weight: 400;
+        }
+    }
+}

@@ -16,6 +16,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { KvksComponent } from './kvks/kvks.component';
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
 import { CustomPipeModule } from 'src/app/customPipe/custom-pipe.module';
+import { MarketPlaceComponent } from './market-place/market-place.component';
 @NgModule({
     declarations: [
         AgricultureComponent,
@@ -24,7 +25,8 @@ import { CustomPipeModule } from 'src/app/customPipe/custom-pipe.module';
         MycaseComponent,
         FeedbackComponent,
         KvksComponent,
-        WeatherForecastComponent
+        WeatherForecastComponent,
+        MarketPlaceComponent
        
         
     ],
@@ -41,7 +43,11 @@ import { CustomPipeModule } from 'src/app/customPipe/custom-pipe.module';
         PrimengModule,
         PagesModule,
         CustomPipeModule
+    ],
+    exports:[
+        MarketPlaceComponent
     ]
+
 
 })
 export class AgricultureModule { }

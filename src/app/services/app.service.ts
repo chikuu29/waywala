@@ -24,6 +24,11 @@ export class AppService {
   public getApiKey() {
     return environment.apiKey;
   }
+  
+  public marketPlaceApiKey(){
+    return environment.marketPlaceApiKey;
+  }
+
   get authStatus() {
     return this._auth.getAuthStatus();
   }
