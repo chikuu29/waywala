@@ -7,12 +7,15 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { PrimengModule } from 'src/app/primeng/primeng.module';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
+import { ProductService } from './all-product-list/productservice';
+import { AllProductListComponent } from './all-product-list/all-product-list.component';
 
 
 @NgModule({
   declarations: [
     ECommerceComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    AllProductListComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +23,10 @@ import { MaterialModule } from 'src/app/material/material.module';
     PrimengModule,
     FormsModule,
     MaterialModule
-  ]
+  ],
+  exports:[
+    AllProductListComponent
+  ],
+  providers:[ProductService]
 })
 export class ECommerceModule { }

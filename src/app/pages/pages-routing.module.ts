@@ -3,10 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from '../auth/authentication.guard';
 import { AboutComponent } from './about/about.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  {
+    path: "",
+    component: HomeComponent
+  },
+  {
+    path: "home",
+    component: HomeComponent
+  },
   {
     path: "error",
     component: ErrorPageComponent

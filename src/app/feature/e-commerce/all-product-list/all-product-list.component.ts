@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
-import { Product } from '../all-product-list/product';
-import { ProductService } from '../all-product-list/productservice';
+import { Product } from './product';
+import { ProductService } from './productservice';
 
 @Component({
-  selector: 'app-e-commerce',
-  templateUrl: './e-commerce.component.html',
-  styleUrls: ['./e-commerce.component.scss']
+  selector: 'app-all-product-list',
+  templateUrl: './all-product-list.component.html',
+  styleUrls: ['./all-product-list.component.scss']
 })
+export class AllProductListComponent implements OnInit {
 
-export class ECommerceComponent implements OnInit {
-  // [x: string]: any;
   products: Product[];
 
   sortOptions: SelectItem[];
@@ -40,15 +39,6 @@ export class ECommerceComponent implements OnInit {
       this.sortOrder = 1;
       this.sortField = value;
     }
-  }
-
-  copyCoponCode(copyText: any) {
-    // copyText.select();
-    // copyText.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text field
-    // navigator.clipboard.writeText(copyText);
-    alert("Copied the text: " + copyText);
   }
 
 }

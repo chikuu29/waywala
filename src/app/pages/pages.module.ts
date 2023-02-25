@@ -13,6 +13,9 @@ import { NoDataAvailableComponent } from './no-data-available/no-data-available.
 import { ProfileComponent } from './profile/profile.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { AboutComponent } from './about/about.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component';
+import { ECommerceModule } from '../feature/e-commerce/e-commerce.module';
 
 
 @NgModule({
@@ -22,7 +25,8 @@ import { AboutComponent } from './about/about.component';
     RegisterComponent,
     NoDataAvailableComponent,
     ProfileComponent,
-    AboutComponent
+    AboutComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
@@ -31,9 +35,9 @@ import { AboutComponent } from './about/about.component';
     FormsModule,
     PrimengModule,
     ReactiveFormsModule,
-    // ToastrModule.forRoot(),
-    NgxUiLoaderModule
-    
+    NgbModule,
+    NgxUiLoaderModule,
+    ECommerceModule
   ],
   exports: [
     CommingSoonComponent,

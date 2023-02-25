@@ -15,6 +15,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {BadgeModule} from 'primeng/badge';
 import {DividerModule} from 'primeng/divider';
 import {ChartModule} from 'primeng/chart';
+import {DataViewModule} from 'primeng/dataview';
 @NgModule({
   declarations: [],
   imports: [
@@ -33,7 +34,8 @@ import {ChartModule} from 'primeng/chart';
     InputTextModule,
     BadgeModule,
     DividerModule,
-    ChartModule
+    ChartModule,
+    DataViewModule
    
   ],
   exports:[
@@ -51,7 +53,8 @@ import {ChartModule} from 'primeng/chart';
     InputTextModule,
     BadgeModule,
     DividerModule,
-    ChartModule
+    ChartModule,
+    DataViewModule
   ]
 })
 export class PrimengModule { }
