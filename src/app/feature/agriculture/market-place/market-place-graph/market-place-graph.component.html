@@ -1,0 +1,16 @@
+<br><br><br><br>
+<h1 class="text-center fs-2 fw-bold mb-2" style="color: #888;">Market status graph</h1>
+<div class="container mb-3">
+    <div class="graph-holder m-auto">
+        <div class="graph-holder-details mt-4">
+            <h1 class="fs-2 fw-bold mb-3" style="color: #888;">{{marketInformation.crop}} - Average</h1>
+            <p>{{marketInformation.currentDate}}&nbsp;<span>{{marketInformation.district}},&nbsp;</span>{{marketInformation.state}}</p>
+            <h1 class="fw-bold text-danger">{{marketInformation.currentPrice}}/Q</h1>
+        </div>
+        <div class="graph">
+            <p-chart type="line" [data]="basicData" [options]="basicOptions"  [responsive]="true" ></p-chart>
+        </div>
+        
+    </div>
+    
+</div>

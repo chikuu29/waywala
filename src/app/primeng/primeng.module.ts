@@ -14,6 +14,7 @@ import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {BadgeModule} from 'primeng/badge';
 import {DividerModule} from 'primeng/divider';
+import {ChartModule} from 'primeng/chart';
 @NgModule({
   declarations: [],
   imports: [
@@ -31,7 +32,8 @@ import {DividerModule} from 'primeng/divider';
     ButtonModule,
     InputTextModule,
     BadgeModule,
-    DividerModule
+    DividerModule,
+    ChartModule
    
   ],
   exports:[
@@ -48,7 +50,8 @@ import {DividerModule} from 'primeng/divider';
     ButtonModule,
     InputTextModule,
     BadgeModule,
-    DividerModule
+    DividerModule,
+    ChartModule
   ]
 })
 export class PrimengModule { }

@@ -25,7 +25,7 @@
                 <a class="carousel-control-prev" role="button" (click)="getToPrev()">
                     <i class="fa fa-left"><img src="assets/images/left-icon.png"></i>
                 </a>
-                <a class="carousel-control-next" role="button" (click)="goToNext()" >
+                <a class="carousel-control-next" role="button" (click)="goToNext()">
                     <i class="fa fa-right"><img src="assets/images/right-icon.png"></i>
                 </a>
             </div>
@@ -163,39 +163,41 @@
 </div>
 <!-- about section end -->
 <!-- !-- services section start -->
-  <div class="about_section layout_padding">
+<div class="about_section layout_padding">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 padding_left_0">
-          <div class="overflow-hidden"><img src="assets/images/img-4.png" class="image_3"></div>
-        </div>
-        <div class="col-md-6">
-          <h1 class="about_text">Our Service <span><img src="assets/images/img-2.png"></span></h1>
-          <div class="product_section layout_padding">
-            <div class="row">
-              <div class="col-sm-4">
-                <h4 class="product_text">Agriculture</h4>
-                <div class="box_image"></div>
-                <p class="tend_text">We Give You Best Medicine For Your Farming ,You Just Need To Shear Somedetails Of Your Dameage Crop </p>
-              </div>
-              <div class="col-sm-4">
-                <h4 class="product_text">E-commerce</h4>
-                <div class="box_image_1"></div>
-                <p class="tend_text">Hear You Can Buy & Sell Your Agriculture Product With Us & We Give You Best Value For You Product </p>
-              </div>
-              <div class="col-sm-4">
-                <h4 class="product_text">Education</h4>
-                <div class="box_image"></div>
-                <p class="tend_text">Hear Your You Can Learning New Things With Us </p>
-              </div>
+        <div class="row">
+            <div class="col-md-6 padding_left_0">
+                <div class="overflow-hidden"><img src="assets/images/img-4.png" class="image_3"></div>
             </div>
-            <div class="read_bt"><a routerLink="/pages/about">Read More</a></div>
-          </div>
+            <div class="col-md-6">
+                <h1 class="about_text">Our Service <span><img src="assets/images/img-2.png"></span></h1>
+                <div class="product_section layout_padding">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h4 class="product_text">Agriculture</h4>
+                            <div class="box_image"></div>
+                            <p class="tend_text">We Give You Best Medicine For Your Farming ,You Just Need To Shear
+                                Somedetails Of Your Dameage Crop </p>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4 class="product_text">E-commerce</h4>
+                            <div class="box_image_1"></div>
+                            <p class="tend_text">Hear You Can Buy & Sell Your Agriculture Product With Us & We Give You
+                                Best Value For You Product </p>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4 class="product_text">Education</h4>
+                            <div class="box_image"></div>
+                            <p class="tend_text">Hear Your You Can Learning New Things With Us </p>
+                        </div>
+                    </div>
+                    <div class="read_bt"><a routerLink="/pages/about">Read More</a></div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!-- services section end -->
+</div>
+<!-- services section end -->
 <!-- newsletter section start -->
 <div class="newsletter_section layout_padding mt-3">
     <div class="container">
@@ -223,12 +225,15 @@
                             <input type="text" class="email-bt" placeholder="Phone Numbar" formControlName="phone_no">
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text" class="email-bt mb-2" placeholder="Email Address" formControlName="email">
-                            <span class="text-danger m-3" *ngIf="!contactForm.controls.email.untouched && !contactForm.controls.email.valid">Please Fill Correct Email ID</span>
+                            <input type="text" class="email-bt mb-2" placeholder="Email Address"
+                                formControlName="email">
+                            <span class="text-danger m-3"
+                                *ngIf="!contactForm.controls.email.untouched && !contactForm.controls.email.valid">Please
+                                Fill Correct Email ID</span>
                         </div>
                         <div class="form-group mb-3">
                             <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment"
-                            formControlName="message"></textarea>
+                                formControlName="message"></textarea>
                         </div>
                     </form>
                 </div>
@@ -238,4 +243,3 @@
     </div>
 </div>
 <!-- Contact section end -->
-

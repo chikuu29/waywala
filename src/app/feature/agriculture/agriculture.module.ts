@@ -17,6 +17,7 @@ import { KvksComponent } from './kvks/kvks.component';
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
 import { CustomPipeModule } from 'src/app/customPipe/custom-pipe.module';
 import { MarketPlaceComponent } from './market-place/market-place.component';
+import { MarketPlaceGraphComponent } from './market-place/market-place-graph/market-place-graph.component';
 @NgModule({
     declarations: [
         AgricultureComponent,
@@ -26,7 +27,8 @@ import { MarketPlaceComponent } from './market-place/market-place.component';
         FeedbackComponent,
         KvksComponent,
         WeatherForecastComponent,
-        MarketPlaceComponent
+        MarketPlaceComponent,
+        MarketPlaceGraphComponent
        
         
     ],

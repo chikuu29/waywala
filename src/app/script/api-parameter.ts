@@ -223,6 +223,7 @@ export class ApiParameterScript {
     /**
     * @param requestid 
     * @param data 
+    * @query {"id":1}
     * @returns 
     * @author Suryanarayan Biswal
     * @since 01-11-2022
