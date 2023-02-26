@@ -10,12 +10,14 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { MaterialModule } from '../material/material.module';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
     OtpComponent,
-    CaseReviewComponent
+    CaseReviewComponent,
+    NoDataAvailableComponent
   ],
   imports: [
     CommonModule,
@@ -33,9 +35,7 @@ import { NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     OtpComponent,
     CaseReviewComponent,
-    NgbModule
-    
-    
+    NoDataAvailableComponent
 
   ]
 })

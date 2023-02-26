@@ -16,9 +16,9 @@
     <div class="navbar">
       <div class="d-flex align-items-center " [ngClass]="screenWidth>990?'d-none':''">
         <!-- Icon -->
-        <a class="me-2" style="cursor: pointer;">
+        <a class="me-2" style="cursor: pointer;" routerLink="/e-commerce/my-cart">
           <!-- <a class="nav-link hover" href="#"> -->
-          <i class="pi pi-shopping-cart p-text-secondary fs-2" pBadge style="font-size: 2rem" [value]="'10+'"
+          <i class="pi pi-shopping-cart p-text-secondary fs-2" pBadge style="font-size: 2rem" [value]="'0'"
             severity="danger"></i>
           <!-- 
           <span style="color: black;"><i class="fas fa-shopping-cart fs-5"> <span
@@ -98,12 +98,9 @@
       <ul class="navbar-nav me-left mb-2 mb-lg-0 justify-content-center">
 
         <li class="m-1 " [ngClass]="screenWidth<990?'d-none':''">
-          <a class="nav-link hover me-3" href="#">
-            <i class="pi pi-shopping-cart  p-text-secondary" pBadge style="font-size: 2rem" [value]="'10+'"
+          <a class="nav-link hover me-3" routerLink="/e-commerce/my-cart">
+            <i class="pi pi-shopping-cart  p-text-secondary" pBadge style="font-size: 2rem" [value]="'0'"
               severity="danger"></i>
-            <!-- <span><i class="fa-solid fa-cart-shopping fs-2"> <span
-                  class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
-                  style="font-size: 8px;">5</span></i></span> -->
           </a>
         </li>
         <li class="m-1" [hidden]="isLogin">

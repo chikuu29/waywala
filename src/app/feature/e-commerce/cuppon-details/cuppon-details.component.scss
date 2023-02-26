@@ -1,0 +1,44 @@
+.coupon-container {
+    .coupon-flex-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: scroll;
+        align-items: center;
+
+        .copon-item {
+            margin: 5px;
+            border-radius: 14px;
+            padding: 10px;
+            // max-width: 200px;
+            background-color: #50C878;
+
+            .copon-taitel {
+                margin: 0;
+                color: #fff;
+                font-weight: bold;
+                font-size: medium;
+            }
+
+            .copon-subtaitel {
+
+                // font-weight: bold;
+                font-size: 9px;
+                // font-family: 'Times New Roman', Times, serif;
+                // font-size: small;
+            }
+
+            .copon-code {
+                cursor: pointer;
+                background-color: #fff;
+                padding: 6px;
+                border: 2px dotted #fff;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .coupon-flex-box::-webkit-scrollbar {
+        display: none;
+    }
+}

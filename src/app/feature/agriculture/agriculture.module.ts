@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgricultureRoutingModule } from './agriculture-routing.module';
 import { AgricultureComponent } from './agriculture/agriculture.component';
-import { PagesModule } from 'src/app/pages/pages.module';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { MaterialModule } from 'src/app/material/material.module';
 import { GenerateQueryComponent } from './generate-query/generate-query.component';
@@ -29,13 +28,10 @@ import { MarketPlaceGraphComponent } from './market-place/market-place-graph/mar
         WeatherForecastComponent,
         MarketPlaceComponent,
         MarketPlaceGraphComponent
-       
-        
     ],
     imports: [
         CommonModule,
         AgricultureRoutingModule,
-        PagesModule,
         NgxUiLoaderModule,
         MaterialModule,
         FormsModule,
@@ -43,8 +39,8 @@ import { MarketPlaceGraphComponent } from './market-place/market-place-graph/mar
         HttpClientModule,
         SharedModule,
         PrimengModule,
-        PagesModule,
-        CustomPipeModule
+        CustomPipeModule,
+
     ],
     exports:[
         MarketPlaceComponent

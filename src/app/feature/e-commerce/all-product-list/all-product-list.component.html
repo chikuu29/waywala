@@ -14,7 +14,7 @@
                 </div>
             </ng-template>
             <ng-template let-product pTemplate="listItem">
-                <div class="col-12">
+                <div class="col-12" style="cursor:pointer;" [routerLink]="'/e-commerce/product-page/'+product.id">
                     <div class="product-list-item">
                         <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
                             [alt]="product.name" />
@@ -36,7 +36,7 @@
                 </div>
             </ng-template>
             <ng-template let-product pTemplate="gridItem">
-                <div class="col-12 md:col-4">
+                <div class="col-12 md:col-4" style="cursor:pointer;" [routerLink]="'/e-commerce/product-page/'+product.id">
                     <div class="product-grid-item">
                         <div class="product-grid-item-top">
                             <div>
@@ -63,5 +63,5 @@
             </ng-template>
         </p-dataView>
     </div>
-
+    
 </div>

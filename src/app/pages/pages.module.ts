@@ -9,13 +9,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { OtpComponent } from '../shared/otp/otp.component';
-import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { AboutComponent } from './about/about.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { ECommerceModule } from '../feature/e-commerce/e-commerce.module';
+import { AgricultureModule } from '../feature/agriculture/agriculture.module';
 
 
 @NgModule({
@@ -23,7 +23,6 @@ import { ECommerceModule } from '../feature/e-commerce/e-commerce.module';
     ErrorPageComponent,
     CommingSoonComponent,
     RegisterComponent,
-    NoDataAvailableComponent,
     ProfileComponent,
     AboutComponent,
     HomeComponent
@@ -37,11 +36,12 @@ import { ECommerceModule } from '../feature/e-commerce/e-commerce.module';
     ReactiveFormsModule,
     NgbModule,
     NgxUiLoaderModule,
-    ECommerceModule
+    ECommerceModule,
+    AgricultureModule
   ],
   exports: [
-    CommingSoonComponent,
-    NoDataAvailableComponent
+    CommingSoonComponent
+  
   ],
   providers:[],
   entryComponents:[OtpComponent]
