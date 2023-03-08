@@ -12,6 +12,7 @@ import { AllProductListComponent } from './all-product-list/all-product-list.com
 import { ProductDetailsPageComponent } from './product-details-page/product-details-page.component';
 import { CupponDetailsComponent } from './cuppon-details/cuppon-details.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { ProductSectionComponent } from './product-section/product-section.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
     AllProductListComponent,
     ProductDetailsPageComponent,
     CupponDetailsComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    ProductSectionComponent
   ],
   imports: [
     CommonModule,

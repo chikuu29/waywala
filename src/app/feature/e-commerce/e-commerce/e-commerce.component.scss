@@ -1,21 +1,14 @@
 .shopping-category-holder {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     overflow-x: scroll;
-
     .category-item {
-        margin: 15px;
+        gap: 0.5rem;
         cursor: pointer;
         text-align: center;
-
-
-
         a {
             text-decoration: none;
-
-
-
             .category-item-taitel {
                 font-weight: 500;
                 color: black;
@@ -29,18 +22,18 @@
     display: none;
 }
 
-
-
-
-
-
+.margin{
+    margin-top: 11rem;
+}
 /*------------------------------------------------------------------- 599px x 280px ---------------------------------------------------------------------*/
 
 @media only screen and (min-width: 280px) and (max-width: 599px) {}
 
 @media (min-width: 992px) and (max-width: 1199px) {}
 
-@media (min-width: 768px) and (max-width: 991px) {}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
 
 @media (min-width: 576px) and (max-width: 767px) {}
 
