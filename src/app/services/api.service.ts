@@ -36,6 +36,10 @@ export class ApiService {
   }
   
 
+  public fetchDataQueryApi(query:any){
+    return this.http.get(this.appservices.getApipath() + 'generic/getDataFormQuery.php?query='+encodeURIComponent(JSON.stringify(query)));
+  }
+
 
 
 

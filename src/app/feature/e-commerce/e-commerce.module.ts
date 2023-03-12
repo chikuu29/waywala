@@ -33,7 +33,8 @@ import { ProductSectionComponent } from './product-section/product-section.compo
     MaterialModule
   ],
   exports:[
-    AllProductListComponent
+    AllProductListComponent,
+    ProductSectionComponent
   ],
   providers:[ProductService]
 })

@@ -73,14 +73,17 @@
                             <div class="d-flex mb-4">
                                 <div class="" style="width: 50px;">
 
-                                    <div class="p-2 cursor-pointer side-img-hover mb-2">
-                                        <div class="w-[40px] h-[40px]">
-                                            <img src="https://www.waywala.com/assets/agri/man.png" alt="" srcset=""
-                                                width="50px" height="50px" class="img-fluid p-1">
+                                    <ng-container *ngFor="let item of product['product_Images']">
+                                        <div class="p-2 cursor-pointer side-img-hover mb-2" (click)="clickSideImage(imageURL+item)">
+                                            <div class="w-[40px] h-[40px]">
+                                                <img src="{{imageURL+item}}" alt="" srcset=""
+                                                    width="50px" height="50px" class="img-fluid p-1">
+                                            </div>
+    
                                         </div>
-
-                                    </div>
-                                    <div class="p-2 cursor-pointer side-img-hover mb-2">
+                                    </ng-container>
+                                  
+                                    <!-- <div class="p-2 cursor-pointer side-img-hover mb-2">
                                         <img src="https://www.waywala.com/assets/agri/farmer2.png.png" alt="" srcset=""
                                             width="50px" height="50px" class="img-fluid">
                                     </div>
@@ -95,7 +98,7 @@
                                     <div class="p-2 cursor-pointer side-img-hover mb-2">
                                         <img src="https://www.waywala.com/assets/agri/farmer2.png.png" alt="" srcset=""
                                             width="50px" height="50px" class="img-fluid">
-                                    </div>
+                                    </div> -->
 
 
                                 </div>
@@ -103,7 +106,7 @@
                                 <div class=" bg-[#F8F8F8] flex-1 relative flex justify-center items-center">
 
                                     <div class="w-full h-full bg-cover cursor-pointer p-3">
-                                        <img src="https://www.waywala.com/assets/agri/farmer2.png.png" alt="" srcset=""
+                                        <img [src]="activeImage" alt="" srcset=""
                                             class="img-fluid">
                                     </div>
 
@@ -194,11 +197,11 @@
                         <div class="flex flex-row md:flex-col">
                             <div class="flex flex-col flex-1">
                                 <span class="Product_heading fs-bold">
-                                    <span class="product-title">PW Fabric Zipper Pouch + Trigonal Ball Pen Combo</span>
+                                    <span class="product-title">{{product.product_Name }}</span>
                                 </span>
                                 <span class="pt-0 md:pt-2">
                                     <span class="font-medium Typography_root__TxCor">
-                                        <span class="text-grey">Waywala</span>
+                                        <!-- <span class="text-grey">Waywala</span> -->
                                     </span>
                                 </span>
                             </div>
@@ -206,13 +209,13 @@
                         <div class="mt-4 lg:mt-5">
                             <div class="mb-3">
                                 <div class="flex justify-content-start items-center">
-                                    <span class="product-price">₹125</span>
+                                    <span class="product-price">{{product.product_Selling_Price | currency :'INR'}}</span>
                                     <span class="ml-2">
-                                        <del class="product-MRP-Price ">₹195</del>
+                                        <del class="product-MRP-Price ">{{product.product_Mrp_Price | currency :'INR'}}</del>
                                     </span>
                                     <span class="ml-2">
                                         <span
-                                            class="text-[16px] sm:text-[18px] md:text-[18px] font-bold dicoute-percentage">(36%
+                                            class="text-[16px] sm:text-[18px] md:text-[18px] font-bold dicoute-percentage">({{product.product_Discoute_Percentage}}%
                                             OFF)</span>
                                     </span>
                                 </div>

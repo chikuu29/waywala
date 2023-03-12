@@ -231,6 +231,41 @@ export class ApiParameterScript {
     public marketPlaceApi(requestid:number,apidata:any){
         return this.http.get(this.appservices.getApipath()+`agri/market-place/market.php?requestid=${requestid}&apikey=${this.appservices.marketPlaceApiKey()}&query=${encodeURIComponent(JSON.stringify(apidata))}`)
     }
+/**
+     
+    * @param SqlQuery 
+    * @query {"id":1}
+    * @returns 
+    * @author Suryanarayan Biswal
+    * @since 01-11-2022
+    */
+    public fetchDataFormQuery(query:any) {
+        const simpleObservable = new Observable((observer) => {
+            try {
+                // apiData['db'] = db;
+                // const appConfig = this.appservices.getappconfig;
+                // const loginInfo = this.appservices.authStatus;
+                // let getrole = loginInfo['role'] ? loginInfo['role'] : '';
+                // let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
+                // let outhForUpdate = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'].includes(db) : false : false;
+                // if (appConfig['roleConfig'][getrole] && (outh && outhForUpdate)) {
+                //     apiData['loginInfo'] = loginInfo;
+                    this.apiservices.fetchDataQueryApi(query).subscribe((res: any) => {
+                        observer.next(res);
+                        observer.complete();
+                    })
+                // } else {
+                //     observer.next({ "success": false, "message": "Permission Denied To Update Database" });
+                //     observer.complete();
+                // }
+            } catch (error) {
+                console.log({ "methodName": "ApiParameterScript.fetchDataFormQuery", "error": error });
+                observer.next(error);
+                observer.complete();
+            }
+        });
+        return simpleObservable;
+    }
 
 
 }
