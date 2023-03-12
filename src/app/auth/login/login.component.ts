@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 import Swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -31,9 +31,12 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private modalService: NgbModal,
-    private HttpClient: HttpClient
+    private HttpClient: HttpClient,
+    private activeRouter:ActivatedRoute
+
   ) { }
 
+  redirectUrl:any
   loginForm = new FormGroup({
 
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -43,6 +46,7 @@ export class LoginComponent implements OnInit {
 
   password: any;
   ngOnInit(): void {
+    this.redirectUrl=this.activeRouter.snapshot.queryParamMap.get('redirectUrl') || '/'
 
   }
 
@@ -69,7 +73,7 @@ export class LoginComponent implements OnInit {
           // localStorage.setItem('loginiinfo', JSON.stringify(res))
           var expiration_date = new Date(new Date().getTime() + 86400 * 1000).toString();
           this.auth.authentication(res.username, res.useremail, true, "user", res.token, expiration_date);
-          this.router.navigateByUrl('/')
+          this.router.navigateByUrl(this.redirectUrl)
         } else {
           this.toastr.error(res.message);
           var needOTPValidation = res.needOTPValidation == undefined ? false : true;

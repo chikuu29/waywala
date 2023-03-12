@@ -23,10 +23,12 @@ export class AuthenticationGuard implements CanActivate {
     return this._auth.user.pipe(
       take(1),
       map(user=>{
-        if(user && user.isLogin){
+        if(user && user.isLogin && user.token){
           return true;
         }else{
-          return this._router.createUrlTree(['pages/error']);
+          // return this._router.createUrlTree(['pages/error']);
+          this._router.navigate(['auth/login'], { queryParams: { redirectUrl: state.url } });
+          return false
         }
       })
     );

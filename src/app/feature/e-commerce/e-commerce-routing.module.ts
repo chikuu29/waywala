@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from 'src/app/auth/authentication.guard';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
     component:ProductDetailsPageComponent
   },
   {
-    path:'my-cart',
+    path:'my/bag',
+    canActivate:[AuthenticationGuard],
     component:AddToCartComponent
   },
 ];
