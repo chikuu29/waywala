@@ -6,7 +6,7 @@ export interface Product {
     product_Selling_Price?:number;
     product_Discoute_Percentage?:number;
     product_Category?:string;
-    product_Quantity_Available?:string;
+    product_Quantity_Available?:any;
     product_Images?:any;
     product_Expires?:any;
     product_AVG_Rating?:number;

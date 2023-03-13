@@ -328,22 +328,22 @@
                   </span>
                 </div>
                 <div class="qty-container">
-                  <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                  <button (click)="stepDown()"
                     class="qty-btn-minus btn-danger btn-rounded mr-1"
                     type="button"
                   >
                     <i class="fa fa-chevron-left"></i>
                   </button>
                   <input
-                    (keyup)="onChangeQuantity($event,product.product_Quantity_Available)"
+                    (change)="onChangeQuantity($event,product.product_Quantity_Available)"
+                    [(ngModel)]="product_QUANTITY"
                     type="number"
-                    name="qty"
-                    value="1"
+                   
                     [min]="1"
                     [max]="product.product_Quantity_Available"
                     class="input-qty input-rounded"
                   />
-                  <button  onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                  <button  (click)="stepUp()"
                     class="qty-btn-plus btn-danger btn-rounded ml-1"
                     type="button"
                   >

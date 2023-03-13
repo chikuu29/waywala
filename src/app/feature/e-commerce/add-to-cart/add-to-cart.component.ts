@@ -10,6 +10,7 @@ export class AddToCartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
