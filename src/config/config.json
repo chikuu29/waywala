@@ -35,7 +35,7 @@
             
          ]
       },
-      "user": {
+      "GUEST_USER": {
          "authorizationDBAcess": [
             "agriculture_case",
             "medicine",
@@ -50,6 +50,28 @@
             "agriculture_case_review",
             "user",
             "contact_us"
+         ],
+         "authorizationDBAcessForDelet": [
+            
+         ]
+      },
+      "LOGIN_USER": {
+         "authorizationDBAcess": [
+            "agriculture_case",
+            "medicine",
+            "agriculture_case_status",
+            "agriculture_case_review",
+            "Kvks_Details",
+            "user",
+            "banner",
+            "e_commerce_product_kart"
+            
+         ],
+         "authorizationDBAcessForUpdate": [
+            "agriculture_case_review",
+            "user",
+            "contact_us",
+            "e_commerce_product_kart"
          ],
          "authorizationDBAcessForDelet": [
             

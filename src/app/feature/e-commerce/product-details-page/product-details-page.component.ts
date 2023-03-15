@@ -88,9 +88,10 @@ export class ProductDetailsPageComponent implements OnInit {
     console.log("product_Quntity",this.product_QUANTITY);
     
     var addToKartProductObject={
-      product_ID:product.product_Id,
-      product_QUANTITY:this.product_QUANTITY,
-      product_CART_CREATED_TIME:moment().format('MMMM Do YYYY, h:mm:ss a').toString()
+      product_CART_ID:product.product_Id,
+      product_CART_QUANTITY:this.product_QUANTITY,
+      product_CART_CREATED_TIME:moment().format('MMMM Do YYYY, h:mm:ss a').toString(),
+      product_CART_BY_Email:"Not Availble"
     }
     console.log("addToKartProductObject",addToKartProductObject);
     console.log(this.appservices.authStatus);
@@ -99,13 +100,13 @@ export class ProductDetailsPageComponent implements OnInit {
 
     }else{
       var myKart:any=window.localStorage.getItem('myKartData')!=null?JSON.parse(window.localStorage.getItem('myKartData') as any):[];
-      var findProdctKartobject=_.find(myKart,{product_ID:addToKartProductObject.product_ID})
+      var findProdctKartobject=_.find(myKart,{product_CART_ID:addToKartProductObject.product_CART_ID})
       if(findProdctKartobject==undefined){
         myKart.push(addToKartProductObject);
       }else{
         _.map(myKart,(object:any)=>{
-          if(object.product_ID == addToKartProductObject.product_ID){
-               object.product_QUANTITY +=addToKartProductObject.product_QUANTITY
+          if(object.product_CART_ID == addToKartProductObject.product_CART_ID){
+               object.product_CART_QUANTITY +=addToKartProductObject.product_CART_QUANTITY
           }
         })
       }

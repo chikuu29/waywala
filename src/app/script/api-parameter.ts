@@ -49,7 +49,7 @@ export class ApiParameterScript {
                 const appConfig = this.appservices.getappconfig;
                 var loginInfo: any = {}
                 if (apiData['auth'] && apiData['auth']) {
-                    loginInfo = { role: 'user' }
+                    loginInfo = { role: 'GUEST_USER' }
                 } else {
                     loginInfo = this.appservices.authStatus
                 }
@@ -128,8 +128,10 @@ export class ApiParameterScript {
     /**
     * {
         "data":"case_status='accepted'",
-        "db":"agriculture_case",
-        "auth":true
+        "auth":true,
+        "multiInsert":boolean,
+        "keyName":"["product_ID","product_QUANTITY","product_CART_BY_Email","product_CART_Status","product_CART_CREATED_TIME"],
+        "multiData":'[{product_ID:"Test",product_QUANTITY:'Surya',product_CART_BY_Email:'BBSR'}]'
       }
     * @param db 
     * @param apiData 
@@ -143,12 +145,13 @@ export class ApiParameterScript {
                 apiData['db'] = db;
                 const appConfig = this.appservices.getappconfig;
                 var loginInfo: any = {}
+                apiData['multiInsert'] = apiData['multiInsert'] ? apiData['multiInsert'] : false;
                 if (apiData['auth'] && apiData['auth']) {
-                    loginInfo = { role: 'user' }
+                    loginInfo = { role: 'GUEST_USER' }
                 } else {
-                    loginInfo = this.appservices.authStatus
+                    loginInfo = { role: 'LOGIN_USER' }
                 }
-                let getrole = loginInfo['role'] ? loginInfo['role'] : '';
+                let getrole = loginInfo['role'];
                 let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
                 let outhForUpdate = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'].includes(db) : false : false;
                 if (appConfig['roleConfig'][getrole] && (outh || outhForUpdate)) {
@@ -228,18 +231,18 @@ export class ApiParameterScript {
     * @author Suryanarayan Biswal
     * @since 01-11-2022
     */
-    public marketPlaceApi(requestid:number,apidata:any){
-        return this.http.get(this.appservices.getApipath()+`agri/market-place/market.php?requestid=${requestid}&apikey=${this.appservices.marketPlaceApiKey()}&query=${encodeURIComponent(JSON.stringify(apidata))}`)
+    public marketPlaceApi(requestid: number, apidata: any) {
+        return this.http.get(this.appservices.getApipath() + `agri/market-place/market.php?requestid=${requestid}&apikey=${this.appservices.marketPlaceApiKey()}&query=${encodeURIComponent(JSON.stringify(apidata))}`)
     }
-/**
-     
-    * @param SqlQuery 
-    * @query {"id":1}
-    * @returns 
-    * @author Suryanarayan Biswal
-    * @since 01-11-2022
-    */
-    public fetchDataFormQuery(query:any) {
+    /**
+         
+        * @param SqlQuery 
+        * @query {"id":1}
+        * @returns 
+        * @author Suryanarayan Biswal
+        * @since 01-11-2022
+        */
+    public fetchDataFormQuery(query: any) {
         const simpleObservable = new Observable((observer) => {
             try {
                 // apiData['db'] = db;
@@ -250,10 +253,10 @@ export class ApiParameterScript {
                 // let outhForUpdate = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'].includes(db) : false : false;
                 // if (appConfig['roleConfig'][getrole] && (outh && outhForUpdate)) {
                 //     apiData['loginInfo'] = loginInfo;
-                    this.apiservices.fetchDataQueryApi(query).subscribe((res: any) => {
-                        observer.next(res);
-                        observer.complete();
-                    })
+                this.apiservices.fetchDataQueryApi(query).subscribe((res: any) => {
+                    observer.next(res);
+                    observer.complete();
+                })
                 // } else {
                 //     observer.next({ "success": false, "message": "Permission Denied To Update Database" });
                 //     observer.complete();
