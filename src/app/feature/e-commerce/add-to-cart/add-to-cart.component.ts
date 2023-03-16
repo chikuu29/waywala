@@ -16,31 +16,29 @@ export class AddToCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.imageURL = this.AppService.getAdminApiPath() + "/shop/images/";
-    var myKart: any = window.localStorage.getItem('myKartData') != null ? JSON.parse(window.localStorage.getItem('myKartData') as any) : [];
-    console.log("AppService", this.AppService.authStatus.email);
-    console.log("MyKart", myKart);
-    _.map(myKart, (object: any) => {
-      object.product_CART_BY_Email = this.AppService.authStatus.email,
-        object['product_CART_Status'] = 'active'
-    })
-    var apiData = {
-      "multiInsert": true,
-      "keyName": encodeURIComponent(JSON.stringify(["product_CART_ID", "product_CART_QUANTITY", "product_CART_BY_Email", "product_CART_Status", "product_CART_CREATED_TIME"])),
-      "multiDataSet": encodeURIComponent(JSON.stringify(myKart))
-    }
-    console.log(apiData);
-    // console.log(decodeURIComponent(apiData.multiDataSet));
-    this.ApiParameterScript.savedata('e_commerce_product_kart', apiData).subscribe((res: any) => {
-      console.log(res);
-      if (res.success) {
-        window.localStorage.removeItem('myKartData');
+    if (!this.AppService.authStatus) {
+      var myKart: any = window.localStorage.getItem('myKartData') != null ? JSON.parse(window.localStorage.getItem('myKartData') as any) : [];
+      console.log("MyKart", myKart);
+      _.map(myKart, (object: any) => {
+        object.product_CART_BY_Email = this.AppService.authStatus.email,
+          object['product_CART_Status'] = 'active'
+      })
+      var apiData = {
+        "keyName": encodeURIComponent(JSON.stringify(["product_CART_ID", "product_CART_QUANTITY", "product_CART_BY_Email", "product_CART_Status", "product_CART_CREATED_TIME"])),
+        "multiDataSet": encodeURIComponent(JSON.stringify(myKart))
       }
+      console.log(apiData);
+      // console.log(decodeURIComponent(apiData.multiDataSet));
+      this.ApiParameterScript.savedata('e_commerce_product_kart', apiData, true).subscribe((res: any) => {
+        console.log(res);
+        if (res.success) {
+          this.getKartInformation()
+          window.localStorage.removeItem('myKartData');
+        }
 
-    })
+      })
+    }
     this.getKartInformation();
-
-
-
   }
 
   private getKartInformation() {
@@ -65,7 +63,6 @@ export class AddToCartComponent implements OnInit {
 
 
   stepUp(index: number) {
-
     if (this.allKartItem[index].product_Quantity_Available >= this.allKartItem[index].product_CART_QUANTITY) this.allKartItem[index].product_CART_QUANTITY += 1
   }
   stepDown(index: number) {
@@ -73,19 +70,19 @@ export class AddToCartComponent implements OnInit {
   }
 
   onChangeQuantity(event: any, index: number) {
-    console.log("onChangeQuantity",this.allKartItem[index].product_CART_QUANTITY);
+    console.log("onChangeQuantity", this.allKartItem[index].product_CART_QUANTITY);
     try {
-            
 
-          if(this.allKartItem[index].product_CART_QUANTITY && this.allKartItem[index].product_CART_QUANTITY<=this.allKartItem[index].product_Quantity_Available){
-            console.log("hi");
-            
-          }else{
-            this.allKartItem[index].product_CART_QUANTITY = 1
-          }
+
+      if (this.allKartItem[index].product_CART_QUANTITY && this.allKartItem[index].product_CART_QUANTITY <= this.allKartItem[index].product_Quantity_Available) {
+        console.log("hi");
+
+      } else {
+        this.allKartItem[index].product_CART_QUANTITY = 1
+      }
       // if (this.allKartItem[index].product_CART_QUANTITY !== '' || this.allKartItem[index].product_CART_QUANTITY !==null) {
- 
-        
+
+
       //   if (this.allKartItem[index].product_CART_QUANTITY > this.allKartItem[index].product_CART_QUANTITY) {
       //     this.allKartItem[index].product_CART_QUANTITY = 1
       //   } else {
@@ -97,7 +94,7 @@ export class AddToCartComponent implements OnInit {
       //   }
       // }else{
       //   console.log("hi");
-        
+
       //      this.allKartItem[index].product_CART_QUANTITY = 1;
       // }
     } catch (error) {

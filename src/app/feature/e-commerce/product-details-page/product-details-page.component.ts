@@ -17,8 +17,8 @@ export class ProductDetailsPageComponent implements OnInit {
   product: Product = {};
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
   activeImage: string;
-  product_QUANTITY:any=1
-  constructor(private _rout: ActivatedRoute,private router:Router, private apiParameterScript: ApiParameterScript, private appservices: AppService) {
+  product_QUANTITY: any = 1
+  constructor(private _rout: ActivatedRoute, private router: Router, private apiParameterScript: ApiParameterScript, private appservices: AppService) {
     this.imageURL = this.appservices.getAdminApiPath() + "/shop/images/";
     console.log("this", this.imageURL);
 
@@ -52,11 +52,11 @@ export class ProductDetailsPageComponent implements OnInit {
     })
   }
 
-  stepUp(){
-    if(this.product.product_Quantity_Available >= this.product_QUANTITY)this.product_QUANTITY+=1
+  stepUp() {
+    if (this.product.product_Quantity_Available >= this.product_QUANTITY) this.product_QUANTITY += 1
   }
-  stepDown(){
-    if(1 < this.product_QUANTITY)this.product_QUANTITY-=1
+  stepDown() {
+    if (1 < this.product_QUANTITY) this.product_QUANTITY -= 1
   }
   clickSideImage(imageUrl: any) {
     this.activeImage = imageUrl
@@ -80,41 +80,72 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
 
-  addToBag(product:Product){
-//     SELECT * 
-// FROM table_name 
-// WHERE product_id IN ('abc', 'abcd', 'efgh');
+  addToBag(product: Product) {
+    //     SELECT * 
+    // FROM table_name 
+    // WHERE product_id IN ('abc', 'abcd', 'efgh');
     console.log(product);
-    console.log("product_Quntity",this.product_QUANTITY);
-    
-    var addToKartProductObject={
-      product_CART_ID:product.product_Id,
-      product_CART_QUANTITY:this.product_QUANTITY,
-      product_CART_CREATED_TIME:moment().format('MMMM Do YYYY, h:mm:ss a').toString(),
-      product_CART_BY_Email:"Not Availble"
-    }
-    console.log("addToKartProductObject",addToKartProductObject);
-    console.log(this.appservices.authStatus);
-    if(this.appservices.authStatus && this.appservices.authStatus.isLogin){
-      
+    console.log("product_Quntity", this.product_QUANTITY);
 
-    }else{
-      var myKart:any=window.localStorage.getItem('myKartData')!=null?JSON.parse(window.localStorage.getItem('myKartData') as any):[];
-      var findProdctKartobject=_.find(myKart,{product_CART_ID:addToKartProductObject.product_CART_ID})
-      if(findProdctKartobject==undefined){
+    var addToKartProductObject = {
+      product_CART_ID: product.product_Id,
+      product_CART_QUANTITY: this.product_QUANTITY,
+      product_CART_CREATED_TIME: moment().format('MMMM Do YYYY, h:mm:ss a').toString(),
+      product_CART_BY_Email: "Not Availble"
+    }
+    console.log("addToKartProductObject", addToKartProductObject);
+    console.log(this.appservices.authStatus);
+    if (this.appservices.authStatus && this.appservices.authStatus.isLogin) {
+
+      this.blockUI.start('Adding To Your Bag...')
+      this.apiParameterScript.fetchdata('e_commerce_product_kart', { "select": "user_CART_ID", "projection": `product_CART_ID='${addToKartProductObject.product_CART_ID}' AND product_CART_BY_Email='${this.appservices.authStatus.email}'` }).subscribe((res: any) => {
+        console.log(res);
+
+        console.log(res);
+        if (res.success && res['data'].length > 0) {
+          var updateApiData = {
+            "data": `product_CART_QUANTITY=${addToKartProductObject.product_CART_QUANTITY},product_CART_CREATED_TIME='${addToKartProductObject.product_CART_CREATED_TIME}'`,
+            "projection":`user_CART_ID=${res['data'][0].user_CART_ID}`
+          }
+          this.apiParameterScript.updatedata('e_commerce_product_kart', updateApiData).subscribe((res: any) => {
+            this.blockUI.stop()            
+            this.router.navigate(["/e-commerce/my/bag"])
+          }
+          )
+        } else {
+          var saveApiData = {
+            "data": `product_CART_ID='${addToKartProductObject.product_CART_ID}',product_CART_QUANTITY=${addToKartProductObject.product_CART_QUANTITY},product_CART_CREATED_TIME='${addToKartProductObject.product_CART_CREATED_TIME}',product_CART_BY_Email='${this.appservices.authStatus.email}',product_CART_Status='active'`,
+
+          }
+          this.apiParameterScript.savedata('e_commerce_product_kart', saveApiData, false).subscribe((res: any) => {
+            this.blockUI.stop()
+            if (res.success) {
+              this.router.navigate(["/e-commerce/my/bag"])
+            }
+          }
+          )
+        }
+
+
+      })
+
+    } else {
+      var myKart: any = window.localStorage.getItem('myKartData') != null ? JSON.parse(window.localStorage.getItem('myKartData') as any) : [];
+      var findProdctKartobject = _.find(myKart, { product_CART_ID: addToKartProductObject.product_CART_ID })
+      if (findProdctKartobject == undefined) {
         myKart.push(addToKartProductObject);
-      }else{
-        _.map(myKart,(object:any)=>{
-          if(object.product_CART_ID == addToKartProductObject.product_CART_ID){
-               object.product_CART_QUANTITY +=addToKartProductObject.product_CART_QUANTITY
+      } else {
+        _.map(myKart, (object: any) => {
+          if (object.product_CART_ID == addToKartProductObject.product_CART_ID) {
+            object.product_CART_QUANTITY += addToKartProductObject.product_CART_QUANTITY
           }
         })
       }
-      window.localStorage.setItem('myKartData',JSON.stringify(myKart))
+      window.localStorage.setItem('myKartData', JSON.stringify(myKart))
       this.router.navigate(["/e-commerce/my/bag"])
     }
-    
-    
+
+
   }
 }
 

@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     }
     console.log(apiData);
     this.blockUI.start('Sending...')
-    this.apiParameter.savedata('contact_us', apiData).subscribe((res: any) => {
+    this.apiParameter.savedata('contact_us', apiData,false).subscribe((res: any) => {
       console.log("res", res);
       this.blockUI.stop()
       if (res.success) {

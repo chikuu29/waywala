@@ -51,9 +51,10 @@ export class ApiParameterScript {
                 if (apiData['auth'] && apiData['auth']) {
                     loginInfo = { role: 'GUEST_USER' }
                 } else {
-                    loginInfo = this.appservices.authStatus
+                    loginInfo = { role: 'LOGIN_USER' }
+                    // loginInfo = this.appservices.authStatus
                 }
-                let getrole = loginInfo['role'] ? loginInfo['role'] : 'user';
+                let getrole = loginInfo['role'];
                 let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
                 if (appConfig['roleConfig'][getrole] && outh) {
                     apiData['loginInfo'] = loginInfo;
@@ -102,6 +103,8 @@ export class ApiParameterScript {
                 apiData['db'] = db;
                 const appConfig = this.appservices.getappconfig;
                 const loginInfo = this.appservices.authStatus;
+                console.log(loginInfo);
+                
                 let getrole = loginInfo['role'] ? loginInfo['role'] : '';
                 let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
                 let outhForUpdate = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'].includes(db) : false : false;
@@ -135,14 +138,16 @@ export class ApiParameterScript {
       }
     * @param db 
     * @param apiData 
+    * @param multiInsert /boolean 
     * @returns 
     * @author Suryanarayan Biswal
     * @since 20-10-2022
     */
-    public savedata(db: string, apiData: any) {
+    public savedata(db: string, apiData: any,multiInsert:boolean) {
         const simpleObservable = new Observable((observer) => {
             try {
                 apiData['db'] = db;
+                apiData['multiInsert']=multiInsert
                 const appConfig = this.appservices.getappconfig;
                 var loginInfo: any = {}
                 apiData['multiInsert'] = apiData['multiInsert'] ? apiData['multiInsert'] : false;

@@ -89,10 +89,12 @@
 
                   <!-- Price -->
                   <p class="text-start text-md-center">
+                    <span> Price &nbsp;</span>
                     <strong>{{item.product_CART_QUANTITY * item.product_Selling_Price | currency:'INR'}}</strong>
                    
                   </p>
                   <p class="text-start text-md-center">
+                   <span class="product-MRP-Price"> MRP &nbsp;</span>
                     <del class="product-MRP-Price">{{
                         item.product_Mrp_Price * item.product_CART_QUANTITY | currency : "INR"
                       }}</del>
