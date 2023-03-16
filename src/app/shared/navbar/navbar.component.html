@@ -18,7 +18,7 @@
         <!-- Icon -->
         <a class="me-2" style="cursor: pointer;" routerLink="/e-commerce/my/bag">
           <!-- <a class="nav-link hover" href="#"> -->
-          <i class="pi pi-shopping-cart p-text-secondary fs-2" pBadge style="font-size: 2rem" [value]="'0'"
+          <i class="pi pi-shopping-cart p-text-secondary fs-2" pBadge style="font-size: 2rem" [value]="myBagDataCount"
             severity="danger"></i>
           <!-- 
           <span style="color: black;"><i class="fas fa-shopping-cart fs-5"> <span
@@ -99,7 +99,7 @@
 
         <li class="m-1 " [ngClass]="screenWidth<990?'d-none':''">
           <a class="nav-link hover me-3" routerLink="/e-commerce/my/bag">
-            <i class="pi pi-shopping-cart  p-text-secondary" pBadge style="font-size: 2rem" [value]="'0'"
+            <i class="pi pi-shopping-cart  p-text-secondary" pBadge style="font-size: 2rem"  [value]="myBagDataCount"
               severity="danger"></i>
           </a>
         </li>

@@ -3,6 +3,7 @@ import { Route, Router } from '@angular/router';
 import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ECommerceServicesService } from 'src/app/feature/e-commerce/services/e-commerce-services.service';
 import { AppService } from 'src/app/services/app.service';
 
 
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit {
   public isLogin: Boolean = false;
   public LoginInformation: any;
   public authInfo: any = { "name": "" }
+  public myBagDataCount:any=0
   @HostListener('window:resize', ['$event'])
   onResizes(event: any) {
     this.screenWidth = window.innerWidth;
@@ -27,7 +29,9 @@ export class NavbarComponent implements OnInit {
     public _router: Router,
     public toast: ToastrService,
     private auth: AuthService,
-    private app: AppService) {
+    private app: AppService,
+    private ECommerceServicesService:ECommerceServicesService
+    ) {
   }
 
   ngOnInit(): void {
@@ -40,8 +44,10 @@ export class NavbarComponent implements OnInit {
         this.authInfo = this.auth.getAuthStatus();
       }
     })
-
-    console.log(this.authInfo);
+    
+    this.ECommerceServicesService.getBagDatCount().subscribe((res:any)=>{
+        this.myBagDataCount=res.myBagDataCount
+    })
 
 
   }
