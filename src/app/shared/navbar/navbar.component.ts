@@ -44,11 +44,11 @@ export class NavbarComponent implements OnInit {
         this.authInfo = this.auth.getAuthStatus();
       }
     })
-    this.ECommerceServicesService.getCartCount.subscribe((res: any) => {
+    this.ECommerceServicesService.generateCartItemCount.subscribe((res: any) => {
       if (res) {
         this.ECommerceServicesService.bagItemCount().subscribe((res: any) => {
           this.myBagDataCount = res.myBagDataCount
-          this.ECommerceServicesService.getCartCount.next(false)
+          this.ECommerceServicesService.generateCartItemCount.next(false)
         })
       }
 

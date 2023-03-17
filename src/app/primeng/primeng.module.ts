@@ -16,6 +16,7 @@ import {BadgeModule} from 'primeng/badge';
 import {DividerModule} from 'primeng/divider';
 import {ChartModule} from 'primeng/chart';
 import {DataViewModule} from 'primeng/dataview';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 @NgModule({
   declarations: [],
   imports: [
@@ -35,7 +36,8 @@ import {DataViewModule} from 'primeng/dataview';
     BadgeModule,
     DividerModule,
     ChartModule,
-    DataViewModule
+    DataViewModule,
+    ConfirmDialogModule
    
   ],
   exports:[
@@ -54,7 +56,8 @@ import {DataViewModule} from 'primeng/dataview';
     BadgeModule,
     DividerModule,
     ChartModule,
-    DataViewModule
+    DataViewModule,
+    ConfirmDialogModule
   ]
 })
 export class PrimengModule { }

@@ -104,7 +104,7 @@ export class ApiParameterScript {
                 const appConfig = this.appservices.getappconfig;
                 const loginInfo = this.appservices.authStatus;
                 console.log(loginInfo);
-                
+
                 let getrole = loginInfo['role'] ? loginInfo['role'] : '';
                 let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
                 let outhForUpdate = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'].includes(db) : false : false;
@@ -143,11 +143,11 @@ export class ApiParameterScript {
     * @author Suryanarayan Biswal
     * @since 20-10-2022
     */
-    public savedata(db: string, apiData: any,multiInsert:boolean) {
+    public savedata(db: string, apiData: any, multiInsert: boolean) {
         const simpleObservable = new Observable((observer) => {
             try {
                 apiData['db'] = db;
-                apiData['multiInsert']=multiInsert
+                apiData['multiInsert'] = multiInsert
                 const appConfig = this.appservices.getappconfig;
                 var loginInfo: any = {}
                 apiData['multiInsert'] = apiData['multiInsert'] ? apiData['multiInsert'] : false;
@@ -171,6 +171,66 @@ export class ApiParameterScript {
                 }
             } catch (error) {
                 console.log({ "methodName": "ApiParameterScript.savedata", "error": error });
+                observer.next(error);
+                observer.complete();
+            }
+        });
+        return simpleObservable;
+    }
+
+
+
+    /**
+    * {
+       
+        "db":"agriculture_case",
+        "projection":"case_id='WAC4641665460808ggggddd'",when multidelete is false
+        "projection":"case_id",when multidelete is true
+        "data":[1,2,3],when multidelete is true
+        "multidelete":true/false
+        "loginInfo":{
+                        "email":"cchiku1999@gmail.com",
+                            "id": "SURYA1234",
+                            "isLogin": true,
+                            "name": "SURYANARAYAN BISWAL",
+                            "role": "agri"
+                    }
+        
+        }
+
+    * @param db 
+    * @param apiData 
+    * @param multidelete 
+    * @returns 
+    * @author Suryanarayan Biswal
+    * @since 20-10-2022
+    */
+    public deletedata(db: string, apiData: any,multidelete:boolean) {
+        const simpleObservable = new Observable((observer) => {
+            try {
+                apiData['db'] = db;
+                apiData['multidelete']=multidelete;
+                // if (apiData['multidelete'] == undefined) {
+                //     apiData['multidelete'] = false
+                //     apiData['data'] = ''
+                // }
+                const appConfig = this.appservices.getappconfig;
+                const loginInfo = this.appservices.authStatus;
+                let getrole = loginInfo['role'] ? loginInfo['role'] : '';
+                let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
+                let outhForDelete = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForDelete'] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForDelete'].includes(db) : false : false;
+                if (appConfig['roleConfig'][getrole] && (outh && outhForDelete)) {
+                    apiData['loginInfo'] = loginInfo;
+                    this.apiservices.delete(apiData).subscribe((res: any) => {
+                        observer.next(res);
+                        observer.complete();
+                    })
+                } else {
+                    observer.next({ "success": false, "message": "Permission Denied for Delete Operation" });
+                    observer.complete();
+                }
+            } catch (error) {
+                console.log({ "methodName": "ApiParameterScript.fetchdata", "error": error });
                 observer.next(error);
                 observer.complete();
             }

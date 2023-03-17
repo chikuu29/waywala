@@ -26,6 +26,9 @@ export class ApiService {
     return this.http.post(this.appservices.getApipath()+ 'generic/update.php',apiData,{ headers: this.headers })
 
   }
+  public delete(apiData:any){
+    return this.http.post(this.appservices.getApipath()+ 'generic/deletedata.php',apiData,{ headers: this.headers })
+  }
 
   public save(apiData:any){
     return this.http.post(this.appservices.getApipath()+ 'generic/savedata.php',apiData,{ headers: this.headers })

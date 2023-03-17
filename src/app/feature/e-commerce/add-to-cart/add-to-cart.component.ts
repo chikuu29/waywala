@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import _ from 'lodash';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { ConfirmationService } from 'primeng/api';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
+import { ECommerceServicesService } from '../services/e-commerce-services.service';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -9,10 +12,18 @@ import { AppService } from 'src/app/services/app.service';
   styleUrls: ['./add-to-cart.component.scss']
 })
 export class AddToCartComponent implements OnInit {
-
+  @BlockUI() blockUI: NgBlockUI;
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
-  allKartItem: any[] = []
-  constructor(private ApiParameterScript: ApiParameterScript, private AppService: AppService) { }
+  allKartItem: any[] = [];
+  // subTotalPrice:number=0;
+  totalProductPrice: number = 0
+  totalShippingPrice: number = 20
+  constructor(
+    private ApiParameterScript: ApiParameterScript,
+    private AppService: AppService,
+    private eCommerceService: ECommerceServicesService,
+    private confirmationService: ConfirmationService,
+  ) { }
 
   ngOnInit(): void {
     this.imageURL = this.AppService.getAdminApiPath() + "/shop/images/";
@@ -39,6 +50,7 @@ export class AddToCartComponent implements OnInit {
       })
     }
     this.getKartInformation();
+
   }
 
   private getKartInformation() {
@@ -51,6 +63,7 @@ export class AddToCartComponent implements OnInit {
           data['product_Images'] = data.product_Images.split(',');
         })
         this.allKartItem = res['data'];
+        this.calculateTotalProductPrice()
         console.log("allKartItem", this.allKartItem);
 
       }
@@ -60,13 +73,20 @@ export class AddToCartComponent implements OnInit {
 
   }
 
+  private calculateTotalProductPrice() {
+    console.log("calculateTotalProductPrice", this.allKartItem);
+    this.totalProductPrice = _.sumBy(this.allKartItem, (product) => product.product_Selling_Price * product.product_CART_QUANTITY);
+
+  }
 
 
   stepUp(index: number) {
-    if (this.allKartItem[index].product_Quantity_Available >= this.allKartItem[index].product_CART_QUANTITY) this.allKartItem[index].product_CART_QUANTITY += 1
+    if (this.allKartItem[index].product_Quantity_Available >= this.allKartItem[index].product_CART_QUANTITY) this.allKartItem[index].product_CART_QUANTITY += 1;
+    this.calculateTotalProductPrice()
   }
   stepDown(index: number) {
     if (1 < this.allKartItem[index].product_CART_QUANTITY) this.allKartItem[index].product_CART_QUANTITY -= 1
+    this.calculateTotalProductPrice()
   }
 
   onChangeQuantity(event: any, index: number) {
@@ -80,27 +100,44 @@ export class AddToCartComponent implements OnInit {
       } else {
         this.allKartItem[index].product_CART_QUANTITY = 1
       }
-      // if (this.allKartItem[index].product_CART_QUANTITY !== '' || this.allKartItem[index].product_CART_QUANTITY !==null) {
-
-
-      //   if (this.allKartItem[index].product_CART_QUANTITY > this.allKartItem[index].product_CART_QUANTITY) {
-      //     this.allKartItem[index].product_CART_QUANTITY = 1
-      //   } else {
-      //     // if (this.allKartItem[index].product_CART_QUANTITY == 0) {
-      //     //   this.allKartItem[index].product_CART_QUANTITY = 1
-      //     // } else {
-      //     //   this.allKartItem[index].product_CART_QUANTITY = 1;
-      //     // }
-      //   }
-      // }else{
-      //   console.log("hi");
-
-      //      this.allKartItem[index].product_CART_QUANTITY = 1;
-      // }
+      this.calculateTotalProductPrice()
     } catch (error) {
       console.log(error);
 
     }
+
+
+  }
+
+
+  removeProductFormCart(user_CART_ID: any) {
+
+    this.confirmationService.confirm({
+      message: 'Are you sure you want remove this Item?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+       
+
+        console.log("removeProductFormCart", user_CART_ID);
+        var apiData = {
+          "projection": `user_CART_ID=${user_CART_ID}`,
+    
+        }
+        this.blockUI.start('Remove Item...')
+        this.ApiParameterScript.deletedata('e_commerce_product_kart', apiData, false).subscribe((res: any) => {
+          this.blockUI.stop()
+          if (res.success) {
+            _.remove(this.allKartItem, (product) => product.user_CART_ID == user_CART_ID)
+            this.eCommerceService.generateCartItemCount.next(true)
+          }
+          console.log(res);
+    
+        })
+
+      }
+    });
+    
 
 
   }

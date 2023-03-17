@@ -51,7 +51,7 @@
             "user",
             "contact_us"
          ],
-         "authorizationDBAcessForDelet": [
+         "authorizationDBAcessForDelete": [
             
          ]
       },
@@ -73,7 +73,8 @@
             "contact_us",
             "e_commerce_product_kart"
          ],
-         "authorizationDBAcessForDelet": [
+         "authorizationDBAcessForDelete": [
+            "e_commerce_product_kart"
             
          ]
       }

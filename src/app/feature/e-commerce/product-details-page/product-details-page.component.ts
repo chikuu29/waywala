@@ -120,8 +120,7 @@ export class ProductDetailsPageComponent implements OnInit {
             this.blockUI.stop()
             if (res.success) {
               console.log("First");
-              
-              this.eCommerceService.getCartCount.next(true)
+              this.eCommerceService.generateCartItemCount.next(true)
               this.router.navigate(["/e-commerce/my/bag"])
             }
           }

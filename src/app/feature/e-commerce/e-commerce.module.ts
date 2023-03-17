@@ -16,6 +16,7 @@ import { ProductSectionComponent } from './product-section/product-section.compo
 import { ECommerceServicesService } from './services/e-commerce-services.service';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import { MyOrderComponent } from './my-order/my-order.component';
+import { ConfirmationService } from 'primeng/api';
 
 
 @NgModule({
@@ -41,6 +42,6 @@ import { MyOrderComponent } from './my-order/my-order.component';
     AllProductListComponent,
     ProductSectionComponent
   ],
-  providers:[ProductService]
+  providers:[ProductService,ConfirmationService]
 })
 export class ECommerceModule { }

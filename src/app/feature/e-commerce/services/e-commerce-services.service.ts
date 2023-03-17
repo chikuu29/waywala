@@ -9,7 +9,7 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class ECommerceServicesService {
 
-  public getCartCount = new BehaviorSubject<any>(true)
+  public generateCartItemCount = new BehaviorSubject<any>(true)
   constructor(
     private AppService: AppService,
     private apiParameterScrpt: ApiParameterScript
