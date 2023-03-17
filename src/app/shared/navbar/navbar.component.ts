@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   public isLogin: Boolean = false;
   public LoginInformation: any;
   public authInfo: any = { "name": "" }
-  public myBagDataCount:any=0
+  public myBagDataCount: any = 0
   @HostListener('window:resize', ['$event'])
   onResizes(event: any) {
     this.screenWidth = window.innerWidth;
@@ -30,8 +30,8 @@ export class NavbarComponent implements OnInit {
     public toast: ToastrService,
     private auth: AuthService,
     private app: AppService,
-    private ECommerceServicesService:ECommerceServicesService
-    ) {
+    private ECommerceServicesService: ECommerceServicesService
+  ) {
   }
 
   ngOnInit(): void {
@@ -44,11 +44,15 @@ export class NavbarComponent implements OnInit {
         this.authInfo = this.auth.getAuthStatus();
       }
     })
-    
-    this.ECommerceServicesService.getBagDatCount().subscribe((res:any)=>{
-        this.myBagDataCount=res.myBagDataCount
-    })
+    this.ECommerceServicesService.getCartCount.subscribe((res: any) => {
+      if (res) {
+        this.ECommerceServicesService.bagItemCount().subscribe((res: any) => {
+          this.myBagDataCount = res.myBagDataCount
+          this.ECommerceServicesService.getCartCount.next(false)
+        })
+      }
 
+    })
 
   }
 

@@ -13,6 +13,7 @@ import { ProductDetailsPageComponent } from './product-details-page/product-deta
 import { CupponDetailsComponent } from './cuppon-details/cuppon-details.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { ProductSectionComponent } from './product-section/product-section.component';
+import { ECommerceServicesService } from './services/e-commerce-services.service';
 
 
 @NgModule({

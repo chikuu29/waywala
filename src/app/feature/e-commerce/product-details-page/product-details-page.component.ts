@@ -6,6 +6,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
 import { Product } from '../product-section/product';
+import { ECommerceServicesService } from '../services/e-commerce-services.service';
 
 @Component({
   selector: 'app-product-details-page',
@@ -18,7 +19,13 @@ export class ProductDetailsPageComponent implements OnInit {
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
   activeImage: string;
   product_QUANTITY: any = 1
-  constructor(private _rout: ActivatedRoute, private router: Router, private apiParameterScript: ApiParameterScript, private appservices: AppService) {
+  constructor(
+    private _rout: ActivatedRoute,
+    private router: Router,
+    private apiParameterScript: ApiParameterScript,
+    private appservices: AppService,
+    private eCommerceService:ECommerceServicesService
+  ) {
     this.imageURL = this.appservices.getAdminApiPath() + "/shop/images/";
     console.log("this", this.imageURL);
 
@@ -46,8 +53,6 @@ export class ProductDetailsPageComponent implements OnInit {
         }
 
       })
-
-
 
     })
   }
@@ -81,12 +86,6 @@ export class ProductDetailsPageComponent implements OnInit {
 
 
   addToBag(product: Product) {
-    //     SELECT * 
-    // FROM table_name 
-    // WHERE product_id IN ('abc', 'abcd', 'efgh');
-    console.log(product);
-    console.log("product_Quntity", this.product_QUANTITY);
-
     var addToKartProductObject = {
       product_CART_ID: product.product_Id,
       product_CART_QUANTITY: this.product_QUANTITY,
@@ -120,6 +119,9 @@ export class ProductDetailsPageComponent implements OnInit {
           this.apiParameterScript.savedata('e_commerce_product_kart', saveApiData, false).subscribe((res: any) => {
             this.blockUI.stop()
             if (res.success) {
+              console.log("First");
+              
+              this.eCommerceService.getCartCount.next(true)
               this.router.navigate(["/e-commerce/my/bag"])
             }
           }
