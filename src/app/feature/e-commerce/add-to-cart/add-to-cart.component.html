@@ -1,331 +1,208 @@
 <div style="margin-top: 2rem"></div>
-<section class="gradient-custom">
-  <div class="container py-5">
-    <div class="row d-flex justify-content-center my-4">
-      <div class="col-md-8">
-        <div class="card mb-4">
-          <div class="card-header py-3">
-            <h4><b>Shopping Cart</b></h4>
-          </div>
-          <div class="card-body">
-            <!-- Single item -->
-            <ng-container *ngFor="let item of allKartItem;let i=index">
-              <div class="row">
-                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                  <!-- Image -->
-                  <div
-                    class="bg-image hover-overlay hover-zoom ripple rounded"
-                    data-mdb-ripple-color="light"
-                  >
-                    <img
-                      [src]="imageURL+item['product_Images'][0]"
-                      class="w-100"
-                      alt="Blue Jeans Jacket"
-                    />
-                    <a href="#!">
-                      <div
-                        class="mask"
-                        style="background-color: rgba(251, 251, 251, 0.2)"
-                      ></div>
-                    </a>
-                  </div>
-                  <!-- Image -->
-                </div>
-
-                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                  <!-- Data -->
-                  <p><strong>{{item.product_Name}}</strong></p>
-                  <!-- <p>Color: blue</p>
-                  <p>Size: M</p> -->
-                  <button 
-                    type="button"
-                    class="btn btn-primary btn-sm me-1 mb-2"
-                    data-mdb-toggle="tooltip"
-                    title="Remove item from Bag"
-                  >
-                    <i class="fas fa-trash"></i>
-                  </button>
-                  <button 
-                    type="button"
-                    class="btn btn-danger btn-sm mb-2"
-                    data-mdb-toggle="tooltip"
-                    title="Move to the wish list"
-                  >
-                    <i class="fas fa-heart"></i>
-                  </button>
-                  <!-- Data -->
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                  <!-- Quantity -->
-                  <div class="d-flex mb-4" style="max-width: 300px">
-                    <button
-                      class="btn btn-primary me-2"
-                      (click)="stepDown(i)"
-                    >
-                      <i class="fas fa-minus"></i>
-                    </button>
-
-                    <div class="form-outline">
-                      <input
-                        (change)="onChangeQuantity($event,i)"
-                        [min]="1"
-                        name="quantity"
-                        [(ngModel)]="item.product_CART_QUANTITY"
-                        [max]="item.product_Quantity_Available"
-                        type="number"
-                        class="form-control"
-                      />
-                    </div>
-
-                    <button
-                      class="btn btn-primary ms-2"
-                      (click)="stepUp(i)"
-                    >
-                      <i class="fas fa-plus"></i>
-                    </button>
-                  </div>
-                  <!-- Quantity -->
-
-                  <!-- Price -->
-                  <p class="text-start text-md-center">
-                    <span> Price &nbsp;</span>
-                    <strong>{{item.product_CART_QUANTITY * item.product_Selling_Price | currency:'INR'}}</strong>
-                   
-                  </p>
-                  <p class="text-start text-md-center">
-                   <span class="product-MRP-Price"> MRP &nbsp;</span>
-                    <del class="product-MRP-Price">{{
-                        item.product_Mrp_Price * item.product_CART_QUANTITY | currency : "INR"
-                      }}</del>
-                  </p>
-                  <!-- Price -->
-                </div>
-              </div>
-            </ng-container>
-           
-          </div>
-        </div>
-        <div class="card mb-4">
-          <div class="card-body">
-            <p><strong>Expected shipping delivery</strong></p>
-            <p class="mb-0">12.10.2020 - 14.10.2020</p>
-          </div>
-        </div>
-        <div class="card mb-4 mb-lg-0">
-          <div class="card-body">
-            <p><strong>We accept</strong></p>
-            <img
-              class="me-2"
-              width="45px"
-              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-              alt="Visa"
-            />
-            <img
-              class="me-2"
-              width="45px"
-              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-              alt="American Express"
-            />
-            <img
-              class="me-2"
-              width="45px"
-              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-              alt="Mastercard"
-            />
-            <img
-              class="me-2"
-              width="45px"
-              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
-              alt="PayPal acceptance mark"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-header py-3">
-            <h4 class="text-danger"><b>Offer / Cuppon</b></h4>
-          </div>
-          <div class="card">
+<ng-container *ngIf="allKartItem.length>0">
+  <section class="gradient-custom">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center my-4">
+        <div class="col-md-8">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h4><b>Shopping Cart</b></h4>
+            </div>
             <div class="card-body">
-              <mat-form-field appearance="outline" class="d-block">
-                <mat-label>Discound code</mat-label>
-                <input matInput placeholder="Discound code" required />
-              </mat-form-field>
-              <button type="button" class="btn btn-outline-warning">
-                Apply
+              <!-- Single item -->
+              <ng-container *ngFor="let item of allKartItem; let i = index">
+                <div class="row">
+                  <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                    <!-- Image -->
+                    <div
+                      class="bg-image hover-overlay hover-zoom ripple rounded"
+                      data-mdb-ripple-color="light"
+                    >
+                      <img
+                        [src]="imageURL + item['product_Images'][0]"
+                        class="w-100"
+                        alt="Blue Jeans Jacket"
+                      />
+                      <a href="#!">
+                        <div
+                          class="mask"
+                          style="background-color: rgba(251, 251, 251, 0.2)"
+                        ></div>
+                      </a>
+                    </div>
+                    <!-- Image -->
+                  </div>
+
+                  <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                    <!-- Data -->
+                    <p>
+                      <strong>{{ item.product_Name }}</strong>
+                    </p>
+                    <!-- <p>Color: blue</p>
+                  <p>Size: M</p> -->
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-sm me-1 mb-2"
+                      data-mdb-toggle="tooltip"
+                      title="Remove item from Bag"
+                    >
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-sm mb-2"
+                      data-mdb-toggle="tooltip"
+                      title="Move to the wish list"
+                    >
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <!-- Data -->
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <!-- Quantity -->
+                    <div class="d-flex mb-4" style="max-width: 300px">
+                      <button
+                        class="btn btn-primary me-2"
+                        (click)="stepDown(i)"
+                      >
+                        <i class="fas fa-minus"></i>
+                      </button>
+
+                      <div class="form-outline">
+                        <input
+                          (change)="onChangeQuantity($event, i)"
+                          [min]="1"
+                          name="quantity"
+                          [(ngModel)]="item.product_CART_QUANTITY"
+                          [max]="item.product_Quantity_Available"
+                          type="number"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <button class="btn btn-primary ms-2" (click)="stepUp(i)">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
+                    <!-- Quantity -->
+
+                    <!-- Price -->
+                    <p class="text-start text-md-center">
+                      <span> Price &nbsp;</span>
+                      <strong>{{
+                        item.product_CART_QUANTITY * item.product_Selling_Price
+                          | currency : "INR"
+                      }}</strong>
+                    </p>
+                    <p class="text-start text-md-center">
+                      <span class="product-MRP-Price"> MRP &nbsp;</span>
+                      <del class="product-MRP-Price">{{
+                        item.product_Mrp_Price * item.product_CART_QUANTITY
+                          | currency : "INR"
+                      }}</del>
+                    </p>
+                    <!-- Price -->
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <p><strong>Expected shipping delivery</strong></p>
+              <p class="mb-0">12.10.2020 - 14.10.2020</p>
+            </div>
+          </div>
+          <div class="card mb-4 mb-lg-0">
+            <div class="card-body">
+              <p><strong>We accept</strong></p>
+              <img
+                class="me-2"
+                width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                alt="Visa"
+              />
+              <img
+                class="me-2"
+                width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                alt="American Express"
+              />
+              <img
+                class="me-2"
+                width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                alt="Mastercard"
+              />
+              <img
+                class="me-2"
+                width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
+                alt="PayPal acceptance mark"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h4 class="text-danger"><b>Offer / Cuppon</b></h4>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <mat-form-field appearance="outline" class="d-block">
+                  <mat-label>Discound code</mat-label>
+                  <input matInput placeholder="Discound code" required />
+                </mat-form-field>
+                <button type="button" class="btn btn-outline-warning">
+                  Apply
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h4><b>Summary</b></h4>
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center border-0 px-0"
+                >
+                  Products
+                  <span>$53.98</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center px-0"
+                >
+                  Shipping
+                  <span>Gratis</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
+                >
+                  <div>
+                    <strong>Total amount</strong>
+                    <strong>
+                      <p class="mb-0">(including VAT)</p>
+                    </strong>
+                  </div>
+                  <span><strong>$53.98</strong></span>
+                </li>
+              </ul>
+
+              <button type="button" class="btn btn-success">
+                Go to checkout
               </button>
             </div>
           </div>
         </div>
-        <div class="card mb-4">
-          <div class="card-header py-3">
-            <h4><b>Summary</b></h4>
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0"
-              >
-                Products
-                <span>$53.98</span>
-              </li>
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center px-0"
-              >
-                Shipping
-                <span>Gratis</span>
-              </li>
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
-              >
-                <div>
-                  <strong>Total amount</strong>
-                  <strong>
-                    <p class="mb-0">(including VAT)</p>
-                  </strong>
-                </div>
-                <span><strong>$53.98</strong></span>
-              </li>
-            </ul>
-
-            <button type="button" class="btn btn-success">
-              Go to checkout
-            </button>
-          </div>
-        </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 mb-3">
-            <div class="cart">
-                <div class="title">
-                    <div class="row">
-                        <div class="col">
-                            <h4><b>Shopping Cart</b></h4>
-                        </div>
-                        <div class="col align-self-center text-right text-muted">3 items</div>
-                    </div>
-                </div>
-                <div class="row border-top border-bottom">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                            
-                            <button mat-button 
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button mat-button>
-                                <input id="form1" min="0" name="quantity" value="1" type="number"
-                                class="form-control form-control-sm" />
-                            </button>
-                            <button mat-button 
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                        <div class="col">&euro; 44.00</div>
-                        <div class="col">
-                            <i class="fa-solid fa-trash text-danger curser"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                            <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                <i class="fas fa-minus"></i>
-                            </button>
-
-                            <input id="form1" min="0" name="quantity" value="1" type="number"
-                                class="form-control form-control-sm" />
-
-                            <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                        <div class="col">&euro; 44.00 </div>
-                        <div class="col">
-                            <i class="fa-solid fa-trash text-danger curser"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="row border-top border-bottom">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/pHQ3xT3.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                            <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                <i class="fas fa-minus"></i>
-                            </button>
-
-                            <input id="form1" min="0" name="quantity" value="1" type="number"
-                                class="form-control form-control-sm" />
-
-                            <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                        <div class="col">&euro; 44.00</div>
-                        <div class="col">
-                            <i class="fa-solid fa-trash text-danger curser" pTooltip="Remove product"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="back-to-shop" style="cursor: pointer;">
-                    <a href="/e-commerce">
-                        <button mat-button>&leftarrow;&nbsp;Back to shop</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="summary">
-                <div>
-                    <h5><b>Summary</b></h5>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col" style="padding-left:0;">ITEMS 3</div>
-                    <div class="col text-right">&euro; 132.00</div>
-                </div>
-                <form>
-                    <p>SHIPPING</p>
-                    <select>
-                        <option class="text-muted">Standard-Delivery- &euro;5.00</option>
-                    </select>
-                    <p>GIVE CODE</p>
-                    <input id="code" placeholder="Enter your code">
-                </form>
-                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                    <div class="col">TOTAL PRICE</div>
-                    <div class="col text-right">&euro; 137.00</div>
-                </div>
-                <button class="btn">CHECKOUT</button>
-            </div>
-
-        </div>
-    </div>
-</div> -->
+  </section>
+</ng-container>
+<ng-container *ngIf="allKartItem.length==0">
+    <app-empty-cart></app-empty-cart>
+</ng-container>
 <br /><br />

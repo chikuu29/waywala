@@ -4,6 +4,7 @@ import { AuthenticationGuard } from 'src/app/auth/authentication.guard';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 import { ProductDetailsPageComponent } from './product-details-page/product-details-page.component';
 
 const routes: Routes = [
@@ -19,6 +20,11 @@ const routes: Routes = [
     path:'my/bag',
     canActivate:[AuthenticationGuard],
     component:AddToCartComponent
+  },
+  {
+    path:'my/order',
+    canActivate:[AuthenticationGuard],
+    component:MyOrderComponent
   },
 ];
 

@@ -71,18 +71,18 @@
           aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link" routerLink="home"><i class="fa-solid fa-house me-2"></i>Home</a>
         </li>
-        <li *ngIf="_router.url.includes('/agriculture') || _router.url == '/' || _router.url == '/home'"
+        <li 
           class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse"
           aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link" routerLink="agriculture"> <i class="fa-solid fa-wheat-awn me-2"></i>Agriculture</a>
         </li>
-        <li hidden *ngIf="_router.url.includes('/education') ||  _router.url == '/' || _router.url == '/home'"
+        <li  hidden
           class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse"
           aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link hover" href="" routerLink="education"><i
               class="fa-solid fa-book-open me-2"></i>Education</a>
         </li>
-        <li *ngIf="_router.url.includes('/e-commerce')  ||  _router.url == '/' ||  _router.url == '/home'"
+        <li 
           class="nav-item hover" data-bs-target="#navbarNav" routerLinkActive="activenavitem" data-bs-toggle="collapse"
           aria-controls="navbarNav" aria-expanded="true">
           <a class="nav-link" href="" routerLink="e-commerce"><i class="fa-solid fa-store me-2"></i>E-Commerce</a>
@@ -119,7 +119,7 @@
               <a class="btn btn-primary d-block">{{authInfo.name}}</a>
             </li>
 
-            <li class="dropdown-item">
+            <li class="dropdown-item" routerLink="/e-commerce/my/order">
               <a class="btn btn-light d-block"> <i class="fa-solid fa-suitcase me-2"></i>My Order</a>
             </li>
             <li class="dropdown-item" routerLink="/agriculture/mycase">

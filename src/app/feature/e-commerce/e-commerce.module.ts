@@ -14,6 +14,8 @@ import { CupponDetailsComponent } from './cuppon-details/cuppon-details.componen
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { ProductSectionComponent } from './product-section/product-section.component';
 import { ECommerceServicesService } from './services/e-commerce-services.service';
+import { EmptyCartComponent } from './empty-cart/empty-cart.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { ECommerceServicesService } from './services/e-commerce-services.service
     ProductDetailsPageComponent,
     CupponDetailsComponent,
     AddToCartComponent,
-    ProductSectionComponent
+    ProductSectionComponent,
+    EmptyCartComponent,
+    MyOrderComponent
   ],
   imports: [
     CommonModule,
