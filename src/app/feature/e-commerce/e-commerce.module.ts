@@ -17,6 +17,7 @@ import { ECommerceServicesService } from './services/e-commerce-services.service
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { ConfirmationService } from 'primeng/api';
+import { ProductCategoryComponent } from './product-category/product-category.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ConfirmationService } from 'primeng/api';
     AddToCartComponent,
     ProductSectionComponent,
     EmptyCartComponent,
-    MyOrderComponent
+    MyOrderComponent,
+    ProductCategoryComponent
   ],
   imports: [
     CommonModule,

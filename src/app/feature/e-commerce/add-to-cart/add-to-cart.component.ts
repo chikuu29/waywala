@@ -129,6 +129,7 @@ export class AddToCartComponent implements OnInit {
           this.blockUI.stop()
           if (res.success) {
             _.remove(this.allKartItem, (product) => product.user_CART_ID == user_CART_ID)
+            this.calculateTotalProductPrice();
             this.eCommerceService.generateCartItemCount.next(true)
           }
           console.log(res);

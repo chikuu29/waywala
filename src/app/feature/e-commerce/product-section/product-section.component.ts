@@ -16,6 +16,7 @@ export class ProductSectionComponent implements OnInit {
   @Input() sectionCategory: String = "Vegetable"
 
   allProductList: Product[] = [];
+  loadingSkeltonLoader:boolean=true;
   imageURL: string = "https://admin.waywala.com/api/shop/images/"
   constructor(private apiParameterScript: ApiParameterScript, private router: Router, private appservice: AppService) {
 
@@ -35,10 +36,12 @@ export class ProductSectionComponent implements OnInit {
           res.data.map((data: any) => {
             data['product_Images'] = data.product_Images.split(',');
           })
+          this.loadingSkeltonLoader=false
           this.allProductList = res['data'];
           console.log("allProductList", this.allProductList);
 
         } else {
+          this.loadingSkeltonLoader=false
           this.allProductList = []
         }
 

@@ -10,7 +10,68 @@
         </div>
         <div>
           <div class="w-100 grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
-
+            <ng-container *ngIf="loadingSkeltonLoader">
+              <div class="custom-skeleton p-4">
+                <p-skeleton width="100%" height="150px"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex justify-content-between mt-3">
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                </div>
+              </div>
+              <div class="custom-skeleton p-4">
+                <p-skeleton width="100%" height="150px"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex justify-content-between mt-3">
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                </div>
+              </div>
+              <div class="custom-skeleton p-4">
+                <p-skeleton width="100%" height="150px"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex justify-content-between mt-3">
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                </div>
+              </div>
+              <div class="custom-skeleton p-4">
+                <p-skeleton width="100%" height="150px"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex justify-content-between mt-3">
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                </div>
+              </div>
+              <div class="custom-skeleton p-4">
+                <p-skeleton width="100%" height="150px"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex justify-content-between mt-3">
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                </div>
+              </div>
+              <div class="custom-skeleton p-4">
+                <p-skeleton width="100%" height="150px"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                <div class="flex justify-content-between mt-3">
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                    <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                </div>
+              </div>
+            </ng-container>
             <ng-container *ngFor="let product of allProductList">
               <div class="relative " routerLink="/e-commerce/product/{{product.product_Id}}">
                 <div
@@ -119,6 +180,7 @@
                 </div>
               </div>
             </ng-container>
+        
             <!-- <div class="relative " routerLink="/e-commerce/product-page/1000">
               <div class="border rounded-md md:rounded-xl cursor-pointer overflow-hidden transition-all custom-shadow-on-hover">
                 <div class="overflow-clip rounded-md lg:rounded-xl flex flex-col justify-between relative flex-1">
@@ -496,3 +558,8 @@
       </div>
     </div>
 </div>
+
+
+
+
+

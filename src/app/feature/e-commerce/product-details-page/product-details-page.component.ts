@@ -19,6 +19,22 @@ export class ProductDetailsPageComponent implements OnInit {
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
   activeImage: string;
   product_QUANTITY: any = 1
+  images: any[] = [];
+  displayBasic: boolean = false
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 1
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 1
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1
+    }
+  ];
   constructor(
     private _rout: ActivatedRoute,
     private router: Router,
@@ -44,8 +60,22 @@ export class ProductDetailsPageComponent implements OnInit {
           res.data.map((data: any) => {
             data['product_Images'] = data.product_Images.split(',');
           })
+         
           this.product = res['data'][0];
           this.activeImage = this.imageURL + this.product['product_Images'][0]
+          // var images = this.product.product_Images;
+          this.product.product_Images.forEach((e: any) => {
+            this.images.push(
+              {
+                "previewImageSrc": `${this.imageURL}${e}`,
+                "thumbnailImageSrc": `${this.imageURL}${e}`,
+                "alt": e,
+                "title": e
+              }
+            )
+          })
+          // console.log(this.images);
+          
 
 
         } else {

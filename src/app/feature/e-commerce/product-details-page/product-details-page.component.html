@@ -132,8 +132,8 @@
                 <div
                   class="bg-[#F8F8F8] flex-1 relative d-flex justify-center items-center"
                 >
-                  <div class="flex-1 aspect-square relative cursor-pointer">
-                    <div
+                  <div class="flex-1 aspect-square relative cursor-pointer" (click)="displayBasic = true">
+                    <div 
                       class="w-full h-full bg-cover"
                       style="
                         background-image: url({{activeImage}});
@@ -513,3 +513,18 @@
     </div>
   </div>
 </main>
+
+
+<p-galleria [value]="images" [(visible)]="displayBasic" [responsiveOptions]="responsiveOptions"
+    [containerStyle]="{'max-width': '100%'}" [numVisible]="images.length" [circular]="true" [fullScreen]="true"
+    [showItemNavigators]="true" [baseZIndex]="100000">
+    <ng-template pTemplate="item" let-item>
+        <p-image [src]="item.previewImageSrc" alt="Image" width="600" height="350" [preview]="true"></p-image>
+        <!-- <img [src]="item.previewImageSrc" style=" display: block;" width="600" height="350"/> -->
+    </ng-template>
+    <ng-template pTemplate="thumbnail" let-item>
+        <div class="grid grid-nogutter justify-content-center">
+            <img [src]="item.thumbnailImageSrc" style="display: block;" width="50" height="50" />
+        </div>
+    </ng-template>
+</p-galleria>
