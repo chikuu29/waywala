@@ -15,7 +15,8 @@ export class AddToCartComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
   allKartItem: any[] = [];
-  // subTotalPrice:number=0;
+  totalProductDiscount:number=0
+  totalProductMRP_Price:number=0
   totalProductPrice: number = 0
   totalShippingPrice: number = 20
   constructor(
@@ -93,7 +94,8 @@ export class AddToCartComponent implements OnInit {
   private calculateTotalProductPrice() {
     console.log("calculateTotalProductPrice", this.allKartItem);
     this.totalProductPrice = _.sumBy(this.allKartItem, (product) => product.product_Selling_Price * product.product_CART_QUANTITY);
-
+    this.totalProductDiscount=_.sumBy(this.allKartItem, (product) =>(product.product_Mrp_Price * product.product_CART_QUANTITY )- (product.product_Selling_Price * product.product_CART_QUANTITY) )
+    this.totalProductMRP_Price=_.sumBy(this.allKartItem, (product) => product.product_Mrp_Price * product.product_CART_QUANTITY)
   }
 
 

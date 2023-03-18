@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import _ from 'lodash';
 import moment from 'moment';
@@ -7,7 +7,8 @@ import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
 import { Product } from '../product-section/product';
 import { ECommerceServicesService } from '../services/e-commerce-services.service';
-
+import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
+import { CoustomAlertMaterialUiComponent } from 'src/app/shared/coustom-alert-material-ui/coustom-alert-material-ui.component';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -40,7 +41,8 @@ export class ProductDetailsPageComponent implements OnInit {
     private router: Router,
     private apiParameterScript: ApiParameterScript,
     private appservices: AppService,
-    private eCommerceService:ECommerceServicesService
+    private eCommerceService:ECommerceServicesService,
+    private _snackBar: MatSnackBar
   ) {
     this.imageURL = this.appservices.getAdminApiPath() + "/shop/images/";
     console.log("this", this.imageURL);
@@ -85,6 +87,13 @@ export class ProductDetailsPageComponent implements OnInit {
       })
 
     })
+
+  }
+  showCustomAlert() {
+    this._snackBar.openFromComponent(CoustomAlertMaterialUiComponent, {
+      duration: 2000
+    });
+  
   }
 
   stepUp() {
@@ -122,23 +131,20 @@ export class ProductDetailsPageComponent implements OnInit {
       product_CART_CREATED_TIME: moment().format('MMMM Do YYYY, h:mm:ss a').toString(),
       product_CART_BY_Email: "Not Availble"
     }
-    console.log("addToKartProductObject", addToKartProductObject);
-    console.log(this.appservices.authStatus);
+
     if (this.appservices.authStatus && this.appservices.authStatus.isLogin) {
 
       this.blockUI.start('Adding To Your Bag...')
       this.apiParameterScript.fetchdata('e_commerce_product_kart', { "select": "user_CART_ID", "projection": `product_CART_ID='${addToKartProductObject.product_CART_ID}' AND product_CART_BY_Email='${this.appservices.authStatus.email}'` }).subscribe((res: any) => {
-        console.log(res);
-
-        console.log(res);
         if (res.success && res['data'].length > 0) {
           var updateApiData = {
             "data": `product_CART_QUANTITY=${addToKartProductObject.product_CART_QUANTITY},product_CART_CREATED_TIME='${addToKartProductObject.product_CART_CREATED_TIME}'`,
             "projection":`user_CART_ID=${res['data'][0].user_CART_ID}`
           }
           this.apiParameterScript.updatedata('e_commerce_product_kart', updateApiData).subscribe((res: any) => {
-            this.blockUI.stop()            
-            this.router.navigate(["/e-commerce/my/bag"])
+            this.blockUI.stop()      
+            this.showCustomAlert()  
+            // this.router.navigate(["/e-commerce/my/bag"])
           }
           )
         } else {
@@ -148,10 +154,11 @@ export class ProductDetailsPageComponent implements OnInit {
           }
           this.apiParameterScript.savedata('e_commerce_product_kart', saveApiData, false).subscribe((res: any) => {
             this.blockUI.stop()
+            this.showCustomAlert()
             if (res.success) {
-              console.log("First");
               this.eCommerceService.generateCartItemCount.next(true)
-              this.router.navigate(["/e-commerce/my/bag"])
+             
+              // this.router.navigate(["/e-commerce/my/bag"])
             }
           }
           )
@@ -178,5 +185,7 @@ export class ProductDetailsPageComponent implements OnInit {
 
 
   }
+
 }
+
 

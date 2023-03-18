@@ -10,56 +10,34 @@
                 <div class="d-flex">
                   <div class="d-flex items-center cursor-pointer">
                     <div class="whitespace-nowrap">
-                      <span
-                        class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                        ><span class="hover:text-indigo-500"> Home</span></span
-                      >
+                      <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                          class="hover:text-indigo-500"> Home</span></span>
                     </div>
                     <div class="mx-2">
-                      <svg
-                        width="6"
-                        height="9"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
-                          fill="#000"
-                        ></path>
+                      <svg width="6" height="9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
+                          fill="#000"></path>
                       </svg>
                     </div>
                   </div>
                   <div class="d-flex items-center cursor-pointer">
                     <div class="whitespace-nowrap">
-                      <span
-                        class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                        ><span class="hover:text-indigo-500">
-                         {{product.product_Category}}</span
-                        ></span
-                      >
+                      <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                          class="hover:text-indigo-500">
+                          {{product.product_Category}}</span></span>
                     </div>
                     <div class="mx-2">
-                      <svg
-                        width="6"
-                        height="9"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
-                          fill="#000"
-                        ></path>
+                      <svg width="6" height="9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
+                          fill="#000"></path>
                       </svg>
                     </div>
                   </div>
                   <div class="d-flex items-center cursor-pointer">
                     <div class="whitespace-nowrap">
-                      <span
-                        class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                        ><span class="text-indigo-500">
-                      {{product.product_Name}}</span
-                        ></span
-                      >
+                      <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                          class="text-indigo-500">
+                          {{product.product_Name}}</span></span>
                     </div>
                     <div class="mx-2"></div>
                   </div>
@@ -69,33 +47,21 @@
                 <div class="flex">
                   <div class="flex items-center cursor-pointer">
                     <div class="whitespace-nowrap">
-                      <span
-                        class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                        ><span class="hover:text-indigo-500"> Home</span></span
-                      >
+                      <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                          class="hover:text-indigo-500"> Home</span></span>
                     </div>
                     <div class="mx-2">
-                      <svg
-                        width="6"
-                        height="9"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
-                          fill="#000"
-                        ></path>
+                      <svg width="6" height="9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
+                          fill="#000"></path>
                       </svg>
                     </div>
                   </div>
                   <div class="flex items-center cursor-pointer">
                     <div class="whitespace-nowrap">
-                      <span
-                        class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                        ><span class="text-indigo-500">
-                          {{product.product_Category}}</span
-                        ></span
-                      >
+                      <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                          class="text-indigo-500">
+                          {{product.product_Category}}</span></span>
                     </div>
                     <div class="mx-2"></div>
                   </div>
@@ -114,39 +80,26 @@
               <div class="d-flex mb-4">
                 <div class="" style="width: 50px">
                   <ng-container *ngFor="let item of product['product_Images']">
-                    <div class="p-2 cursor-pointer side-img-hover mb-2" (click)="clickSideImage(imageURL + item)" >
+                    <div class="p-2 cursor-pointer side-img-hover mb-2" (click)="clickSideImage(imageURL + item)">
                       <div class="w-[40px] h-[40px]">
-                        <img
-                          src="{{ imageURL + item }}"
-                          alt=""
-                          srcset=""
-                          width="50px"
-                          height="50px"
-                          class="img-fluid p-1"
-                        />
+                        <img src="{{ imageURL + item }}" alt="" srcset="" width="50px" height="50px"
+                          class="img-fluid p-1" />
                       </div>
                     </div>
                   </ng-container>
                 </div>
-                <div ></div>
-                <div
-                  class="bg-[#F8F8F8] flex-1 relative d-flex justify-center items-center"
-                >
+                <div></div>
+                <div class="bg-[#F8F8F8] flex-1 relative d-flex justify-center items-center">
                   <div class="flex-1 aspect-square relative cursor-pointer" (click)="displayBasic = true">
-                    <div 
-                      class="w-full h-full bg-cover"
-                      style="
+                    <div class="w-full h-full bg-cover" style="
                         background-image: url({{activeImage}});
-                      "
-                    ></div>
+                      "></div>
                   </div>
                 </div>
-              
+
               </div>
-              <div
-                style="z-index: 999999999999"
-                class="fixed bottom-0 lg:static left-0 right-0 px-3 lg:px-0 py-4 bg-white lg:pt-6 lg:pb-0 lg:py-0 z-20 shadow-top md:shadow-none rounded-t-lg md:rounded-none"
-              >
+              <div style="z-index: 999999999999"
+                class="fixed bottom-0 lg:static left-0 right-0 px-3 lg:px-0 py-4 bg-white lg:pt-6 lg:pb-0 lg:py-0 z-20 shadow-top md:shadow-none rounded-t-lg md:rounded-none">
                 <div class="grid grid-cols-2 gap-2 justify-content-center">
                   <button mat-stroked-button color="primary" class="p-1" (click)="addToBag(product)">
                     <i class="fa-solid fa-bag-shopping pe-3"></i>Add To Bag
@@ -169,58 +122,35 @@
                   <div class="flex">
                     <div class="flex items-center cursor-pointer">
                       <div class="whitespace-nowrap">
-                        <span
-                          class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                          ><span class="hover:text-indigo-500">
-                            Home</span
-                          ></span
-                        >
+                        <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                            class="hover:text-indigo-500">
+                            Home</span></span>
                       </div>
                       <div class="mx-2">
-                        <svg
-                          width="6"
-                          height="9"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
-                            fill="#000"
-                          ></path>
+                        <svg width="6" height="9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
+                            fill="#000"></path>
                         </svg>
                       </div>
                     </div>
                     <div class="flex items-center cursor-pointer">
                       <div class="whitespace-nowrap">
-                        <span
-                          class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                          ><span class="hover:text-indigo-500">
-                           {{product.product_Category}}</span
-                          ></span
-                        >
+                        <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                            class="hover:text-indigo-500">
+                            {{product.product_Category}}</span></span>
                       </div>
                       <div class="mx-2">
-                        <svg
-                          width="6"
-                          height="9"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
-                            fill="#000"
-                          ></path>
+                        <svg width="6" height="9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
+                            fill="#000"></path>
                         </svg>
                       </div>
                     </div>
                     <div class="flex items-center cursor-pointer">
                       <div class="whitespace-nowrap">
-                        <span
-                          class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                          ><span class="text-indigo-500">
-                            {{product.product_Name}}</span
-                          ></span
-                        >
+                        <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                            class="text-indigo-500">
+                            {{product.product_Name}}</span></span>
                       </div>
                       <div class="mx-2"></div>
                     </div>
@@ -230,48 +160,30 @@
                   <div class="flex">
                     <div class="flex items-center cursor-pointer">
                       <div class="whitespace-nowrap">
-                        <span
-                          class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                          ><span class="hover:text-indigo-500">
-                            Home</span
-                          ></span
-                        >
+                        <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                            class="hover:text-indigo-500">
+                            Home</span></span>
                       </div>
                       <div class="mx-2">
-                        <svg
-                          width="6"
-                          height="9"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
-                            fill="#000"
-                          ></path>
+                        <svg width="6" height="9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
+                            fill="#000"></path>
                         </svg>
                       </div>
                     </div>
                     <div class="flex items-center cursor-pointer">
                       <div class="whitespace-nowrap">
-                        <span
-                          class="Typography_small__10WKi font-semibold Typography_root__TxCor"
-                          ><span class="text-indigo-500">
-                           {{product.product_Category}}</span
-                          ></span
-                        >
+                        <span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                            class="text-indigo-500">
+                            {{product.product_Category}}</span></span>
                       </div>
                       <div class="mx-2"></div>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <button
-                    type="button"
-                    id="radix-2"
-                    aria-haspopup="menu"
-                    data-state="closed"
-                    style="border: none; background: none"
-                  >
+                  <button type="button" id="radix-2" aria-haspopup="menu" data-state="closed"
+                    style="border: none; background: none">
                     <i class="fa-solid fa-share fa-1x"></i>
                     <span class="font-semibold text-sm ps-2">Share</span>
                   </button>
@@ -295,17 +207,15 @@
                 <div class="flex justify-content-start items-center">
                   <span class="product-price">{{
                     product.product_Selling_Price | currency : "INR"
-                  }}</span>
+                    }}</span>
                   <span class="ml-2">
                     <del class="product-MRP-Price">{{
                       product.product_Mrp_Price | currency : "INR"
-                    }}</del>
+                      }}</del>
                   </span>
                   <span class="ml-2">
-                    <span
-                      class="text-[16px] sm:text-[18px] md:text-[18px] font-bold dicoute-percentage"
-                      >({{ product.product_Discoute_Percentage }}% OFF)</span
-                    >
+                    <span class="text-[16px] sm:text-[18px] md:text-[18px] font-bold dicoute-percentage">({{
+                      product.product_Discoute_Percentage }}% OFF)</span>
                   </span>
                 </div>
                 <div></div>
@@ -328,25 +238,13 @@
                   </span>
                 </div>
                 <div class="qty-container">
-                  <button (click)="stepDown()"
-                    class="qty-btn-minus btn-danger btn-rounded mr-1"
-                    type="button"
-                  >
+                  <button (click)="stepDown()" class="qty-btn-minus btn-danger btn-rounded mr-1" type="button">
                     <i class="fa fa-chevron-left"></i>
                   </button>
-                  <input
-                    (change)="onChangeQuantity($event,product.product_Quantity_Available)"
-                    [(ngModel)]="product_QUANTITY"
-                    type="number"
-                   
-                    [min]="1"
-                    [max]="product.product_Quantity_Available"
-                    class="input-qty input-rounded"
-                  />
-                  <button  (click)="stepUp()"
-                    class="qty-btn-plus btn-danger btn-rounded ml-1"
-                    type="button"
-                  >
+                  <input (change)="onChangeQuantity($event,product.product_Quantity_Available)"
+                    [(ngModel)]="product_QUANTITY" type="number" [min]="1" [max]="product.product_Quantity_Available"
+                    class="input-qty input-rounded" />
+                  <button (click)="stepUp()" class="qty-btn-plus btn-danger btn-rounded ml-1" type="button">
                     <i class="fa fa-chevron-right"></i>
                   </button>
                 </div>
@@ -362,37 +260,22 @@
               </div>
             </div>
             <div class="flex flex-col mb-7 mt-7">
-              <span class="m-2 D-COD"
-                >Check Delivery/Cash on Delivery Availability</span
-              >
+              <span class="m-2 D-COD">Check Delivery/Cash on Delivery Availability</span>
               <div class="w-100 lg:max-w-[400px] pt-2.5 mb-1">
-                <div
-                  class="Input_wrapperRoot__duy0t Input_wrapperShadow__vkJuz"
-                >
+                <div class="Input_wrapperRoot__duy0t Input_wrapperShadow__vkJuz">
                   <div class="d-flex items-center">
                     <span class="text-violet pl-3">
-                      <svg
-                        width="22"
-                        height="22"
-                        viewBox="0 0 22 22"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_168_8287)">
                           <path
                             d="M13.8256 8.76021C13.8256 9.30791 13.6632 9.84333 13.3589 10.2987C13.0546 10.7541 12.6221 11.1091 12.1161 11.3187C11.6101 11.5283 11.0533 11.5831 10.5161 11.4763C9.97894 11.3694 9.48548 11.1057 9.0982 10.7184C8.71091 10.3311 8.44718 9.83765 8.34033 9.30046C8.23347 8.76328 8.28829 8.20648 8.49789 7.70046C8.70749 7.19445 9.06245 6.76195 9.51785 6.45766C9.97326 6.15338 10.5086 5.99097 11.0563 5.99097C11.7908 5.99097 12.4952 6.28273 13.0145 6.80206C13.5339 7.3214 13.8256 8.02576 13.8256 8.76021Z"
-                            fill="#5A4BDA"
-                          ></path>
+                            fill="#5A4BDA"></path>
                           <path
                             d="M11.3079 3.14343C10.2662 3.10405 9.23392 3.35431 8.32586 3.86639C7.41779 4.37846 6.66951 5.13231 6.16416 6.04413C5.65881 6.95596 5.41619 7.99005 5.46327 9.03149C5.51035 10.0729 5.84526 11.0809 6.43082 11.9434L9.98519 17.2124C10.1035 17.3871 10.2628 17.5301 10.4492 17.629C10.6355 17.7279 10.8433 17.7796 11.0543 17.7796C11.2653 17.7796 11.473 17.7279 11.6594 17.629C11.8457 17.5301 12.005 17.3871 12.1233 17.2124L15.6818 11.9448C16.2446 11.1176 16.5772 10.1555 16.6453 9.15727C16.7134 8.15907 16.5146 7.16073 16.0693 6.26475C15.624 5.36876 14.9483 4.60742 14.1116 4.05889C13.2748 3.51035 12.3072 3.19439 11.3079 3.14343ZM15.0576 11.5172L11.4991 16.7848C11.45 16.8577 11.3838 16.9174 11.3062 16.9587C11.2287 16.9999 11.1422 17.0215 11.0543 17.0215C10.9664 17.0215 10.8799 16.9999 10.8023 16.9587C10.7247 16.9174 10.6585 16.8577 10.6095 16.7848L7.0537 11.5227C6.54944 10.7928 6.2544 9.93892 6.20054 9.05344C6.14668 8.16795 6.33605 7.28462 6.74814 6.49902C7.16023 5.71342 7.77935 5.0555 8.53848 4.59648C9.2976 4.13745 10.1678 3.89479 11.055 3.89479C11.9421 3.89479 12.8123 4.13745 13.5714 4.59648C14.3306 5.0555 14.9497 5.71342 15.3618 6.49902C15.7739 7.28462 15.9632 8.16795 15.9094 9.05344C15.8555 9.93892 15.5605 10.7928 15.0562 11.5227L15.0576 11.5172Z"
-                            fill="#333333"
-                            stroke="#333333"
-                            stroke-width="0.7"
-                          ></path>
+                            fill="#333333" stroke="#333333" stroke-width="0.7"></path>
                           <path
                             d="M16.3281 17.7734H5.79011C5.48939 17.7734 5.24561 18.0172 5.24561 18.3179V18.3193C5.24561 18.62 5.48939 18.8638 5.79011 18.8638H16.3281C16.6288 18.8638 16.8726 18.62 16.8726 18.3193V18.3179C16.8726 18.0172 16.6288 17.7734 16.3281 17.7734Z"
-                            fill="#333333"
-                          ></path>
+                            fill="#333333"></path>
                         </g>
                         <defs>
                           <clipPath id="clip0_168_8287">
@@ -401,21 +284,11 @@
                         </defs>
                       </svg>
                     </span>
-                    <input
-                      class="Input_root__eG6Wl Input_shadow__oWZQJ peer"
-                      autocomplete="off"
-                      id="1678158878295"
-                      autocorrect="off"
-                      autocapitalize="off"
-                      spellcheck="false"
-                      placeholder="Enter Pincode"
-                      type="text"
-                      value=""
-                    />
+                    <input class="Input_root__eG6Wl Input_shadow__oWZQJ peer" autocomplete="off" id="1678158878295"
+                      autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Enter Pincode" type="text"
+                      value="" />
                     <div class="pr-4 pl-1 flex">
-                      <button
-                        class="Button_root__G_l9X Button_naked__xwcQp Button_disabled__Ksgjy"
-                      >
+                      <button class="Button_root__G_l9X Button_naked__xwcQp Button_disabled__Ksgjy">
                         <span class="text-primary">Check</span>
                       </button>
                     </div>
@@ -451,18 +324,15 @@
                   </div>
                 </div> -->
                 <div style="display: flex; flex-direction: column; gap: 12px">
-                  <span style="font-weight: 700; font-size: 22px"
-                    >Product Description
+                  <span style="font-weight: 700; font-size: 22px">Product Description
                   </span>
-                  <span
-                    style="
+                  <span style="
                       font-weight: 500;
                       font-size: 16px;
                       color: #1b2124;
                       line-height: 20px;
-                    "
-                  >
-                  {{product.product_Description}}
+                    ">
+                    {{product.product_Description}}
                     <!-- <li>
                       PW Multipurpose Black Fabric Zipper Pouch with printed
                       white PW Logo &amp; attachment loop.
@@ -478,10 +348,7 @@
             </div>
           </div>
           <div class="mt-10">
-            <div
-              id="reviews-section"
-              class="scroll-m-[150px] md:scroll-m-[100px]"
-            ></div>
+            <div id="reviews-section" class="scroll-m-[150px] md:scroll-m-[100px]"></div>
           </div>
           <!-- <div class="px-3">
                         <div class="FAQ_root__aqvoq"><span class="Text_heading5__uCZy7 Text_bold__lt4Nl">FAQs</span>
@@ -516,15 +383,15 @@
 
 
 <p-galleria [value]="images" [(visible)]="displayBasic" [responsiveOptions]="responsiveOptions"
-    [containerStyle]="{'max-width': '100%'}" [numVisible]="images.length" [circular]="true" [fullScreen]="true"
-    [showItemNavigators]="true" [baseZIndex]="100000">
-    <ng-template pTemplate="item" let-item>
-        <p-image [src]="item.previewImageSrc" alt="Image" width="600" height="350" [preview]="true"></p-image>
-        <!-- <img [src]="item.previewImageSrc" style=" display: block;" width="600" height="350"/> -->
-    </ng-template>
-    <ng-template pTemplate="thumbnail" let-item>
-        <div class="grid grid-nogutter justify-content-center">
-            <img [src]="item.thumbnailImageSrc" style="display: block;" width="50" height="50" />
-        </div>
-    </ng-template>
+  [containerStyle]="{'max-width': '100%'}" [numVisible]="images.length" [circular]="true" [fullScreen]="true"
+  [showItemNavigators]="true" [baseZIndex]="100000">
+  <ng-template pTemplate="item" let-item>
+    <p-image [src]="item.previewImageSrc" alt="Image" width="600" height="350" [preview]="true"></p-image>
+    <!-- <img [src]="item.previewImageSrc" style=" display: block;" width="600" height="350"/> -->
+  </ng-template>
+  <ng-template pTemplate="thumbnail" let-item>
+    <div class="grid grid-nogutter justify-content-center">
+      <img [src]="item.thumbnailImageSrc" style="display: block;" width="50" height="50" />
+    </div>
+  </ng-template>
 </p-galleria>

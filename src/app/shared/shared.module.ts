@@ -11,13 +11,15 @@ import { MaterialModule } from '../material/material.module';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
+import { CoustomAlertMaterialUiComponent } from './coustom-alert-material-ui/coustom-alert-material-ui.component';
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
     OtpComponent,
     CaseReviewComponent,
-    NoDataAvailableComponent
+    NoDataAvailableComponent,
+    CoustomAlertMaterialUiComponent
   ],
   imports: [
     CommonModule,

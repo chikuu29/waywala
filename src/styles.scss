@@ -1,34 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-@import '~primeicons/primeicons.css';
+@import "~bootstrap/scss/bootstrap";
+@import "~primeicons/primeicons.css";
 // @import '~primeng/resources/themes/nova-light/theme.css';
-@import '~primeng/resources/primeng.min.css';
+@import "~primeng/resources/primeng.min.css";
 
-html, body { height: 100%; }
-body { 
-    margin: 0; 
-    font-family: sans-serif, "Helvetica Neue";
- }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: sans-serif, "Helvetica Neue";
+}
 
- ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px aliceblue; 
-    border-radius: 5px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: rgb(13, 130, 233); 
-    border-radius: 5px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(13, 130, 233); 
-  }
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px aliceblue;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(13, 130, 233);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(13, 130, 233);
+}
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 9999999999999999999999999;
+}
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper {
+  cursor: pointer;
+  // pointer-events: none;
+  top: -38px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
