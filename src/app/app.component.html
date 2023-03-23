@@ -3,5 +3,5 @@
 <block-ui>
         <app-navbar *ngIf="!_router.url.includes('auth/login') && _router.url !=='/pages/register' "></app-navbar>
         <router-outlet></router-outlet>
-        <app-footer *ngIf="!_router.url.includes('auth/login')  && _router.url !=='/pages/register' "></app-footer>
+        <app-footer *ngIf="!_router.url.includes('auth/login') && !_router.url.includes('e-commerce/my/bag')  && _router.url !=='/pages/register' "></app-footer>
 </block-ui>

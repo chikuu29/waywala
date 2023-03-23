@@ -27,6 +27,10 @@ export class AppService {
     return environment.apiKey;
   }
 
+  get baseURL(){
+    return environment.baseURL;
+  }
+
   public marketPlaceApiKey() {
     return environment.marketPlaceApiKey;
   }

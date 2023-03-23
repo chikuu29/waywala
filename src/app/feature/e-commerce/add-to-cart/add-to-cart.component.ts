@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { data } from 'jquery';
 import _ from 'lodash';
+import moment from 'moment';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ConfirmationService } from 'primeng/api';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
 import { ECommerceServicesService } from '../services/e-commerce-services.service';
+import { PaymentGetwayService } from '../services/payment-getway.service';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -15,15 +20,40 @@ export class AddToCartComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
   allKartItem: any[] = [];
-  totalProductDiscount:number=0
-  totalProductMRP_Price:number=0
+  totalProductDiscount: number = 0
+  totalProductMRP_Price: number = 0
   totalProductPrice: number = 0
-  totalShippingPrice: number = 20
+  totalShippingPrice: number = 0
+  isEditable = true;
+
+  activeOrderProcessStage: boolean = false
+
+  firstFormGroup = this._formBuilder.group({
+    isAddressAvailble: ['yes', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['',],
+  });
+
+  order_payment_mode: string = 'ONLINE';
+  order_shipping_billing_address_details: any = {
+    "name": "Suryanarayan Biswal",
+    "address": "Niladri Vihar,42 Sector 3,Bhunaneswar",
+    "original_phone": "8327783629",
+    "alternative_phone": "9583904645",
+    "pin_code": "751021",
+    "city": "Bhubaneswar",
+    "locality": "Patia"
+  }
+
   constructor(
     private ApiParameterScript: ApiParameterScript,
     private AppService: AppService,
     private eCommerceService: ECommerceServicesService,
     private confirmationService: ConfirmationService,
+    private payment_getway: PaymentGetwayService,
+    private _formBuilder: FormBuilder,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -34,31 +64,31 @@ export class AddToCartComponent implements OnInit {
       if (myKart.length > 0) {
 
         this.ApiParameterScript.fetchdata('e_commerce_product_kart', { "select": "product_CART_ID", "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'` }).subscribe((res: any) => {
-           
-          console.log("res Data",res);
-          
-          if(res.success){
-          console.log(res['data']);
-          myKart=_.differenceBy(myKart, res['data'],"product_CART_ID")
-          _.map(myKart, (object: any) => {
-            object.product_CART_BY_Email = this.AppService.authStatus.email,
-              object['product_CART_Status'] = 'active'
-          })
-          var apiData = {
-            "keyName": encodeURIComponent(JSON.stringify(["product_CART_ID", "product_CART_QUANTITY", "product_CART_BY_Email", "product_CART_Status", "product_CART_CREATED_TIME"])),
-            "multiDataSet": encodeURIComponent(JSON.stringify(myKart))
-          }
-          this.ApiParameterScript.savedata('e_commerce_product_kart', apiData, true).subscribe((res: any) => {
-            // console.log(res);
-            if (res.success) {
-              this.getKartInformation()
-              window.localStorage.removeItem('myKartData');
+
+          console.log("res Data", res);
+
+          if (res.success) {
+            console.log(res['data']);
+            myKart = _.differenceBy(myKart, res['data'], "product_CART_ID")
+            _.map(myKart, (object: any) => {
+              object.product_CART_BY_Email = this.AppService.authStatus.email,
+                object['product_CART_Status'] = 'active'
+            })
+            var apiData = {
+              "keyName": encodeURIComponent(JSON.stringify(["product_CART_ID", "product_CART_QUANTITY", "product_CART_BY_Email", "product_CART_Status", "product_CART_CREATED_TIME"])),
+              "multiDataSet": encodeURIComponent(JSON.stringify(myKart))
             }
+            this.ApiParameterScript.savedata('e_commerce_product_kart', apiData, true).subscribe((res: any) => {
+              // console.log(res);
+              if (res.success) {
+                this.getKartInformation()
+                window.localStorage.removeItem('myKartData');
+              }
 
-          })
+            })
 
-        }
-     
+          }
+
 
 
         })
@@ -94,8 +124,8 @@ export class AddToCartComponent implements OnInit {
   private calculateTotalProductPrice() {
     console.log("calculateTotalProductPrice", this.allKartItem);
     this.totalProductPrice = _.sumBy(this.allKartItem, (product) => product.product_Selling_Price * product.product_CART_QUANTITY);
-    this.totalProductDiscount=_.sumBy(this.allKartItem, (product) =>(product.product_Mrp_Price * product.product_CART_QUANTITY )- (product.product_Selling_Price * product.product_CART_QUANTITY) )
-    this.totalProductMRP_Price=_.sumBy(this.allKartItem, (product) => product.product_Mrp_Price * product.product_CART_QUANTITY)
+    this.totalProductDiscount = _.sumBy(this.allKartItem, (product) => (product.product_Mrp_Price * product.product_CART_QUANTITY) - (product.product_Selling_Price * product.product_CART_QUANTITY))
+    this.totalProductMRP_Price = _.sumBy(this.allKartItem, (product) => product.product_Mrp_Price * product.product_CART_QUANTITY)
   }
 
 
@@ -160,5 +190,110 @@ export class AddToCartComponent implements OnInit {
 
 
 
+  }
+
+  place_order() {
+    this.activeOrderProcessStage = true
+  }
+
+  private startCapturingPayment(payment_session_id: any) {
+    // this.activeOrderProcessStage=true
+    // const dropinConfig = {
+    //   components: [
+    //     "order-details",
+    //     "card",
+    //     "app",
+    //     "upi",
+    //     "netbanking",
+    //     "paylater",
+    //     "creditcardemi",
+    //     "debitcardemi",
+    //     "cardlessemi",
+    //   ],
+    //   onSuccess: function (data: any) {
+    //     console.log(data);
+
+    //     //on success
+    //   },
+    //   onFailure: function (data: any) {
+    //     console.log(data);
+    //     //on success
+    //   },
+    //   style: {
+    //     backgroundColor: "#ffffff",
+    //     color: "#11385b",
+    //     fontFamily: "Lato",
+    //     fontSize: "14px",
+    //     errorColor: "#ff0000",
+    //     theme: "light",
+    //   }
+
+    // }
+
+    const cashfree = new this.payment_getway.native_window.Cashfree(payment_session_id);
+    cashfree.redirect();
+
+
+
+
+  }
+
+  confirm_order() {
+    this.blockUI.start("Please Wait Your Order is Conforming...")
+    var orderDetails = {
+      "order_shipping_billing_address_details": this.order_shipping_billing_address_details,
+      "order_details": this.allKartItem,
+      "order_id": this.generateOrderID(),
+      "order_created_time":moment().format('DD MMM YYYY, hh:mm A'),
+      "customer_details": {
+        "customer_id": "not_availble",
+        "customer_name": this.order_shipping_billing_address_details.name,
+        "customer_email": `${this.AppService.authStatus.email}`,
+        "customer_phone": this.order_shipping_billing_address_details.original_phone
+      },
+      "order_amount": _.sumBy(this.allKartItem, (product) => product.product_Selling_Price * product.product_CART_QUANTITY) + this.totalShippingPrice,
+      "order_currency": "INR",
+      "order_payment_mode": this.order_payment_mode,
+      "order_note": "",
+      "order_meta": {
+        "notify_url": "https://test.cashfree.com/pgappsdemos/return.php",
+        "return_url": `${this.AppService.baseURL}e-commerce/order/confirmation/status/{order_id}`,
+        "payment_methods": "upi"
+      }
+    }
+
+    this.payment_getway.createOrder(orderDetails, this.order_payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
+      this.blockUI.stop();
+      console.log(res);
+      // var paymentSessionId = res.payment_session_id;
+      if (res.success) {
+        if (res.order_Payment_Method == 'ONLINE_GETWAY') {
+          this.startCapturingPayment(res.payment_session_id);
+        }else{
+          console.log("This IS a COD ORDER");
+          var apiData = {
+            "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'`,
+          }
+          this.ApiParameterScript.deletedata("e_commerce_product_kart",apiData,false).subscribe((res:any)=>{
+          })
+          document.location.href=`${this.AppService.baseURL}e-commerce/order/confirmation/status/${res.order_id}`
+        }
+      }else{
+        alert("SOMETHIGS WENT WRONG")
+      }
+
+    })
+
+
+
+
+
+  }
+
+  private generateOrderID() {
+    const prefix = 'WORD';
+    const date = new Date().toLocaleDateString('en-GB').replace(/\//g, ''); // Get today's date in ddmmyyyy format
+    const randomNumber = Math.floor(Math.random() * new Date().getTime()); // Generate a 10-digit random number
+    return prefix + date + randomNumber;
   }
 }

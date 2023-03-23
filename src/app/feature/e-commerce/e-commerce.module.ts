@@ -5,7 +5,7 @@ import { ECommerceRoutingModule } from './e-commerce-routing.module';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { PrimengModule } from 'src/app/primeng/primeng.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
 import { ProductService } from './all-product-list/productservice';
 import { AllProductListComponent } from './all-product-list/all-product-list.component';
@@ -18,6 +18,7 @@ import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { ConfirmationService } from 'primeng/api';
 import { ProductCategoryComponent } from './product-category/product-category.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 
 
 @NgModule({
@@ -31,14 +32,17 @@ import { ProductCategoryComponent } from './product-category/product-category.co
     ProductSectionComponent,
     EmptyCartComponent,
     MyOrderComponent,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     CommonModule,
     ECommerceRoutingModule,
     PrimengModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     AllProductListComponent,

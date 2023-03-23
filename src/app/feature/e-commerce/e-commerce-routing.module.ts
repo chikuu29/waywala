@@ -5,6 +5,7 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { MyOrderComponent } from './my-order/my-order.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { ProductDetailsPageComponent } from './product-details-page/product-details-page.component';
 
 const routes: Routes = [
@@ -25,6 +26,11 @@ const routes: Routes = [
     path:'my/order',
     canActivate:[AuthenticationGuard],
     component:MyOrderComponent
+  },
+  {
+    path:'order/confirmation/status/:orderID',
+    canActivate:[AuthenticationGuard],
+    component:OrderConfirmationComponent
   },
 ];
 
