@@ -11,6 +11,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [],
   imports: [
@@ -25,7 +26,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSnackBarModule,
     MatStepperModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatBadgeModule
     
     
     
@@ -41,7 +43,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSnackBarModule,
     MatStepperModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatBadgeModule
     
 
   ]

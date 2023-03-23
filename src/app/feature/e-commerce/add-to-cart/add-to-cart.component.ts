@@ -267,15 +267,15 @@ export class AddToCartComponent implements OnInit {
       console.log(res);
       // var paymentSessionId = res.payment_session_id;
       if (res.success) {
+        var apiData = {
+          "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'`,
+        }
+        this.ApiParameterScript.deletedata("e_commerce_product_kart",apiData,false).subscribe((res:any)=>{
+        })
         if (res.order_Payment_Method == 'ONLINE_GETWAY') {
           this.startCapturingPayment(res.payment_session_id);
         }else{
-          console.log("This IS a COD ORDER");
-          var apiData = {
-            "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'`,
-          }
-          this.ApiParameterScript.deletedata("e_commerce_product_kart",apiData,false).subscribe((res:any)=>{
-          })
+          // console.log("This IS a COD ORDER");
           document.location.href=`${this.AppService.baseURL}e-commerce/order/confirmation/status/${res.order_id}`
         }
       }else{

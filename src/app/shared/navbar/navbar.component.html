@@ -16,10 +16,12 @@
     <div class="navbar">
       <div class="d-flex align-items-center " [ngClass]="screenWidth>990?'d-none':''">
         <!-- Icon -->
-        <a class="me-2" style="cursor: pointer;" routerLink="/e-commerce/my/bag">
+        <a class="me-3 pt-2" style="cursor: pointer;" routerLink="/e-commerce/my/bag">
           <!-- <a class="nav-link hover" href="#"> -->
+            <mat-icon [matBadge]="myBagDataCount" matBadgeColor="warn" class="fs-1 text-primary">shopping_basket</mat-icon>
+<!-- 
           <i class="pi pi-shopping-cart p-text-secondary fs-2" pBadge style="font-size: 2rem" [value]="myBagDataCount"
-            severity="danger"></i>
+            severity="danger"></i> -->
           <!-- 
           <span style="color: black;"><i class="fas fa-shopping-cart fs-5"> <span
                 class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
@@ -95,12 +97,14 @@
       </ul>
 
       <!-- Left links -->
-      <ul class="navbar-nav me-left mb-2 mb-lg-0 justify-content-center">
+      <ul class="navbar-nav me-left mb-2 mb-lg-0 justify-content-center align-items-center">
 
-        <li class="m-1 " [ngClass]="screenWidth<990?'d-none':''">
-          <a class="nav-link hover me-3" routerLink="/e-commerce/my/bag">
-            <i class="pi pi-shopping-cart  p-text-secondary" pBadge style="font-size: 2rem"  [value]="myBagDataCount"
-              severity="danger"></i>
+        <li class="m-1 pt-2 " [ngClass]="screenWidth<990?'d-none':''">
+          <a class="nav-link hover me-4 text-center" routerLink="/e-commerce/my/bag">
+            <!-- <i class="pi pi-shopping-cart  p-text-secondary" pBadge style="font-size: 2rem"  [value]="myBagDataCount"
+              severity="danger"></i> -->
+              <mat-icon [matBadge]="myBagDataCount" matBadgeColor="warn" class="fs-1 text-primary">shopping_basket</mat-icon>
+              <!-- <mat-icon matBadge="15" matBadgeColor="warn">home</mat-icon> -->
           </a>
         </li>
         <li class="m-1" [hidden]="isLogin">
