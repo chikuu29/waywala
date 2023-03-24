@@ -20,6 +20,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { SharedModule } from "../../shared/shared.module";
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { SharedModule } from "../../shared/shared.module";
         EmptyCartComponent,
         MyOrderComponent,
         ProductCategoryComponent,
-        OrderConfirmationComponent
+        OrderConfirmationComponent,
+        OrderDetailsComponent
     ],
     exports: [
         AllProductListComponent,
