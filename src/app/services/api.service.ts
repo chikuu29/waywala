@@ -10,7 +10,7 @@ export class ApiService {
   constructor(private http: HttpClient,private appservices:AppService) {
     console.log("Calling Api Services");
     var headers = new HttpHeaders()
-      .set("Authorization",this.appservices.authStatus._refreshkey)
+      .set("Authorization",this.appservices.authStatus?this.appservices.authStatus._refreshkey:this.appservices.getApiKey())
       .set("Access-Control-Allow-Origin", "*")
       .set("Content-Type", "application/x-www-form-urlencoded;harset=utf-8")
     this.headers = headers;

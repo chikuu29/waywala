@@ -1,1 +1,40 @@
-<p>my-order works!</p>
+<div class="container">
+    <p-table [value]="caseData"  [resizableColumns]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                All Case
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" class="justify-content-center">
+            <tr >
+                <th>Created date</th>
+                <th>Case Id</th>
+                <th>Image</th>
+                <th>Reviews</th>
+                <th>Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-case >
+            <tr class="border" style="box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;">
+                <td class="justify-content-center">{{case.case_received_date | date:'medium'}}</td>
+                <td class="justify-content-center">{{case.case_id}}</td>
+                <td class="justify-content-center">
+                    <img [src]="'https://waywala.com/assets/auth/permission.png'"  width="100" class="shadow-4" />
+
+                </td>
+                
+                <td class="justify-content-center">
+                    <p-rating [ngModel]="case.case_review"   [readonly]="case.case_status !='completed'" [disabled]="case.case_status !='completed'" [cancel]="false"></p-rating>
+                </td>
+                <td class="justify-content-center">
+                    <a class="text-decoration-none" [routerLink]="'/agriculture/check-status/'+case.case_id">Status</a>
+                   
+                </td>
+            </tr>
+        </ng-template>
+        
+    </p-table>
+    <ng-container *ngIf="caseData.length==0">
+        <app-no-data-available></app-no-data-available>
+    </ng-container>
+</div>

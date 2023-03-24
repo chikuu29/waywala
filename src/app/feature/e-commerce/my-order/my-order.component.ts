@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-order.component.scss']
 })
 export class MyOrderComponent implements OnInit {
-
+  caseData:any[]=[]
   constructor() { }
 
   ngOnInit(): void {

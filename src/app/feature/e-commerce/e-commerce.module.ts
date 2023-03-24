@@ -19,35 +19,37 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { ConfirmationService } from 'primeng/api';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
-  declarations: [
-    ECommerceComponent,
-    SearchBarComponent,
-    AllProductListComponent,
-    ProductDetailsPageComponent,
-    CupponDetailsComponent,
-    AddToCartComponent,
-    ProductSectionComponent,
-    EmptyCartComponent,
-    MyOrderComponent,
-    ProductCategoryComponent,
-    OrderConfirmationComponent
-  ],
-  imports: [
-    CommonModule,
-    ECommerceRoutingModule,
-    PrimengModule,
-    FormsModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  exports:[
-    AllProductListComponent,
-    ProductSectionComponent
-  ],
-  providers:[ProductService,ConfirmationService]
+    declarations: [
+        ECommerceComponent,
+        SearchBarComponent,
+        AllProductListComponent,
+        ProductDetailsPageComponent,
+        CupponDetailsComponent,
+        AddToCartComponent,
+        ProductSectionComponent,
+        EmptyCartComponent,
+        MyOrderComponent,
+        ProductCategoryComponent,
+        OrderConfirmationComponent
+    ],
+    exports: [
+        AllProductListComponent,
+        ProductSectionComponent
+    ],
+    providers: [ProductService, ConfirmationService],
+    imports: [
+        CommonModule,
+        ECommerceRoutingModule,
+        PrimengModule,
+        FormsModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule
+    ]
 })
 export class ECommerceModule { }

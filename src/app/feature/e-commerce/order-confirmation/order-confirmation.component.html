@@ -1,130 +1,149 @@
 <br /><br /><br /><br /><br />
-<div class="container mt-5 mb-5 mt-5">
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="text-center logo p-2 px-5">
-                    <img src="assets/e-commerce/confirm.png" width="80" />
-                    <h2>Your order Confirmed!</h2>
-                </div>
-
-                <div class="invoice p-5">
-                    <span class="font-weight-bold d-block mt-4">Hello, Chris</span>
-                    <span>You order has been confirmed and will be shipped in next two
-                        days!</span>
-
-                    <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="py-2">
-                                            <span class="d-block text-muted">Order Date</span>
-                                            <span>12 Jan,2018</span>
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div class="py-2">
-                                            <span class="d-block text-muted">Order No</span>
-                                            <span>MT12332345</span>
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div class="py-2">
-                                            <span class="d-block text-muted">Payment</span>
-                                            <span><img src="https://img.icons8.com/color/48/000000/mastercard.png"
-                                                    width="20" /></span>
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div class="py-2">
-                                            <span class="d-block text-muted">Shiping Address</span>
-                                            <span>414 Advert Avenue, NY,USA</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+<ng-container *ngIf="!skelton_Loader_active">
+    <div class="container mt-5 mb-5 mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="text-center logo p-2 px-5">
+                        <img src="assets/e-commerce/confirm.png" width="80"
+                            *ngIf="productconfirmationDATA.order_status == 'Confirmed'" />
+                        <img src="assets/e-commerce/order-failed-48.png"
+                            *ngIf="productconfirmationDATA.order_status == 'Failed'" width="80" />
+                        <h2>Your order {{ productconfirmationDATA.order_status }}!</h2>
                     </div>
 
-                    <div class="product border-bottom table-responsive">
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td width="20%">
-                                        <img src="https://i.imgur.com/u11K1qd.jpg" width="90" />
-                                    </td>
+                    <div class="invoice p-5">
+                        <span class="font-weight-bold d-block mt-4">Hello,
+                            {{
+                            productconfirmationDATA.order_shipping_billing_address_details
+                            ?.name
+                            }}</span>
+                        <span>You order has been confirmed and will be shipped in next two
+                            days!</span>
 
-                                    <td width="60%">
-                                        <span class="font-weight-bold">Men's Sports cap</span>
-                                        <div class="product-qty">
-                                            <span class="d-block">Quantity:1</span>
-                                            <span>Color:Dark</span>
-                                        </div>
-                                    </td>
-                                    <td width="20%">
-                                        <div class="text-right">
-                                            <span class="font-weight-bold">$67.50</span>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="20%">
-                                        <img src="https://i.imgur.com/SmBOua9.jpg" width="70" />
-                                    </td>
-
-                                    <td width="60%">
-                                        <span class="font-weight-bold">Men's Collar T-shirt</span>
-                                        <div class="product-qty">
-                                            <span class="d-block">Quantity:1</span>
-                                            <span>Color:Orange</span>
-                                        </div>
-                                    </td>
-                                    <td width="20%">
-                                        <div class="text-right">
-                                            <span class="font-weight-bold">$77.50</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="row d-flex justify-content-end">
-                        <div class="col-md-5">
+                        <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
                             <table class="table table-borderless">
-                                <tbody class="totals">
+                                <tbody>
                                     <tr>
                                         <td>
-                                            <div class="text-left">
-                                                <span class="text-muted">Subtotal</span>
+                                            <div class="py-2">
+                                                <span class="d-block text-muted">Order Date</span>
+                                                <span>{{productconfirmationDATA.order_created | date : "dd MMM yyyy,hh:mm a"}}</span>
                                             </div>
                                         </td>
+
                                         <td>
-                                            <div class="text-right">
-                                                <span>$168.50</span>
+                                            <div class="py-2">
+                                                <span class="d-block text-muted">Order No</span>
+                                                <span>{{ productconfirmationDATA.order_id }}</span>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="py-2">
+                                                <span class="d-block text-muted">Payment</span>
+                                                <span>
+                                                    <img *ngIf="productconfirmationDATA.order_Type == 'COD'"
+                                                        src="assets/e-commerce/cash-on-delevery.png" width="40" />
+                                                    <img *ngIf="
+                              productconfirmationDATA.order_Type == 'ONLINE'
+                            " src="assets/e-commerce/online-payment-48.png" width="40" />
+                                                </span>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="py-2">
+                                                <span class="d-block text-muted">Shiping Address</span>
+                                                <span>{{
+                                                    productconfirmationDATA
+                                                    .order_shipping_billing_address_details?.address
+                                                    }},{{
+                                                    productconfirmationDATA
+                                                    .order_shipping_billing_address_details
+                                                    ?.original_phone
+                                                    }}</span>
                                             </div>
                                         </td>
                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">
-                                                <span class="text-muted">Shipping Fee</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right">
-                                                <span>$22</span>
-                                            </div>
-                                        </td>
-                                    </tr>
+                        <div class="product border-bottom table-responsive">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <ng-container *ngFor="let item of productconfirmationDATA.order_items">
+                                        <tr>
+                                            <td width="20%">
+                                                <img [src]="imageURL + item.product_Images[0]" width="90" />
+                                            </td>
 
-                                    <tr>
+                                            <td width="50%">
+                                                <span class="fw-bold">{{ item.product_Name }}</span>
+                                                <div class="product-qty">
+                                                    <span class="d-block">Quantity:{{ item.order_QUANTITY }}</span>
+                                                    <!-- <span>Color:Dark</span> -->
+                                                </div>
+                                            </td>
+                                            <td width="30%">
+                                                <div class="text-right">
+                                                    <span class="fw-bold">{{
+                                                        item.order_product_Selling_PRICE
+                                                        | currency : "INR" : "symbol" : "1.0-0"
+                                                        }}</span>
+                                                </div>
+                                                <div class="text-right">
+                                                    <del class="">{{
+                                                        item.order_product_MRP_PRICE
+                                                        | currency : "INR" : "symbol" : "1.0-0"
+                                                        }}</del>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row d-flex justify-content-end">
+                            <div class="col-md-5">
+                                <table class="table table-borderless">
+                                    <tbody class="totals">
+                                        <tr>
+                                            
+                                            <td>
+                                                <div class="text-left">
+                                                    <span class="text-muted">Subtotal</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right">
+                                                    <span>{{
+                                                        productconfirmationDATA.total_mrp_price
+                                                        | currency : "INR" : "symbol" : "1.0-0"
+                                                        }}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">
+                                                    <span class="text-muted">Total Shipping Charges</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right">
+                                                    <span>{{
+                                                        productconfirmationDATA.total_shipping_charges
+                                                        | currency : "INR" : "symbol" : "1.0-0"
+                                                        }}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- <tr>
                                         <td>
                                             <div class="text-left">
                                                 <span class="text-muted">Tax Fee</span>
@@ -135,51 +154,238 @@
                                                 <span>$7.65</span>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> -->
 
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">
-                                                <span class="text-muted">Discount</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right">
-                                                <span class="text-success">$168.50</span>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">
+                                                    <span class="text-muted">Discount</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right">
+                                                    <span class="text-success text-bold">{{
+                                                        productconfirmationDATA.total_dicout_price | currency : "INR" : "symbol" : "1.0-0"
+                                                        }}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
 
-                                    <tr class="border-top border-bottom">
-                                        <td>
-                                            <div class="text-left">
-                                                <span class="font-weight-bold">Subtotal</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right">
-                                                <span class="font-weight-bold">$238.50</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                        <tr class="border-top border-bottom">
+                                            <td>
+                                                <div class="text-left">
+                                                    <span class="font-weight-bold">Subtotal</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right">
+                                                    <span class="font-weight-bold">{{
+                                                        productconfirmationDATA.total_selling_price
+                                                        | currency : "INR" : "symbol" : "1.0-0"
+                                                        }}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+
+                        <p>
+                            We will be sending shipping confirmation email when the item
+                            shipped successfully!
+                        </p>
+                        <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
+                        <span>Waywala Team</span>
                     </div>
 
-                    <p>
-                        We will be sending shipping confirmation email when the item shipped
-                        successfully!
-                    </p>
-                    <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
-                    <span>Waywala Team</span>
-                </div>
-
-                <div class="d-flex justify-content-between footer p-3">
-                    <span>Need Help? visit our <a href="#"> help center</a></span>
-                    <span>12 June, 2020</span>
+                    <div class="d-flex justify-content-between footer p-3">
+                        <span>Need Help? visit our <a href="#"> help center</a></span>
+                        <span>12 June, 2020</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</ng-container>
+<ng-container *ngIf="skelton_Loader_active">
+    <div class="container mt-5 mb-5 mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="text-center logo p-2 px-5 m-auto">
+                        <p-skeleton size="5rem"></p-skeleton>
+                    </div>
+
+                    <div class="invoice p-5">
+                        <p-skeleton styleClass="mb-2"></p-skeleton>
+                        <p-skeleton styleClass="mb-2" width="15rem"></p-skeleton>
+                        <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+                            <p-skeleton styleClass="mb-2"></p-skeleton>
+                            <p-skeleton styleClass="mb-2"></p-skeleton>
+                            <!-- <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="py-2">
+                                                <span class="d-block text-muted">Order Date</span>
+                                                <span>{{
+                                                    productconfirmationDATA.order_created
+                                                    | date : "dd MMM yyyy, hh:mm a"
+                                                    }}</span>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="py-2">
+                                                <span class="d-block text-muted">Order No</span>
+                                                <span>{{ productconfirmationDATA.order_id }}</span>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="py-2">
+                                                <span class="d-block text-muted">Payment</span>
+                                                <span>
+                                                    <img *ngIf="productconfirmationDATA.order_Type == 'COD'"
+                                                        src="assets/e-commerce/cash-on-delevery.png" width="40" />
+                                                    <img *ngIf="
+                              productconfirmationDATA.order_Type == 'ONLINE'
+                            " src="assets/e-commerce/online-payment-48.png" width="40" />
+                                                </span>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="py-2">
+                                                <span class="d-block text-muted">Shiping Address</span>
+                                                <span>{{
+                                                    productconfirmationDATA
+                                                    .order_shipping_billing_address_details?.address
+                                                    }},{{
+                                                    productconfirmationDATA
+                                                    .order_shipping_billing_address_details
+                                                    ?.original_phone
+                                                    }}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                        </div>
+
+                        <div class="product border-bottom table-responsive">
+                            <table class="table table-borderless">
+                                <tbody>
+
+                                    <!-- <ng-container *ngFor="let item of productconfirmationDATA.order_items"> -->
+                                        <tr>
+                                            <td width="20%">
+                                                <p-skeleton size="5rem"></p-skeleton>
+                                            </td>
+
+                                            <td width="50%">
+                                                <p-skeleton styleClass="mb-2" width="5rem"></p-skeleton>
+                                                <p-skeleton styleClass="mb-2" width="2rem"></p-skeleton>
+                                              
+                                            </td>
+                                            <td width="30%">
+                                                <p-skeleton styleClass="mb-2" width="5rem"></p-skeleton>
+                                                <p-skeleton styleClass="mb-2" width="2rem"></p-skeleton>
+                                            </td>
+                                        </tr>
+                                    <!-- </ng-container> -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row d-flex justify-content-end">
+                            <div class="col-md-5">
+                                <table class="table table-borderless">
+                                    <tbody class="totals">
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">
+                                                    <p-skeleton styleClass="mb-2" width="5rem"></p-skeleton>
+                                                   
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right">
+                                                    <p-skeleton styleClass="mb-2" width="2rem"></p-skeleton>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">
+                                                    <p-skeleton styleClass="mb-2" width="5rem"></p-skeleton>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right">
+                                                    <p-skeleton styleClass="mb-2" width="2rem"></p-skeleton>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- <tr>
+                                          <td>
+                                              <div class="text-left">
+                                                  <span class="text-muted">Tax Fee</span>
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="text-right">
+                                                  <span>$7.65</span>
+                                              </div>
+                                          </td>
+                                      </tr> -->
+
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">
+                                                    <p-skeleton styleClass="mb-2" width="5rem"></p-skeleton>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right">
+                                                    <p-skeleton styleClass="mb-2" width="2rem"></p-skeleton>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="border-top border-bottom">
+                                            <td>
+                                                <div class="text-left">
+                                                    <p-skeleton styleClass="mb-2" width="5rem"></p-skeleton>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right">
+                                                    <p-skeleton styleClass="mb-2" width="2rem"></p-skeleton>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <p>
+                            <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                        </p>
+                        <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                        <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                    </div>
+
+                    <div class="d-flex justify-content-between footer p-3">
+                        <span>Need Help? visit our <a href="#"> help center</a></span>
+                        <span>12 June, 2020</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

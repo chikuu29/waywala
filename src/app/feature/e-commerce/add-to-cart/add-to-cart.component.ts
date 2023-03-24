@@ -35,7 +35,7 @@ export class AddToCartComponent implements OnInit {
     secondCtrl: ['',],
   });
 
-  order_payment_mode: string = 'ONLINE';
+  order_payment_mode: string = 'COD';
   order_shipping_billing_address_details: any = {
     "name": "Suryanarayan Biswal",
     "address": "Niladri Vihar,42 Sector 3,Bhunaneswar",
@@ -261,6 +261,8 @@ export class AddToCartComponent implements OnInit {
         "payment_methods": "upi"
       }
     }
+    console.log("orderDetails",orderDetails);
+    
 
     this.payment_getway.createOrder(orderDetails, this.order_payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
       this.blockUI.stop();
