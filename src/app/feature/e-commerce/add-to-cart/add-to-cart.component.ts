@@ -239,7 +239,7 @@ export class AddToCartComponent implements OnInit {
   }
 
   confirm_order() {
-    this.blockUI.start("Please Wait Your Order is Conforming...")
+    this.blockUI.start("Please Wait")
     var orderDetails = {
       "order_shipping_billing_address_details": this.order_shipping_billing_address_details,
       "order_details": this.allKartItem,
