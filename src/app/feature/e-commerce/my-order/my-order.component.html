@@ -54,104 +54,110 @@
         </ng-template>
     </p-table> -->
 
-<div class="container-fluid container-lg justify-content-center">
-    <div class="flex align-items-center mb-2 fs-2 fw-bold mb-2">
-        <img src="/assets/e-commerce/Order_history.png" alt="" srcset="" width="25px" />
+<div class="container-fluid container-lg ">
+
+    <div class="text-center fs-3 fw-bold mb-2 text-muted p-2" style="background-color: #fff; border-radius: 12px;">
+        <img src="/assets/e-commerce/Order_history.png" alt="" srcset="" width="40px" />
         Order History
     </div>
-    <ng-container *ngFor="let order of order_history">
-        <div class="card px-2 mb-3">
-            <div class="card-header bg-white">
-                <div class="row justify-content-between">
-                    <div class="col">
-                        <p><span class="fw-bold"> Order ID :</span><span
-                                class="font-weight-bold text-dark text-muted">{{order.order_id}}</span>
-                        </p>
-                        <p><span class="fw-bold"> Place On : </span><span
-                                class="font-weight-bold text-dark text-muted">{{ order.created_at
-                                | date : "medium" }}</span> </p>
-                    </div>
-                    <div class="flex-col my-auto">
-                        <h6 class="ml-auto mr-3">
-                            <a [routerLink]="'/e-commerce/order-details/'+order.order_id">View Details</a>
-                        </h6>
-                    </div>
+    <div class="mt-3">
+        <ng-container *ngFor="let order of order_history">
+            <div class="card px-2 mb-3">
+                <div class="card-header bg-white">
+                    <div class="row justify-content-between">
+                        <div class="col">
+                            <p><span class="fw-bold"> Order ID :</span><span
+                                    class="font-weight-bold text-dark text-muted">{{order.order_id}}</span>
+                            </p>
+                            <p><span class="fw-bold"> Place On : </span><span
+                                    class="font-weight-bold text-dark text-muted">{{ order.created_at
+                                    | date : "medium" }}</span> </p>
+                        </div>
+                        <div class="flex-col my-auto">
+                            <h6 class="ml-auto mr-3">
+                                <a [routerLink]="'/e-commerce/order-details/'+order.order_id">View Details</a>
+                            </h6>
+                        </div>
 
-                </div>
-                <div class="row justify-content-center align-items-center my-auto">
-                    <span class="col text-center">
-                        <img src="assets/e-commerce/confirm.png" width="40" *ngIf="order.order_status == 'Confirmed'" />
-                        <img src="assets/e-commerce/order-failed-48.png" *ngIf="order.order_status == 'Failed'"
-                            width="40" />
-                        <span class="fw-bold"
-                            [ngClass]="order.order_status=='Confirmed'?'text-success':'text-danger'">{{order.order_status}}</span>
-                    </span>
-                    <span class="col text-center cursor-pointer"
-                        [routerLink]="'/e-commerce/order/confirmation/status/' + order.order_id">
-                        <img src="/assets/e-commerce/payment-2-48.png" alt="" srcset="" width="25px" class="me-2" />
-                        <!-- <img src="assets/e-commerce/confirm.png" width="40" *ngIf="order.order_status == 'Confirmed'" />
+                    </div>
+                    <div class="row justify-content-center align-items-center my-auto">
+                        <span class="col text-center">
+                            <img src="assets/e-commerce/confirm.png" width="40"
+                                *ngIf="order.order_status == 'Confirmed'" />
+                            <img src="assets/e-commerce/order-failed-48.png" *ngIf="order.order_status == 'Failed'"
+                                width="40" />
+                            <span class="fw-bold"
+                                [ngClass]="order.order_status=='Confirmed'?'text-success':'text-danger'">{{order.order_status}}</span>
+                        </span>
+                        <span class="col text-center cursor-pointer"
+                            [routerLink]="'/e-commerce/order/confirmation/status/' + order.order_id">
+                            <img src="/assets/e-commerce/payment-2-48.png" alt="" srcset="" width="25px" class="me-2" />
+                            <!-- <img src="assets/e-commerce/confirm.png" width="40" *ngIf="order.order_status == 'Confirmed'" />
                             <img src="assets/e-commerce/order-failed-48.png" *ngIf="order.order_status == 'Failed'"
                                 width="40" /> -->
-                        <span class="fw-bold text-primary"> Check Status</span>
-                    </span>
+                            <span class="fw-bold text-primary"> Check Status</span>
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-md-6 col-sm-12 ">
-                        <div class="media flex-column flex-sm-row">
-                            <div class="media-body ">
-                                <h5 class="bold">{{ order.product_Name }}</h5>
-                                <p class="text-muted"> Qt: {{order.order_QUANTITY}} Kg</p>
-                                <h4 class="mt-3 mb-4 bold"> <span class="mt-5">&#x20B9;</span>
-                                    {{order.order_total_Price}} <span class="small text-muted">
-                                        via ({{order.order_payment_mode}}) </span></h4>
-                                <p class="text-muted">Tracking Status on: <span class="Today">11:30pm, Today</span></p>
-                                <button type="button" class="btn  btn-outline-primary d-flex">Reached Hub,
-                                    Delhi</button>
-                            </div>
-                            <div >
-                                <img class="img-fluid mt-2" [src]="imageURL + order['product_Images'][0]"
-                                style="width:100%;max-height: 50vh;object-fit: cover; box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;border-radius: 12px;">
-                            </div>
-                           
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 col-sm-12 ">
+                            <div class="media flex-column flex-sm-row">
+                                <div class="media-body ">
+                                    <h5 class="bold">{{ order.product_Name }}</h5>
+                                    <p class="text-muted"> Qt: {{order.order_QUANTITY}} Kg</p>
+                                    <h4 class="mt-3 mb-4 bold"> <span class="mt-5">&#x20B9;</span>
+                                        {{order.order_total_Price}} <span class="small text-muted">
+                                            via ({{order.order_payment_mode}}) </span></h4>
+                                    <p class="text-muted">Tracking Status on: <span class="Today">11:30pm, Today</span>
+                                    </p>
+                                    <button type="button" class="btn  btn-outline-primary d-flex">Reached Hub,
+                                        Delhi</button>
+                                </div>
+                                <div>
+                                    <img class="img-fluid mt-2" [src]="imageURL + order['product_Images'][0]" width="100" height="100"
+                                        style="box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;border-radius: 12px;">
+                                </div>
 
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 px-3">
+                            <!-- <div class="col"> -->
+                            <ul id="progressbar">
+                                <li class="step0 active " id="step1">PLACED</li>
+                                <li class="step0 active text-center" id="step2">SHIPPED</li>
+                                <li class="step0  text-muted text-right" id="step3">DELIVERED</li>
+                            </ul>
+                            <!-- </div> -->
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-12 px-3">
-                        <!-- <div class="col"> -->
-                        <ul id="progressbar">
-                            <li class="step0 active " id="step1">PLACED</li>
-                            <li class="step0 active text-center" id="step2">SHIPPED</li>
-                            <li class="step0  text-muted text-right" id="step3">DELIVERED</li>
-                        </ul>
-                        <!-- </div> -->
-                    </div>
+
                 </div>
 
-            </div>
-
-            <div class="card-footer  bg-white px-sm-3 pt-sm-4 px-0">
-                <div class="row text-center  ">
-                    <div class="col my-auto  border-line cursor-pointer">
-                        <img src="assets/e-commerce/icons8-tracking-50.png" width="20" />Track
-                        <!-- <h5>Track</h5> -->
+                <div class="card-footer  bg-white px-sm-3 pt-sm-4 px-0">
+                    <div class="row text-center  ">
+                        <div class="col my-auto  border-line cursor-pointer">
+                            <img src="assets/e-commerce/icons8-tracking-50.png" width="20" />Track
+                            <!-- <h5>Track</h5> -->
+                        </div>
+                        <div class="col  my-auto border-line cursor-pointer">
+                            <img src="assets/e-commerce/icons8-cancel-50.png" width="20" /> Cancle
+                        </div>
+                        <div class="col my-auto border-line ">
+                            <img *ngIf="order.order_payment_mode == 'COD'" src="assets/e-commerce/cash-on-delevery.png"
+                                width="30" [pTooltip]="order.order_payment_mode" />
+                            <img *ngIf="order.order_payment_mode == 'ONLINE'"
+                                src="assets/e-commerce/online-payment-48.png" width="20"
+                                [pTooltip]="order.order_payment_mode" />
+                        </div>
+                        <div class="col  my-auto mx-0 px-0 "><img class="img-fluid cursor-pointer"
+                                src="https://img.icons8.com/ios/50/000000/menu-2.png" width="30" height="30"></div>
                     </div>
-                    <div class="col  my-auto border-line cursor-pointer">
-                        <img src="assets/e-commerce/icons8-cancel-50.png" width="20" /> Cancle
-                    </div>
-                    <div class="col my-auto border-line ">
-                        <img *ngIf="order.order_payment_mode == 'COD'" src="assets/e-commerce/cash-on-delevery.png"
-                            width="30" [pTooltip]="order.order_payment_mode" />
-                        <img *ngIf="order.order_payment_mode == 'ONLINE'" src="assets/e-commerce/online-payment-48.png"
-                            width="20" [pTooltip]="order.order_payment_mode" />
-                    </div>
-                    <div class="col  my-auto mx-0 px-0 "><img class="img-fluid cursor-pointer"
-                            src="https://img.icons8.com/ios/50/000000/menu-2.png" width="30" height="30"></div>
                 </div>
             </div>
-        </div>
-    </ng-container>
+        </ng-container>
+    </div>
 </div>
 
 <ng-container *ngIf="order_history.length == 0">
