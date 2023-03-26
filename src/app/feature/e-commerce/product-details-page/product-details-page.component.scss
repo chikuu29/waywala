@@ -467,4 +467,13 @@ a:hover {
   background-color: #dc3545;
   border-color: #dc3545;
 }
+.coustom-margin {
+  margin-top: 8rem;
+}
+@media only screen and (min-width: 280px) and (max-width: 599px) {
+  .coustom-margin {
+    margin-top: 5rem;
+  }
+}
+
 

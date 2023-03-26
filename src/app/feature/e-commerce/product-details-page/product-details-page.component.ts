@@ -186,6 +186,67 @@ export class ProductDetailsPageComponent implements OnInit {
 
   }
 
+  buy(product:Product){
+    var addToKartProductObject = {
+      product_CART_ID: product.product_Id,
+      product_CART_QUANTITY: this.product_QUANTITY,
+      product_CART_CREATED_TIME: moment().format('MMMM Do YYYY, h:mm:ss a').toString(),
+      product_CART_BY_Email: "Not Availble"
+    }
+
+    if (this.appservices.authStatus && this.appservices.authStatus.isLogin) {
+
+      this.blockUI.start('Adding To Your Bag...')
+      this.apiParameterScript.fetchdata('e_commerce_product_kart', { "select": "user_CART_ID", "projection": `product_CART_ID='${addToKartProductObject.product_CART_ID}' AND product_CART_BY_Email='${this.appservices.authStatus.email}'` }).subscribe((res: any) => {
+        if (res.success && res['data'].length > 0) {
+          var updateApiData = {
+            "data": `product_CART_QUANTITY=${addToKartProductObject.product_CART_QUANTITY},product_CART_CREATED_TIME='${addToKartProductObject.product_CART_CREATED_TIME}'`,
+            "projection":`user_CART_ID=${res['data'][0].user_CART_ID}`
+          }
+          this.apiParameterScript.updatedata('e_commerce_product_kart', updateApiData).subscribe((res: any) => {
+            this.blockUI.stop()      
+            // this.showCustomAlert()  
+            this.router.navigate(["/e-commerce/my/bag"])
+          }
+          )
+        } else {
+          var saveApiData = {
+            "data": `product_CART_ID='${addToKartProductObject.product_CART_ID}',product_CART_QUANTITY=${addToKartProductObject.product_CART_QUANTITY},product_CART_CREATED_TIME='${addToKartProductObject.product_CART_CREATED_TIME}',product_CART_BY_Email='${this.appservices.authStatus.email}',product_CART_Status='active'`,
+
+          }
+          this.apiParameterScript.savedata('e_commerce_product_kart', saveApiData, false).subscribe((res: any) => {
+            this.blockUI.stop()
+            // this.showCustomAlert()
+            if (res.success) {
+              this.eCommerceService.generateCartItemCount.next(true)
+             
+              // this.router.navigate(["/e-commerce/my/bag"])
+            }
+          }
+          )
+        }
+
+
+      })
+
+    } else {
+      var myKart: any = window.localStorage.getItem('myKartData') != null ? JSON.parse(window.localStorage.getItem('myKartData') as any) : [];
+      var findProdctKartobject = _.find(myKart, { product_CART_ID: addToKartProductObject.product_CART_ID })
+      if (findProdctKartobject == undefined) {
+        myKart.push(addToKartProductObject);
+      } else {
+        _.map(myKart, (object: any) => {
+          if (object.product_CART_ID == addToKartProductObject.product_CART_ID) {
+            object.product_CART_QUANTITY += addToKartProductObject.product_CART_QUANTITY
+          }
+        })
+      }
+      window.localStorage.setItem('myKartData', JSON.stringify(myKart))
+      this.router.navigate(["/e-commerce/my/bag"])
+    }
+
+  }
+
 }
 
 

@@ -38,5 +38,15 @@ export class AppComponent {
 
   }
 
+  display_fottor() {
+
+    var hidden_footer = ['auth/login', 'e-commerce/my/bag','/e-commerce/my/order','agriculture/mycase','/pages/profile','/e-commerce/product/','/pages/register']
+    var isAllowTo_show_footer = true;
+    hidden_footer.forEach((url: any) => {
+          if(this._router.url.includes(url))isAllowTo_show_footer=false
+    })
+
+    return isAllowTo_show_footer;
+  }
 
 }

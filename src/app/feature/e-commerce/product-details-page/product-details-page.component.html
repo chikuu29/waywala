@@ -1,10 +1,10 @@
-<br /><br /><br /><br />
+<div class="coustom-margin"></div>
 <main class="fit">
   <div class="py-2 mx-auto max-w-7xl px-0 w-full" style="margin-top: 0.5rem">
     <div class="ProductView_root__hqkHp fit">
       <div class="ProductView_main__mYQdy">
         <div class="px-3">
-          <div class="md:hidden">
+          <div class="md:hidden mb-3">
             <div class="d-flex justify-content-between items-center">
               <div class="hidden md:block">
                 <div class="d-flex">
@@ -26,7 +26,7 @@
                           class="hover:text-indigo-500">
                           {{product.product_Category}}</span></span>
                     </div>
-                    <div class="mx-2">
+                    <div class="mx-2 text-end">
                       <svg width="6" height="9" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.684 4.5.796 1.611l.825-.825L5.333 4.5 1.621 8.212l-.825-.825 2.888-2.888Z"
                           fill="#000"></path>
@@ -81,14 +81,14 @@
                 <div class="" style="width: 50px">
                   <ng-container *ngFor="let item of product['product_Images']">
                     <div class="p-2 cursor-pointer side-img-hover mb-2" (click)="clickSideImage(imageURL + item)">
-                      <div class="w-[40px] h-[40px]">
-                        <img src="{{ imageURL + item }}" alt="" srcset="" width="50px" height="50px"
-                          class="img-fluid p-1" />
-                      </div>
+                      <!-- <div class=""> -->
+                        <img src="{{ imageURL + item }}" alt="" srcset="" width="80" height="80"
+                          class="img-fluid" />
+                      <!-- </div> -->
                     </div>
                   </ng-container>
                 </div>
-                <div></div>
+                <div class="me-3"></div>
                 <div class="bg-[#F8F8F8] flex-1 relative d-flex justify-center items-center">
                   <div class="flex-1 aspect-square relative cursor-pointer" (click)="displayBasic = true">
                     <div class="w-full h-full bg-cover" style="
@@ -104,7 +104,7 @@
                   <button mat-stroked-button color="primary" class="p-1" (click)="addToBag(product)">
                     <i class="fa-solid fa-bag-shopping pe-3"></i>Add To Bag
                   </button>
-                  <button mat-raised-button color="primary" class="p-1">
+                  <button mat-raised-button color="primary" class="p-1" (click)="buy(product)">
                     Buy Now
                   </button>
                 </div>
@@ -381,7 +381,7 @@
   </div>
 </main>
 
-
+<app-product-section sectionName="Related Item"></app-product-section>
 <p-galleria [value]="images" [(visible)]="displayBasic" [responsiveOptions]="responsiveOptions"
   [containerStyle]="{'max-width': '100%'}" [numVisible]="images.length" [circular]="true" [fullScreen]="true"
   [showItemNavigators]="true" [baseZIndex]="100000">

@@ -1,4 +1,4 @@
-<br><br><br><br><br>
+<div class="coustom-margin"></div>
 <div class="container">
     <p-table [value]="caseData"  [resizableColumns]="true">
         <ng-template pTemplate="caption">
@@ -20,7 +20,7 @@
                 <td class="justify-content-center">{{case.case_received_date | date:'medium'}}</td>
                 <td class="justify-content-center">{{case.case_id}}</td>
                 <td class="justify-content-center">
-                    <img [src]="'https://waywala.com/assets/auth/permission.png'"  width="100" class="shadow-4" />
+                    <img [src]="imageURL+case['case_image'][0]"  width="100" class="shadow-4" />
 
                 </td>
                 

@@ -1,5 +1,7 @@
 
-
+.coustom-margin {
+  margin-top: 4rem;
+}
 .card {
     // margin: auto;
     // max-width: 950px;
@@ -33,4 +35,10 @@
   }
   .example-radio-button {
     margin: 5px;
+  }
+
+  @media only screen and (min-width: 280px) and (max-width: 599px) {
+    .coustom-margin {
+      margin-top: 2rem;
+    }
   }

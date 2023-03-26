@@ -32,7 +32,7 @@ export class GenerateQueryComponent implements OnInit {
  
   ngOnInit(): void {
   
-    this.uploadURL = `https://waywala.com/api/agri/upload.php?token=${this.appservices.authStatus ? this.appservices.authStatus._refreshkey : ''}`;
+    this.uploadURL = `${this.appservices.getApipath()}agri/upload.php?token=${this.appservices.authStatus ? this.appservices.authStatus._refreshkey : ''}`;
     // console.log(this.uploadURL);
     
   }

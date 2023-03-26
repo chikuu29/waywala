@@ -28,12 +28,16 @@ export class MycaseComponent implements OnInit {
   tempCasedata: any[] = [];
   caseData: any = []
   reviewBy: any = 'unknown'
-  ngOnInit(): void {
+  imageURL: string = 'https://waywala.com/api/agri/upload/'
 
+  ngOnInit(): void {
+    this.imageURL = this.appservices.getApipath() + "/agri/upload/";
+    console.log(this.imageURL);
+    
     console.log(moment().format('MMMM Do YYYY, h:mm:ss a').toString());
 
     var apiData = {
-      "select": "case_id,case_received_date,case_status",
+      "select": "case_id,case_received_date,case_status,case_image",
       "projection": `case_created_by='${this.appservices.authStatus ? this.appservices.authStatus.email : ''}'`,
       "order": "id"
     }
@@ -43,6 +47,9 @@ export class MycaseComponent implements OnInit {
         console.log(res);
 
         if (res.success && res['data'].length > 0) {
+          res.data.map((data: any) => {
+            data['case_image'] = data.case_image.split(',');
+          })
           var caseData = from(res['data']);
           this.caseData = res['data']
           this.apiParameterScript.fetchdata("agriculture_case_review", {
