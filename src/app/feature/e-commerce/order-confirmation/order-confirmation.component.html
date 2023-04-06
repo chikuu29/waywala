@@ -6,10 +6,10 @@
                 <div class="card">
                     <div class="text-center logo p-2 px-5">
                         <img src="assets/e-commerce/confirm.png" width="80"
-                            *ngIf="productconfirmationDATA.order_status == 'Confirmed'" />
+                            *ngIf="productconfirmationDATA.order_status == 'Confirmed'" class="fa-beat-fade" />
                         <img src="assets/e-commerce/order-failed-48.png"
-                            *ngIf="productconfirmationDATA.order_status == 'Failed'" width="80" />
-                        <h2>Your order {{ productconfirmationDATA.order_status }}!</h2>
+                            *ngIf="productconfirmationDATA.order_status == 'Failed'" width="80" class="fa-beat-fade"/>
+                        <h2>Your order <span class="fa-fade text-success">{{ productconfirmationDATA.order_status }}!</span></h2>
                     </div>
 
                     <div class="invoice p-5">
