@@ -12,6 +12,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [],
   imports: [
@@ -27,7 +28,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatStepperModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSelectModule
     
     
     
@@ -44,7 +46,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatStepperModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSelectModule
     
 
   ]

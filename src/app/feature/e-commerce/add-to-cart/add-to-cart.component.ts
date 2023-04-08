@@ -10,6 +10,8 @@ import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
 import { ECommerceServicesService } from '../services/e-commerce-services.service';
 import { PaymentGetwayService } from '../services/payment-getway.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddressManagementComponent } from 'src/app/shared/address-management/address-management.component';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -36,15 +38,7 @@ export class AddToCartComponent implements OnInit {
   });
 
   order_payment_mode: string = 'COD';
-  order_shipping_billing_address_details: any = {
-    "name": "Suryanarayan Biswal",
-    "address": "Niladri Vihar,42 Sector 3,Bhunaneswar",
-    "original_phone": "8327783629",
-    "alternative_phone": "9583904645",
-    "pin_code": "751021",
-    "city": "Bhubaneswar",
-    "locality": "Patia"
-  }
+  order_shipping_billing_address_details: any ={}
 
   constructor(
     private ApiParameterScript: ApiParameterScript,
@@ -53,12 +47,25 @@ export class AddToCartComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private payment_getway: PaymentGetwayService,
     private _formBuilder: FormBuilder,
-    private router:Router
+    private router: Router,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
     this.imageURL = this.AppService.getAdminApiPath() + "/shop/images/";
     if (this.AppService.authStatus) {
+
+      this.ApiParameterScript.fetchDataFormQuery(`SELECT *  FROM user_address WHERE user_ID='${this.AppService.authStatus.email}'`).subscribe((res:any)=>{
+        if(res.success && res['data'].length>0){
+          //  console.log("hi",res);
+           this.order_shipping_billing_address_details=JSON.parse(res['data'][0]['address_INFO'])
+           
+        }else{
+          console.log("no Address Found");
+          
+          this.firstFormGroup.setValue({isAddressAvailble:'no'})
+        }
+      })
       var myKart: any = window.localStorage.getItem('myKartData') != null ? JSON.parse(window.localStorage.getItem('myKartData') as any) : [];
       console.log("Local Stroage Data", myKart);
       if (myKart.length > 0) {
@@ -244,7 +251,7 @@ export class AddToCartComponent implements OnInit {
       "order_shipping_billing_address_details": this.order_shipping_billing_address_details,
       "order_details": this.allKartItem,
       "order_id": this.generateOrderID(),
-      "order_created_time":moment().format('DD MMM YYYY, hh:mm A'),
+      "order_created_time": moment().format('DD MMM YYYY, hh:mm A'),
       "customer_details": {
         "customer_id": "not_availble",
         "customer_name": this.order_shipping_billing_address_details.name,
@@ -261,8 +268,8 @@ export class AddToCartComponent implements OnInit {
         "payment_methods": "upi"
       }
     }
-    console.log("orderDetails",orderDetails);
-    
+    console.log("orderDetails", orderDetails);
+
 
     this.payment_getway.createOrder(orderDetails, this.order_payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
       this.blockUI.stop();
@@ -272,15 +279,15 @@ export class AddToCartComponent implements OnInit {
         var apiData = {
           "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'`,
         }
-        this.ApiParameterScript.deletedata("e_commerce_product_kart",apiData,false).subscribe((res:any)=>{
+        this.ApiParameterScript.deletedata("e_commerce_product_kart", apiData, false).subscribe((res: any) => {
         })
         if (res.order_Payment_Method == 'ONLINE_GETWAY') {
           this.startCapturingPayment(res.payment_session_id);
-        }else{
+        } else {
           // console.log("This IS a COD ORDER");
-          document.location.href=`${this.AppService.baseURL}e-commerce/order/confirmation/status/${res.order_id}`
+          document.location.href = `${this.AppService.baseURL}e-commerce/order/confirmation/status/${res.order_id}`
         }
-      }else{
+      } else {
         alert("SOMETHIGS WENT WRONG")
       }
 
@@ -297,5 +304,30 @@ export class AddToCartComponent implements OnInit {
     const date = new Date().toLocaleDateString('en-GB').replace(/\//g, ''); // Get today's date in ddmmyyyy format
     const randomNumber = Math.floor(Math.random() * new Date().getTime()); // Generate a 10-digit random number
     return prefix + date + randomNumber;
+  }
+
+
+  openAddressMangment() {
+
+    const option = { size: 'xl', scrollable: true }
+    const modalRef = this.modalService.open(AddressManagementComponent, option);
+    // modalRef.componentInstance.modalTitle = res.name;
+    // modalRef.componentInstance.OtpType = "Email",
+    // modalRef.componentInstance.otpSendTo = res.email
+
+    modalRef.result.then((modalInstance: any) => {
+      if (modalInstance.success) {
+
+
+        this.order_shipping_billing_address_details=JSON.parse(modalInstance.address.address_INFO)
+        console.log(modalInstance);
+
+
+      }
+    }, (reason: any) => {
+      console.log(reason);
+
+    })
+
   }
 }

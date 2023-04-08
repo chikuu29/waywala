@@ -1,89 +1,109 @@
-
 // .card{
 //     box-shadow: 0.063rem 0 1.25rem 0 #c1c3c5;
 //     border-radius: 14px;
 //     border: none;
 // }
-
-#divWeatherMain,#divWeatherDetails{
-    // display: block;
-    padding: 5px;
-    border-radius: 10px;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100%;
+.coustom-margin {
+  margin-top: 8rem;
+}
+@media only screen and (min-width: 280px) and (max-width: 599px) {
+  .coustom-margin {
+    margin-top: 5rem;
+  }
+}
+#divWeatherMain,
+#divWeatherDetails {
+  // display: block;
+  padding: 5px;
+  border-radius: 10px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(8, 7, 42, 1) 75%,
+    rgb(8, 10, 63) 100%
+  );
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100%;
 }
 
-.currectDayWeatherReport_holder{
-    display: flex;
-    // justify-content: center;
-    justify-content: space-between;
-    align-items: center;
-    overflow-x: scroll;
-    padding:10px;
-    .currectDayWeatherReport{
-        cursor: pointer;
-    }
+.currectDayWeatherReport_holder {
+  display: flex;
+  // justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: scroll;
+  padding: 10px;
+  .currectDayWeatherReport {
+    cursor: pointer;
+  }
 }
 
 .currectDayWeatherReport_holder::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
-.AllcurrectDayWeatherReport_holder{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4px;
-    .item{
-        margin: 3px;
-    }
+.AllcurrectDayWeatherReport_holder {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  .item {
+    margin: 3px;
+  }
 }
-.futureForcast{
-    padding: 5px;
-    border-radius: 10px;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 10px;
+.futureForcast {
+  padding: 5px;
+  border-radius: 10px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(8, 7, 42, 1) 75%,
+    rgb(8, 10, 63) 100%
+  );
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 10px;
 }
-.sun{
-    // margin-top: 10px;
-    color: yellow;
-    filter: drop-shadow( 1px 1px 10px yellow);
-}
-
-.moon{
-    // margin-top: 10px;
-    color: white;
-    filter: drop-shadow( 1px 1px 10px white);
-}
-
-.cloudDiv{
-    margin-top: -40px;
+.sun {
+  // margin-top: 10px;
+  color: yellow;
+  filter: drop-shadow(1px 1px 10px yellow);
 }
 
-.cloud{
-    color: rgb(104, 175, 197);
-    filter: drop-shadow( 1px 1px 5px rgb(104, 175, 197));
-    animation-name: cloudMovement;
-    animation-iteration-count: infinite;
-    animation-duration: 10s;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate;
+.moon {
+  // margin-top: 10px;
+  color: white;
+  filter: drop-shadow(1px 1px 10px white);
 }
 
-@keyframes cloudMovement{
-    from{margin-left: -55px;}
-    to{margin-left: 65px;}
+.cloudDiv {
+  margin-top: -40px;
 }
 
-.hover:hover{
-    color: #c1c3c5;
+.cloud {
+  color: rgb(104, 175, 197);
+  filter: drop-shadow(1px 1px 5px rgb(104, 175, 197));
+  animation-name: cloudMovement;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
 }
 
+@keyframes cloudMovement {
+  from {
+    margin-left: -55px;
+  }
+  to {
+    margin-left: 65px;
+  }
+}
+
+.hover:hover {
+  color: #c1c3c5;
+}
 
 // .img-fluid{
 //     float: right;

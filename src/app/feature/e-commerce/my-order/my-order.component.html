@@ -1,61 +1,5 @@
 <div class="coustom-margin"></div>
-<!-- <div class="container-fluid"> -->
-<!-- <p-table [value]="order_history" [resizableColumns]="true">
-        <ng-template pTemplate="caption">
-            <div class="flex align-items-center">
-                <img src="/assets/e-commerce/Order_history.png" alt="" srcset="" width="25px" />
-                Order History
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header" class="justify-content-center">
-            <tr>
-                <th>Image</th>
-                <th>Product Name</th>
-                <th>Created date</th>
-                <th>Order ID</th>
-                <th>Expected Delivery</th>
-                <th>Status</th>
-                <th>Payment Info</th>
-            </tr>
-        </ng-template>
-        <ng-template hidden pTemplate="body" let-order>
-            <tr class="border cursor-pointer" style="box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;" [routerLink]="'/e-commerce/order-details/'+order.order_id">
-                <td class="justify-content-center">
-                    <img [src]="imageURL + order['product_Images'][0]" width="100" class="shadow-4" />
-                </td>
-                <td class="justify-content-center">
-                    
-                    <span class="fw-bold">{{ order.product_Name }}</span>
-                    <span class="d-block" style="font-size: 15px;">Qty:{{ order.order_QUANTITY }}</span>
-
-                </td>
-                <td class="justify-content-center">
-                    {{ order.created_at | date : "medium" }}
-                </td>
-                <td class="justify-content-center">{{ order.order_id }}</td>
-                <td class="justify-content-center">
-                    {{order.order_expected_delevery}}
-
-                </td>
-                <td class="justify-content-center" [pTooltip]="order.order_status">
-                    <img src="assets/e-commerce/confirm.png" width="40" *ngIf="order.order_status == 'Confirmed'" />
-                    <img src="assets/e-commerce/order-failed-48.png" *ngIf="order.order_status == 'Failed'"
-                        width="40" />
-                    <span class="fw-bold" [ngClass]="order.order_status=='Confirmed'?'text-success':'text-danger'">{{order.order_status}}</span>
-                </td>
-                <td class="justify-content-center cursor-pointer" [routerLink]="'/e-commerce/order/confirmation/status/' + order.order_id">
-                    <img src="/assets/e-commerce/payment-2-48.png" alt="" srcset="" width="25px" class="me-4"/>
-                    <img *ngIf="order.order_payment_mode == 'COD'" src="assets/e-commerce/cash-on-delevery.png"
-                        width="40"  [pTooltip]="order.order_payment_mode"/>
-                    <img *ngIf="order.order_payment_mode == 'ONLINE'" src="assets/e-commerce/online-payment-48.png"
-                        width="40" [pTooltip]="order.order_payment_mode" />
-                </td>
-            </tr>
-        </ng-template>
-    </p-table> -->
-
 <div class="container-fluid container-lg ">
-
     <div class="text-center fs-3 fw-bold mb-2 text-muted p-2" style="background-color: #fff; border-radius: 12px;">
         <img src="/assets/e-commerce/Order_history.png" alt="" srcset="" width="40px" />
         Order History
@@ -151,19 +95,19 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <!-- <div class="row align-items-centers"> -->
-                    <!-- <div class="col-md-12 col-sm-12 "> -->
+            
                     <div class="row ">
                         <div class="col-6 media-body ">
                             <h5 class="bold fs-3">{{ order.product_Name }}</h5>
                             <p class="text-muted"> Qantity: {{order.order_QUANTITY}} Kg</p>
-                            <h4 class="mt-3 mb-4 bold"> <span class="mt-5">&#x20B9;</span>
+                            <h4 class="mt-3 bold"> <span class="mt-5">&#x20B9;</span>
                                 {{order.order_total_Price}} <span class="small text-muted">
                                     via ({{order.order_payment_mode}}) </span></h4>
-                            <p class="text-muted">Tracking Status on: <span class="Today">11:30pm, Today</span>
+                            <del> <span>&#x20B9;</span>{{order.order_product_MRP_PRICE * order.order_QUANTITY }}</del>
+                            <!-- <p class="text-muted">Tracking Status on: <span class="Today">11:30pm, Today</span>
                             </p>
                             <button type="button" class="btn  btn-outline-primary d-flex">Reached Hub,
-                                Delhi</button>
+                                Delhi</button> -->
                         </div>
                         <div class="col-6">
                             <img class="img-fluid mt-2" [src]="imageURL + order['product_Images'][0]"
@@ -172,9 +116,7 @@
 
 
                     </div>
-                    <!-- </div> -->
-
-                    <!-- </div> -->
+                   
 
                 </div>
 
@@ -200,8 +142,6 @@
         </ng-container>
     </div>
 </div>
-
 <ng-container *ngIf="order_history.length == 0">
     <app-no-data-available></app-no-data-available>
 </ng-container>
-<!-- </div> -->

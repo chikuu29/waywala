@@ -12,6 +12,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 import { CoustomAlertMaterialUiComponent } from './coustom-alert-material-ui/coustom-alert-material-ui.component';
+import { AddressManagementComponent } from './address-management/address-management.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -19,7 +20,8 @@ import { CoustomAlertMaterialUiComponent } from './coustom-alert-material-ui/cou
     OtpComponent,
     CaseReviewComponent,
     NoDataAvailableComponent,
-    CoustomAlertMaterialUiComponent
+    CoustomAlertMaterialUiComponent,
+    AddressManagementComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { CoustomAlertMaterialUiComponent } from './coustom-alert-material-ui/cou
     FooterComponent,
     OtpComponent,
     CaseReviewComponent,
-    NoDataAvailableComponent
+    NoDataAvailableComponent,
+    AddressManagementComponent
 
   ]
 })

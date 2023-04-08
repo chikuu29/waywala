@@ -48,3 +48,13 @@ body {
   height: 100%;
   width: 100%;
 }
+
+
+.coustom-margin {
+  margin-top: 8rem;
+}
+@media only screen and (min-width: 280px) and (max-width: 599px) {
+  .coustom-margin {
+    margin-top: 5rem;
+  }
+}

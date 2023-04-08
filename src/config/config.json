@@ -64,17 +64,20 @@
             "Kvks_Details",
             "user",
             "banner",
-            "e_commerce_product_kart"
+            "e_commerce_product_kart",
+            "user_address"
             
          ],
          "authorizationDBAcessForUpdate": [
             "agriculture_case_review",
             "user",
             "contact_us",
-            "e_commerce_product_kart"
+            "e_commerce_product_kart",
+            "user_address"
          ],
          "authorizationDBAcessForDelete": [
-            "e_commerce_product_kart"
+            "e_commerce_product_kart",
+            "user_address"
             
          ]
       }
