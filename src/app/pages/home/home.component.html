@@ -5,22 +5,21 @@
         <div class="container">
             <div id="my_slider" class="carousel slide">
                 <ngb-carousel #ngcarousel [showNavigationArrows]="false">
-
                     <ng-template ngbSlide *ngFor="let slider of sliders">
                         <div class="carousel-item active">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1 class="retailer_text">Retailers</h1>
-                                    <h1 class="retailer_text_1">Directory</h1>
-                                    <p class="search_text">SEARCH FOR PRODUCERS AND RETAILERS ON WORLD WIDE BASIS</p>
+                                    <h1 class="retailer_text">{{slider.main_heading}}</h1>
+                                    <h1 class="retailer_text_1">{{slider.sub_heading_one}} </h1>
+                                    <h3 class="retailer_text_2">{{slider.sub_heading_two}}</h3>
+                                    <p class="search_text">{{slider.main_message}}</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <div><img src="assets/images/img-1.png" class="image_1"></div>
+                                    <div><img [src]="slider.image_url" class="image_1"></div>
                                 </div>
                             </div>
                         </div>
                     </ng-template>
-
                 </ngb-carousel>
                 <a class="carousel-control-prev" role="button" (click)="getToPrev()">
                     <i class="fa fa-left"><img src="assets/images/left-icon.png"></i>
@@ -29,38 +28,6 @@
                     <i class="fa fa-right"><img src="assets/images/right-icon.png"></i>
                 </a>
             </div>
-            <!-- <div class="form_section">
-                <ul>
-                    <li class="padding_right_border"><a href="#">Filter By keyword</a>
-                    </li>
-                    <li class="padding_right_border"><a href="#">Location</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">One</a>
-                            <a class="dropdown-item" href="#">Two</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Three</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">One</a>
-                            <a class="dropdown-item" href="#">Two</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Three</a>
-                        </div>
-                    </li>
-                    <li class="search_bt"><a href="#" style="color: #ffffff">Search</a></li>
-                </ul>
-            </div>
-            <div class="btn_main">
-                <div class="more_bt"><a href="#">More Info</a></div>
-                <div class="contact_bt"><a href="#">Contact Us</a></div>
-            </div> -->
         </div>
     </div>
 
