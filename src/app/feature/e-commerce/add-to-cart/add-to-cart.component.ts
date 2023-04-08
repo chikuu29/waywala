@@ -12,6 +12,7 @@ import { ECommerceServicesService } from '../services/e-commerce-services.servic
 import { PaymentGetwayService } from '../services/payment-getway.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddressManagementComponent } from 'src/app/shared/address-management/address-management.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -246,6 +247,8 @@ export class AddToCartComponent implements OnInit {
   }
 
   confirm_order() {
+
+    if(this.firstFormGroup.value.isAddressAvailble=='yes'){
     this.blockUI.start("Please Wait")
     var orderDetails = {
       "order_shipping_billing_address_details": this.order_shipping_billing_address_details,
@@ -269,8 +272,6 @@ export class AddToCartComponent implements OnInit {
       }
     }
     console.log("orderDetails", orderDetails);
-
-
     this.payment_getway.createOrder(orderDetails, this.order_payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
       this.blockUI.stop();
       console.log(res);
@@ -292,6 +293,9 @@ export class AddToCartComponent implements OnInit {
       }
 
     })
+  }else{
+    Swal.fire('Please Select Your Address','','warning')
+  }
 
 
 
