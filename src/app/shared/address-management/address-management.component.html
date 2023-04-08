@@ -8,7 +8,7 @@
 </div>
 <div class="modal-body">
     <ng-container *ngIf="!active_edit_update_mode">
-        <p-table #dt [value]="allAddress" [(selection)]="selectedAddress" selectionMode="single"  dataKey="display_address_INFO" responsiveLayout="scroll"
+        <p-table #dt [value]="allAddress" [(selection)]="selectedAddress" selectionMode="single"  dataKey="id" responsiveLayout="scroll"
             scrollHeight="300px" styleClass="p-datatable-customers" [rowHover]="true"
             [showCurrentPageReport]="true" [paginator]="false"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
