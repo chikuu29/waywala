@@ -20,9 +20,9 @@ export class AddressManagementComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
     landmark: new FormControl('', []),
-    original_phone: new FormControl('', [Validators.required]),
-    alternative_phone: new FormControl('', []),
-    pin_code: new FormControl('', [Validators.required]),
+    original_phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
+    alternative_phone: new FormControl('', [Validators.pattern('^[0-9]{10}$')]),
+    pin_code: new FormControl('', [Validators.required,Validators.pattern('^[1-9][0-9]{5}$')]),
     city: new FormControl('', [Validators.required]),
     state: new FormControl({ name: 'Odisha' }, [Validators.required]),
     country: new FormControl("INDIA", [Validators.required]),
@@ -83,15 +83,46 @@ export class AddressManagementComponent implements OnInit {
 
     })
   }
-  public getErrorMessage() {
-    if (this.addAddressForm.controls.name.hasError('required')) {
-      return 'You must enter a value';
-    }
-    if (this.addAddressForm.controls.address_Type.hasError('required')) {
-      return 'You must enter a value'
+  public getErrorMessage(fieldName: string) {
+    console.log(this.addAddressForm);
+    // console.log();
+    // if (this.addAddressForm.controls.name.hasError('required')) {
+    //   return 'You must enter a value';
+    // }
+    // if (this.addAddressForm.controls.address_Type.hasError('required')) {
+    //   return 'You must enter a value'
+    // }
+
+
+    // if (this.addAddressForm.controls.original_phone.hasError('required')) {
+    //   return 'You must enter a value'
+    // }else if(this.addAddressForm.controls.original_phone.hasError('pattern')){
+    //   return 'Please Enter Valid Phone No'
+    // }
+
+    var msg = "";
+    switch (fieldName) {
+      case "original_phone": case "alternative_phone":
+        if (this.addAddressForm.controls.original_phone.hasError('required')) {
+          msg = 'You must enter a value'
+        } else if (this.addAddressForm.controls.original_phone.hasError('pattern')) {
+          msg = 'Please Enter Valid Phone No'
+        }
+        break;
+      case "pin_code":
+        if (this.addAddressForm.controls.pin_code.hasError('required')) {
+          msg = 'You must enter a value'
+        } else if (this.addAddressForm.controls.pin_code.hasError('pattern')) {
+          msg = 'Please Enter Valid Pincode'
+        }
+        break;
+      default:
+        msg="Please Enter The Value"
+        break;
     }
 
-    return '';
+
+    return msg;
 
   }
 
@@ -105,13 +136,13 @@ export class AddressManagementComponent implements OnInit {
     this.ApiParameterScript.savedata('user_address', apiData, false).subscribe((res: any) => {
 
       console.log(res);
-      if(res.success){
-        
+      if (res.success) {
+
         this.addAddressForm.reset();
-        this.active_edit_update_mode=false
+        this.active_edit_update_mode = false
         this.ngOnInit()
 
-      }else{
+      } else {
 
       }
 

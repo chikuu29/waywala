@@ -268,7 +268,7 @@ export class AddToCartComponent implements OnInit {
       "order_meta": {
         "notify_url": "https://test.cashfree.com/pgappsdemos/return.php",
         "return_url": `${this.AppService.baseURL}e-commerce/order/confirmation/status/{order_id}`,
-        "payment_methods": "upi"
+        "payment_methods": "cc,dc,upi"
       }
     }
     console.log("orderDetails", orderDetails);

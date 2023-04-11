@@ -192,7 +192,7 @@
 <!-- <button mat-raised-button (click)="isEditable = !isEditable">
   {{ !isEditable ? "Enable edit mode" : "Disable edit mode" }}
 </button> -->
-<ng-container *ngIf="activeOrderProcessStage">
+<ng-container *ngIf="activeOrderProcessStage && allKartItem.length>0">
   <div class="container mt-5">
     <mat-stepper linear #stepper style="background: none" animationDuration="1000">
       <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
