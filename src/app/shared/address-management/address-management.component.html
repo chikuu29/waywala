@@ -2,10 +2,10 @@
     <!-- <h4 class="modal-title" id="modal-basic-title">Mr/Ms {{userInfo.name}} Please Select Your Address</h4> -->
     <!-- <button mat-raised-button color="primary" class="me-2">Hello, <span
             class="text-warning fa-fade">{{userInfo.name}}</span> Please Select Your Address</button> -->
-    <button mat-raised-button color="" class="me-2 text-muted">Choose Address</button>
+    <button mat-raised-button color="" class="me-2 text-muted">{{operation}}</button>
     <!-- <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button> -->
     <button mat-raised-button color="primary" [disabled]="active_edit_update_mode"
-        (click)="active_edit_update_mode=true">Add New Address</button>
+        (click)="add()">Add New Address</button>
 </div>
 <div class="modal-body">
     <ng-container *ngIf="!active_edit_update_mode">
@@ -55,10 +55,10 @@
                         <!-- <span class="p-column-title">Edit</span> -->
                        
                         <button pButton pRipple icon="fa-solid fa-pen-to-square fa-fade" pTooltip="Edit"
-                            class="p-button-rounded p-button-Primary m-1"></button>
+                            class="p-button-rounded p-button-Primary m-1" (click)="edit(address)"></button>
                   
                         <button pButton pRipple icon="fa-solid fa-trash-can fa-fade" pTooltip="Delet"
-                            class="p-button-rounded p-button-danger m-1"></button>
+                            class="p-button-rounded p-button-danger m-1" (click)="delet(address.id)"></button>
                         <!-- <span class="image-text">{{customer.country.name}}</span> -->
                     </td>
                 </tr>
@@ -213,15 +213,16 @@
 <div class="modal-footer">
     <ng-container *ngIf="active_edit_update_mode">
         <button mat-raised-button color="primary" [disabled]="!addAddressForm.valid" (click)="save_Address()"
-            class="me-2">Save</button>
-        <button mat-raised-button color="accent" (click)="active_edit_update_mode=false" class="me-2">Close</button>
+        class="w-100 p-2 mb-2">{{btnText}}</button>
+        <button mat-raised-button color="accent" (click)="active_edit_update_mode=false" class="w-100 p-2 mb-2">Close</button>
 
     </ng-container>
     <ng-container *ngIf="!active_edit_update_mode">
+        <button mat-raised-button color="primary" class="w-100 p-2 mb-2"
+        (click)="activeModal.close({ 'success': true,'address':selectedAddress })" [disabled]="!selectedAddress">Choose</button>
         <button mat-raised-button color="accent" (click)="activeModal.dismiss({ 'success': false })"
-            class="me-2">Close</button>
-        <button mat-raised-button color="accent"
-            (click)="activeModal.close({ 'success': true,'address':selectedAddress })">Select</button>
+         class="w-100 p-2 mb-2">Close</button>
+       
     </ng-container>
 
 

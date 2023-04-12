@@ -18,7 +18,7 @@ export class AuthenticationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    console.log("auth Status->>>", this.appservices.authStatus);
+    // console.log("auth Status->>>", this.appservices.authStatus);
 
     return this._auth.user.pipe(
       take(1),

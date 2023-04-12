@@ -62,13 +62,12 @@ export class AddToCartComponent implements OnInit {
            this.order_shipping_billing_address_details=JSON.parse(res['data'][0]['address_INFO'])
            
         }else{
-          console.log("no Address Found");
-          
+          // console.log("no Address Found");
           this.firstFormGroup.setValue({isAddressAvailble:'no'})
         }
       })
       var myKart: any = window.localStorage.getItem('myKartData') != null ? JSON.parse(window.localStorage.getItem('myKartData') as any) : [];
-      console.log("Local Stroage Data", myKart);
+      // console.log("Local Stroage Data", myKart);
       if (myKart.length > 0) {
 
         this.ApiParameterScript.fetchdata('e_commerce_product_kart', { "select": "product_CART_ID", "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'` }).subscribe((res: any) => {
@@ -130,7 +129,7 @@ export class AddToCartComponent implements OnInit {
   }
 
   private calculateTotalProductPrice() {
-    console.log("calculateTotalProductPrice", this.allKartItem);
+    // console.log("calculasteTotalProductPrice", this.allKartItem);
     this.totalProductPrice = _.sumBy(this.allKartItem, (product) => product.product_Selling_Price * product.product_CART_QUANTITY);
     this.totalProductDiscount = _.sumBy(this.allKartItem, (product) => (product.product_Mrp_Price * product.product_CART_QUANTITY) - (product.product_Selling_Price * product.product_CART_QUANTITY))
     this.totalProductMRP_Price = _.sumBy(this.allKartItem, (product) => product.product_Mrp_Price * product.product_CART_QUANTITY)
