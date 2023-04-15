@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class AddressManagementComponent implements OnInit {
 
   userInfo: any
-  selectedAddress: any;
+  selectedAddress: any={};
   allAddress: any[] = []
   active_edit_update_mode: boolean = false;
   operation: any = "Choose Address"
@@ -174,7 +174,7 @@ export class AddressManagementComponent implements OnInit {
       alternative_phone: null,
       pin_code: null,
       city: null,
-      state: null,
+      state: {name:'Odisha'},
       locality: null
     })
   }

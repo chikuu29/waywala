@@ -10,17 +10,16 @@
 <div class="modal-body">
     <ng-container *ngIf="!active_edit_update_mode">
         <p-table #dt [value]="allAddress" [(selection)]="selectedAddress" selectionMode="single" dataKey="id"
-            responsiveLayout="scroll" scrollHeight="300px" styleClass="p-datatable-customers" [rowHover]="true"
+            responsiveLayout="scroll" scrollHeight="450px" styleClass="p-datatable-customers" [rowHover]="true"
             [showCurrentPageReport]="true" [paginator]="false"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
             [globalFilterFields]="['address_INFO']" [metaKeySelection]="true">
             <ng-template pTemplate="caption">
                 <div class="table-header d-flex justify-content-between">
-                    <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"></button>
+                    <!-- <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"></button> -->
                     <span class="p-input-icon-left">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                            placeholder="Search Medicine" />
+                            placeholder="Search Address" />
                     </span>
                 </div>
             </ng-template>
@@ -72,7 +71,7 @@
         </ng-container>
     </ng-container>
     <ng-container *ngIf="active_edit_update_mode">
-        <form class="" [formGroup]="addAddressForm">
+        <form class="p-fluid " [formGroup]="addAddressForm">
             <div class="row">
                 <span class="fw-bold mb-2">Select Address Type</span>
                 <mat-form-field appearance="outline" class="w-100 mt-2">
@@ -194,10 +193,10 @@
             <div class="row">
                 <span class="fw-bold mb-2">State</span>
                 <p-dropdown formControlName="state" [options]="state" [filter]="true" filterBy="name" class="w-100"
-                    [showClear]="true" placeholder="State">
+                    [showClear]="true" placeholder="State" class="w-100">
                     <ng-template pTemplate="selectedItem">
-                        <div class="country-item country-item-value" *ngIf="addAddressForm.value.state">
-                            <div>{{addAddressForm.value.state.name}}</div>
+                        <div class="country-item country-item-value">
+                            <div>{{addAddressForm.value.state?.name}}</div>
                         </div>
                     </ng-template>
                     <ng-template let-state pTemplate="item">
@@ -213,15 +212,15 @@
 <div class="modal-footer">
     <ng-container *ngIf="active_edit_update_mode">
         <button mat-raised-button color="primary" [disabled]="!addAddressForm.valid" (click)="save_Address()"
-        class="w-100 p-2 mb-2">{{btnText}}</button>
-        <button mat-raised-button color="accent" (click)="active_edit_update_mode=false" class="w-100 p-2 mb-2">Close</button>
+        class="me-2 mb-2">{{btnText}}</button>
+        <button mat-raised-button color="accent" (click)="active_edit_update_mode=false" class="me-2 mb-2">Close</button>
 
     </ng-container>
     <ng-container *ngIf="!active_edit_update_mode">
-        <button mat-raised-button color="primary" class="w-100 p-2 mb-2"
+        <button mat-raised-button color="primary" class="me-2 mb-2"
         (click)="activeModal.close({ 'success': true,'address':selectedAddress })" [disabled]="!selectedAddress">Choose</button>
         <button mat-raised-button color="accent" (click)="activeModal.dismiss({ 'success': false })"
-         class="w-100 p-2 mb-2">Close</button>
+         class="me-2 mb-2">Close</button>
        
     </ng-container>
 

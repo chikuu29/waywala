@@ -321,13 +321,14 @@ export class AddToCartComponent implements OnInit {
     modalRef.result.then((modalInstance: any) => {
       if (modalInstance.success) {
 
-
+        this.firstFormGroup.setValue({isAddressAvailble:'yes'})
         this.order_shipping_billing_address_details=JSON.parse(modalInstance.address.address_INFO)
         console.log(modalInstance);
 
 
       }
     }, (reason: any) => {
+      this.firstFormGroup.setValue({isAddressAvailble:'no'})
       console.log(reason);
 
     })
