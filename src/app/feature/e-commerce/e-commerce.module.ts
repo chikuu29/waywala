@@ -21,6 +21,7 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { SharedModule } from "../../shared/shared.module";
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { CategoryViewComponent } from './category-view/category-view.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
         MyOrderComponent,
         ProductCategoryComponent,
         OrderConfirmationComponent,
-        OrderDetailsComponent
+        OrderDetailsComponent,
+        CategoryViewComponent
     ],
     exports: [
         AllProductListComponent,

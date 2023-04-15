@@ -8,6 +8,8 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProductDetailsPageComponent } from './product-details-page/product-details-page.component';
+import { ProductSectionComponent } from './product-section/product-section.component';
+import { CategoryViewComponent } from './category-view/category-view.component';
 
 const routes: Routes = [
   { 
@@ -37,6 +39,10 @@ const routes: Routes = [
     path:'order-details/:order_id',
     canActivate:[AuthenticationGuard],
     component:OrderDetailsComponent
+  },
+  {
+    path:'category/:category',
+    component:CategoryViewComponent
   },
 ];
 
