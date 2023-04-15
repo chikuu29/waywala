@@ -50,6 +50,7 @@ export class WeatherForecastComponent implements OnInit {
   public predictionfutureData: any[] = []
   public predictionDate: any[] = []
   public isdayNight: boolean = moment().hours() >= 6 && moment().hours() <= 18;
+  public skeleton_loader_active=true;
 
   constructor(private weatherForcastService: WeatherForcastService) { }
 
@@ -74,7 +75,7 @@ export class WeatherForecastComponent implements OnInit {
             "Longitude: " + position.coords.longitude);
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
-          this.blockUI.start("Fetching Weather Data...")
+          // this.blockUI.start("Fetching Weather Data...")
           this.weatherForcastService.getaddressFormLogitudeAndLatiture(this.lng, this.lat).subscribe((res: any) => {
             console.log(res);
             if (res) {
@@ -165,7 +166,8 @@ export class WeatherForecastComponent implements OnInit {
 
   //set pediction weather infomation
   setPredictionWeatherData(data: any) {
-    this.blockUI.stop()
+    // this.blockUI.stop()
+    this.skeleton_loader_active=false;
     console.log("setPredictionWeatherData", data);
     var tempFuretureData = {}
     // Get today's date

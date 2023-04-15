@@ -1,5 +1,5 @@
 <div class="coustom-margin"></div>
-<div class="container">
+<div class="container" *ngIf="!skeleton_loader_active">
     <!-- <p class="text-center fs-1 fw-bold mt-2">Weather Forecasting</p> -->
     <div class="current-weather-info">
         <p class="fs-5 fw-bold ms-2 mt-2 text-primary" style="cursor: pointer;"><i
@@ -185,6 +185,230 @@
                         <p class="text-warning">Visibility:
                             <strong>{{selectfutureCurrentWeatherData?.visibility}}</strong>
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container" *ngIf="skeleton_loader_active">
+   
+    <div class="current-weather-info">
+        <p class="fs-5 fw-bold mt-2 text-primary">
+            <p-skeleton styleClass="mb-2" height="2rem" width="15rem"></p-skeleton>
+        </p>
+        <div class="row">
+            <div class="col-md-4 mb-2">
+                <div class="card p-3 border-none" style="background-color: #fff; border-radius: 12px;min-height: 100%;  padding: 5px;">
+                    <div class="text-center m-auto">
+                        <p-skeleton size="5rem"></p-skeleton>
+                    </div>
+                    <div class="text-center m-auto pt-2">
+                        <p-skeleton styleClass="mb-2" width="3rem" height="2rem"></p-skeleton>
+                    </div>
+                    <div class="text-center m-auto pt-2">
+                        <p-skeleton styleClass="mb-2" width="5rem" height="2rem"></p-skeleton>
+                    </div>
+                    <div class="text-center m-auto pt-2">
+                        <p-skeleton styleClass="mb-2" width="7rem" height="2rem"></p-skeleton>
+                    </div>
+                    <div class="text-center m-auto pt-2">
+                        <p-skeleton styleClass="mb-2" width="3rem"></p-skeleton>
+                    </div>
+                    <div class="text-center m-auto pt-2">
+                        <p-skeleton styleClass="mb-2" width="3rem"></p-skeleton>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-md-8 mb-2">
+                <div style="background-color: #fff; border-radius: 12px;min-height: 100%;  padding: 5px;">
+                    <div class="currectDayWeatherReport_holder text-center">
+
+                        <div class="currectDayWeatherReport p-3">
+                            <div class="text-center fs-5 fw-bold text-warning"><p-skeleton width="3rem"
+                                    height="1rem"></p-skeleton></div>
+                            <div class="m-auto text-center hover pt-2"><p-skeleton width="3rem"
+                                    height="5rem"></p-skeleton></div>
+                            <div class="text-center pt-1"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                            <div class="text-center pt-2"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                        </div>
+                        <div class="currectDayWeatherReport p-3">
+                            <div class="text-center fs-5 fw-bold text-warning"><p-skeleton width="3rem"
+                                    height="1rem"></p-skeleton></div>
+                            <div class="m-auto text-center hover pt-2"><p-skeleton width="3rem"
+                                    height="5rem"></p-skeleton></div>
+                            <div class="text-center pt-1"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                            <div class="text-center pt-2"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                        </div>
+                        <div class="currectDayWeatherReport p-3">
+                            <div class="text-center fs-5 fw-bold text-warning"><p-skeleton width="3rem"
+                                    height="1rem"></p-skeleton></div>
+                            <div class="m-auto text-center hover pt-2"><p-skeleton width="3rem"
+                                    height="5rem"></p-skeleton></div>
+                            <div class="text-center pt-1"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                            <div class="text-center pt-2"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                        </div>
+                        <div class="currectDayWeatherReport p-3">
+                            <div class="text-center fs-5 fw-bold text-warning"><p-skeleton width="3rem"
+                                    height="1rem"></p-skeleton></div>
+                            <div class="m-auto text-center hover pt-2"><p-skeleton width="3rem"
+                                    height="5rem"></p-skeleton></div>
+                            <div class="text-center pt-1"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                            <div class="text-center pt-2"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                        </div>
+                        <div class="currectDayWeatherReport p-3">
+                            <div class="text-center fs-5 fw-bold text-warning"><p-skeleton width="3rem"
+                                    height="1rem"></p-skeleton></div>
+                            <div class="m-auto text-center hover pt-2"><p-skeleton width="3rem"
+                                    height="5rem"></p-skeleton></div>
+                            <div class="text-center pt-1"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                            <div class="text-center pt-2"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+                        </div>
+
+
+                    </div>
+                    <div>
+                        <p-divider [align]="'center'" type="dashed">
+                            <b class="text-danger">{{currentDateTime}}</b>
+                        </p-divider>
+                    </div>
+                    <div class="AllcurrectDayWeatherReport_holder">
+                        <ng-container>
+                            <div class="m-1">
+                                <div class="m-1">
+
+                                    <span class="ms-2"><p-skeleton width="5rem" height="1rem"></p-skeleton></span>
+
+                                </div>
+                                <div class="m-1">
+                                    <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+                                    <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+
+                                </div>
+
+
+                            </div>
+                            <div class="m-1">
+                                <div class="m-1">
+                                    <span class="ms-2"><p-skeleton width="5rem" height="1rem"></p-skeleton></span>
+
+
+                                </div>
+                                <div class="m-1">
+                                    <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+                                    <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+
+
+                                </div>
+
+                            </div>
+                            <div class="m-1">
+                                <div class="m-1">
+                                    <span class="ms-2"><p-skeleton width="5rem" height="1rem"></p-skeleton></span>
+
+                                </div>
+                                <div class="m-2">
+                                    <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+                                    <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="futureForcasts">
+            <div class="currectDayWeatherReport_holder" style="background-color: #fff; border-radius: 12px;">
+
+                <div class="currectDayWeatherReport p-3">
+                    <div class="text-center fw-bold"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+
+                    <div class="text-center m-auto pt-2 pb-2"><p-skeleton height="5rem" borderRadius="16px" width="3rem"
+                            height="5rem"></p-skeleton>
+                    </div>
+                    <p class="text-center"><p-skeleton width="3rem" height="1rem"></p-skeleton></p>
+                </div>
+                <div class="currectDayWeatherReport p-3">
+                    <div class="text-center fw-bold"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+
+                    <div class="text-center m-auto pt-2 pb-2"><p-skeleton height="5rem" borderRadius="16px" width="3rem"
+                            height="5rem"></p-skeleton>
+                    </div>
+                    <p class="text-center"><p-skeleton width="3rem" height="1rem"></p-skeleton></p>
+                </div>
+                <div class="currectDayWeatherReport p-3">
+                    <div class="text-center fw-bold"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+
+                    <div class="text-center m-auto pt-2 pb-2"><p-skeleton height="5rem" borderRadius="16px" width="3rem"
+                            height="5rem"></p-skeleton>
+                    </div>
+                    <p class="text-center"><p-skeleton width="3rem" height="1rem"></p-skeleton></p>
+                </div>
+                <div class="currectDayWeatherReport p-3">
+                    <div class="text-center fw-bold"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+
+                    <div class="text-center m-auto pt-2 pb-2"><p-skeleton height="5rem" borderRadius="16px" width="3rem"
+                            height="5rem"></p-skeleton>
+                    </div>
+                    <p class="text-center"><p-skeleton width="3rem" height="1rem"></p-skeleton></p>
+                </div>
+                <div class="currectDayWeatherReport p-3">
+                    <div class="text-center fw-bold"><p-skeleton width="3rem" height="1rem"></p-skeleton></div>
+
+                    <div class="text-center m-auto pt-2 pb-2"><p-skeleton height="5rem" borderRadius="16px" width="3rem"
+                            height="5rem"></p-skeleton>
+                    </div>
+                    <p class="text-center"><p-skeleton width="3rem" height="1rem"></p-skeleton></p>
+                </div>
+
+
+            </div>
+            <div class="AllcurrectDayWeatherReport_holder" style="background-color: #fff; border-radius: 12px;">
+                <!-- <div class=""> -->
+                <div class="m-2">
+                    <div class="m-2">
+
+                        <span class="ms-2"><p-skeleton width="5rem" height="1rem"></p-skeleton></span>
+
+                    </div>
+                    <div class="m-2">
+                        <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+                        <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+
+                    </div>
+
+
+                </div>
+                <div class="m-2">
+                    <div class="m-2">
+                        <span class="ms-2"><p-skeleton width="5rem" height="1rem"></p-skeleton></span>
+
+
+                    </div>
+                    <div class="m-2">
+                        <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+                        <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+
+
+                    </div>
+
+                </div>
+                <div class="m-2">
+                    <div class="m-2">
+                        <span class="ms-2"><p-skeleton width="5rem" height="1rem"></p-skeleton></span>
+
+                    </div>
+                    <div class="m-2">
+                        <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+                        <span class="ms-2"><p-skeleton width="5rem" height="2rem"></p-skeleton></span>
+
                     </div>
                 </div>
             </div>

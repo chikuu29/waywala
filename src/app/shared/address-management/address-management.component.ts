@@ -85,7 +85,7 @@ export class AddressManagementComponent implements OnInit {
     })
   }
   public getErrorMessage(fieldName: string) {
-    console.log(this.addAddressForm);
+    // console.log(this.addAddressForm);
     var msg = "";
     switch (fieldName) {
       case "original_phone": case "alternative_phone":
