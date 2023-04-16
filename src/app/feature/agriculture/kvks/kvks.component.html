@@ -1,13 +1,15 @@
 <div class="coustom-margin"></div>
-<div class="container mt-3">
+<div class="container mt-4">
 
-    <h1 class="text-center header-text">Address of Krishi Vigyan Kendras</h1>
+    <h1 class="text-center header-text"><i class="fa-solid fa-location-dot fa-fade text-danger me-2"></i> <span>Address of Krishi Vigyan Kendra's</span> </h1>
+    <p class="text-center fs-5">କୃଷ୍ଣ ବିଦ୍ୟା କେନ୍ଦ୍ରର ଠିକଣା</p>
+    <p class="text-center fs-5">कृषि विज्ञान केंद्र का पता</p>
 
     <div class="">
-        <form class="d-flex flex-wrap justify-content-center" [formGroup]="kvkdetailsForm">
-            <div class="m-3">
+        <form class="d-flex flex-column justify-content-center" [formGroup]="kvkdetailsForm">
+            <div class="m-1">
                 <p-dropdown [options]="countries" optionLabel="name" [filter]="false" filterBy="name"
-                    [showClear]="false" placeholder="Country" formControlName="country">
+                    [showClear]="false" placeholder="Country" formControlName="country" [style]="{'width':'100%'}">
                     <ng-template pTemplate="selectedItem">
                         <div class="country-item country-item-value">
                             <div>{{kvkdetailsForm.value.country?.name}}</div>
@@ -20,9 +22,9 @@
                     </ng-template>
                 </p-dropdown>
             </div>
-            <div class="m-3">
+            <div class="m-1">
 
-                <p-dropdown [options]="state" optionLabel="name" [filter]="false" filterBy="name" [showClear]="false"
+                <p-dropdown [style]="{'width':'100%'}" [options]="state" optionLabel="name" [filter]="false" filterBy="name" [showClear]="false"
                     placeholder="State" formControlName="state">
                     <ng-template pTemplate="selectedItem">
                         <div class="country-item country-item-value">
@@ -37,9 +39,9 @@
                 </p-dropdown>
 
             </div>
-            <div class="m-3">
+            <div class="m-1">
 
-                <p-dropdown [options]="district" optionLabel="name" [filter]="true" filterBy="name" [showClear]="false"
+                <p-dropdown [style]="{'width':'100%'}" [options]="district" optionLabel="name" [filter]="true" filterBy="name" [showClear]="false"
                     placeholder="District" formControlName="district">
                     <ng-template pTemplate="selectedItem">
                         <div class="country-item country-item-value">
@@ -53,56 +55,15 @@
                     </ng-template>
                 </p-dropdown>
             </div>
-            <div class="m-3">
+            <div class="m-2">
                 <p-button icon="pi pi-search" [loading]="serchloading" (onClick)="search()"
                     [disabled]="!kvkdetailsForm.valid"></p-button>
 
             </div>
         </form>
     </div>
-
-    <!-- <div class="kvks-details">
-        <table class="table table-borderless ">
-            <thead class="table-primary text-center">
-                <tr>
-                    <th scope="col">Sn</th>
-                    <th scope="col">State</th>
-                    <th scope="col">District</th>
-                    <th scope="col">Kvk Name</th>
-                    <th scope="col">Contact Details</th>
-                    <th scope="col">Landline Number</th>
-                    <th scope="col">Fax No.</th>
-                    <th scope="col">Pincode</th>
-                    <th scope="col">ATRIA Address</th>
-                    <th scope="col">Host Institute Address</th>
-
-                </tr>
-            </thead>
-            <tbody class="table-light">
-                <ng-container *ngFor="let kvk of totalKvksDetails;let i=index">
-                    <tr>
-                        <th scope="row">{{i+1}}</th>
-                        <td>{{kvk.state}}</td>
-                        <td>{{kvk.district}}</td>
-                        <td>{{kvk.kvks_name}}</td>
-                        <td>{{kvk.contact_details}}</td>
-                        <td>{{kvk.landline_no}}</td>
-                        <td>{{kvk.fax_no}}</td>
-                        <td>{{kvk.pincode}}</td>
-                        <td>{{kvk.atari_address}}</td>
-                        <td>{{kvk.host_institute_address}}</td>
-                    
-                       
-    
-                    </tr>
-                </ng-container>
-              
-           
-            </tbody>
-        </table>
-    </div> -->
 </div>
-<div class="container-fluid">
+<div class="container">
     <ng-container *ngIf="totalKvksDetails.length>0">
         <p-table #dt [value]="totalKvksDetails" [rows]="10" [paginator]="false" responsiveLayout="scroll"
             scrollHeight="500px" [globalFilterFields]="['kvks_name','district']" [rowHover]="true" dataKey="id"

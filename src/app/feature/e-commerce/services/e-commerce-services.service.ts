@@ -9,6 +9,7 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class ECommerceServicesService {
 
+  refreshComponent=new BehaviorSubject<any>(null)
   public generateCartItemCount = new BehaviorSubject<any>(true)
   constructor(
     private AppService: AppService,

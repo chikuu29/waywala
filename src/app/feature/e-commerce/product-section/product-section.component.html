@@ -180,6 +180,7 @@
                 </div>
               </div>
             </ng-container>
+          
         
             <!-- <div class="relative " routerLink="/e-commerce/product-page/1000">
               <div class="border rounded-md md:rounded-xl cursor-pointer overflow-hidden transition-all custom-shadow-on-hover">
@@ -554,6 +555,9 @@
               </div>
             </div> -->
           </div>
+          <ng-container *ngIf="allProductList.length==0 && nodataVisible">
+            <app-no-data-available></app-no-data-available>
+          </ng-container>
         </div>
       </div>
     </div>
