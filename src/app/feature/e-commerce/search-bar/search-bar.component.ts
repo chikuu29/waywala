@@ -17,4 +17,16 @@ export class SearchBarComponent implements OnInit {
     console.log(this.serchinputValue);
     
   }
+
+  public active(){
+    const result = document.getElementById('result');
+    result?.classList.remove('hidden');
+  }
+
+  public deactive(){
+    const result = document.getElementById('result');
+    result?.classList.add('hidden');
+  }
+
+ 
 }

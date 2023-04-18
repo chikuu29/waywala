@@ -1,17 +1,67 @@
 <div class="search fixed-top w-100">
   <div class="container p-3">
     <div class="serch-box-container">
-      <input type="text" class="serch-input-field" (ngModelChange)="search()" [(ngModel)]="serchinputValue" placeholder="Search for products, brands and more">
+      <input type="text" class="serch-input-field" (blur)="deactive()" (click)="active()" (ngModelChange)="search()" [(ngModel)]="serchinputValue"
+        placeholder="Search for products, brands and more">
       <i class="fa fa-search fs-4 p-2 cursor-pointer"></i>
     </div>
     <div class="search-result-box-container">
-      <div class="search-result">
-        <p>Hi</p>
-        <p>Hi</p>
-        <p>Hi</p>
-        <p>Hi</p>
-        <p>Hi</p>
-        <p>Hi</p>
+      <div class="search-result hidden" id="result" >
+        <div>
+          <div class="d-flex  align-items-center search-result-hover p-2">
+            <div class="me-4">
+              <img src="http://localhost/waywala-admin-api/shop/images/01678601275.jpg" alt="" width="40px"
+                height="40px" class="search-img">
+            </div>
+            <div class=" text-align-center">
+              <span class="search-result-text">e-commerce search bar design templates free download bootstrap</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="d-flex  align-items-center search-result-hover p-2">
+            <div class="me-4">
+              <img src="http://localhost/waywala-admin-api/shop/images/01678601275.jpg" alt="" width="40px"
+                height="40px" class="search-img">
+            </div>
+            <div class=" text-align-center">
+              <span class="search-result-text">e-commerce search bar design templates free download bootstrap</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="d-flex  align-items-center search-result-hover p-2">
+            <div class="me-4">
+              <img src="http://localhost/waywala-admin-api/shop/images/01678601275.jpg" alt="" width="40px"
+                height="40px" class="search-img">
+            </div>
+            <div class=" text-align-center">
+              <span class="search-result-text">e-commerce search bar design templates free download bootstrap</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="d-flex  align-items-center search-result-hover p-2">
+            <div class="me-4">
+              <img src="http://localhost/waywala-admin-api/shop/images/01678601275.jpg" alt="" width="40px"
+                height="40px" class="search-img">
+            </div>
+            <div class=" text-align-center">
+              <span class="search-result-text">e-commerce search bar design templates free download bootstrap</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="d-flex  align-items-center search-result-hover p-2">
+            <div class="me-4">
+              <img src="http://localhost/waywala-admin-api/shop/images/01678601275.jpg" alt="" width="40px"
+                height="40px" class="search-img">
+            </div>
+            <div class=" text-align-center">
+              <span class="search-result-text">e-commerce search bar design templates free download bootstrap</span>
+            </div>
+          </div>
+        </div>
       </div>
 
 
