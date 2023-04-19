@@ -22,6 +22,7 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
 import { SharedModule } from "../../shared/shared.module";
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
+import { SearchItemsComponent } from './search-items/search-items.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CategoryViewComponent } from './category-view/category-view.component';
         ProductCategoryComponent,
         OrderConfirmationComponent,
         OrderDetailsComponent,
-        CategoryViewComponent
+        CategoryViewComponent,
+        SearchItemsComponent
     ],
     exports: [
         AllProductListComponent,

@@ -10,6 +10,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProductDetailsPageComponent } from './product-details-page/product-details-page.component';
 import { ProductSectionComponent } from './product-section/product-section.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
+import { SearchItemsComponent } from './search-items/search-items.component';
 
 const routes: Routes = [
   { 
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path:'category/:category',
     component:CategoryViewComponent
+  },
+  {
+    path:'search',
+    component:SearchItemsComponent
   },
 ];
 

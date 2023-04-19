@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,26 +8,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
-  serchinputValue:any;
-  constructor() { }
+  serchinputValue: any;
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  public search(){
+  public search() {
     console.log(this.serchinputValue);
-    
+
+    console.log("hi", this.serchinputValue.replace(/\s+/g, '+'));
+
+    let navigationExtras: NavigationExtras = {
+      queryParams:
+      {
+        'q': this.serchinputValue,
+        'category': 'Vegitable'
+      }
+    };
+    this.router.navigate(['e-commerce/search'], navigationExtras);
+
   }
 
-  public active(){
+  public searchResult() {
+    // console.log("hi", this.serchinputValue.replace(/\s+/g, '+'));
+    let navigationExtras: NavigationExtras = {
+      queryParams:
+      {
+        'q': this.serchinputValue,
+        'category': 'Vegitable'
+      }
+    };
+    this.router.navigate(['e-commerce/search'], navigationExtras);
+  }
+
+  public active() {
     const result = document.getElementById('result');
     result?.classList.remove('hidden');
   }
 
-  public deactive(){
+  public deactive() {
     const result = document.getElementById('result');
-    result?.classList.add('hidden');
+    // result?.classList.add('hidden');
   }
 
- 
+
 }

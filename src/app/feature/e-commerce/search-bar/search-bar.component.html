@@ -1,13 +1,13 @@
 <div class="search fixed-top w-100">
   <div class="container p-3">
     <div class="serch-box-container">
-      <input type="text" class="serch-input-field" (blur)="deactive()" (click)="active()" (ngModelChange)="search()" [(ngModel)]="serchinputValue"
+      <input type="text" class="serch-input-field text-muted" (keyup.enter)="search()" (blur)="deactive()" (click)="active()"  [(ngModel)]="serchinputValue"
         placeholder="Search for products, brands and more">
-      <i class="fa fa-search fs-4 p-2 cursor-pointer"></i>
+      <i class="fa fa-search fs-4 p-2 cursor-pointer" (click)="search()"></i>
     </div>
     <div class="search-result-box-container">
       <div class="search-result hidden" id="result" >
-        <div>
+        <div (click)="searchResult()">
           <div class="d-flex  align-items-center search-result-hover p-2">
             <div class="me-4">
               <img src="http://localhost/waywala-admin-api/shop/images/01678601275.jpg" alt="" width="40px"
@@ -63,8 +63,6 @@
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
 </div>

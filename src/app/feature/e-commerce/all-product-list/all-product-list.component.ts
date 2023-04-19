@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
-import { Product } from './product';
+// import { Product } from './product';
 import { ProductService } from './productservice';
+import { ApiParameterScript } from 'src/app/script/api-parameter';
+import { Product } from '../product-section/product';
+import { AppService } from 'src/app/services/app.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-all-product-list',
@@ -10,18 +14,30 @@ import { ProductService } from './productservice';
 })
 export class AllProductListComponent implements OnInit {
 
-  products: Product[];
+  @Input() products: Product[];
 
   sortOptions: SelectItem[];
 
   sortOrder: number;
 
   sortField: string;
+  imageURL: string = "https://admin.waywala.com/api/shop/images/"
+  constructor(
+    private productService: ProductService,
+    private ApiParameterScript: ApiParameterScript,
+    private appservice: AppService,
 
-  constructor(private productService: ProductService) { }
+  ) { }
 
   ngOnInit() {
-    this.productService.getProducts().then((data: any) => this.products = data);
+    this.imageURL = this.appservice.getAdminApiPath() + "shop/images/";
+
+
+
+
+   
+
+    // this.productService.getProducts().then((data: any) => this.products = data);
     this.sortOptions = [
       { label: 'Price High to Low', value: '!price' },
       { label: 'Price Low to High', value: 'price' }
