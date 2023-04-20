@@ -25,6 +25,7 @@ export class ApiParameterScript {
                 "select":"*",
                 "db":"agriculture_case",
                 "projection":"case_id='WAC9981665835533'",
+                "order":
                 "loginInfo":{
                                 "email":"cchiku1999@gmail.com",
                                     "id": "SURYA1234",
@@ -154,8 +155,10 @@ export class ApiParameterScript {
                 if (apiData['auth'] && apiData['auth']) {
                     loginInfo = { role: 'GUEST_USER' }
                 } else {
-                    loginInfo = { role: 'LOGIN_USER' }
+                    loginInfo = { role: this.appservices.authStatus ? 'LOGIN_USER': 'GUEST_USER'}
                 }
+                console.log(loginInfo['role']);
+                
                 let getrole = loginInfo['role'];
                 let outh = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcess'].includes(db) : false;
                 let outhForUpdate = appConfig['roleConfig'][getrole] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'] ? appConfig['roleConfig'][getrole]['authorizationDBAcessForUpdate'].includes(db) : false : false;

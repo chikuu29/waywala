@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import _ from 'lodash';
+import { ApiParameterScript } from 'src/app/script/api-parameter';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -10,10 +13,61 @@ export class SearchBarComponent implements OnInit {
 
   serchinputValue: any;
   constructor(
-    private router: Router
+    private router: Router,
+    private ApiParameterScript: ApiParameterScript,
+    private appservice: AppService,
   ) { }
 
+  DEFULT_SERCH_HISTORY: any[] = [
+    {
+      "text": "Vegetable",
+      "type": "DEFULTSERACH",
+      "imageURL": "http://localhost:4200/assets/e-commerce/vegitable.jpg"
+    },
+    {
+      "text": "Agricultural Medicine",
+      "type": "DEFULTSERACH",
+      "imageURL": "http://localhost:4200/assets/e-commerce/agricultural.jpg"
+    }
+
+  ]
   ngOnInit(): void {
+
+    var query = {
+      "select": "*",
+      "projection": `search_BY='${this.appservice.authStatus ? this.appservice.authStatus.email : ''}'`,
+      "order":'id'
+    }
+    //   {
+    //     "id": 0,
+    //     "search_BY": "cchiku1999@gmail.com",
+    //     "create_modify_date_time": "21 Apr 2023, 12:14 AM",
+    //     "search_text": "Vegetable",
+    //     "search_category": "Vegetable"
+    // }
+    this.ApiParameterScript.fetchdata('search_history', query).subscribe((res: any) => {
+      console.log(res);
+      // this.DEFULT_SERCH_HISTORY.
+      if (res.success && res['data'].length > 0) {
+
+        res['data'].forEach((element: any, index: any) => {
+          
+         
+            this.DEFULT_SERCH_HISTORY = _.concat([{
+              "text": element.search_text,
+              "type": "USERSERACHHISTORY",
+              "search_time": element.create_modify_date_time
+            }], this.DEFULT_SERCH_HISTORY)
+          
+        });
+
+      }
+
+
+
+
+    })
+
   }
 
   public search() {
@@ -32,13 +86,12 @@ export class SearchBarComponent implements OnInit {
 
   }
 
-  public searchResult() {
+  public searchResult(data: any) {
     // console.log("hi", this.serchinputValue.replace(/\s+/g, '+'));
     let navigationExtras: NavigationExtras = {
       queryParams:
       {
-        'q': this.serchinputValue,
-        'category': 'Vegitable'
+        'q': data
       }
     };
     this.router.navigate(['e-commerce/search'], navigationExtras);

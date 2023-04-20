@@ -65,7 +65,8 @@
             "user",
             "banner",
             "e_commerce_product_kart",
-            "user_address"
+            "user_address",
+            "search_history"
             
          ],
          "authorizationDBAcessForUpdate": [
@@ -73,7 +74,8 @@
             "user",
             "contact_us",
             "e_commerce_product_kart",
-            "user_address"
+            "user_address",
+            "search_history"
          ],
          "authorizationDBAcessForDelete": [
             "e_commerce_product_kart",
