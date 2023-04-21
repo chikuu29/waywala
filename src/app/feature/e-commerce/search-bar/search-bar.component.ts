@@ -36,15 +36,10 @@ export class SearchBarComponent implements OnInit {
     var query = {
       "select": "*",
       "projection": `search_BY='${this.appservice.authStatus ? this.appservice.authStatus.email : ''}'`,
-      "order":'id'
+      "order":'id',
+      "limit":5
     }
-    //   {
-    //     "id": 0,
-    //     "search_BY": "cchiku1999@gmail.com",
-    //     "create_modify_date_time": "21 Apr 2023, 12:14 AM",
-    //     "search_text": "Vegetable",
-    //     "search_category": "Vegetable"
-    // }
+
     this.ApiParameterScript.fetchdata('search_history', query).subscribe((res: any) => {
       console.log(res);
       // this.DEFULT_SERCH_HISTORY.
@@ -103,6 +98,10 @@ export class SearchBarComponent implements OnInit {
   }
 
   public deactive() {
+    // console.log("clicked outside");
+    // appClickedoutside (clickoutside)="deactive()"
+    console.log();
+    
     const result = document.getElementById('result');
     // result?.classList.add('hidden');
   }

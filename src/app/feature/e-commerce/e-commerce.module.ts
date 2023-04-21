@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ECommerceRoutingModule } from './e-commerce-routing.module';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -22,7 +21,8 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
 import { SharedModule } from "../../shared/shared.module";
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
-import { SearchItemsComponent } from './search-items/search-items.component';
+import { CustomDirectiveModule } from 'src/app/customDirective/custom-directive.module';
+import { SearchItemViewComponent } from './search-item-view/search-item-view.component';
 
 
 @NgModule({
@@ -40,7 +40,7 @@ import { SearchItemsComponent } from './search-items/search-items.component';
         OrderConfirmationComponent,
         OrderDetailsComponent,
         CategoryViewComponent,
-        SearchItemsComponent
+        SearchItemViewComponent
     ],
     exports: [
         AllProductListComponent,
@@ -55,7 +55,8 @@ import { SearchItemsComponent } from './search-items/search-items.component';
         MaterialModule,
         FormsModule,
         ReactiveFormsModule,
-        SharedModule
+        SharedModule,
+        CustomDirectiveModule
     ]
 })
 export class ECommerceModule { }

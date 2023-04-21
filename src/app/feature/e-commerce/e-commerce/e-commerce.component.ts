@@ -51,4 +51,12 @@ export class ECommerceComponent implements OnInit {
     alert("Copied the text: " + copyText);
   }
 
+  deactive() {
+    console.log("outside");
+    const result = document.getElementById('result');
+    result?.classList.add('hidden');
+
+
+  }
+
 }

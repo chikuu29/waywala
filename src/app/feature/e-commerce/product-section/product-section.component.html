@@ -1,13 +1,16 @@
 <div class="container-fluid container-md">
     <div class="py-4">
       <div>
-        <div class="flex justify-between mb-4 px-3">
-          <span class="Text_bold__lt4Nl Text_textMedium__Fxf2U">{{sectionName}}</span>
-          <div class="flex items-center transition-all cursor-pointer ease-in-out" style="gap: 6px; padding-right: 4px">
-            <button active="" class="Button_root__G_l9X Button_naked__xwcQp"><span class="Text_semibold__5N59J text-indigo-500">See All</span></button>
-            <i class="fa-solid fa-arrow-right-long" style="color: rgb(90 75 218);"></i>
+        <ng-container *ngIf="productSectionMode">
+          <div class="flex justify-between mb-4 px-3" >
+            <span class="Text_bold__lt4Nl Text_textMedium__Fxf2U">{{sectionName}}</span>
+            <div class="flex items-center transition-all cursor-pointer ease-in-out" style="gap: 6px; padding-right: 4px">
+              <button active="" class="Button_root__G_l9X Button_naked__xwcQp"><span class="Text_semibold__5N59J text-indigo-500">See All</span></button>
+              <i class="fa-solid fa-arrow-right-long" style="color: rgb(90 75 218);"></i>
+            </div>
           </div>
-        </div>
+        </ng-container>
+       
         <div>
           <div class="w-100 grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
             <ng-container *ngIf="loadingSkeltonLoader">

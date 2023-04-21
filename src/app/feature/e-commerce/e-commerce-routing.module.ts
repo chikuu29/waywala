@@ -8,9 +8,8 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProductDetailsPageComponent } from './product-details-page/product-details-page.component';
-import { ProductSectionComponent } from './product-section/product-section.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
-import { SearchItemsComponent } from './search-items/search-items.component';
+import { SearchItemViewComponent } from './search-item-view/search-item-view.component';
 
 const routes: Routes = [
   { 
@@ -47,7 +46,7 @@ const routes: Routes = [
   },
   {
     path:'search',
-    component:SearchItemsComponent
+    component:SearchItemViewComponent
   },
 ];
 

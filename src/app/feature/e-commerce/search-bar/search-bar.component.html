@@ -1,14 +1,14 @@
 <div class="search fixed-top w-100">
   <div class="container p-3">
     <div class="serch-box-container">
-      <input type="text" class="serch-input-field text-muted" (keyup.enter)="search()" (blur)="deactive()"
+      <input type="text" class="serch-input-field text-muted" appClickedoutside (clickoutside)="deactive()" (keyup.enter)="search()" (blur)="deactive()"
         (click)="active()" [(ngModel)]="serchinputValue" placeholder="Search for products, brands and more">
       <i class="fa fa-search fs-4 p-2 cursor-pointer" (click)="search()"></i>
     </div>
-    <div class="search-result-box-container">
-      <div class="search-result hidden" id="result">
+    <div class="search-result-box-container" >
+      <div class="search-result hidden" id="result" >
         <ng-container *ngFor="let item of DEFULT_SERCH_HISTORY">
-          <div (click)="searchResult(item.text)">
+          <div (click)="searchResult(item.text)" >
             <div class="d-flex  align-items-center search-result-hover p-2">
               <div class="me-4">
 

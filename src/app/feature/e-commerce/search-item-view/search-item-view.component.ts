@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import moment from 'moment';
 import { AppService } from 'src/app/services/app.service';
+
 import { ProductService } from '../all-product-list/productservice';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
-import { ActivatedRoute } from '@angular/router';
 import { Product } from '../product-section/product';
-import moment from 'moment';
 
 @Component({
-  selector: 'app-search-items',
-  templateUrl: './search-items.component.html',
-  styleUrls: ['./search-items.component.scss']
+  selector: 'app-search-item-view',
+  templateUrl: './search-item-view.component.html',
+  styleUrls: ['./search-item-view.component.scss']
 })
-export class SearchItemsComponent implements OnInit {
+export class SearchItemViewComponent implements OnInit {
 
-  products: Product[]
+  products: Product[]=[]
+  searchText:any=''
   constructor(
     private productService: ProductService,
     private ApiParameterScript: ApiParameterScript,
@@ -24,6 +26,7 @@ export class SearchItemsComponent implements OnInit {
   ngOnInit(): void {
     this._rout.queryParams.subscribe((res: any) => {
       console.log(res);
+      this.searchText=res.q
       this.createSearch_HISTORY(res.q)
       var query = `SELECT p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_Quantity_Available,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE (e_commerce_product.product_Name LIKE '%${res.q}%' OR e_commerce_product.product_Category LIKE '%${res.q}%' ) AND e_commerce_product.product_Live_Status='active') p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`
       this.ApiParameterScript.fetchDataFormQuery(query).subscribe((res: any) => {
@@ -50,5 +53,4 @@ export class SearchItemsComponent implements OnInit {
     })
 
   }
-
 }

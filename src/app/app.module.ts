@@ -14,6 +14,7 @@ import { PrimengModule } from './primeng/primeng.module';
 import { FormsModule } from '@angular/forms';
 import { BlockUIModule } from 'ng-block-ui';
 import { SharedModule } from './shared/shared.module';
+import { ClickedoutsideDirective } from './customDirective/clickedoutside.directive';
 @NgModule({
   declarations: [
     AppComponent
