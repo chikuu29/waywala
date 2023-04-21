@@ -22,12 +22,22 @@ export class SearchBarComponent implements OnInit {
     {
       "text": "Vegetable",
       "type": "DEFULTSERACH",
-      "imageURL": "http://localhost:4200/assets/e-commerce/vegitable.jpg"
+      "imageURL": `${this.appservice.baseURL}assets/e-commerce/vegitable.jpg`
     },
     {
       "text": "Agricultural Medicine",
       "type": "DEFULTSERACH",
-      "imageURL": "http://localhost:4200/assets/e-commerce/agricultural.jpg"
+      "imageURL": `${this.appservice.baseURL}assets/e-commerce/agricultural.jpg`
+    },
+    {
+      "text": "Grocery",
+      "type": "DEFULTSERACH",
+      "imageURL": `${this.appservice.baseURL}assets/e-commerce/grocery.png`
+    },
+    {
+      "text": "Fashion",
+      "type": "DEFULTSERACH",
+      "imageURL": `${this.appservice.baseURL}assets/e-commerce/fashion.png`
     }
 
   ]

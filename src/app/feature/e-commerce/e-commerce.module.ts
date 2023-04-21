@@ -23,8 +23,6 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
 import { CustomDirectiveModule } from 'src/app/customDirective/custom-directive.module';
 import { SearchItemViewComponent } from './search-item-view/search-item-view.component';
-
-
 @NgModule({
     declarations: [
         ECommerceComponent,
