@@ -76,9 +76,9 @@ export class SearchBarComponent implements OnInit {
   }
 
   public search() {
-    console.log(this.serchinputValue);
+    // console.log(this.serchinputValue);
 
-    console.log("hi", this.serchinputValue.replace(/\s+/g, '+'));
+    // console.log("hi", this.serchinputValue.replace(/\s+/g, '+'));
 
     let navigationExtras: NavigationExtras = {
       queryParams:
@@ -88,6 +88,7 @@ export class SearchBarComponent implements OnInit {
       }
     };
     this.router.navigate(['e-commerce/search'], navigationExtras);
+    
 
   }
 
@@ -99,6 +100,7 @@ export class SearchBarComponent implements OnInit {
         'q': data
       }
     };
+ 
     this.router.navigate(['e-commerce/search'], navigationExtras);
   }
 

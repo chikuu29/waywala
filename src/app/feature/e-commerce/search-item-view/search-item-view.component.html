@@ -1,4 +1,6 @@
-<div class="coustom-margin"></div>
+<div class="coustom-margin margin"></div>
+
+<app-search-bar appClickedoutside (clickoutside)="deactive()"></app-search-bar>
 <section class="section-pagetop bg">
     <div class="container">
         <h2 class="title-page"><i class="fa-solid fa-magnifying-glass fa-fade me-2"></i> Search Items</h2>
@@ -198,10 +200,6 @@
         </div>
     </div>
 </section>
-
-
-
-
 <p-sidebar [(visible)]="sidebarVisible">
     <h3>Fillter</h3>
     <p-accordion [activeIndex]="0">

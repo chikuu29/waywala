@@ -136,4 +136,13 @@ export class SearchItemViewComponent implements OnInit {
     this.getFilterData(_.join(category, ','),this.maxValue,this.minValue)
 
   }
+
+  public deactive() {
+    // console.log("clicked outside");
+    // appClickedoutside (clickoutside)="deactive()"
+    console.log();
+    
+    const result = document.getElementById('result');
+    result?.classList.add('hidden');
+  }
 }
