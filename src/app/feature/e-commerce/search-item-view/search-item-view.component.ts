@@ -22,6 +22,8 @@ export class SearchItemViewComponent implements OnInit {
   selctedsortByOption: any;
   sidebarVisible: boolean;
   rangeValues: number[] = [20, 80];
+  minValue:any=0;
+  maxValue:any=5000
   constructor(
     private productService: ProductService,
     private ApiParameterScript: ApiParameterScript,
@@ -29,10 +31,11 @@ export class SearchItemViewComponent implements OnInit {
     private _rout: ActivatedRoute,
     private _formBuilder: FormBuilder
   ) { }
-  toppings = this._formBuilder.group({
-    pepperoni: false,
-    extracheese: false,
-    mushroom: false,
+  filterCategory = this._formBuilder.group({
+    grocery: false,
+    fashion: false,
+    agriculture: false,
+    vegetable: false
   });
 
   ngOnInit(): void {
@@ -81,9 +84,19 @@ export class SearchItemViewComponent implements OnInit {
 
   }
 
-  sort() {
-    console.log(this.selctedsortByOption);
 
+  getFilterData(category: any,maxValue:any,minValue:any) {
+    var query = `SELECT p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_Quantity_Available,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE (e_commerce_product.product_Category IN (${category}) AND e_commerce_product.product_Selling_Price BETWEEN ${minValue} AND ${maxValue}) AND e_commerce_product.product_Live_Status='active') p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`
+    this.ApiParameterScript.fetchDataFormQuery(query).subscribe((res: any) => {
+      console.log(res);
+      res.data.map((data: any) => {
+        data['product_Images'] = data.product_Images.split(',');
+      })
+      this.products = res.data
+      console.log("ok", this.products);
+    })
+  }
+  sort() {
     switch (this.selctedsortByOption.name) {
       case "Low-High":
         this.products = _.orderBy(this.products, 'product_Selling_Price');
@@ -97,17 +110,32 @@ export class SearchItemViewComponent implements OnInit {
 
   }
 
-  openNav() {
-    // document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById('mySidenav')?.classList.add('show');
-  }
 
-  /* Set the width of the side navigation to 0 */
-  closeNav() {
-    document.getElementById('mySidenav')?.classList.remove('show');
-
-  }
-  expand() {
+  apply() {
+    var category: string[] = ["'Vegetable'"];
+    const categoryKeyName=Object.keys(this.filterCategory.value)
+    categoryKeyName.forEach((res:any,index)=>{
+      console.log(index);
+      
+      if (this.filterCategory.value.agriculture) {
+        this.filterCategory.value.agriculture=false
+        category.push("'Agricultural Medicine'")
+      } else if (this.filterCategory.value.fashion ) {
+        this.filterCategory.value.fashion=false
+        category.push("'Fashion'")
+      } else if (this.filterCategory.value.grocery ) {
+        this.filterCategory.value.grocery=false
+        category.push("'Grocery'")
+      } else if (this.filterCategory.value.vegetable) {
+        this.filterCategory.value.vegetable=false
+        category.push("'Vegetable'")
+      }
+      
+    })
+    this.sidebarVisible=false
+    console.log(this.maxValue);
+    
+    this.getFilterData(_.join(category, ','),this.maxValue,this.minValue)
 
   }
 }

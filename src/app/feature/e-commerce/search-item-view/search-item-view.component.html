@@ -206,23 +206,23 @@
     <h3>Fillter</h3>
     <p-accordion [activeIndex]="0">
         <p-accordionTab header="Category">
-            <section class="example-section" [formGroup]="toppings">
-                <p><mat-checkbox formControlName="Vegetable">Vegetable</mat-checkbox></p>
-                <p><mat-checkbox formControlName="extracheese">Agriculture Medicine</mat-checkbox></p>
-                <p><mat-checkbox formControlName="Fashion">Fashion</mat-checkbox></p>
-                <p><mat-checkbox formControlName="Grocery">Grocery</mat-checkbox></p>
+            <section class="example-section" [formGroup]="filterCategory">
+                <p><mat-checkbox formControlName="vegetable">Vegetable</mat-checkbox></p>
+                <p><mat-checkbox formControlName="agriculture">Agriculture Medicine</mat-checkbox></p>
+                <p><mat-checkbox formControlName="fashion">Fashion</mat-checkbox></p>
+                <p><mat-checkbox formControlName="grocery">Grocery</mat-checkbox></p>
             </section>
         </p-accordionTab>
         <p-accordionTab header="Price Range">
             <div class="price-input">
                 <div class="field">
                     <span>Min</span>
-                    <input type="number" class="input-min" value="2500">
+                    <input type="number" class="input-min" [(ngModel)]="minValue" >
                 </div>
                 <div class="separator">-</div>
                 <div class="field">
                     <span>Max</span>
-                    <input type="number" class="input-max" value="7500">
+                    <input type="number" class="input-max" [(ngModel)]="maxValue">
                 </div>
             </div>
         </p-accordionTab>
@@ -237,5 +237,5 @@
             </p>
         </p-accordionTab> -->
     </p-accordion>
-    <button mat-raised-button color="primary" class="w-100 mt-5" >Apply</button>
+    <button mat-raised-button color="primary" class="w-100 mt-5" (click)="apply()" >Apply</button>
 </p-sidebar>
