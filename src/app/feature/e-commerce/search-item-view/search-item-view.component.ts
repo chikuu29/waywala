@@ -112,10 +112,10 @@ export class SearchItemViewComponent implements OnInit {
 
 
   apply() {
-    var category: string[] = ["'Vegetable'"];
+    var category: string[] = [];
     const categoryKeyName=Object.keys(this.filterCategory.value)
     categoryKeyName.forEach((res:any,index)=>{
-      console.log(index);
+     
       
       if (this.filterCategory.value.agriculture) {
         this.filterCategory.value.agriculture=false
@@ -133,8 +133,6 @@ export class SearchItemViewComponent implements OnInit {
       
     })
     this.sidebarVisible=false
-    console.log(this.maxValue);
-    
     this.getFilterData(_.join(category, ','),this.maxValue,this.minValue)
 
   }
