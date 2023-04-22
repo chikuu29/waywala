@@ -64,7 +64,8 @@
     right: 0;
     // max-width: 500px;
     background-color: #fff;
-    min-height: 5vh;
+    max-height: 50vh;
+    overflow: scroll;
     position: absolute;
     z-index: 9999999999999999;
 
