@@ -17,6 +17,8 @@ import {DividerModule} from 'primeng/divider';
 import {ChartModule} from 'primeng/chart';
 import {DataViewModule} from 'primeng/dataview';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { AccordionModule } from 'primeng/accordion';
+import { SidebarModule } from 'primeng/sidebar';
 @NgModule({
   declarations: [],
   imports: [
@@ -37,7 +39,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     DividerModule,
     ChartModule,
     DataViewModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    AccordionModule,
+    SidebarModule
    
   ],
   exports:[
@@ -57,7 +61,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     DividerModule,
     ChartModule,
     DataViewModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    AccordionModule,
+    SidebarModule
   ]
 })
 export class PrimengModule { }

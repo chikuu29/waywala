@@ -8,16 +8,14 @@
     <div class="container">
         <div class="row">
             <aside class="col-md-2">
-                
-               
                 <div class="card border-none">
-                    <div style="z-index: 999999999999"
+                    <div style="z-index: 999"
                         class="fixed bottom-0 lg:static left-0 right-0 px-3 lg:px-0 py-4 bg-white lg:pt-6 lg:pb-0 lg:py-0 z-20   rounded-t-lg md:rounded-none">
                         <div class="grid grid-cols-2 gap-2 ">
-                            <button mat-raised-button color="warn" class="p-1 w-100 bg-none">
+                            <button mat-raised-button color="warn" class="p-1 w-100 bg-none" [hidden]="true">
                                 <i class="fa-solid fa-arrow-down-wide-short me-1"></i>SORT
                             </button>
-                            <button mat-raised-button color="primary" class="p-1 w-100">
+                            <button mat-raised-button color="primary" class="p-1 w-100" (click)=" sidebarVisible=true">
                                 <i class="fa-solid fa-filter me-1"></i>FILTER
                             </button>
                         </div>
@@ -189,7 +187,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="m-2 fs-5 text-danger">{{products.length}} Result found </span>
                         <div class="m-2 fs-5 text-muted">
-                            <p-dropdown [options]="sortByOption" [(ngModel)]="selctedsortByOption" optionLabel="name"></p-dropdown>
+                            <p-dropdown [options]="sortByOption" [(ngModel)]="selctedsortByOption" optionLabel="name"
+                                (onChange)="sort()"></p-dropdown>
                         </div>
                     </div>
                 </header>
@@ -199,3 +198,44 @@
         </div>
     </div>
 </section>
+
+
+
+
+<p-sidebar [(visible)]="sidebarVisible">
+    <h3>Fillter</h3>
+    <p-accordion [activeIndex]="0">
+        <p-accordionTab header="Category">
+            <section class="example-section" [formGroup]="toppings">
+                <p><mat-checkbox formControlName="Vegetable">Vegetable</mat-checkbox></p>
+                <p><mat-checkbox formControlName="extracheese">Agriculture Medicine</mat-checkbox></p>
+                <p><mat-checkbox formControlName="Fashion">Fashion</mat-checkbox></p>
+                <p><mat-checkbox formControlName="Grocery">Grocery</mat-checkbox></p>
+            </section>
+        </p-accordionTab>
+        <p-accordionTab header="Price Range">
+            <div class="price-input">
+                <div class="field">
+                    <span>Min</span>
+                    <input type="number" class="input-min" value="2500">
+                </div>
+                <div class="separator">-</div>
+                <div class="field">
+                    <span>Max</span>
+                    <input type="number" class="input-max" value="7500">
+                </div>
+            </div>
+        </p-accordionTab>
+        <!-- <p-accordionTab header="Header III">
+            <p>
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+                deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non
+                provident, similique sunt in culpa
+                qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est
+                et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
+                minus.
+            </p>
+        </p-accordionTab> -->
+    </p-accordion>
+    <button mat-raised-button color="primary" class="w-100 mt-5" >Apply</button>
+</p-sidebar>

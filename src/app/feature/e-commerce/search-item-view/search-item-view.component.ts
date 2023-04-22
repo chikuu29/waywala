@@ -6,6 +6,8 @@ import { AppService } from 'src/app/services/app.service';
 import { ProductService } from '../all-product-list/productservice';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { Product } from '../product-section/product';
+import _ from 'lodash';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-search-item-view',
@@ -16,14 +18,22 @@ export class SearchItemViewComponent implements OnInit {
 
   products: Product[] = []
   searchText: any = '';
-  sortByOption:any=[{name:"Low-High"},{name:'High-Low'},{name:'Newest'}];
-  selctedsortByOption:any;
+  sortByOption: any = [{ name: 'Newest' }, { name: "Low-High" }, { name: 'High-Low' }];
+  selctedsortByOption: any;
+  sidebarVisible: boolean;
+  rangeValues: number[] = [20, 80];
   constructor(
     private productService: ProductService,
     private ApiParameterScript: ApiParameterScript,
     private appservice: AppService,
-    private _rout: ActivatedRoute
+    private _rout: ActivatedRoute,
+    private _formBuilder: FormBuilder
   ) { }
+  toppings = this._formBuilder.group({
+    pepperoni: false,
+    extracheese: false,
+    mushroom: false,
+  });
 
   ngOnInit(): void {
     this._rout.queryParams.subscribe((res: any) => {
@@ -42,6 +52,7 @@ export class SearchItemViewComponent implements OnInit {
 
       })
     })
+
   }
 
   createSearch_HISTORY(data: any) {
@@ -67,6 +78,36 @@ export class SearchItemViewComponent implements OnInit {
       }
     })
 
+
+  }
+
+  sort() {
+    console.log(this.selctedsortByOption);
+
+    switch (this.selctedsortByOption.name) {
+      case "Low-High":
+        this.products = _.orderBy(this.products, 'product_Selling_Price');
+        break;
+      case "High-Low":
+        this.products = _.orderBy(this.products, 'product_Selling_Price', 'desc');
+        break;
+      default:
+
+    }
+
+  }
+
+  openNav() {
+    // document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById('mySidenav')?.classList.add('show');
+  }
+
+  /* Set the width of the side navigation to 0 */
+  closeNav() {
+    document.getElementById('mySidenav')?.classList.remove('show');
+
+  }
+  expand() {
 
   }
 }

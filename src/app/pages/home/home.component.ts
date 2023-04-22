@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit {
         "sub_heading_one":"Medicine",
         "sub_heading_two":"Provider",
         "main_message":"JUST CONNECT WITH US WITH CREATING A CASE FOR YOUR DAMAGE CROP",
-        "image_url":"assets/img/1.png"
+        "image_url":"assets/img/1.png",
+        "router_link":"/agriculture"
 
       }, 
       {
@@ -36,7 +37,8 @@ export class HomeComponent implements OnInit {
         "sub_heading_one":"SELL TO US",
         "sub_heading_two":"BUY FROM US",
         "main_message":"BUY & SELL AGRICULTURAL PRODUCT,MEDICINE,VEGITABLE  ....",
-        "image_url":"assets/img/2.png"
+        "image_url":"assets/img/2.png",
+        "router_link":"/e-commerce"
 
       }]
   }

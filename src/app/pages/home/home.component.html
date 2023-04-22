@@ -6,16 +6,16 @@
             <div id="my_slider" class="carousel slide">
                 <ngb-carousel #ngcarousel [showNavigationArrows]="false">
                     <ng-template ngbSlide *ngFor="let slider of sliders">
-                        <div class="carousel-item active">
+                        <div class="carousel-item active" >
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1 class="retailer_text">{{slider.main_heading}}</h1>
-                                    <h1 class="retailer_text_1">{{slider.sub_heading_one}} </h1>
-                                    <h3 class="retailer_text_2">{{slider.sub_heading_two}}</h3>
-                                    <p class="search_text">{{slider.main_message}}</p>
+                                    <h1 class="retailer_text" [routerLink]="slider.router_link">{{slider.main_heading}}</h1>
+                                    <h1 class="retailer_text_1" [routerLink]="slider.router_link">{{slider.sub_heading_one}} </h1>
+                                    <h3 class="retailer_text_2" [routerLink]="slider.router_link">{{slider.sub_heading_two}}</h3>
+                                    <p class="search_text" [routerLink]="slider.router_link">{{slider.main_message}}</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <div><img [src]="slider.image_url" class="image_1"></div>
+                                    <div [routerLink]="slider.router_link"><img [src]="slider.image_url" class="image_1"></div>
                                 </div>
                             </div>
                         </div>
