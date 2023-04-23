@@ -26,7 +26,7 @@ const routes: Routes = [
 
   },
   {
-    path:"e-commerce",
+    path:"store",
     loadChildren:()=>import ('./feature/e-commerce/e-commerce.module').then(m=>m.ECommerceModule)
 
   },

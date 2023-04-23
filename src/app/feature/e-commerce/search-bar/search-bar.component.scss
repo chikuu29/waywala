@@ -5,7 +5,7 @@
   // position: fixed;
   // top: 7%;
   margin-top: 90px;
-  z-index: 999999;
+  z-index: 9;
   background-color:  rgba(77,89,149,.06);
 }
 .serch-box-container {
@@ -67,7 +67,7 @@
     max-height: 50vh;
     overflow: scroll;
     position: absolute;
-    z-index: 9999999999999999;
+    z-index: 9;
 
     .search-img{
       border-radius: 6px;

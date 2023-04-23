@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { ECommerceModule } from '../feature/e-commerce/e-commerce.module';
 import { AgricultureModule } from '../feature/agriculture/agriculture.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AgricultureModule } from '../feature/agriculture/agriculture.module';
     NgbModule,
     NgxUiLoaderModule,
     ECommerceModule,
-    AgricultureModule
+    AgricultureModule,
+    SharedModule
   ],
   exports: [
     CommingSoonComponent

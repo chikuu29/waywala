@@ -266,7 +266,7 @@ export class AddToCartComponent implements OnInit {
       "order_note": "",
       "order_meta": {
         "notify_url": "https://test.cashfree.com/pgappsdemos/return.php",
-        "return_url": `${this.AppService.baseURL}e-commerce/order/confirmation/status/{order_id}`,
+        "return_url": `${this.AppService.baseURL}store/order/confirmation/status/{order_id}`,
         "payment_methods": "cc,dc,upi"
       }
     }
@@ -285,7 +285,7 @@ export class AddToCartComponent implements OnInit {
           this.startCapturingPayment(res.payment_session_id);
         } else {
           // console.log("This IS a COD ORDER");
-          document.location.href = `${this.AppService.baseURL}e-commerce/order/confirmation/status/${res.order_id}`
+          document.location.href = `${this.AppService.baseURL}store/order/confirmation/status/${res.order_id}`
         }
       } else {
         alert("SOMETHIGS WENT WRONG")

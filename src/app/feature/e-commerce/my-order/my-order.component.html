@@ -18,7 +18,7 @@
                                 [ngClass]="order.order_status=='Confirmed'?'text-success':'text-danger'">{{order.order_status}}</span>
                         </span>
                         <span class="col text-center cursor-pointer"
-                            [routerLink]="'/e-commerce/order/confirmation/status/' + order.order_id">
+                            [routerLink]="'/store/order/confirmation/status/' + order.order_id">
                             <img src="/assets/e-commerce/payment-2-48.png" alt="" srcset="" width="25px" class="me-2" />
                             <!-- <img src="assets/e-commerce/confirm.png" width="40" *ngIf="order.order_status == 'Confirmed'" />
                             <img src="assets/e-commerce/order-failed-48.png" *ngIf="order.order_status == 'Failed'"

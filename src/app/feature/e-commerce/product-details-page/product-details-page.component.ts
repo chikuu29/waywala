@@ -144,7 +144,7 @@ export class ProductDetailsPageComponent implements OnInit {
           this.apiParameterScript.updatedata('e_commerce_product_kart', updateApiData).subscribe((res: any) => {
             this.blockUI.stop()      
             this.showCustomAlert()  
-            // this.router.navigate(["/e-commerce/my/bag"])
+            // this.router.navigate(["/store/my/bag"])
           }
           )
         } else {
@@ -158,7 +158,7 @@ export class ProductDetailsPageComponent implements OnInit {
             if (res.success) {
               this.eCommerceService.generateCartItemCount.next(true)
              
-              // this.router.navigate(["/e-commerce/my/bag"])
+              // this.router.navigate(["/store/my/bag"])
             }
           }
           )
@@ -180,7 +180,7 @@ export class ProductDetailsPageComponent implements OnInit {
         })
       }
       window.localStorage.setItem('myKartData', JSON.stringify(myKart))
-      this.router.navigate(["/e-commerce/my/bag"])
+      this.router.navigate(["/store/my/bag"])
     }
 
 
@@ -206,7 +206,7 @@ export class ProductDetailsPageComponent implements OnInit {
           this.apiParameterScript.updatedata('e_commerce_product_kart', updateApiData).subscribe((res: any) => {
             this.blockUI.stop()      
             // this.showCustomAlert()  
-            this.router.navigate(["/e-commerce/my/bag"])
+            this.router.navigate(["/store/my/bag"])
           }
           )
         } else {
@@ -220,7 +220,7 @@ export class ProductDetailsPageComponent implements OnInit {
             if (res.success) {
               this.eCommerceService.generateCartItemCount.next(true)
              
-              // this.router.navigate(["/e-commerce/my/bag"])
+              // this.router.navigate(["/store/my/bag"])
             }
           }
           )
@@ -242,7 +242,7 @@ export class ProductDetailsPageComponent implements OnInit {
         })
       }
       window.localStorage.setItem('myKartData', JSON.stringify(myKart))
-      this.router.navigate(["/e-commerce/my/bag"])
+      this.router.navigate(["/store/my/bag"])
     }
 
   }

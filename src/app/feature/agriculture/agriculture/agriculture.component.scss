@@ -3,17 +3,17 @@
     margin-top: 0.5rem;
 }
 .message{
-    margin-top: 6.9rem;
+    // margin-top: 6.9rem;
     marquee {
         display: flex;
         justify-content: space-between;
     }
 }
 .text-marquee{
-    background-color: #ffff;
+    background-color: #697792;
     // box-shadow: 0.063rem 0 1.25rem 0 #c7ccd5;
     padding: 12px;
-    color: red;
+    color: #fff;
     // border-radius: 5px;
     font-size: 1.3rem;
     font-weight: 400;
@@ -60,7 +60,7 @@
 
 @media screen and (max-width: 576px) {
 
-    .message{
-       margin-top: 4.9rem;
-    }
+    // .message{
+    //    margin-top: 4.9rem;
+    // }
 }

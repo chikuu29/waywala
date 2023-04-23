@@ -24,7 +24,20 @@ export class NavbarComponent implements OnInit {
   onResizes(event: any) {
     this.screenWidth = window.innerWidth;
   }
+  @HostListener('window:scroll', ['$event'])
+  onscroll(event: any) {
+   
+    var selectHeader = document.getElementById('header');
+    if (window.scrollY > 100) {
+      selectHeader?.classList.add('header-scrolled')
+    } else {
+      // selectHeader?.classList.remove('header-scrolled')
+    }
 
+  }
+
+  activeServiceDropDown:boolean=false
+  sidebarVisible:boolean=false
   constructor(
     public _router: Router,
     public toast: ToastrService,
@@ -59,7 +72,16 @@ export class NavbarComponent implements OnInit {
   public toggleNavBtn() {
     this.navBtnCollapse = !this.navBtnCollapse;
   }
+ 
+  activeDropDownForMobail(){
+    if(this.activeServiceDropDown){
+      this.activeServiceDropDown=false
 
+    }else{
+      this.activeServiceDropDown=true
+    }
+
+  }
 
   public logout() {
     this.auth.logout()
