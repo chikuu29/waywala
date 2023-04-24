@@ -5,49 +5,50 @@
 
 <!-- <article class="card"> -->
 <div class="main mt-5">
-    <div class="container m-auto">
-        <h1 class="text-center fs-2 fw-bold mb-3" style="color: #888;"> Create Case</h1>
-        <div class="card">
-            <form [formGroup]="fileuploadForm" enctype="multipart/form-data" class="w-100">
 
-                <div class="mb-3">
-                    <!-- <label for="formFile" class="form-label">Hear upload your file</label> -->
-                    <mat-form-field appearance="outline" class="flex-fill d-block">
+    <div class="section-title mb-4">
+        <h2> Create Case</h2>
+        <p>Better Solutions For Your Agriculture Farming Like Agricultural Medicine Provider And Sell,Buy Product</p>
+    </div>
 
-                        <textarea matInput placeholder="Tell Us What happened" formControlName="desc" rows="10"
-                            required></textarea>
-                        <!-- <input matInput placeholder="Tell Us What happened" formControlName="desc" type="text" required> -->
-                        <mat-error *ngIf="fileuploadForm.controls.desc.invalid">Please Enter only text</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="mb-3">
-                    <p-fileUpload name="uploadfile[]" [url]="uploadURL" (onUpload)="onUpload($event)" accept="image/*"
-                        [multiple]="multiple" [maxFileSize]="15000000" styleClass="text-center"
-                        [chooseStyleClass]="'d-block mb-2'" [uploadStyleClass]="'d-block'"
-                        [cancelStyleClass]="'d-block'">
-                        <ng-template pTemplate="content">
-                            <ul *ngIf="uploadedFiles.length">
-                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                            </ul>
-                        </ng-template>
-                    </p-fileUpload>
-                </div>
-                <div class="mb-3">
-                    <mat-card [hidden]="!isfileUploaded">
-                        <button pButton pRipple type="button" label="Create Case" class="me-3"
-                            (click)="createCase()"></button>
-                        <button pButton pRipple type="button" type="reset" label="Cancle" icon="pi pi-times"
-                            class="p-button-danger" (click)="cancle()"></button>
-                    </mat-card>
-                </div>
-            </form>
-            <span class="top"></span>
-            <span class="right"></span>
-            <span class="bottom"></span>
-            <span class="left"></span>
-        </div>
+    <div class="container p-3 m-auto ">
+        <form [formGroup]="fileuploadForm" enctype="multipart/form-data" class="create-case">
+
+            <div class="mb-3">
+                <!-- <label for="formFile" class="form-label">Hear upload your file</label> -->
+                <mat-form-field appearance="outline" class="flex-fill d-block">
+
+                    <textarea matInput placeholder="Tell Us What happened" formControlName="desc" rows="10"
+                        required></textarea>
+                    <!-- <input matInput placeholder="Tell Us What happened" formControlName="desc" type="text" required> -->
+                    <mat-error *ngIf="fileuploadForm.controls.desc.invalid">Please Enter only text</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="mb-3">
+                <p-fileUpload name="uploadfile[]" [url]="uploadURL" (onUpload)="onUpload($event)" accept="image/*"
+                    [multiple]="multiple" [maxFileSize]="15000000" styleClass="text-center"
+                    [chooseStyleClass]="'d-block mb-2'" [uploadStyleClass]="'d-block'" [cancelStyleClass]="'d-block'">
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                        </ul>
+                    </ng-template>
+                </p-fileUpload>
+            </div>
+            <div class="mb-3">
+                <mat-card [hidden]="!isfileUploaded">
+                    <button pButton pRipple type="button" label="Create Case" class="me-3"
+                        (click)="createCase()"></button>
+                    <button pButton pRipple type="button" type="reset" label="Cancle" icon="pi pi-times"
+                        class="p-button-danger" (click)="cancle()"></button>
+                </mat-card>
+            </div>
+        </form>
+       
 
     </div>
+
+
 </div>
 
 <!-- </article> -->
