@@ -71,9 +71,9 @@
       </ul>
 
       <span class="d-flex">
-        <i class="bi bi-cart4 mobile-nav-toggle me-2 " [matBadge]="myBagDataCount" matBadgeColor="warn"   [hidden]="navBtnCollapse"
+        <i class="bi bi-cart4 mobile-nav-toggle me-3 " routerLink="/store/my/bag" [matBadge]="myBagDataCount" matBadgeColor="warn"   [hidden]="navBtnCollapse"
           ></i>
-        <i class="bi  bi-person-check-fill mobile-nav-toggle me-2" *ngIf="isLogin" [hidden]="navBtnCollapse"
+        <i class="bi  bi-person-check-fill mobile-nav-toggle me-3" *ngIf="isLogin" [hidden]="navBtnCollapse"
           (click)="sidebarVisible=true"></i>
         <i class="bi  mobile-nav-toggle" (click)="toggleNavBtn()" [ngClass]="navBtnCollapse?'bi-x':'bi-list'"></i>
       </span>
