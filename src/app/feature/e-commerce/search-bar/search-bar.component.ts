@@ -87,7 +87,7 @@ export class SearchBarComponent implements OnInit {
         'category': 'Vegitable'
       }
     };
-    this.router.navigate(['e-commerce/search'], navigationExtras);
+    this.router.navigate(['store/search'], navigationExtras);
     
 
   }
@@ -101,7 +101,7 @@ export class SearchBarComponent implements OnInit {
       }
     };
  
-    this.router.navigate(['e-commerce/search'], navigationExtras);
+    this.router.navigate(['store/search'], navigationExtras);
   }
 
   public active() {
