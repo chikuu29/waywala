@@ -77,9 +77,8 @@
             </div>
           </ng-container>
           <ng-container *ngFor="let product of allProductList">
-            <div class="relative " routerLink="/store/product/{{product.product_Id}}">
-              <div
-                class="border border-[#DCDCDC] rounded-md md:rounded-xl cursor-pointer overflow-hidden transition-all duration-300 hover:border-transparent custom-shadow-on-hover">
+            <div class="relative product-container" routerLink="/store/product/{{product.product_Id}}">
+              <div class=" cursor-pointer overflow-hidden transition-all duration-300 ">
                 <div class="absolute -translate-y-1/2 z-10" style="left: -8px;z-index: 1;">
                   <div class="relative flex">
                     <div class="absolute bottom-0 left-0 translate-y-1/2">
@@ -102,8 +101,8 @@
                 </div>
                 <div class="overflow-clip rounded-md lg:rounded-xl flex flex-col justify-between relative flex-1">
                   <div class="relative flex items-center justify-center overflow-hidden rounded-t-lg flex-1 flex-col">
-                    <div class=" relative w-full aspect-square">
-                      <div class="w-full h-full bg-cover debasmita"
+                    <div class=" relative w-full aspect-square product-img-container ">
+                      <div class="w-full h-full bg-cover product-img " 
                         style="z-index: 0; background-image: url('{{imageURL+product.product_Images[0]}}');"></div>
                     </div>
                   </div>
