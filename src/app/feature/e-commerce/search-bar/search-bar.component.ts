@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import _ from 'lodash';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
@@ -11,6 +11,18 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class SearchBarComponent implements OnInit {
 
+  @HostListener('window:scroll', ['$event'])
+  onscroll(event: any) {
+   console.log('hi');
+   
+    var searchbar = document.getElementById('search-bar');
+    if (window.scrollY > 100) {
+      searchbar?.classList.add('search-scrolled')
+    } else {
+      searchbar?.classList.remove('search-scrolled')
+    }
+
+  }
   serchinputValue: any;
   constructor(
     private router: Router,
