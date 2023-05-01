@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { Product } from '../all-product-list/product';
 import { ProductService } from '../all-product-list/productservice';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-e-commerce',
@@ -19,9 +20,10 @@ export class ECommerceComponent implements OnInit {
 
   sortField: string;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private title:Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Store : Buying Product , Selling Your Product')
     this.productService.getProducts().then((data: any) => this.products = data);
     this.sortOptions = [
       { label: 'Price High to Low', value: '!price' },

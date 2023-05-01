@@ -4,6 +4,7 @@ import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
 import { AgricultureService } from '../services/agriculture.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-agriculture',
@@ -21,13 +22,14 @@ export class AgricultureComponent implements OnInit {
     private ngxService: NgxUiLoaderService,
     private _route: Router,
     private agriculture: AgricultureService,
-    private apiParameterScript: ApiParameterScript
+    private apiParameterScript: ApiParameterScript,
+    private title:Title,
 
   ) { }
 
 
   ngOnInit(): void {
-
+   this.title.setTitle('Agriculture')
     this.agriculture.loadertext.subscribe(res => {
       this.loadertext = res;
     })

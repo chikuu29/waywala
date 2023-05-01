@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule,Title,Meta  } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -34,7 +34,7 @@ import { SharedModule } from './shared/shared.module';
     ToastrModule.forRoot(),
    
   ],
-  providers: [AppService,NgbActiveModal],
+  providers: [AppService,NgbActiveModal,Title,Meta],
   bootstrap: [AppComponent],
 
 })

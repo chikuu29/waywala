@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
@@ -20,8 +21,9 @@ export class HomeComponent implements OnInit {
     phone_no:new FormControl('',[Validators.required]),
     message:new FormControl('',[Validators.required])
   })
-  constructor(private apiParameter: ApiParameterScript) { }
+  constructor(private apiParameter: ApiParameterScript, private title:Title,) { }
   ngOnInit(): void {
+    this.title.setTitle('Welcome to Waywala')
     this.sliders = [
       {
         "main_heading":"Agriculture",
