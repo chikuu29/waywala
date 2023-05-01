@@ -247,6 +247,13 @@ export class ProductDetailsPageComponent implements OnInit {
 
   }
 
+
+  shareOnWhatsApp() {
+
+    const url = `whatsapp://send?text=${this.product.product_Name} : ${this.appservices.baseURL}store/product/${this.product.product_Id}`;
+    window.open(url, '_blank', 'height=600,width=800');
+  }
+
 }
 
 

@@ -68,10 +68,14 @@
                 </div>
               </div>
               <div>
-                <button type="button" style="border: none; background: none">
+                <button type="button" style="border: none; background: none" mat-button [matMenuTriggerFor]="menu">
                   <i class="fa-solid fa-share fa-1x"></i>
                   <span class="font-semibold text-sm ps-2">Share</span>
                 </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="shareOnWhatsApp()"><i class="fa-brands fa-whatsapp text-success"></i> WhatsApp</button>
+                    <button mat-menu-item><i class="fa-solid fa-copy"></i> Copy</button>
+                  </mat-menu>
               </div>
             </div>
           </div>
@@ -82,8 +86,7 @@
                   <ng-container *ngFor="let item of product['product_Images']">
                     <div class="p-2 cursor-pointer side-img-hover mb-2" (click)="clickSideImage(imageURL + item)">
                       <!-- <div class=""> -->
-                        <img src="{{ imageURL + item }}" alt="" srcset="" width="80" height="80"
-                          class="img-fluid" />
+                      <img src="{{ imageURL + item }}" alt="" srcset="" width="80" height="80" class="img-fluid" />
                       <!-- </div> -->
                     </div>
                   </ng-container>
@@ -117,7 +120,7 @@
         <div>
           <div class="px-3">
             <div class="hidden md:block mb-3">
-              <div class="flex justify-between items-center">
+              <div class="d-flex justify-content-between items-center">
                 <div class="hidden md:block">
                   <div class="flex">
                     <div class="flex items-center cursor-pointer">
@@ -182,11 +185,17 @@
                   </div>
                 </div>
                 <div>
-                  <button type="button" id="radix-2" aria-haspopup="menu" data-state="closed"
+                  <!-- <a href="whatsapp://send?text=Check out this website: https://www.example.com" target="_blank">Share on WhatsApp</a> -->
+
+                  <button mat-button [matMenuTriggerFor]="menu" type="button"
                     style="border: none; background: none">
                     <i class="fa-solid fa-share fa-1x"></i>
                     <span class="font-semibold text-sm ps-2">Share</span>
                   </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="shareOnWhatsApp()"><i class="fa-brands fa-whatsapp text-success"></i> WhatsApp</button>
+                    <button mat-menu-item><i class="fa-solid fa-copy"></i> Copy</button>
+                  </mat-menu>
                 </div>
               </div>
             </div>
@@ -331,17 +340,9 @@
                       font-size: 16px;
                       color: #1b2124;
                       line-height: 20px;
-                    ">
-                    {{product.product_Description}}
-                    <!-- <li>
-                      PW Multipurpose Black Fabric Zipper Pouch with printed
-                      white PW Logo &amp; attachment loop.
-                    </li>
-                    <li>
-                      Trigonal Ball Pen is the perfect everyday pen with
-                      non-drying, long-lasting ink &amp; triangular barrel for
-                      better grip.
-                    </li> -->
+                    " [innerHTML]="product.product_Description">
+                    <!-- {{product.product_Description}} -->
+
                   </span>
                 </div>
               </div>
