@@ -83,10 +83,12 @@ export class ProductDetailsPageComponent implements OnInit {
           })
           // console.log(this.images);
           this.title.setTitle(this.product.product_Name || 'No Product found');
-          
+          this.meta.updateTag({ property: 'description', content: this.product.product_Name || '' });
           this.meta.updateTag({ property: 'og:image', content: this.activeImage });
           this.meta.updateTag({ property: 'og:title', content: this.product.product_Name || '' });
-          this.meta.updateTag({ property: 'og:description', content: this.product.product_Description || '' });
+          this.meta.updateTag({ property: 'og:description', content: this.product.product_Name || '' });
+          this.meta.updateTag({ property: 'og:image:alt', content: this.product.product_Name || '' });
+        
 
 
 
