@@ -49,7 +49,18 @@
                         class="p-button-raised p-button-text m-1" (click)="print(window)"></button>
                 </div>
             </div>
-            <div id="print-section" class="mt-5">
+            <div id="print-section" class="mt-5 p-4">
+                <div class="text-center mb-3">
+                    <a class="logo text-center" href="/home" style="font-weight: bold;">
+                        <div>
+                            <img src="assets/img/logo2.png" height="50" alt="" loading="lazy" class="rotate"
+                                style="margin-top: -1px;" />
+                        </div>
+                        <div>
+                            <span class="logo-text"> Waywala </span>
+                        </div>
+                    </a>
+                </div>
                 <div class="text-center">
                     <span class="d-block fs-5 fw-bold mb-2" style="font-family: Arial, Helvetica, sans-serif;">Report
                         For</span>
@@ -92,6 +103,7 @@
                                     <th scope="col">Category</th>
                                     <th scope="col">Against</th>
                                     <th scope="col">Image</th>
+                                    <th scope="col">Buying Link</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,14 +117,17 @@
                                         <td>
                                             <ng-container *ngIf="medicine.medicine_img.length>0">
                                                 <p-image [pTooltip]='"Click To View"'
-                                                    [src]="'https://admin.waywala.com/api/medicine/upload/'+medicine.medicine_img[0]"
-                                                    alt="Image" width="100" height="50" [preview]="false"
+                                                    [src]="imageURL+medicine.medicine_img[0]" alt="Image" width="100"
+                                                    height="50" [preview]="false"
                                                     (click)="viewimage(medicine.medicine_img)"></p-image>
                                             </ng-container>
                                             <ng-container *ngIf="medicine.medicine_img.length==0">
                                                 <span>No image available</span>
                                             </ng-container>
                                         </td>
+                                        <td><p-button label="Buy Now"
+                                                styleClass="p-button-raised p-button-text p-button-success"
+                                                (click)="navigateToBuyingpage(medicine.buyinglink)"></p-button></td>
                                     </tr>
                                 </ng-container>
                             </tbody>
@@ -125,11 +140,11 @@
                     </ng-container>
                     <ng-container *ngIf="!caseAllDeatails['caseResolution']">
                         <p>No Data Availble</p>
-                           
+
                     </ng-container>
-                   
+
                 </div>
-               
+
             </div>
         </div>
     </ng-container>

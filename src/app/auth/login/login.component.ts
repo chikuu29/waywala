@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { observable } from 'rxjs';
 import * as $ from "jquery";
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private HttpClient: HttpClient,
-    private activeRouter:ActivatedRoute
+    private activeRouter:ActivatedRoute,
+    private title: Title,
 
   ) { }
 
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit {
 
   password: any;
   ngOnInit(): void {
+    this.title.setTitle('Login To Waywala')
     this.redirectUrl=this.activeRouter.snapshot.queryParamMap.get('redirectUrl') || '/'
 
   }

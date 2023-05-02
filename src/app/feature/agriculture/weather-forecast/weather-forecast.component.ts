@@ -3,6 +3,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { WeatherForcastService } from '../services/weather-forcast.service';
+import { Title } from '@angular/platform-browser';
 moment.locale('yourlang', {
   calendar: {
     nextDay: function () {
@@ -52,9 +53,13 @@ export class WeatherForecastComponent implements OnInit {
   public isdayNight: boolean = moment().hours() >= 6 && moment().hours() <= 18;
   public skeleton_loader_active=true;
 
-  constructor(private weatherForcastService: WeatherForcastService) { }
+  constructor(
+    private weatherForcastService: WeatherForcastService,
+    private title: Title
+    ) { }
 
   ngOnInit(): void {
+    this.title.setTitle("WEATHER REPORT:-")
     // let hour = moment().hours();
     // this.isdayNight = moment().hours() >= 6 && moment().hours() <= 18
     this.WeatherData = {
@@ -79,6 +84,7 @@ export class WeatherForecastComponent implements OnInit {
           this.weatherForcastService.getaddressFormLogitudeAndLatiture(this.lng, this.lat).subscribe((res: any) => {
             console.log(res);
             if (res) {
+              this.title.setTitle("WEATHER REPORT : "+res.city)
               this.locationInfo['city'] = res.city;
               this.locationInfo['state'] = res.principalSubdivision;
               this.locationInfo['country'] = res.countryName;

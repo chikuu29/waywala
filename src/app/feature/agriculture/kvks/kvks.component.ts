@@ -4,6 +4,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import Swal from 'sweetalert2';
 import { kvks } from './kvks';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-kvks',
@@ -62,12 +63,15 @@ export class KvksComponent implements OnInit {
     console.log(this.screenWidth);
     
   }
-  constructor(private apiparameter:ApiParameterScript) { }
+  constructor(
+    private apiparameter:ApiParameterScript,
+    private title: Title,
+    ) { }
 
   ngOnInit(): void {
+    this.title.setTitle('Agriculture:-Address of Krishi Vigyan Kendra')
     this.screenWidth = window.innerWidth;
-    console.log(this.screenWidth);
-    
+    // console.log(this.screenWidth);
     this.countries = [
       { name: 'India' }
     ];
@@ -77,7 +81,7 @@ export class KvksComponent implements OnInit {
     })
    
     this.getKvks({"select":"*","projection":"","auth":true})
-    console.log(this.kvkdetailsForm.value);
+    // console.log(this.kvkdetailsForm.value);
     
   }
 
@@ -86,7 +90,7 @@ export class KvksComponent implements OnInit {
    
     this.blockUI.start('loading...')
     this.apiparameter.fetchdata('Kvks_Details',apiData).subscribe((res:any)=>{
-      console.log(res);
+      // console.log(res);
       this.serchloading=false;
       this.blockUI.stop()
       if(res.success){
@@ -101,7 +105,7 @@ export class KvksComponent implements OnInit {
   }
 
   public search(){
-    console.log(this.kvkdetailsForm);
+    // console.log(this.kvkdetailsForm);
     var district=this.kvkdetailsForm.value.district?.name;
     var state=this.kvkdetailsForm.value.state?.name;
     if(district!='' && state !=''){

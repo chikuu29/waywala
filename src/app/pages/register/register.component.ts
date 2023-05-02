@@ -8,6 +8,7 @@ import { NgxUiLoaderService ,NgxUiLoaderConfig} from 'ngx-ui-loader';
 import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { OtpComponent } from 'src/app/shared/otp/otp.component';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +32,8 @@ export class RegisterComponent implements OnInit {
     private registrationService: RegistrationService,
     private toastr: ToastrService,
     private loader: NgxUiLoaderService,
-    config: NgbModalConfig, private modalService: NgbModal
+    config: NgbModalConfig, private modalService: NgbModal,
+    private title: Title,
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -49,7 +51,7 @@ export class RegisterComponent implements OnInit {
   })
 
   ngOnInit(): void {
-
+    this.title.setTitle('Sign Up To Waywala')
     
   }
 

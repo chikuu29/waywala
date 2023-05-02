@@ -7,6 +7,7 @@ import { AgricultureService } from '../services/agriculture.service';
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import html2canvas from 'html2canvas';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-check-status',
   templateUrl: './check-status.component.html',
@@ -35,16 +36,21 @@ export class CheckStatusComponent implements OnInit {
   ];
   displayBasic: boolean = false;
   selectedImage:any[]=[]
+  imageURL: string = 'https://admin.waywala.com/api/medicine/upload/'
   constructor(
 
     private agricultureService: AgricultureService,
     private apiParameterScript: ApiParameterScript,
     private _rout: ActivatedRoute,
+    private AppService:AppService,
+    private title: Title,
 
-  ) { }
+  ) { } 
 
   ngOnInit(): void {
 
+    this.title.setTitle("Agriculture Case :- CHECK YOUR CASE STATUS")
+    this.imageURL = this.AppService.getAdminApiPath() + "medicine/upload/";
     this.window = window
     this._rout.params.subscribe((res:any)=>{
       if(res.caseID){
@@ -149,14 +155,11 @@ export class CheckStatusComponent implements OnInit {
     doc.print()
     document.body.innerHTML = originalContents;
     location.reload()
-
-
-
   }
 
   dowonload(case_id:any){
-    let DATA: any = document.getElementById('print-section');
     
+    let DATA: any = document.getElementById('print-section');
     html2canvas(DATA).then((canvas) => {
       let fileWidth = 209;
       let fileHeight = (canvas.height * fileWidth) / canvas.width;
@@ -166,6 +169,19 @@ export class CheckStatusComponent implements OnInit {
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
       PDF.save(case_id+'.pdf');
     });
+  }
+
+
+ public navigateToBuyingpage(url:any){
+
+  if(url && url !=''){
+   
+    window.open(url, '_blank');
+
+    
+    
+  }
+
   }
 
 
