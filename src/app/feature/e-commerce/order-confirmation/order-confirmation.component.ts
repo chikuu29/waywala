@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
 import { PaymentGetwayService } from '../services/payment-getway.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -11,7 +12,7 @@ import { PaymentGetwayService } from '../services/payment-getway.service';
 })
 export class OrderConfirmationComponent implements OnInit {
 
-  skelton_Loader_active=true;
+  skelton_Loader_active = true;
   productconfirmationDATA: any =
     {
       "order_Type": "",
@@ -34,6 +35,7 @@ export class OrderConfirmationComponent implements OnInit {
     private payment_getway: PaymentGetwayService,
     private ApiParameterScript: ApiParameterScript,
     private appservices: AppService,
+    private title:Title
   ) {
     this.imageURL = this.appservices.getAdminApiPath() + "/shop/images/";
   }
@@ -42,19 +44,21 @@ export class OrderConfirmationComponent implements OnInit {
 
     this._rout.params.subscribe((res: any) => {
       console.log(res.orderID);
+      this.title.setTitle(`${res.orderID}`)
 
-      this.payment_getway.orderStatus(res.orderID).subscribe((res: any) => {
-        this.skelton_Loader_active=false
+      this.payment_getway.orderStatus(res.orderID).subscribe((response: any) => {
+        this.skelton_Loader_active = false
 
-        res.order_items.map((data: any) => {
+        response.order_items.map((data: any) => {
           data['product_Images'] = data.product_Images.split(',');
         })
-        res.order_shipping_billing_address_details = JSON.parse(res.order_shipping_billing_address_details)
+        response.order_shipping_billing_address_details = JSON.parse(response.order_shipping_billing_address_details)
 
-        const mergedObject = { ...this.productconfirmationDATA, ...res };
+        const mergedObject = { ...this.productconfirmationDATA, ...response };
 
         this.productconfirmationDATA = mergedObject;
-        console.log(mergedObject);
+        // console.log(mergedObject);
+        this.title.setTitle(`${res.orderID} : ${this.productconfirmationDATA.order_status}`)
 
 
 

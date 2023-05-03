@@ -39,7 +39,7 @@ export class AddToCartComponent implements OnInit {
   });
 
   order_payment_mode: string = 'COD';
-  order_shipping_billing_address_details: any ={}
+  order_shipping_billing_address_details: any = {}
 
   constructor(
     private ApiParameterScript: ApiParameterScript,
@@ -56,14 +56,15 @@ export class AddToCartComponent implements OnInit {
     this.imageURL = this.AppService.getAdminApiPath() + "/shop/images/";
     if (this.AppService.authStatus) {
 
-      this.ApiParameterScript.fetchDataFormQuery(`SELECT *  FROM user_address WHERE user_ID='${this.AppService.authStatus.email}'`).subscribe((res:any)=>{
-        if(res.success && res['data'].length>0){
+      this.ApiParameterScript.fetchDataFormQuery(`SELECT *  FROM user_address WHERE user_ID='${this.AppService.authStatus.email}'`).subscribe((res: any) => {
+        if (res.success && res['data'].length > 0) {
           //  console.log("hi",res);
-           this.order_shipping_billing_address_details=JSON.parse(res['data'][0]['address_INFO'])
-           
-        }else{
+          this.order_shipping_billing_address_details = JSON.parse(res['data'][0]['address_INFO'])
+
+
+        } else {
           // console.log("no Address Found");
-          this.firstFormGroup.setValue({isAddressAvailble:'no'})
+          this.firstFormGroup.setValue({ isAddressAvailble: 'no' })
         }
       })
       var myKart: any = window.localStorage.getItem('myKartData') != null ? JSON.parse(window.localStorage.getItem('myKartData') as any) : [];
@@ -247,54 +248,58 @@ export class AddToCartComponent implements OnInit {
 
   confirm_order() {
 
-    if(this.firstFormGroup.value.isAddressAvailble=='yes'){
-    this.blockUI.start("Please Wait")
-    var orderDetails = {
-      "order_shipping_billing_address_details": this.order_shipping_billing_address_details,
-      "order_details": this.allKartItem,
-      "order_id": this.generateOrderID(),
-      "order_created_time": moment().format('DD MMM YYYY, hh:mm A'),
-      "customer_details": {
-        "customer_id": "not_availble",
-        "customer_name": this.order_shipping_billing_address_details.name,
-        "customer_email": `${this.AppService.authStatus.email}`,
-        "customer_phone": this.order_shipping_billing_address_details.original_phone
-      },
-      "order_amount": _.sumBy(this.allKartItem, (product) => product.product_Selling_Price * product.product_CART_QUANTITY) + this.totalShippingPrice,
-      "order_currency": "INR",
-      "order_payment_mode": this.order_payment_mode,
-      "order_note": "",
-      "order_meta": {
-        "notify_url": "https://test.cashfree.com/pgappsdemos/return.php",
-        "return_url": `${this.AppService.baseURL}store/order/confirmation/status/{order_id}`,
-        "payment_methods": "cc,dc,upi"
-      }
-    }
-    console.log("orderDetails", orderDetails);
-    this.payment_getway.createOrder(orderDetails, this.order_payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
-      this.blockUI.stop();
-      console.log(res);
-      // var paymentSessionId = res.payment_session_id;
-      if (res.success) {
-        var apiData = {
-          "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'`,
-        }
-        this.ApiParameterScript.deletedata("e_commerce_product_kart", apiData, false).subscribe((res: any) => {
-        })
-        if (res.order_Payment_Method == 'ONLINE_GETWAY') {
-          this.startCapturingPayment(res.payment_session_id);
-        } else {
-          // console.log("This IS a COD ORDER");
-          document.location.href = `${this.AppService.baseURL}store/order/confirmation/status/${res.order_id}`
-        }
-      } else {
-        alert("SOMETHIGS WENT WRONG")
-      }
+    // console.log(this.order_shipping_billing_address_details);
+    
 
-    })
-  }else{
-    Swal.fire('Please Select Your Address','','warning')
-  }
+      if (this.firstFormGroup.value.isAddressAvailble == 'yes') {
+        this.blockUI.start("Please Wait")
+        var orderDetails = {
+          "order_shipping_billing_address_details": this.order_shipping_billing_address_details,
+          "order_details": this.allKartItem,
+          "order_id": this.generateOrderID(),
+          "order_created_time": moment().format('DD MMM YYYY, hh:mm A'),
+          "customer_details": {
+            "customer_id": "not_availble",
+            "customer_name": this.order_shipping_billing_address_details.name,
+            "customer_email": `${this.AppService.authStatus.email}`,
+            "customer_phone": this.order_shipping_billing_address_details.original_phone
+          },
+          "order_amount": _.sumBy(this.allKartItem, (product) => product.product_Selling_Price * product.product_CART_QUANTITY) + this.totalShippingPrice,
+          "order_currency": "INR",
+          "order_payment_mode": this.order_payment_mode,
+          "order_note": "",
+          "order_meta": {
+            "notify_url": "https://test.cashfree.com/pgappsdemos/return.php",
+            "return_url": `${this.AppService.baseURL}store/order/confirmation/status/{order_id}`,
+            "payment_methods": "cc,dc,upi"
+          }
+        }
+        console.log("orderDetails", orderDetails);
+        this.payment_getway.createOrder(orderDetails, this.order_payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
+          this.blockUI.stop();
+          console.log(res);
+          // var paymentSessionId = res.payment_session_id;
+          if (res.success) {
+            var apiData = {
+              "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'`,
+            }
+            this.ApiParameterScript.deletedata("e_commerce_product_kart", apiData, false).subscribe((res: any) => {
+            })
+            if (res.order_Payment_Method == 'ONLINE_GETWAY') {
+              this.startCapturingPayment(res.payment_session_id);
+            } else {
+              // console.log("This IS a COD ORDER");
+              document.location.href = `${this.AppService.baseURL}store/order/confirmation/status/${res.order_id}`
+            }
+          } else {
+            alert("SOMETHIGS WENT WRONG")
+          }
+
+        })
+      } else {
+        Swal.fire('Please Select Your Address', '', 'warning')
+      }
+   
 
 
 
@@ -321,14 +326,14 @@ export class AddToCartComponent implements OnInit {
     modalRef.result.then((modalInstance: any) => {
       if (modalInstance.success) {
 
-        this.firstFormGroup.setValue({isAddressAvailble:'yes'})
-        this.order_shipping_billing_address_details=JSON.parse(modalInstance.address.address_INFO)
+        this.firstFormGroup.setValue({ isAddressAvailble: 'yes' })
+        this.order_shipping_billing_address_details = JSON.parse(modalInstance.address.address_INFO)
         console.log(modalInstance);
 
 
       }
     }, (reason: any) => {
-      this.firstFormGroup.setValue({isAddressAvailble:'no'})
+      this.firstFormGroup.setValue({ isAddressAvailble: 'no' })
       console.log(reason);
 
     })

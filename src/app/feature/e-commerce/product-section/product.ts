@@ -12,6 +12,8 @@ export interface Product {
     product_AVG_Rating?:number;
     product_Total_Rating?:number;
     product_Seller_ID?:string;
+    product_Has_Own_Delivery?:string;
+    product_Shipped_Pincode?:string
 }
 
 // {
