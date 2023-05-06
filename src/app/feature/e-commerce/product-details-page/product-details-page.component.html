@@ -104,10 +104,10 @@
               <div style="z-index: 999999999999"
                 class="fixed bottom-0 lg:static left-0 right-0 px-3 lg:px-0 py-4 bg-white lg:pt-6 lg:pb-0 lg:py-0 z-20 shadow-top md:shadow-none rounded-t-lg md:rounded-none">
                 <div class="grid grid-cols-2 gap-2 justify-content-center" >
-                  <button [disabled]="requested_pincode != product.product_Shipped_Pincode" mat-stroked-button color="primary" class="p-1" (click)="addToBag(product)">
+                  <button [disabled]="requested_pincode != product.product_Shipped_Pincode && product.product_Category == 'Vegetable' " mat-stroked-button color="primary" class="p-1" (click)="addToBag(product)">
                     <i class="fa-solid fa-bag-shopping pe-3"></i>Add To Bag
                   </button>
-                  <button [disabled]="requested_pincode != product.product_Shipped_Pincode" mat-raised-button color="primary" class="p-1" (click)="buy(product)">
+                  <button [disabled]="requested_pincode != product.product_Shipped_Pincode && product.product_Category == 'Vegetable'" mat-raised-button color="primary" class="p-1" (click)="buy(product)">
                     Buy Now
                   </button>
                 </div>
@@ -304,8 +304,8 @@
                   </div>
                 </div>
               </div>
-              <span class="mt-3 D-COD text-success" *ngIf="requested_pincode == product.product_Shipped_Pincode">IN STOCK FOR THIS PINCODE</span>
-              <span class="mt-3 D-COD text-danger" *ngIf="requested_pincode !=product.product_Shipped_Pincode" > OUT OF STOCK FOR THIS PINCODE</span>
+              <span class="mt-3 D-COD text-success" *ngIf="requested_pincode == product.product_Shipped_Pincode && product.product_Category == 'Vegetable'">IN STOCK FOR THIS PINCODE</span>
+              <span class="mt-3 D-COD text-danger" *ngIf="requested_pincode !=product.product_Shipped_Pincode && product.product_Category == 'Vegetable'" > OUT OF STOCK FOR THIS PINCODE</span>
             </div>
             <div>
               <div style="display: flex; flex-direction: column; gap: 32px">
