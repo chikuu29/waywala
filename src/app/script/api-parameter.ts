@@ -132,8 +132,8 @@ export class ApiParameterScript {
     /**
     * {
         "data":"case_status='accepted'",
-        "auth":true,
-        "multiInsert":boolean,
+        "auth":true,//For NOT Login User
+    
         "keyName":"["product_ID","product_QUANTITY","product_CART_BY_Email","product_CART_Status","product_CART_CREATED_TIME"],
         "multiData":'[{product_ID:"Test",product_QUANTITY:'Surya',product_CART_BY_Email:'BBSR'}]'
       }

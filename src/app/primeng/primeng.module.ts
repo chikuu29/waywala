@@ -19,6 +19,7 @@ import {DataViewModule} from 'primeng/dataview';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { AccordionModule } from 'primeng/accordion';
 import { SidebarModule } from 'primeng/sidebar';
+import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [],
   imports: [
@@ -41,7 +42,8 @@ import { SidebarModule } from 'primeng/sidebar';
     DataViewModule,
     ConfirmDialogModule,
     AccordionModule,
-    SidebarModule
+    SidebarModule,
+    MultiSelectModule
    
   ],
   exports:[
@@ -63,7 +65,8 @@ import { SidebarModule } from 'primeng/sidebar';
     DataViewModule,
     ConfirmDialogModule,
     AccordionModule,
-    SidebarModule
+    SidebarModule,
+    MultiSelectModule
   ]
 })
 export class PrimengModule { }
