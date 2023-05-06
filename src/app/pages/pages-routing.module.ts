@@ -6,6 +6,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { SellOnWaywalaComponent } from './sell-on-waywala/sell-on-waywala.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: "about",
     component: AboutComponent
+  },
+  {
+    path: "sell-on-waywala",
+    component: SellOnWaywalaComponent
   }
 ];
 

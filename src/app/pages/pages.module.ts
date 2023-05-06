@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { ECommerceModule } from '../feature/e-commerce/e-commerce.module';
 import { AgricultureModule } from '../feature/agriculture/agriculture.module';
 import { SharedModule } from '../shared/shared.module';
+import { SellOnWaywalaComponent } from './sell-on-waywala/sell-on-waywala.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { SharedModule } from '../shared/shared.module';
     RegisterComponent,
     ProfileComponent,
     AboutComponent,
-    HomeComponent
+    HomeComponent,
+    SellOnWaywalaComponent
   ],
   imports: [
     CommonModule,
