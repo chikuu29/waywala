@@ -24,7 +24,7 @@
             </div>
             <div class="m-1">
 
-                <p-dropdown [style]="{'width':'100%'}" [options]="state" optionLabel="name" [filter]="false" filterBy="name" [showClear]="false"
+                <p-dropdown (ngModelChange)="autoselectdistrict(kvkdetailsForm.value.state?.name)" [style]="{'width':'100%'}" [options]="state" optionLabel="name" [filter]="true" filterBy="name" [showClear]="false"
                     placeholder="State" formControlName="state">
                     <ng-template pTemplate="selectedItem">
                         <div class="country-item country-item-value">

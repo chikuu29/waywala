@@ -5,6 +5,8 @@ import { ApiParameterScript } from 'src/app/script/api-parameter';
 import Swal from 'sweetalert2';
 import { kvks } from './kvks';
 import { Title } from '@angular/platform-browser';
+import { AppService } from 'src/app/services/app.service';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-kvks',
@@ -64,6 +66,7 @@ export class KvksComponent implements OnInit {
     
   }
   constructor(
+    private appservices:AppService,
     private apiparameter:ApiParameterScript,
     private title: Title,
     ) { }
@@ -75,7 +78,9 @@ export class KvksComponent implements OnInit {
     this.countries = [
       { name: 'India' }
     ];
-    this.state=[{name:'odisha'}]
+    // this.state=[{name:'odisha'}]
+
+    this.state = _.map(this.appservices.country_state_district, state => ({ name: state.state }))
     this.allDistricts.forEach(district=>{
       this.district.push({name:district})
     })
@@ -124,6 +129,17 @@ export class KvksComponent implements OnInit {
    
 
     
+  }
+
+
+  public autoselectdistrict(state: any) {
+    if (state && state != null) {
+      var temp = _.find(this.appservices.country_state_district, { 'state': state.name ? state.name : state })
+      this.district = _.map(temp['districts'], district => ({ 'name': district }))
+      console.log("district", this.district);
+    } else {
+      this.district = []
+    }
   }
 
 }
