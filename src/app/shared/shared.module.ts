@@ -13,6 +13,7 @@ import { NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 import { CoustomAlertMaterialUiComponent } from './coustom-alert-material-ui/coustom-alert-material-ui.component';
 import { AddressManagementComponent } from './address-management/address-management.component';
+import { MyCoinZoneComponent } from './my-coin-zone/my-coin-zone.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -21,7 +22,8 @@ import { AddressManagementComponent } from './address-management/address-managem
     CaseReviewComponent,
     NoDataAvailableComponent,
     CoustomAlertMaterialUiComponent,
-    AddressManagementComponent
+    AddressManagementComponent,
+    MyCoinZoneComponent
   ],
   imports: [
     CommonModule,

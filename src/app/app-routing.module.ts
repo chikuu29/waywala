@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
+import { MyCoinZoneComponent } from './shared/my-coin-zone/my-coin-zone.component';
+import { AuthenticationGuard } from './auth/authentication.guard';
 const routes: Routes = [
   {
     path: '',
@@ -29,6 +31,11 @@ const routes: Routes = [
     path:"store",
     loadChildren:()=>import ('./feature/e-commerce/e-commerce.module').then(m=>m.ECommerceModule)
 
+  },
+  {
+    path:'mycoin',
+    canActivate:[AuthenticationGuard],
+    component:MyCoinZoneComponent
   },
   {
     path: "**",
