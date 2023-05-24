@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   }
   @HostListener('window:scroll', ['$event'])
   onscroll(event: any) {
-   
+
     var selectHeader = document.getElementById('header');
     if (window.scrollY > 100) {
       selectHeader?.classList.add('header-scrolled')
@@ -36,8 +36,8 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  activeServiceDropDown:boolean=false
-  sidebarVisible:boolean=false
+  activeServiceDropDown: boolean = false
+  sidebarVisible: boolean = false
   constructor(
     public _router: Router,
     public toast: ToastrService,
@@ -69,16 +69,25 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  onclickHideNav() {
+    if (this.navBtnCollapse) {
+      this.navBtnCollapse = !this.navBtnCollapse
+    }
+
+    var navbar = document.getElementById('navbar');
+    navbar?.classList.remove('navbar-mobile');
+  }
+
   public toggleNavBtn() {
     this.navBtnCollapse = !this.navBtnCollapse;
   }
- 
-  activeDropDownForMobail(){
-    if(this.activeServiceDropDown){
-      this.activeServiceDropDown=false
 
-    }else{
-      this.activeServiceDropDown=true
+  activeDropDownForMobail() {
+    if (this.activeServiceDropDown) {
+      this.activeServiceDropDown = false
+
+    } else {
+      this.activeServiceDropDown = true
     }
 
   }
