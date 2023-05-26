@@ -1,6 +1,3 @@
-
-
-
 <div class="coustom-margin"></div>
 <!-- <article class="card"> -->
 <div class="main">
@@ -36,10 +33,8 @@
             </div>
             <div class="mb-3">
                 <mat-card [hidden]="!isfileUploaded">
-                    <button pButton pRipple type="button" label="Create Case" class="me-3"
-                        (click)="createCase()"></button>
-                    <button pButton pRipple type="button" type="reset" label="Cancle" icon="pi pi-times"
-                        class="p-button-danger" (click)="cancle()"></button>
+                    <p-button label="Create Case" class="me-3" icon="pi pi-check" (click)="createCase()"></p-button>
+                    <p-button label="Cancle" type="reset" icon="pi pi-times" class="me-3"  styleClass="p-button-danger" (click)="cancle()"></p-button>
                 </mat-card>
             </div>
         </form>

@@ -18,6 +18,8 @@ import { ECommerceModule } from '../feature/e-commerce/e-commerce.module';
 import { AgricultureModule } from '../feature/agriculture/agriculture.module';
 import { SharedModule } from '../shared/shared.module';
 import { SellOnWaywalaComponent } from './sell-on-waywala/sell-on-waywala.component';
+import { BecomeAgricultueInvestigratorComponent } from './become-agricultue-investigrator/become-agricultue-investigrator.component';
+import { BecomeEducationTeacherComponent } from './become-education-teacher/become-education-teacher.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { SellOnWaywalaComponent } from './sell-on-waywala/sell-on-waywala.compon
     ProfileComponent,
     AboutComponent,
     HomeComponent,
-    SellOnWaywalaComponent
+    SellOnWaywalaComponent,
+    BecomeAgricultueInvestigratorComponent,
+    BecomeEducationTeacherComponent
   ],
   imports: [
     CommonModule,

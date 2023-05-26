@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { SellOnWaywalaComponent } from './sell-on-waywala/sell-on-waywala.component';
+import { BecomeAgricultueInvestigratorComponent } from './become-agricultue-investigrator/become-agricultue-investigrator.component';
+import { BecomeEducationTeacherComponent } from './become-education-teacher/become-education-teacher.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,15 @@ const routes: Routes = [
   {
     path: "sell-on-waywala",
     component: SellOnWaywalaComponent
+  },
+
+  {
+    path: "become-agriculture-investigator",
+    component: BecomeAgricultueInvestigratorComponent
+  }
+  ,{
+    path: "become-education-teacher",
+    component: BecomeEducationTeacherComponent
   }
 ];
 
