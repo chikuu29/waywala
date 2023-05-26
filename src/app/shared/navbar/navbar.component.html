@@ -15,7 +15,7 @@
     <nav id="navbar" class="navbar " [ngClass]="navBtnCollapse?'navbar-mobile':''">
       <ul>
         <li><a class="nav-link scrollto active" routerLink="/" (click)="onclickHideNav();" >Home</a></li>
-        <li ><a class="nav-link " routerLinkActive="activenavitem" routerLink="/store"> <i class="bi bi-shop me-2 fs-5"></i>Store </a></li>
+        <li ><a class="nav-link " routerLinkActive="activenavitem" routerLink="/store" (click)="onclickHideNav();"> <i class="bi bi-shop me-2 fs-5"></i>Store </a></li>
 
         <li class="dropdown" (click)="activeDropDownForMobail()">
           <a class="nav-link scrollto">

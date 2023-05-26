@@ -8,6 +8,7 @@ import { MarketPlaceGraphComponent } from './market-place/market-place-graph/mar
 import { MarketPlaceComponent } from './market-place/market-place.component';
 import { MycaseComponent } from './mycase/mycase.component';
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
+import { GenerateQueryComponent } from './generate-query/generate-query.component';
 
 const routes: Routes = [
   { 
@@ -46,6 +47,12 @@ const routes: Routes = [
   {
     path:'market-graph/:id',
     component:MarketPlaceGraphComponent
+
+  },
+  {
+    path:'create/case',
+    canActivate:[AuthenticationGuard],
+    component:GenerateQueryComponent
 
   }
 ];
