@@ -36,4 +36,13 @@ export class CoinService {
   }
 
 
+  public availFreeCoin(){
+    var apiData={
+      "mailid":this.appservices.authStatus?this.appservices.authStatus.email:''
+      
+    }
+    return this.http.post(`${this.appservices.getApipath()}/secure/coin/coinapi.php`,apiData,{headers:this.headers})
+  }
+
+
 }

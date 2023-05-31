@@ -5,6 +5,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { AppService } from 'src/app/services/app.service';
 import { CoinService } from 'src/app/services/coin.service';
 import { OtpComponent } from '../otp/otp.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-my-coin-zone',
@@ -17,7 +18,8 @@ export class MyCoinZoneComponent implements OnInit {
   authStatus: any;
   coinAccountInfo: any = {
     "isCoinAccountActive": false,
-    "account_Deatais": {}
+    "account_Deatais": {},
+    "account_Trasaction": []
 
   };
   constructor(
@@ -42,7 +44,7 @@ export class MyCoinZoneComponent implements OnInit {
         modalRef.componentInstance.modalTitle = res.name;
         modalRef.componentInstance.otpForCoin = true;
         modalRef.componentInstance.OtpType = "Email",
-          modalRef.componentInstance.otpSendTo = res.email
+        modalRef.componentInstance.otpSendTo = res.email
         modalRef.result.then((modalInstance: any) => {
 
           console.log("log");
@@ -83,6 +85,23 @@ export class MyCoinZoneComponent implements OnInit {
 
     })
 
+  }
+
+  freecoin() {
+    this.coinSevices.availFreeCoin().subscribe((res: any) => {
+      console.log(res);
+      if (res.success) {
+
+        Swal.fire('Congratulations', res.message, 'success').then(() => {
+          this.ngOnInit();
+        })
+
+      } else {
+        Swal.fire('', res.message, 'info')
+      }
+
+
+    })
   }
 
 }
