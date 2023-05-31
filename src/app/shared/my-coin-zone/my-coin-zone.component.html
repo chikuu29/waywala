@@ -23,49 +23,61 @@
                 <mat-card-subtitle class="text-muted text-danger mt-2">Use Coin</mat-card-subtitle>
             </mat-card>
         </div>
-        <div class="alert alert-success mt-5" role="alert">
-            Hi You Want To Get  Free Coin For "First Time Active Coin Account"
-            <button (click)="freecoin()" mat-stroked-button color="accent" class="fa-fade">Just Click Me <i class="fa-solid fa-gift pb-1 ms-2"></i></button>
-          </div>
+        <ng-container *ngIf="coinAccountInfo.trasaction_History_FREE_COIN.length==0">
+            <div class="alert alert-success mt-5" role="alert">
+                Hi You Want To Get Free Coin For "First Time Active Coin Account"
+                <button (click)="freecoin()" mat-stroked-button color="accent" class="fa-fade">Just Click Me <i
+                        class="fa-solid fa-gift pb-1 ms-2"></i></button>
+            </div>
+        </ng-container>
         <div>
             <section>
                 <h2 class="text-muted">Transactions history</h2>
-                <ng-container >
-
-                </ng-container>
-                <details>
-                    <summary>
+                <ng-container *ngFor="let transaction of coinAccountInfo.trasaction_History">
+                    <details>
+                        <summary>
+                            <div>
+                                <ng-container *ngIf="transaction.trasactiontype=='DEBITED'">
+                                    <span style="background-color: #f3e1e1;">
+                                        <img src="assets/img/money-debit.png" width="50" height="50" alt="" srcset="">
+                                    </span>
+                                </ng-container>
+                                <ng-container *ngIf="transaction.trasactiontype=='CREDITED'">
+                                    <span style="background-color: #e0ece4;">
+                                        <img src="assets/img/money-credit.png" width="50" height="50" alt="" srcset="">
+                                    </span>
+                                </ng-container>
+                                <h3>
+                                    <strong>{{transaction.trasactionreason}}</strong>
+                                    <small>{{transaction.trasaction_description}}</small>
+                                </h3>
+                                <span [ngClass]="transaction.trasactiontype=='DEBITED'?'text-danger':'text-success'"><ng-container *ngIf="transaction.trasactiontype=='DEBITED'">-</ng-container>
+                                    {{transaction.trasaction_amount | currency:'INR'}} <i class="fa-solid fa-coins"
+                                        style="color: #ffd700;"></i></span>
+                            </div>
+                        </summary>
                         <div>
-                            <span style="background-color: #f3e1e1;">
-                                <img src="assets/img/money-debit.png" width="50" height="50" alt="" srcset="">
-                            </span>
-                            <h3>
-                                <strong>American Eagle</strong>
-                                <small>Clothes & Fashion</small>
-                            </h3>
-                            <span >{{-39.99}} <i class="fa-solid fa-coins" style="color: #ffd700;"></i></span>
+                            <dl>
+                                <div>
+                                    <dt>Time</dt>
+                                    <dd>4.27pm</dd>
+                                </div>
+
+                                <div>
+                                    <dt>Card used</dt>
+                                    <dd>•••• 6890</dd>
+                                </div>
+
+                                <div>
+                                    <dt>Reference ID</dt>
+                                    <dd>3125-568911</dd>
+                                </div>
+                            </dl>
                         </div>
-                    </summary>
-                    <div>
-                        <dl>
-                            <div>
-                                <dt>Time</dt>
-                                <dd>4.27pm</dd>
-                            </div>
+                    </details>
+                </ng-container>
 
-                            <div>
-                                <dt>Card used</dt>
-                                <dd>•••• 6890</dd>
-                            </div>
-
-                            <div>
-                                <dt>Reference ID</dt>
-                                <dd>3125-568911</dd>
-                            </div>
-                        </dl>
-                    </div>
-                </details>
-                <details>
+                <!-- <details>
                     <summary>
                         <div>
                             <span style="background-color: #e0ece4;">
@@ -91,7 +103,7 @@
                             </div>
                         </dl>
                     </div>
-                </details>
+                </details> -->
             </section>
         </div>
 

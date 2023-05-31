@@ -45,4 +45,12 @@ export class CoinService {
   }
 
 
+  public getTrasactionHistory(){
+    var apiData={
+      "mailid":this.appservices.authStatus?this.appservices.authStatus.email:''
+    }
+    return this.http.get(`${this.appservices.getApipath()}/secure/coin/coinapi.php`)
+  }
+
+
 }

@@ -19,7 +19,8 @@ export class MyCoinZoneComponent implements OnInit {
   coinAccountInfo: any = {
     "isCoinAccountActive": false,
     "account_Deatais": {},
-    "account_Trasaction": []
+    "account_Trasaction": [],
+    "trasaction_History_FREE_COIN":[]
 
   };
   constructor(
@@ -55,7 +56,9 @@ export class MyCoinZoneComponent implements OnInit {
       } else {
         this.coinAccountInfo = {
           "isCoinAccountActive": res.isCoinAccountActive,
-          "account_Deatais": res['account']
+          "account_Deatais": res['account'],
+          "trasaction_History":res['trasaction_History'],
+          "trasaction_History_FREE_COIN":res['trasaction_History_FREE_COIN']
         }
 
       }
@@ -84,6 +87,8 @@ export class MyCoinZoneComponent implements OnInit {
 
 
     })
+
+    
 
   }
 
