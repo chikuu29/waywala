@@ -50,6 +50,7 @@
                                 <h3>
                                     <strong>{{transaction.trasactionreason}}</strong>
                                     <small>{{transaction.trasaction_description}}</small>
+                                    <small [ngClass]="transaction.trasactiontype=='DEBITED'?'text-danger':'text-success'">{{transaction.trasactiontype}}</small>
                                 </h3>
                                 <span [ngClass]="transaction.trasactiontype=='DEBITED'?'text-danger':'text-success'"><ng-container *ngIf="transaction.trasactiontype=='DEBITED'">-</ng-container>
                                     {{transaction.trasaction_amount | currency:'INR'}} <i class="fa-solid fa-coins"
@@ -60,7 +61,7 @@
                             <dl>
                                 <div>
                                     <dt>Time</dt>
-                                    <dd>4.27pm</dd>
+                                    <dd>{{transaction.trasactiondate}}</dd>
                                 </div>
 
                                 <div>
