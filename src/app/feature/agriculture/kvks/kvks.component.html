@@ -2,7 +2,7 @@
 <div class="container mt-4">
 
     <h1 class="text-center header-text"><i class="fa-solid fa-location-dot fa-fade text-danger me-2"></i> <span>Address of Krushi Vigyan Kendra's</span> </h1>
-    <p class="text-center fs-5">କୃଷି ବିଦ୍ୟା କେନ୍ଦ୍ରର ଠିକଣା</p>
+    <p class="text-center fs-5">କୃଷି ବିଜ୍ଞାନ କେନ୍ଦ୍ରର ଠିକଣା</p>
     <p class="text-center fs-5">कृषि विज्ञान केंद्र का पता</p>
 
     <div class="">
@@ -63,7 +63,7 @@
         </form>
     </div>
 </div>
-<div class="container">
+<div class="container-xl">
     <ng-container *ngIf="totalKvksDetails.length>0">
         <p-table #dt [value]="totalKvksDetails" [rows]="10" [paginator]="false" responsiveLayout="scroll"
             scrollHeight="500px" [globalFilterFields]="['kvks_name','district']" [rowHover]="true" dataKey="id"
@@ -133,3 +133,5 @@
     </ng-container>
 
 </div>
+
+<app-footer></app-footer>
