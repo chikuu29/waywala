@@ -67,7 +67,8 @@
             "e_commerce_product_kart",
             "user_address",
             "search_history",
-            "becomesellercontactform"
+            "becomesellercontactform",
+            "become_agricultural_reviewer_request"
             
          ],
          "authorizationDBAcessForUpdate": [
