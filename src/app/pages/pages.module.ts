@@ -20,6 +20,9 @@ import { SharedModule } from '../shared/shared.module';
 import { SellOnWaywalaComponent } from './sell-on-waywala/sell-on-waywala.component';
 import { BecomeAgricultueInvestigratorComponent } from './become-agricultue-investigrator/become-agricultue-investigrator.component';
 import { BecomeEducationTeacherComponent } from './become-education-teacher/become-education-teacher.component';
+import { TermsofserviceComponent } from './termsofservice/termsofservice.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { RefundPolicyComponent } from './refund-policy/refund-policy.component';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { BecomeEducationTeacherComponent } from './become-education-teacher/beco
     HomeComponent,
     SellOnWaywalaComponent,
     BecomeAgricultueInvestigratorComponent,
-    BecomeEducationTeacherComponent
+    BecomeEducationTeacherComponent,
+    TermsofserviceComponent,
+    PrivacyPolicyComponent,
+    RefundPolicyComponent
   ],
   imports: [
     CommonModule,

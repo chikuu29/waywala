@@ -9,6 +9,9 @@ import { RegisterComponent } from './register/register.component';
 import { SellOnWaywalaComponent } from './sell-on-waywala/sell-on-waywala.component';
 import { BecomeAgricultueInvestigratorComponent } from './become-agricultue-investigrator/become-agricultue-investigrator.component';
 import { BecomeEducationTeacherComponent } from './become-education-teacher/become-education-teacher.component';
+import { RefundPolicyComponent } from './refund-policy/refund-policy.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsofserviceComponent } from './termsofservice/termsofservice.component';
 
 const routes: Routes = [
   {
@@ -48,6 +51,18 @@ const routes: Routes = [
   ,{
     path: "become-education-teacher",
     component: BecomeEducationTeacherComponent
+  },
+  {
+    path: "refund-policy",
+    component: RefundPolicyComponent
+  },
+  {
+    path: "privacy-policy",
+    component: PrivacyPolicyComponent
+  },
+  {
+    path: "termsofservice",
+    component: TermsofserviceComponent
   }
 ];
 
