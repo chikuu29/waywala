@@ -107,7 +107,13 @@ a {
   // margin-right: 15px !important;
   // padding-right: 11px !important;
 }
-
+#progressbar #step5:before {
+  content: "4";
+  color: #fff;
+  width: 29px;
+  // margin-right: 15px !important;
+  // padding-right: 11px !important;
+}
 #progressbar li:before {
   line-height: 29px;
   display: block;
@@ -227,6 +233,14 @@ small {
   margin-right: 0;
   text-align: center;
 }
+#progressbar-2 #step5:before {
+  content: "\f058";
+  font-family: "Font Awesome 5 Free";
+  color: #fff;
+  width: 37px;
+  margin-right: 0;
+  text-align: center;
+}
 
 #progressbar-2 li:before {
   line-height: 37px;
@@ -274,7 +288,18 @@ small {
   width: 0;
 }
 
+.li-cancled:after {
+  left: 0 !important;
+  width: 0 !important;
+}
+
 #progressbar-2 li.active:before,
 #progressbar-2 li.active:after {
   background: #4BB543;
+}
+
+
+#progressbar-2 li.active-2:before,
+#progressbar-2 li.active-2:after {
+  background: red;
 }
