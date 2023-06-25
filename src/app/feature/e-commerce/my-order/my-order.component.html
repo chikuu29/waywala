@@ -135,9 +135,9 @@
                             <h5 class="bold fs-3">{{ order.product_Name }}</h5>
                             <p class="text-muted"> Qantity: {{order.order_QUANTITY}} Kg</p>
                             <h4 class="mt-3 bold"> <span class="mt-5">&#x20B9;</span>
-                                {{order.order_total_Price}} <span class="small text-muted">
+                                {{order.order_QUANTITY*	order.order_product_Selling_PRICE | currency:'INR'}} <span class="small text-muted">
                                     via ({{order.order_payment_mode}}) </span></h4>
-                            <del> <span>&#x20B9;</span>{{order.order_product_MRP_PRICE * order.order_QUANTITY }}</del>
+                            <del> <span>&#x20B9;</span>{{order.order_product_MRP_PRICE * order.order_QUANTITY | currency:'INR'}}</del>
                             <!-- <p class="text-muted">Tracking Status on: <span class="Today">11:30pm, Today</span>
                             </p>
                             <button type="button" class="btn  btn-outline-primary d-flex">Reached Hub,
