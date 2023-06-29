@@ -21,7 +21,7 @@ export class MyOrderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var query=`SELECT e_commerce_product.product_Name,e_commerce_product.product_Images,e_commerce_order.*,e_commerce_order_details.* FROM e_commerce_order LEFT JOIN e_commerce_order_details ON e_commerce_order.order_id = e_commerce_order_details.order_ID LEFT JOIN e_commerce_product ON e_commerce_order_details.order_product_ID = e_commerce_product.product_Id WHERE e_commerce_order.order_created_by_user_email = '${this.appservices.authStatus.email}' ORDER BY e_commerce_order_details.order_details_ID DESC `
+    var query=`SELECT e_commerce_product.product_Name,e_commerce_product.product_Description,e_commerce_product.product_Images,e_commerce_order.*,e_commerce_order_details.* FROM e_commerce_order LEFT JOIN e_commerce_order_details ON e_commerce_order.order_id = e_commerce_order_details.order_ID LEFT JOIN e_commerce_product ON e_commerce_order_details.order_product_ID = e_commerce_product.product_Id WHERE e_commerce_order.order_created_by_user_email = '${this.appservices.authStatus.email}' ORDER BY e_commerce_order_details.order_details_ID DESC `
     this.ApiParameterScript.fetchDataFormQuery(query).subscribe((res:any)=>{
       console.log(res);
       if(res.success){

@@ -107,7 +107,7 @@
                 <mat-form-field appearance="outline" class="flex-fill">
                     <mat-label>Enter Your Adhar Card No</mat-label>
                     <input matInput placeholder="Placeholder" formControlName="adharNo" required type="text"
-                        maxlength="10">
+                        maxlength="12">
                     <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.adharNo.valid
                         ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
                     <mat-error
@@ -140,7 +140,7 @@
                 <!-- <button type="button" class="btn btn-primary btn-lg">Register</button> -->
                 <button mat-raised-button color="primary" type="button"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;" class="m-1"
-                    [disabled]="sellOnWaywalaContactForm.invalid && false" (click)="send()">Send</button>
+                    [disabled]="sellOnWaywalaContactForm.invalid && false" (click)="send()" [disabled]="">Send</button>
                 <a mat-raised-button color="accent" type="button" style="padding-left: 2.5rem; padding-right: 2.5rem;"
                     class="m-1">Reset</a>
             </div>
