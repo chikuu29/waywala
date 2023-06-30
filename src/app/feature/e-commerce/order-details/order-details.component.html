@@ -3,64 +3,138 @@
 <div class="container-fluid container-lg">
     <section class="root">
         <figure>
-            <img [src]="imageURL + orderDetails['product_Images'][0]"
-                alt="">
+            <img [src]="imageURL + orderDetails?.['product_Images'][0]" alt="" [routerLink]="'/store/product/' + orderDetails?.order_product_ID">
             <figcaption>
-                <h4>{{orderDetails?.product_Name}}</h4>
-                <h6>{{orderDetails?.product_Category}}</h6>
-                <h2>{{orderDetails?.order_QUANTITY* orderDetails?.order_product_Selling_PRICE | currency:'INR'}}</h2>
+                <h4 class="text-muted">{{orderDetails?.product_Name}}</h4>
+                <h6 class="text-muted">{{orderDetails?.product_Category}}</h6>
+                <h2 class="text-success fw-bold">{{orderDetails?.order_QUANTITY* orderDetails?.order_product_Selling_PRICE | currency:'INR'}}</h2>
+                <p class="text-muted text-danger"><del> <span></span>{{orderDetails?.order_product_MRP_PRICE * orderDetails?.order_QUANTITY |
+                    currency:'INR'}}</del></p>
             </figcaption>
+           
         </figure>
+        <p class="fw-bold text-muted">Order ID: {{orderDetails?.order_id}}</p>
         <div class="order-track">
-            <div class="order-track-step">
-                <div class="order-track-status">
-                    <span class="order-track-status-dot"></span>
-                    <span class="order-track-status-line"></span>
+            <ng-container *ngIf="orderDetails?.order_status!=='Confirmed'">
+                <div class="order-track-step">
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot text-center " ><i
+                                class="fa-solid fa-circle-check mt-3 fa-lg text-danger"></i></span>
+                        <span class="order-track-status-line " [ngClass]="orderDetails?.is_order_cancle=='Yes'?'':'active'"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Not Placed</p>
+                        <span class="order-track-text-sub">{{orderDetails?.created_at |date}}</span>
+                    </div>
                 </div>
-                <div class="order-track-text">
-                    <p class="order-track-text-stat">Order Received</p>
-                    <span class="order-track-text-sub">{{orderDetails?.created_at}}</span>
+            </ng-container>
+            <ng-container *ngIf="orderDetails?.order_status=='Confirmed'">
+                <div class="order-track-step">
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot text-center active" ><i
+                                class="fa-solid fa-circle-check mt-3 fa-lg text-success"></i></span>
+                        <span class="order-track-status-line " [ngClass]="orderDetails?.is_order_cancle=='Yes'?'':'active'"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Placed</p>
+                        <span class="order-track-text-sub">{{orderDetails?.created_at |date}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="order-track-step">
-                <div class="order-track-status">
-                    <span class="order-track-status-dot"></span>
-                    <span class="order-track-status-line"></span>
+            </ng-container>
+            <ng-container *ngIf="orderDetails?.order_status=='Confirmed' && orderDetails?.order_current_status=='DELIVERY' ">
+                <div class="order-track-step">
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot text-center active"><i
+                                class="fa-solid fa-circle-check mt-3 fa-lg text-success"></i></span>
+                        <span class="order-track-status-line active"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Confrimed</p>
+                        <span class="order-track-text-sub">{{orderDetails?.order_shipped_date}}</span>
+                    </div>
                 </div>
-                <div class="order-track-text">
-                    <p class="order-track-text-stat">Order Processed</p>
-                    <span class="order-track-text-sub">21st November, 2019</span>
+                <div class="order-track-step">
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot text-center active"><i
+                                class="fa-solid fa-circle-check mt-3 fa-lg text-success"></i></span>
+                        <span class="order-track-status-line active"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Shipped</p>
+                        <span class="order-track-text-sub">{{orderDetails?.order_shipped_date}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="order-track-step">
-                <div class="order-track-status">
-                    <span class="order-track-status-dot"></span>
-                    <span class="order-track-status-line"></span>
+                <div class="order-track-step">
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot text-center active"><i
+                                class="fa-solid fa-circle-check mt-3 fa-lg text-success"></i></span>
+                        <span class="order-track-status-line active"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Delivery</p>
+                        <span class="order-track-text-sub">{{orderDetails?.order_delivery_date}}</span>
+                    </div>
                 </div>
-                <div class="order-track-text">
-                    <p class="order-track-text-stat">Manufracturing In Progress</p>
-                    <span class="order-track-text-sub">21st November, 2019</span>
+            </ng-container>
+            <ng-container *ngIf="orderDetails?.order_current_status=='CANCLED'">
+                <div class="order-track-step">
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot text-center"><i
+                            class="fa-solid fa-circle-check mt-3 fa-lg text-danger"></i></span>
+                        <span class="order-track-status-line"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Cancled</p>
+                        <span class="order-track-text-sub">{{orderDetails?.order_cancle_date}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="order-track-step">
-                <div class="order-track-status">
-                    <span class="order-track-status-dot"></span>
-                    <span class="order-track-status-line"></span>
+                
+            </ng-container>
+            <ng-container *ngIf="orderDetails?.order_status=='Confirmed' && orderDetails?.is_order_cancle=='No' && orderDetails?.order_current_status!=='DELIVERY'">
+                <div class="order-track-step" >
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot text-center active"><i
+                                class="fa-solid fa-circle-check mt-3 fa-lg text-success"></i></span>
+                        <span class="order-track-status-line active"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Confrimed</p>
+                        <span class="order-track-text-sub">{{orderDetails?.order_shipped_date}}</span>
+                    </div>
                 </div>
-                <div class="order-track-text">
-                    <p class="order-track-text-stat">Order Dispatched</p>
-                    <span class="order-track-text-sub">21st November, 2019</span>
+                <div class="order-track-step">
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot text-center " [ngClass]="orderDetails?.order_current_status=='SHIPPED'?'active':''"><i
+                                class="fa-solid fa-circle-check mt-3 fa-lg text-success"></i></span>
+                        <span class="order-track-status-line "></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Shipped</p>
+                        <span class="order-track-text-sub">{{orderDetails?.order_shipped_date}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="order-track-step">
-                <div class="order-track-status">
-                    <span class="order-track-status-dot"></span>
-                    <span class="order-track-status-line"></span>
+                <div class="order-track-step">
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot text-center "><i
+                                class="fa-solid fa-circle-check mt-3 fa-lg text-success"></i></span>
+                        <span class="order-track-status-line "></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Delivery</p>
+                        <span class="order-track-text-sub">{{orderDetails?.order_delivery_date}}</span>
+                    </div>
                 </div>
-                <div class="order-track-text">
-                    <p class="order-track-text-stat">Order Deliverd</p>
-                    <span class="order-track-text-sub">21st November, 2019</span>
+            </ng-container>
+        </div>
+        <div>
+            <div class="row text-center">
+                <div class="col-6">
+                    <button mat-button color="accent" (click)="cancle_order()">Cancle Order</button>
                 </div>
+                <div class="col-6">
+                    <button mat-button color="primary" [routerLink]="'/store/order/confirmation/status/' + orderDetails?.order_id">Trasaction Info</button>
+                </div>
+
             </div>
         </div>
     </section>

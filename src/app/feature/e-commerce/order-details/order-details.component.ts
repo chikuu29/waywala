@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-order-details',
@@ -44,6 +45,11 @@ export class OrderDetailsComponent implements OnInit {
       })
       
     })
+  }
+
+
+  cancle_order(){
+    Swal.fire("Cancled Is Not Allow",'','error')
   }
 
 }
