@@ -6,6 +6,7 @@ import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 import { MessageService } from 'primeng/api';
 import { AppService } from 'src/app/services/app.service';
 import { AgricultureService } from '../services/agriculture.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 @Component({
   selector: 'app-generate-query',
   templateUrl: './generate-query.component.html',
@@ -14,7 +15,7 @@ import { AgricultureService } from '../services/agriculture.service';
 })
 export class GenerateQueryComponent implements OnInit {
 
-  
+  @BlockUI() blockUI: NgBlockUI;
   fileuploadForm = new FormGroup({
     desc: new FormControl('', [Validators.required])
     
@@ -39,8 +40,9 @@ export class GenerateQueryComponent implements OnInit {
 
 
   public createCase() {
-    this.loader.start();
-    this.agriculture.loadertext.next('Case Creating')
+    // this.loader.start();
+    // this.agriculture.loadertext.next('Case Creating')
+    this.blockUI.start("Case Creating")
     if (this.fileuploadForm.valid && this.uploadedFiles.length > 0) {
       this.caseData={
         email:this.appservices.authStatus.email,
@@ -48,7 +50,7 @@ export class GenerateQueryComponent implements OnInit {
       }
       this.agriculture.createCase(this.caseData).subscribe((res)=>{
         console.log(res);
-        this.loader.stop()
+        this.blockUI.stop()
         if(res.success){
           Swal.fire(
             res.message,
@@ -63,7 +65,7 @@ export class GenerateQueryComponent implements OnInit {
       })
 
     } else {
-      this.loader.stop()
+      this.blockUI.stop()
       this.messageService.add({ severity: 'warn', summary: 'warning', detail: 'Please Fill All data & upload file' });
     }
   }
