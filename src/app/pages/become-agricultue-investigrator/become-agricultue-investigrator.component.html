@@ -84,19 +84,19 @@
                             *ngIf="sellOnWaywalaContactForm.controls.phone.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="d-flex flex-row align-items-center mb-3">
+                <div class="d-flex flex-row align-items-center">
                     <mat-form-field appearance="outline" class="flex-fill">
                         <mat-label>Enter Your Address</mat-label>
                         <textarea matInput placeholder="Address" formControlName="addressInfo" rows="5"></textarea>
-                        <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.addressInfo.valid
-                            ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                       
                         <mat-error
                             *ngIf="sellOnWaywalaContactForm.controls.addressInfo.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
-                    <button mat-raised-button color="primary" type="button" (click)="getAddress()">Get Address</button>
+                   
                 </div>
+                <p-button class="w-100 " icon="pi pi-search" (click)="getAddress()" label="Fetch Auto Address" styleClass="p-button-rounded p-button-success p-button-text p-button-raised"></p-button>
 
-                <div class="d-flex flex-row align-items-center mb-4">
+                <div class="d-flex flex-row align-items-center mb-4 mt-3">
                     <mat-form-field appearance="outline" class="flex-fill">
                         <mat-label>Enter Your Adhar Card No</mat-label>
                         <input matInput placeholder="Ashar No" formControlName="adharNo" required type="text">
@@ -120,7 +120,7 @@
                     <input class="form-check-input me-2" type="checkbox" id="form2Example3c" formControlName='checkme'
                         required />
                     <label class="form-check-label" for="form2Example3">
-                        I agree all statements in <a href="/pages/termsofservice">Terms of service</a>
+                        I agree all statements in <a routerLink="/pages/termsofservice">Terms of service</a>
                     </label>
                 </div>
 

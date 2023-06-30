@@ -52,8 +52,10 @@ export class BecomeAgricultueInvestigratorComponent implements OnInit {
       "projection": `email='${this.appServices.authStatus.email}'`,
       "order": "id"
     }
+    this.blockUI.start('Please Wait..')
     this.ApiParameterScript.fetchdata("become_agricultural_reviewer_request", apiData).subscribe((res: any) => {
       console.log(res);
+      this.blockUI.stop()
       if (res.success && res['data'].length > 0) {
         this.sellOnWaywalaContactFormDATA = res['data']
       } else {

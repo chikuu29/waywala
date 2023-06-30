@@ -8,6 +8,7 @@
             fugiat sit in iste officiis commodi quidem hic quas.</p> -->
 </div>
 
+<ng-container *ngIf="sellOnWaywalaContactFormDATA.length>0">
 <div class="container">
    
     <p-table [value]="sellOnWaywalaContactFormDATA"  [resizableColumns]="true">
@@ -44,21 +45,21 @@
         </ng-template>
         
     </p-table>
-    <ng-container *ngIf="sellOnWaywalaContactFormDATA.length==0">
-        <app-no-data-available></app-no-data-available>
-    </ng-container>
+
 </div>
+</ng-container>
+<ng-container *ngIf="sellOnWaywalaContactFormDATA.length==0" >
 <div class="container mt-3">
 
     
     <div class="card">
-        <h2 class="text-center fw-bold text-muted p-3">Create A New Request</h2>
+        <h2 class="text-center fw-bold text-muted p-3">Fill All Your Details</h2>
         <form class="mx-1 mx-md-4" [formGroup]="sellOnWaywalaContactForm">
 
             <div class="d-flex flex-row align-items-center mb-4">
                 <mat-form-field appearance="outline" class="flex-fill">
                     <mat-label>Enter Your Name</mat-label>
-                    <input matInput placeholder="Placeholder" formControlName="name" required>
+                    <input matInput placeholder="Name" formControlName="name" required>
                     <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.name.valid
                         ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
                     <mat-error *ngIf="sellOnWaywalaContactForm.controls.name.invalid">{{getErrorMessage()}}</mat-error>
@@ -67,7 +68,7 @@
             <div class="d-flex flex-row align-items-center mb-4">
                 <mat-form-field appearance="outline" class="flex-fill">
                     <mat-label>Enter Your Email</mat-label>
-                    <input matInput placeholder="Placeholder" formControlName="email" required type="email">
+                    <input matInput placeholder="Email" formControlName="email" required type="email">
                     <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.email.valid
                         ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
                     <mat-error *ngIf="sellOnWaywalaContactForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
@@ -76,8 +77,7 @@
             <div class="d-flex flex-row align-items-center mb-4">
                 <mat-form-field appearance="outline" class="flex-fill">
                     <mat-label>Enter Your Phone No</mat-label>
-                    <input matInput placeholder="Placeholder" formControlName="phone" required type="text"
-                        maxlength="10">
+                    <input matInput placeholder="phone" formControlName="phone" required type="text">
                     <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.phone.valid
                         ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
                     <mat-error *ngIf="sellOnWaywalaContactForm.controls.phone.invalid">{{getErrorMessage()}}</mat-error>
@@ -86,27 +86,31 @@
             <div class="d-flex flex-row align-items-center mb-4">
                 <mat-form-field appearance="outline" class="flex-fill">
                     <mat-label>Enter Your Business Name</mat-label>
-                    <input matInput placeholder="Placeholder" formControlName="businessName" required>
+                    <input matInput placeholder="Business Name" formControlName="businessName" required>
                     <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.businessName.valid
                         ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
                     <mat-error
                         *ngIf="sellOnWaywalaContactForm.controls.businessName.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
-            <div class="d-flex flex-row align-items-center mb-4">
+            <div class="d-flex flex-row align-items-center">
                 <mat-form-field appearance="outline" class="flex-fill">
                     <mat-label>Enter Your Address</mat-label>
-                    <input matInput placeholder="Placeholder" formControlName="addressInfo" required type="text">
-                    <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.addressInfo.valid
-                        ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                    <textarea matInput placeholder="Address" formControlName="addressInfo" rows="5"></textarea>
+                   
                     <mat-error
                         *ngIf="sellOnWaywalaContactForm.controls.addressInfo.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
+               
             </div>
-            <div class="d-flex flex-row align-items-center mb-4">
+            
+                <p-button class="w-100 " icon="pi pi-search" (click)="getAddress()" label="Fetch Auto Address" styleClass="p-button-rounded p-button-success p-button-text p-button-raised"></p-button>
+            
+           
+            <div class="d-flex flex-row align-items-center mb-4 mt-3">
                 <mat-form-field appearance="outline" class="flex-fill">
                     <mat-label>Enter Your Adhar Card No</mat-label>
-                    <input matInput placeholder="Placeholder" formControlName="adharNo" required type="text"
+                    <input matInput placeholder="Adhar No" formControlName="adharNo" required type="text"
                         maxlength="12">
                     <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.adharNo.valid
                         ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
@@ -117,7 +121,7 @@
             <div class="d-flex flex-row align-items-center">
                 <mat-form-field appearance="outline" class="flex-fill">
                     <mat-label>Additional Info</mat-label>
-                    <input matInput placeholder="Placeholder" formControlName="additionalInfo" required type="text"
+                    <input matInput placeholder="additional Info" formControlName="additionalInfo" required type="text"
                         maxlength="10">
                     <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.additionalInfo.valid
                         ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
@@ -125,14 +129,36 @@
                         *ngIf="sellOnWaywalaContactForm.controls.additionalInfo.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <mat-form-field appearance="outline" class="flex-fill">
+                    <mat-label>Enter Your GST NO</mat-label>
+                    <input matInput placeholder="GST NO" formControlName="igst_no"  type="text"
+                        maxlength="12">
+                    <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.igst_no.valid
+                        ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                    <mat-error
+                        *ngIf="sellOnWaywalaContactForm.controls.igst_no.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="d-flex flex-row align-items-center">
+                <mat-form-field appearance="outline" class="flex-fill">
+                    <mat-label>Enter Your Pan No</mat-label>
+                    <input matInput placeholder="Pan No" formControlName="pan_no" required type="text"
+                        maxlength="10">
+                    <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.pan_no.valid
+                        ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                    <mat-error
+                        *ngIf="sellOnWaywalaContactForm.controls.pan_no.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
             <div class="form-check p-0 mb-4 w-100" >
-                <p-multiSelect  [options]="sellingCategoryOption" formControlName="sellingCategory" optionLabel="name" defaultLabel="Select a Selling Category"></p-multiSelect>
+                <p-multiSelect   [options]="sellingCategoryOption" formControlName="sellingCategory" optionLabel="name" defaultLabel="Select a Selling Category"></p-multiSelect>
             </div>
             <div class="form-check d-flex justify-content-center mb-5">
-                <input class="form-check-input me-2" type="checkbox" id="form2Example3c" formControlName='checkbox'
+                <input class="form-check-input me-2" type="checkbox" id="form2Example3c" formControlName='checkme'
                     required />
                 <label class="form-check-label" for="form2Example3">
-                    I agree all statements in <a href="#!">Terms of service</a>
+                    I agree all statements in <a routerLink="/pages/termsofservice">Terms of service</a>
                 </label>
             </div>
 
@@ -140,9 +166,9 @@
                 <!-- <button type="button" class="btn btn-primary btn-lg">Register</button> -->
                 <button mat-raised-button color="primary" type="button"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;" class="m-1"
-                    [disabled]="sellOnWaywalaContactForm.invalid && false" (click)="send()" [disabled]="">Send</button>
+                    [disabled]="sellOnWaywalaContactForm.invalid" (click)="send()" [disabled]="">Send</button>
                 <a mat-raised-button color="accent" type="button" style="padding-left: 2.5rem; padding-right: 2.5rem;"
-                    class="m-1">Reset</a>
+                    class="m-1" (click)="reset()">Reset</a>
             </div>
 
         </form>
@@ -151,6 +177,8 @@
 
 
 </div>
+
+</ng-container>
 
 
 <app-footer></app-footer>
