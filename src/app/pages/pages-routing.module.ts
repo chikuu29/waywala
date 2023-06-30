@@ -41,15 +41,18 @@ const routes: Routes = [
   },
   {
     path: "sell-on-waywala",
+    canActivate:[AuthenticationGuard],
     component: SellOnWaywalaComponent
   },
 
   {
     path: "become-agriculture-investigator",
+    canActivate:[AuthenticationGuard],
     component: BecomeAgricultueInvestigratorComponent
   }
   ,{
     path: "become-education-teacher",
+    canActivate:[AuthenticationGuard],
     component: BecomeEducationTeacherComponent
   },
   {
