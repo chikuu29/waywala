@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { user } from 'src/app/appModules/userModules';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
+import { FileUploadComponent } from 'src/app/shared/file-upload/file-upload.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,12 +20,15 @@ export class ProfileComponent implements OnInit {
   name: string='';
   phone: number;
   address: string='';
+  imagePath="https://www.waywala.com/api"
   constructor(
     private apiparameter: ApiParameterScript,
-    private appservices: AppService
+    private appservices: AppService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
+    this.imagePath=this.appservices.getApipath()+"/auth/profile/"
     this.getprofile();
   }
 
@@ -52,6 +57,22 @@ export class ProfileComponent implements OnInit {
 
     this.allowprofileUpdate = true
 
+  }
+
+  change_profile(){
+    const option = {centered: true}
+    const modalRef = this.modalService.open(FileUploadComponent, option);
+ 
+
+    modalRef.result.then((modalInstance: any) => {
+      if (modalInstance.success) {
+       
+      }
+    }, (reason: any) => {
+      
+      console.log(reason);
+
+    })
   }
 
   updateprofile() {

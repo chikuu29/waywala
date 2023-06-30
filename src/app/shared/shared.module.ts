@@ -14,6 +14,7 @@ import { NoDataAvailableComponent } from './no-data-available/no-data-available.
 import { CoustomAlertMaterialUiComponent } from './coustom-alert-material-ui/coustom-alert-material-ui.component';
 import { AddressManagementComponent } from './address-management/address-management.component';
 import { MyCoinZoneComponent } from './my-coin-zone/my-coin-zone.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -23,7 +24,8 @@ import { MyCoinZoneComponent } from './my-coin-zone/my-coin-zone.component';
     NoDataAvailableComponent,
     CoustomAlertMaterialUiComponent,
     AddressManagementComponent,
-    MyCoinZoneComponent
+    MyCoinZoneComponent,
+    FileUploadComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { MyCoinZoneComponent } from './my-coin-zone/my-coin-zone.component';
     OtpComponent,
     CaseReviewComponent,
     NoDataAvailableComponent,
-    AddressManagementComponent
+    AddressManagementComponent,
+    FileUploadComponent
 
   ]
 })
