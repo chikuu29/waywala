@@ -14,6 +14,7 @@ import { PrimengModule } from './primeng/primeng.module';
 import { FormsModule } from '@angular/forms';
 import { BlockUIModule } from 'ng-block-ui';
 import { SharedModule } from './shared/shared.module';
+import { BlockUiCustomTemplateComponent } from './block-ui-custom-template.component';
 @NgModule({
   declarations: [
     AppComponent
@@ -30,7 +31,11 @@ import { SharedModule } from './shared/shared.module';
     PrimengModule,
     FormsModule,
     SharedModule,
-    BlockUIModule.forRoot(),
+    BlockUIModule.forRoot(
+      {
+        template: BlockUiCustomTemplateComponent
+      }
+    ),
     ToastrModule.forRoot(),
    
   ],
