@@ -21,7 +21,7 @@ export class BecomeAgricultueInvestigratorComponent implements OnInit {
     name: new FormControl(this.appServices.authStatus.name, [Validators.required]),
     email: new FormControl(this.appServices.authStatus.email, [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/), Validators.minLength(10)]),
-    additionalInfo: new FormControl('', [Validators.required]),
+    additionalInfo: new FormControl('', []),
     adharNo: new FormControl('', [Validators.required, Validators.pattern(/^\d{12}$/), Validators.minLength(12), Validators.maxLength(12)]),
     addressInfo: new FormControl('', [Validators.required]),
     ceatedTime: new FormControl(moment().format('LLL').toString()),
