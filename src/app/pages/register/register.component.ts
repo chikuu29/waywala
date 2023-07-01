@@ -9,6 +9,7 @@ import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstra
 import { OtpComponent } from 'src/app/shared/otp/otp.component';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import moment from 'moment';
 
 @Component({
   selector: 'app-register',
@@ -23,6 +24,7 @@ export class RegisterComponent implements OnInit {
     email: '',
     mobile_no: '',
     password: '',
+    createdAt:moment().format('LLL')
   }
   lodarConfig:any;
 
@@ -43,7 +45,7 @@ export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required,Validators.pattern(/^\d{10}$/), Validators.minLength(10)]),
     password: new FormControl('', [Validators.required]),
     confirm_password: new FormControl('', [Validators.required]),
     checkbox: new FormControl('', [Validators.required]),
@@ -52,6 +54,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Sign Up To Waywala')
+ 
+    
     
   }
 
@@ -66,12 +70,15 @@ export class RegisterComponent implements OnInit {
         this.userData.email = this.registerForm.value.email;
         this.userData.mobile_no = this.registerForm.value.phone;
         this.userData.password = this.registerForm.value.password;
+        this.userData.createdAt=moment().format('LLL')
+
         this.registrationService.signUp(
           {
             name: this.registerForm.value.name,
             email: this.registerForm.value.email,
             mobile_no: this.registerForm.value.phone,
-            password: this.registerForm.value.password
+            password: this.registerForm.value.password,
+            createdAt:this.userData.createdAt
           }
         ).subscribe((res) => {
           this.loader.stop();
