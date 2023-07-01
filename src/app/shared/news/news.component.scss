@@ -1,0 +1,42 @@
+.col{
+    padding: 0;
+    flex-basis: unset !important;
+    margin: 5px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+}
+a{
+    color: unset;
+}
+.news-card{
+
+    border-radius: 8px;
+    .news-card-body{
+        padding: 15px;
+
+    }
+
+    img{
+        border-radius: 8px;
+    }
+}
+
+
+.news-container{
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.news-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .news-container{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }

@@ -21,7 +21,7 @@ export class ECommerceServicesService {
 
   public bagItemCount() {
     const simpleObservable = new Observable((observer) => {
-      this.apiParameterScrpt.fetchdata("e_commerce_product_kart", { "select": "COUNT(product_CART_ID) as count", "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'` }).subscribe((res: any) => {
+      this.apiParameterScrpt.fetchdata("e_commerce_product_kart", { "select": "COUNT(product_CART_ID) as count", "projection": `product_CART_BY_Email='${this.AppService.authStatus?.email}'` }).subscribe((res: any) => {
 
         try {
           if (res.success && res['data'].length > 0) {

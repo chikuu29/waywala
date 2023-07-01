@@ -15,6 +15,8 @@ import { CoustomAlertMaterialUiComponent } from './coustom-alert-material-ui/cou
 import { AddressManagementComponent } from './address-management/address-management.component';
 import { MyCoinZoneComponent } from './my-coin-zone/my-coin-zone.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { NewsComponent } from './news/news.component';
+import { CustomPipeModule } from '../customPipe/custom-pipe.module';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -25,7 +27,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     CoustomAlertMaterialUiComponent,
     AddressManagementComponent,
     MyCoinZoneComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    NewsComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     MaterialModule,
     LoadingBarRouterModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CustomPipeModule
     
   ],
   exports:[
@@ -45,7 +49,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     CaseReviewComponent,
     NoDataAvailableComponent,
     AddressManagementComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    NewsComponent
 
   ]
 })
