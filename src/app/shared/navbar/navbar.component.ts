@@ -38,6 +38,8 @@ export class NavbarComponent implements OnInit {
 
   activeServiceDropDown: boolean = false
   sidebarVisible: boolean = false
+  imagePath="https://www.waywala.com/api"
+  profile:any;
   constructor(
     public _router: Router,
     public toast: ToastrService,
@@ -48,11 +50,15 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.imagePath=this.app.getApipath()+"/auth/profile/"
+   
+
     this.version = this.app.getappVersion['version']
     this.screenWidth = window.innerWidth;
     this.auth.user.subscribe((res: any) => {
       if (res) {
         // console.log(res);
+        this.profile=res;
         this.isLogin = res.token != null ? true : false;
         this.authInfo = this.auth.getAuthStatus();
       }

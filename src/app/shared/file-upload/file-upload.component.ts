@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { AppService } from 'src/app/services/app.service';
 import Swal from 'sweetalert2';
 
@@ -9,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent implements OnInit {
+  @BlockUI() blockUI: NgBlockUI;
   selectedFile: any;
   constructor(private http: HttpClient,private appservices:AppService) { }
 
@@ -20,9 +22,10 @@ export class FileUploadComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('file', this.selectedFile, this.selectedFile.name);
   
+    this.blockUI.start('Uploading ....')
     this.http.post<any>(`${this.appservices.getApipath()}/auth/upload_profile.php?email=${this.appservices.authStatus.email}`, uploadData).subscribe(
       (response: any) => {
-
+       this.blockUI.stop()
         if(response.success){
           Swal.fire('Profile Updated successful',response.message,'success').then(()=>{
             location.reload()
@@ -34,6 +37,7 @@ export class FileUploadComponent implements OnInit {
         // Handle success response
       },
       (error: any) => {
+        this.blockUI.stop()
         Swal.fire('Error occurred during file upload','','error')
         // console.error('Error occurred during file upload:', error);
         // Handle error response

@@ -6,7 +6,8 @@ export class user{
         public isLogin:boolean,
         public role:any,
         private _refreshkey:any,
-        public expiration_date:any
+        public expiration_date:any,
+        public user_profile_image:any
 
     ){
     

@@ -70,8 +70,8 @@ export class AuthService {
     }
   }
 
-  public authentication( name: string, email: string, isLogin: boolean, role: String, _refreshkey: any, expiration_date: any) {
-    var userInfo = new user(name, email, isLogin, role, _refreshkey, expiration_date)
+  public authentication( name: string, email: string, isLogin: boolean, role: String, _refreshkey: any, expiration_date: any,user_profile_image:any) {
+    var userInfo = new user(name, email, isLogin, role, _refreshkey, expiration_date,user_profile_image)
     this.user.next(userInfo);
     secureCryptoStorage.setItem("authInfo",userInfo);
     this.autoLogout(new Date(expiration_date).getTime() - new Date().getTime())
@@ -85,7 +85,7 @@ export class AuthService {
     }
     if (new Date(authInfo.expiration_date).getTime() > new Date().getTime()) {
       console.log("AUTO LOGIN SUCCESSFULL");
-      this.authentication(authInfo.name, authInfo.email, true, authInfo.role, authInfo._refreshkey, authInfo.expiration_date)
+      this.authentication(authInfo.name, authInfo.email, true, authInfo.role, authInfo._refreshkey, authInfo.expiration_date,authInfo.user_profile_image)
 
     } else {
       console.log("YOUR TOKEN EXPIRA");

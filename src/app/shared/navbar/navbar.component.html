@@ -92,7 +92,12 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex flex-column align-items-center text-center cursor-pointer" >
-          <img src="assets/agri/man.png" alt="Admin" class="rounded-circle" width="150" routerLink="/pages/profile" (click)="sidebarVisible=false">
+          <ng-container *ngIf="profile?.user_profile_image !=''">
+            <img [src]="imagePath+profile?.user_profile_image" alt="Admin" class="rounded-circle" width="150" height="150">
+          </ng-container>
+          <ng-container *ngIf="profile?.user_profile_image=='' || profile?.user_profile_image==null">
+            <img src="assets/agri/man.png" alt="Admin" class="rounded-circle" width="150" height="150">                
+          </ng-container>
           <div class="mt-3">
             <h4 class="fw-bold">{{authInfo.name}}</h4>
             <button class="btn btn-outline-primary mb-2 w-100" routerLink="pages/sell-on-waywala" (click)="sidebarVisible=false">Sell on waywala</button>

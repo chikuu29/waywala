@@ -10,10 +10,10 @@
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
                 <ng-container *ngIf="profile?.user_profile_image !=''">
-                  <img [src]="imagePath+profile?.user_profile_image" alt="Admin" class="rounded-circle" width="150">
+                  <img [src]="imagePath+profile?.user_profile_image" alt="Admin" class="rounded-circle" width="150" height="150">
                 </ng-container>
                 <ng-container *ngIf="profile?.user_profile_image=='' || profile?.user_profile_image==null">
-                  <img src="assets/agri/man.png" alt="Admin" class="rounded-circle" width="150">                
+                  <img src="assets/agri/man.png" alt="Admin" class="rounded-circle" width="150" height="150">                
                 </ng-container>
              
                 <div class="mt-3">
