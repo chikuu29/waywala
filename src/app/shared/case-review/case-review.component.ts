@@ -23,21 +23,8 @@ export class CaseReviewComponent implements OnInit {
   
   public submit(){
     console.log(this.feedBack);
-    var updateApiData={
-      "data":`case_review_note='${this.feedBack}'`,
-      "projection":`case_id='${this.case_id}'`
-    }
-    console.log("updateApiData--->",updateApiData);
-    this.apiParameterScript.updatedata('agriculture_case_review',updateApiData).subscribe((res:any)=>{
-      console.log(res);
-      if(res.success){
-        this.toster.success("Thank you for your feedback")
-        this.activeModal.close({"success":true})
-      }else{
-        this.activeModal.close({"success":false})
-      }
-      
-    })
+    this.activeModal.close({"success":true,"feedBack":this.feedBack})
+   
   }
 
 }

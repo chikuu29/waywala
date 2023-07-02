@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { BlockUIModule } from 'ng-block-ui';
 import { SharedModule } from './shared/shared.module';
 import { BlockUiCustomTemplateComponent } from './block-ui-custom-template.component';
+import { ApiService } from './services/api.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -39,7 +40,7 @@ import { BlockUiCustomTemplateComponent } from './block-ui-custom-template.compo
     ToastrModule.forRoot(),
    
   ],
-  providers: [AppService,NgbActiveModal,Title,Meta],
+  providers: [AppService,ApiService,NgbActiveModal,Title,Meta],
   bootstrap: [AppComponent],
 
 })

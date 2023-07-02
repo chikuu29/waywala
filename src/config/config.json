@@ -68,7 +68,8 @@
             "user_address",
             "search_history",
             "becomesellercontactform",
-            "become_agricultural_reviewer_request"
+            "become_agricultural_reviewer_request",
+            "e_commerce_product_rating"
             
          ],
          "authorizationDBAcessForUpdate": [
@@ -77,7 +78,8 @@
             "contact_us",
             "e_commerce_product_kart",
             "user_address",
-            "search_history"
+            "search_history",
+            "e_commerce_product_rating"
          ],
          "authorizationDBAcessForDelete": [
             "e_commerce_product_kart",

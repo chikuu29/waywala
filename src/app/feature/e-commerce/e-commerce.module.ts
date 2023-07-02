@@ -23,6 +23,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
 import { CustomDirectiveModule } from 'src/app/customDirective/custom-directive.module';
 import { SearchItemViewComponent } from './search-item-view/search-item-view.component';
+import { ToastrService } from 'ngx-toastr';
 @NgModule({
     declarations: [
         ECommerceComponent,
@@ -44,7 +45,7 @@ import { SearchItemViewComponent } from './search-item-view/search-item-view.com
         AllProductListComponent,
         ProductSectionComponent
     ],
-    providers: [ProductService, ConfirmationService],
+    providers: [ProductService, ConfirmationService,ToastrService],
     imports: [
         CommonModule,
         ECommerceRoutingModule,

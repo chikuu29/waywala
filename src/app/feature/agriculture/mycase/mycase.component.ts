@@ -108,7 +108,21 @@ export class MycaseComponent implements OnInit {
             modalRef.componentInstance.rating = event.value;
             modalRef.result.then((modalInstance: any) => {
               if (modalInstance.success) {
-
+                var updateApiData={
+                  "data":`case_review_note='${modalInstance.feedBack}'`,
+                  "projection":`case_id='${case_id}'`
+                }
+                console.log("updateApiData--->",updateApiData);
+                this.apiParameterScript.updatedata('agriculture_case_review',updateApiData).subscribe((res:any)=>{
+                  console.log(res);
+                  if(res.success){
+                    this.toster.success("Thank you for your feedback")
+                    // this.activeModal.close({"success":true})
+                  }else{
+                    // this.activeModal.close({"success":false})
+                  }
+                  
+                })
               }
             }, ((reason: any) => {
               console.log(reason);
