@@ -137,7 +137,8 @@ export class ProductDetailsPageComponent implements OnInit {
 
       var ratingData = {
         "select": "*",
-        "projection": `product_Id='${res.productID}'`
+        "projection": `product_Id='${res.productID}'`,
+        "order":"product_Raiting_ID"
       }
       this.apiParameterScript.fetchdata('e_commerce_product_rating', ratingData).subscribe((ratingInfo: any) => {
         if (ratingInfo.success && ratingInfo['data'].length > 0) {
