@@ -66,7 +66,7 @@ export class ProductDetailsPageComponent implements OnInit {
       },
       "five_star": {
         "rating_count": 0,
-        "average_rating": 4
+        "average_rating": 5
       },
     },
   
