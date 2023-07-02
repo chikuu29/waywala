@@ -72,10 +72,11 @@
                   <i class="fa-solid fa-share fa-1x"></i>
                   <span class="font-semibold text-sm ps-2">Share</span>
                 </button>
-                  <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="shareOnWhatsApp()"><i class="fa-brands fa-whatsapp text-success"></i> WhatsApp</button>
-                    <button mat-menu-item><i class="fa-solid fa-copy"></i> Copy</button>
-                  </mat-menu>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="shareOnWhatsApp()"><i class="fa-brands fa-whatsapp text-success"></i>
+                    WhatsApp</button>
+                  <button mat-menu-item><i class="fa-solid fa-copy"></i> Copy</button>
+                </mat-menu>
               </div>
             </div>
           </div>
@@ -103,11 +104,15 @@
               </div>
               <div style="z-index: 999999999999"
                 class="fixed bottom-0 lg:static left-0 right-0 px-3 lg:px-0 py-4 bg-white lg:pt-6 lg:pb-0 lg:py-0 z-20 shadow-top md:shadow-none rounded-t-lg md:rounded-none">
-                <div class="grid grid-cols-2 gap-2 justify-content-center" >
-                  <button [disabled]="requested_pincode != product.product_Shipped_Pincode && product.product_Category == 'Vegetable' " mat-stroked-button color="primary" class="p-1" (click)="addToBag(product)">
+                <div class="grid grid-cols-2 gap-2 justify-content-center">
+                  <button
+                    [disabled]="requested_pincode != product.product_Shipped_Pincode && product.product_Category == 'Vegetable' "
+                    mat-stroked-button color="primary" class="p-1" (click)="addToBag(product)">
                     <i class="fa-solid fa-bag-shopping pe-3"></i>Add To Bag
                   </button>
-                  <button [disabled]="requested_pincode != product.product_Shipped_Pincode && product.product_Category == 'Vegetable'" mat-raised-button color="primary" class="p-1" (click)="buy(product)">
+                  <button
+                    [disabled]="requested_pincode != product.product_Shipped_Pincode && product.product_Category == 'Vegetable'"
+                    mat-raised-button color="primary" class="p-1" (click)="buy(product)">
                     Buy Now
                   </button>
                 </div>
@@ -187,13 +192,13 @@
                 <div>
                   <!-- <a href="whatsapp://send?text=Check out this website: https://www.example.com" target="_blank">Share on WhatsApp</a> -->
 
-                  <button mat-button [matMenuTriggerFor]="menu" type="button"
-                    style="border: none; background: none">
+                  <button mat-button [matMenuTriggerFor]="menu" type="button" style="border: none; background: none">
                     <i class="fa-solid fa-share fa-1x"></i>
                     <span class="font-semibold text-sm ps-2">Share</span>
                   </button>
                   <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="shareOnWhatsApp()"><i class="fa-brands fa-whatsapp text-success"></i> WhatsApp</button>
+                    <button mat-menu-item (click)="shareOnWhatsApp()"><i class="fa-brands fa-whatsapp text-success"></i>
+                      WhatsApp</button>
                     <button mat-menu-item><i class="fa-solid fa-copy"></i> Copy</button>
                   </mat-menu>
                 </div>
@@ -295,7 +300,7 @@
                     </span>
                     <input class="Input_root__eG6Wl Input_shadow__oWZQJ peer" autocomplete="off" id="1678158878295"
                       autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Enter Pincode" type="text"
-                       [(ngModel)]="requested_pincode" (ngModelChange)="vlidate_pincode(requested_pincode)" />
+                      [(ngModel)]="requested_pincode" (ngModelChange)="vlidate_pincode(requested_pincode)" />
                     <div class="pr-4 pl-1 flex">
                       <button class="Button_root__G_l9X Button_naked__xwcQp Button_disabled__Ksgjy">
                         <span class="text-primary">Check</span>
@@ -304,8 +309,12 @@
                   </div>
                 </div>
               </div>
-              <span class="mt-3 D-COD text-success" *ngIf="requested_pincode == product.product_Shipped_Pincode && product.product_Category == 'Vegetable'">IN STOCK FOR THIS PINCODE</span>
-              <span class="mt-3 D-COD text-danger" *ngIf="requested_pincode !=product.product_Shipped_Pincode && product.product_Category == 'Vegetable'" > OUT OF STOCK FOR THIS PINCODE</span>
+              <span class="mt-3 D-COD text-success"
+                *ngIf="requested_pincode == product.product_Shipped_Pincode && product.product_Category == 'Vegetable'">IN
+                STOCK FOR THIS PINCODE</span>
+              <span class="mt-3 D-COD text-danger"
+                *ngIf="requested_pincode !=product.product_Shipped_Pincode && product.product_Category == 'Vegetable'">
+                OUT OF STOCK FOR THIS PINCODE</span>
             </div>
             <div>
               <div style="display: flex; flex-direction: column; gap: 32px">
@@ -351,33 +360,128 @@
             </div>
           </div>
           <div class="mt-10">
-            <div id="reviews-section" class="scroll-m-[150px] md:scroll-m-[100px]"></div>
-          </div>
-          <!-- <div class="px-3">
-                        <div class="FAQ_root__aqvoq"><span class="Text_heading5__uCZy7 Text_bold__lt4Nl">FAQs</span>
-                            <div class="FAQ_faqsList__Wq8SC">
-                                <div class="FAQ_faqItemWrapper__eBlp1">
-                                    <div class="FAQ_faqItem___o4yA"><span
-                                            class="Text_heading7___ECVv Text_semibold__5N59J">Return, Replacement
-                                            &amp;
-                                            Refund (Stationery Products)</span><span
-                                            class="transition-all duration-200 "><svg viewBox="0 0 24 24" width="24"
-                                                height="24" stroke="currentColor" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round" fill="none"
-                                                shape-rendering="geometricPrecision">
-                                                <path d="M9 18l6-6-6-6"></path>
-                                            </svg></span></div>
-                                    <div class="FAQ_faqItemInactive__aHNsM">
-                                        <div>
-                                            <p>We currently don't offer return, replacement or refund on this
-                                                product.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+            <div id="reviews-section" class="scroll-m-[150px] md:scroll-m-[100px]">
+              <div>
+                <div>
+                  <div class="p-3">
+                    <div class="d-flex items-center justify-content-between">
+                      <div class="d-flex align-items-center"><img src="assets/e-commerce/icons8-review-100.png"
+                          height="50" alt="reviews-stars" loading="lazy">
+                        <h2 class="fw-bold m-0">Reviews</h2>
+                      </div>
+                    </div>
+                    <div class="items-center mt-4">
+                      <div class="flex flex-col items-center text-center">
+
+                        <div class="rating">
+                          <span class="rating__stars" style="--rating: 5;"></span>
+                          <div class="rating__number">
+                            <span
+                              class="rating__score">{{ratingInformation['rating']['five_star']?.average_rating}}</span>
+                            <div class="rating__reviews">({{ratingInformation['rating']['five_star']?.rating_count}})
                             </div>
+                          </div>
                         </div>
-                    </div> -->
+                        <div class="rating">
+                          <span class="rating__stars" style="--rating: 4;"></span>
+                          <div class="rating__number">
+                            <span
+                              class="rating__score">{{ratingInformation['rating']['four_star']?.average_rating}}</span>
+                            <div class="rating__reviews">({{ratingInformation['rating']['four_star']?.rating_count}})
+                            </div>
+                          </div>
+                        </div>
+                        <div class="rating">
+                          <span class="rating__stars" style="--rating: 3;"></span>
+                          <div class="rating__number">
+                            <span
+                              class="rating__score">{{ratingInformation['rating']['three_star']?.average_rating}}</span>
+                            <div class="rating__reviews">({{ratingInformation['rating']['three_star']?.rating_count}})
+                            </div>
+                          </div>
+                        </div>
+                        <div class="rating">
+                          <span class="rating__stars" style="--rating: 2;"></span>
+                          <div class="rating__number">
+                            <span
+                              class="rating__score">{{ratingInformation?.['rating']['two_star']?.average_rating}}</span>
+                            <div class="rating__reviews">({{ratingInformation?.['rating']['two_star']?.rating_count}})
+                            </div>
+                          </div>
+                        </div>
+                        <div class="rating">
+                          <span class="rating__stars" style="--rating: 1;"></span>
+                          <div class="rating__number">
+                            <span
+                              class="rating__score">{{ratingInformation['rating']['one_star']?.average_rating}}</span>
+                            <div class="rating__reviews">({{ratingInformation['rating']['one_star']?.rating_count}})
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="md:border md:border-[#DCDCDC] rounded-lg rounded-t-none">
+                  <div class="d-flex align-items-center ps-3"><img src="assets/e-commerce/icons8-comment-96.png" height="40"
+                      alt="reviews-stars" loading="lazy">
+                    <h2 class="fw-bold m-0">Reviews</h2>
+                  </div>
+                  <div class="review-holder">
+
+                    <div style="background-color: #f8f7fd;" class="m-3">
+
+                      <ng-container *ngFor="let review of ratingInformation.review">
+                        <div class="schema-item">
+                          <div class="flex-1 h-62 p-4 cursor-pointer opacity-100">
+                            <div class="flex items-center justify-start my-2">
+                              <div class="flex items-center  rounded p-1">
+                                <span class="scale-90 md:scale-100">
+                                  <img src="assets/e-commerce/icons8-star-96.png" height="25" alt="reviews-stars">
+                                </span>
+                                <div class="schema-item" itemprop="reviewRating">
+                                  <span class="rating__score_user">{{review?.product_Rating}}</span>
+                                </div>
+                              </div>
+                              <span class="pl-2">
+                                <span class="text-[14px] font-bold" itemprop="name">{{review?.product_Review}}
+                                </span></span>
+                            </div>
+                            <div class="flex flex-col mt-2"><span class="text-[14px] font-medium"
+                                itemprop="reviewBody">{{review?.product_Review}}</span>
+                              <div class="h-[17px] mt-2">
+                                <div class="schema-item" itemprop="author" itemscope=""
+                                  itemtype="https://schema.org/Person"><span class="text-[14px] font-semibold"
+                                    itemprop="name">{{review?.product_Rating_By}}</span></div>
+                              </div>
+                              <div class="h-[15px]"><span
+                                  class="text-[12px] text-gray">{{review?.product_Rating_Time}}</span></div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="ratingInformation.review.length==0">
+                        <button mat-button color="warn" class="w-100">No Reviews Found</button>
+                      </ng-container>
+
+                    </div>
+
+                  </div>
+                  <div>
+                    <div class="h-[1px] bg-[#DCDCDC]"></div>
+                    <div class="px-4 py-4"><button active="" data-variant="naked"
+                        class="Button_root__G_l9X Button_naked__xwcQp">
+                        <a><span class="Typography_small__10WKi font-semibold Typography_root__TxCor"><span
+                              class="text-indigo-500 "> Show all {{ratingInformation.review.length}}
+                              reviews</span></span></a></button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -385,6 +489,7 @@
 </main>
 
 <app-product-section sectionName="Related Item"></app-product-section>
+
 <p-galleria [value]="images" [(visible)]="displayBasic" [responsiveOptions]="responsiveOptions"
   [containerStyle]="{'max-width': '100%'}" [numVisible]="images.length" [circular]="true" [fullScreen]="true"
   [showItemNavigators]="true" [baseZIndex]="100000">

@@ -11,6 +11,7 @@ import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { CoustomAlertMaterialUiComponent } from 'src/app/shared/coustom-alert-material-ui/coustom-alert-material-ui.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { Location } from '@angular/common'
+import { elements } from 'chart.js';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -24,7 +25,7 @@ export class ProductDetailsPageComponent implements OnInit {
   product_QUANTITY: any = 1
   images: any[] = [];
   displayBasic: boolean = false
-  requested_pincode:any=''
+  requested_pincode: any = ''
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -39,6 +40,37 @@ export class ProductDetailsPageComponent implements OnInit {
       numVisible: 1
     }
   ];
+
+  ratingInformation: any = {
+    review: [],
+    rating: {
+      "zero_star": {
+        "rating_count": 0,
+        "average_rating": 0
+      },
+      "one_star": {
+        "rating_count": 0,
+        "average_rating": 1
+      },
+      "two_star": {
+        "rating_count": 0,
+        "average_rating": 2
+      },
+      "three_star": {
+        "rating_count": 0,
+        "average_rating": 3
+      },
+      "four_star": {
+        "rating_count": 0,
+        "average_rating": 4
+      },
+      "five_star": {
+        "rating_count": 0,
+        "average_rating": 4
+      },
+    },
+  
+  }
   constructor(
     private _rout: ActivatedRoute,
     private router: Router,
@@ -70,7 +102,7 @@ export class ProductDetailsPageComponent implements OnInit {
           })
 
           this.product = res['data'][0];
-          this.requested_pincode=this.product.product_Shipped_Pincode
+          this.requested_pincode = this.product.product_Shipped_Pincode
           this.activeImage = this.imageURL + this.product['product_Images'][0]
           // var images = this.product.product_Images;
           this.product.product_Images.forEach((e: any) => {
@@ -90,7 +122,7 @@ export class ProductDetailsPageComponent implements OnInit {
           this.meta.updateTag({ property: 'og:title', content: this.product.product_Name || '' });
           this.meta.updateTag({ property: 'og:description', content: this.product.product_Name || '' });
           this.meta.updateTag({ property: 'og:image:alt', content: this.product.product_Name || '' });
-        
+
 
 
 
@@ -99,6 +131,89 @@ export class ProductDetailsPageComponent implements OnInit {
           this.product = {}
           this.location.back();
         }
+
+      })
+
+
+      var ratingData = {
+        "select": "*",
+        "projection": `product_Id='${res.productID}'`
+      }
+      this.apiParameterScript.fetchdata('e_commerce_product_rating', ratingData).subscribe((ratingInfo: any) => {
+        if (ratingInfo.success && ratingInfo['data'].length > 0) {
+          this.ratingInformation['review'] = ratingInfo['data']
+          console.log(this.ratingInformation);
+
+        }
+      })
+
+      var ratingCountQuery = `SELECT
+      product_Id,
+      product_Rating AS rating_category_type,
+      COUNT(*) AS rating_count,
+         CAST(AVG(product_Rating) AS INT) AS average_rating
+      FROM
+          e_commerce_product_rating
+      WHERE
+          product_Rating IN (0,1, 2, 3, 4, 5) AND product_Id = '${res.productID}'
+      GROUP BY
+          product_Rating;`
+      this.apiParameterScript.fetchDataFormQuery(ratingCountQuery).subscribe((res: any) => {
+        console.log("ratingCountQuery", res);
+
+        if (res.success && res['data'].length > 0) {
+
+          res['data'].forEach((element: any) => {
+          
+
+            switch (parseInt(element.rating_category_type)) {
+              case 0:
+                this.ratingInformation['rating']['zero_star']['rating_count'] = element.rating_count
+                this.ratingInformation['rating']['zero_star']['average_rating'] = element.average_rating
+                break;
+              case 1:
+                this.ratingInformation['rating']['one_star']['rating_count'] = element.rating_count
+                this.ratingInformation['rating']['one_star']['average_rating'] = element.average_rating
+
+                break;
+
+              case 2:
+                this.ratingInformation['rating']['two_star']['rating_count'] = element.rating_count
+                this.ratingInformation['rating']['two_star']['average_rating'] = element.average_rating
+
+                break;
+
+              case 3:
+                this.ratingInformation['rating']['three_star']['rating_count'] = element.rating_count
+                this.ratingInformation['rating']['three_star']['average_rating'] = element.average_rating
+
+                break;
+
+              case 4:
+                this.ratingInformation['rating']['four_star']['rating_count'] = element.rating_count
+                this.ratingInformation['rating']['four_star']['average_rating'] = element.average_rating
+
+                break;
+              case 5:
+                this.ratingInformation['rating']['five_star']['rating_count'] = element.rating_count
+                this.ratingInformation['rating']['five_star']['average_rating'] = element.average_rating
+
+                break;
+
+              default:
+                console.log("No rating_category_type found");
+
+                break;
+            }
+
+
+          });
+
+          console.log("ratingInformation",this.ratingInformation);
+          
+
+        }
+
 
       })
 
@@ -270,10 +385,14 @@ export class ProductDetailsPageComponent implements OnInit {
     window.open(url, '_blank', 'height=600,width=800');
   }
 
-  vlidate_pincode(pincode:any){
+  vlidate_pincode(pincode: any) {
     console.log(pincode);
-    
+
   }
+
+
+
+
 
 }
 
