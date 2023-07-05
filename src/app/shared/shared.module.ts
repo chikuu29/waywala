@@ -17,6 +17,7 @@ import { MyCoinZoneComponent } from './my-coin-zone/my-coin-zone.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { NewsComponent } from './news/news.component';
 import { CustomPipeModule } from '../customPipe/custom-pipe.module';
+import { GenericOtpVerificationComponent } from './generic-otp-verification/generic-otp-verification.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -28,7 +29,8 @@ import { CustomPipeModule } from '../customPipe/custom-pipe.module';
     AddressManagementComponent,
     MyCoinZoneComponent,
     FileUploadComponent,
-    NewsComponent
+    NewsComponent,
+    GenericOtpVerificationComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { CustomPipeModule } from '../customPipe/custom-pipe.module';
     NoDataAvailableComponent,
     AddressManagementComponent,
     FileUploadComponent,
-    NewsComponent
+    NewsComponent,
+    GenericOtpVerificationComponent
 
   ]
 })
