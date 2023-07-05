@@ -106,7 +106,7 @@ export class BecomeAgricultueInvestigratorComponent implements OnInit {
     if (this.sellOnWaywalaContactForm.valid) {
       if (this.otpgenerationRequired) {
         this.blockUI.start('Please Wait...')
-        this.http.post(this.appServices.getApipath() + 'auth/otp/generate_otp.php', { "email": this.sellOnWaywalaContactForm.value.email, creatAT: moment().format('LLL') }).subscribe((otp_send_res: any) => {
+        this.ApiParameterScript.dynamicApiExecute('auth/otp/generate_otp.php', { "email": this.sellOnWaywalaContactForm.value.email, creatAT: moment().format('LLL') }).subscribe((otp_send_res: any) => {
           this.blockUI.stop()
 
           if (otp_send_res.success) {
@@ -117,7 +117,7 @@ export class BecomeAgricultueInvestigratorComponent implements OnInit {
               console.log(modalInstance);
               if (modalInstance.TYPE = "RETURN_USER_ENTER_OTP") {
 
-                this.http.post(this.appServices.getApipath() + 'auth/otp/otpmatch.php', { "email": this.sellOnWaywalaContactForm.value.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
+                this.ApiParameterScript.dynamicApiExecute('auth/otp/otpmatch.php', { "email": this.sellOnWaywalaContactForm.value.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
 
                   if (otpMatch.success) {
                     this.otpgenerationRequired=true;
@@ -164,7 +164,7 @@ export class BecomeAgricultueInvestigratorComponent implements OnInit {
           console.log(modalInstance);
           if (modalInstance.TYPE = "RETURN_USER_ENTER_OTP") {
 
-            this.http.post(this.appServices.getApipath() + 'auth/otp/otpmatch.php', { "email": this.sellOnWaywalaContactForm.value.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
+            this.ApiParameterScript.dynamicApiExecute('auth/otp/otpmatch.php', { "email": this.sellOnWaywalaContactForm.value.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
 
               if (otpMatch.success) {
                 this.blockUI.start("Please Wait")

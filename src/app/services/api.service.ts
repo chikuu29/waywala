@@ -43,6 +43,10 @@ export class ApiService {
     return this.http.get(this.appservices.getApipath() + 'generic/getDataFormQuery.php?query='+encodeURIComponent(JSON.stringify(query)));
   }
 
+  public dyamicApiCall(path:any,data:any){
+    return this.http.post(this.appservices.getApipath()+ path,data,{ headers: this.headers })
+
+  }
 
 
 

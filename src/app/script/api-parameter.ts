@@ -338,5 +338,23 @@ export class ApiParameterScript {
         return simpleObservable;
     }
 
+    public dynamicApiExecute(path:any,data:any){
+        const simpleObservable = new Observable((observer) => {
+            try {
+               
+                this.apiservices.dyamicApiCall(path,data).subscribe((res: any) => {
+                    observer.next(res);
+                    observer.complete();
+                })
+              
+            } catch (error) {
+                console.log({ "methodName": "ApiParameterScript.fetchDataFormQuery", "error": error });
+                observer.next(error);
+                observer.complete();
+            }
+        });
+        return simpleObservable;
+
+    }
 
 }
