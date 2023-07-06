@@ -1,25 +1,65 @@
 <section id="hero" class="d-flex align-items-center">
 
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
-                data-aos="fade-up" data-aos-delay="200">
-                <h1>Better Solutions For Your Agriculture Farming</h1>
-                <h2>We have the best team of agricultural experts to protect your crops from damage</h2>
-                <div class="d-flex justify-content-center justify-content-lg-start">
-                    <a routerLink="/agriculture" class="btn-get-started scrollto me-2">Agriculture</a>
-                    <a routerLink="/store" class="btn-go-to-store scrollto"><i class="bi bi-shop me-2"></i>Go to Store</a>
-                    <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i
-                            class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+
+        <ngb-carousel 
+            [interval]="3000"
+            [showNavigationArrows]="false"
+            [showNavigationIndicators]="false">
+            <ng-template ngbSlide>
+                <div class="row">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <h1>Better Solutions For Your Agriculture Farming</h1>
+                        <h2>We have the best team of agricultural experts to protect your crops from damage</h2>
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a routerLink="/agriculture" class="btn-get-started scrollto me-2">Agriculture</a>
+                            <a routerLink="/store" class="btn-go-to-store scrollto"><i class="bi bi-shop me-2"></i>Go to
+                                Store</a>
+                            <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i
+                                    class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-                <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
-            </div>
-        </div>
+
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="row">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <h1>Get the best farming medicine solutions without going anywhere </h1>
+                        <h2>It's simple. You just need to tell us what's going on with your crop and send us images
+                            through a case. You can also track them. </h2>
+                        <div class="d-flex justify-content-center justify-content-lg-start mb-2">
+                            <a routerLink="/agriculture/create/case" class="btn-go-to-store scrollto"><i
+                                    class="fa-solid fa-suitcase-medical me-2"></i>Create Case</a>
+                        </div>
+                        <div class="d-flex justify-content-center justify-content-lg-start pb-3">
+                            <a routerLink="agriculture/check-status" class="glightbox btn-watch-video curser-pointer"
+                                style="cursor: pointer;"><i class="bi bi-toggles2 fa-fade"></i>Track</a>
+                            <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i -->
+                            <!-- class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+                            <a routerLink="/agriculture/kvks" class="glightbox btn-watch-video"><i
+                                    class="bi bi-info-circle fa-fade"></i><span>Kvks Deatails</span></a>
+
+                            <a routerLink="/agriculture/weather" class="glightbox btn-watch-video "><i
+                                    class="bi bi-cloud-drizzle fa-fade"></i><span>Weather-Forecast</span></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="assets/agri/2-34.png" class="img-fluid animated" alt="">
+                    </div>
+                </div>
+
+            </ng-template>
+        </ngb-carousel>
     </div>
 
-</section><!-- End Hero -->
+</section>
+<!-- End Hero -->
 
 <main id="main">
 
@@ -28,7 +68,7 @@
             <div class="section-title">
                 <h2>Store</h2>
             </div>
-           <app-product-section sectionName="Fresh Vegetable Product"></app-product-section>
+            <app-product-section sectionName="Fresh Vegetable Product"></app-product-section>
         </div>
     </section>
     <!-- End About Us Section -->
@@ -249,15 +289,18 @@
 
             <div class="section-title">
                 <h2>Services</h2>
-                <p>We provide better solutions for your agriculture farming, such as agricultural medicine, product sales, and purchases</p>
+                <p>We provide better solutions for your agriculture farming, such as agricultural medicine, product
+                    sales, and purchases</p>
             </div>
 
             <div class="row">
-                <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
+                    data-aos-delay="100">
                     <div class="icon-box">
                         <div class="icon"><i class="bx bxl-dribbble "></i></div>
                         <h4><a href="">Agriculture</a></h4>
-                        <p>We provide you with the best medicine for your farming. You just need to share some details of your damaged crop.</p>
+                        <p>We provide you with the best medicine for your farming. You just need to share some details
+                            of your damaged crop.</p>
                     </div>
                 </div>
 
@@ -266,7 +309,8 @@
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-file"></i></div>
                         <h4><a href="">Store</a></h4>
-                        <p>Here, you can buy and sell your agriculture products with us, and we provide you with the best value for your products. </p>
+                        <p>Here, you can buy and sell your agriculture products with us, and we provide you with the
+                            best value for your products. </p>
                     </div>
                 </div>
 
@@ -614,11 +658,12 @@
                 <ul>
                     <li data-aos="fade-up" data-aos-delay="100">
                         <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse"
-                            data-bs-target="#faq-list-1">How we work ? <i
-                                class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            data-bs-target="#faq-list-1">How we work ? <i class="bx bx-chevron-down icon-show"></i><i
+                                class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                             <p>
-                                It's simple! You just need to inform us about your damaged crop by creating a case. Our agriculture team provides the best medicine, and we can supply this medicine to you.
+                                It's simple! You just need to inform us about your damaged crop by creating a case. Our
+                                agriculture team provides the best medicine, and we can supply this medicine to you.
                             </p>
                         </div>
                     </li>
@@ -629,7 +674,10 @@
                             <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                             <p>
-                                The 'Become a Seller' option is available in your profile after signing up. You just need to fill out the form, and within 2-3 working days, you will receive your ID and password through your registered email. We will also provide a demo on how to manage your dashboard and other features.
+                                The 'Become a Seller' option is available in your profile after signing up. You just
+                                need to fill out the form, and within 2-3 working days, you will receive your ID and
+                                password through your registered email. We will also provide a demo on how to manage
+                                your dashboard and other features.
                             </p>
                         </div>
                     </li>
@@ -640,12 +688,13 @@
                             <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
                             <p>
-                                Agriculture and e-commerce services are currently available, and we are also actively working on expanding into the education sector
+                                Agriculture and e-commerce services are currently available, and we are also actively
+                                working on expanding into the education sector
                             </p>
                         </div>
                     </li>
 
-                  
+
 
                 </ul>
             </div>
@@ -686,43 +735,46 @@
                             <h4>Call:</h4>
                             <p>9876543210</p>
                         </div>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113022.88862960128!2d85.76513522680744!3d20.300807008728338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1909d2d5170aa5%3A0xfc580e2b68b33fa8!2sBhubaneswar%2C%20Odisha!5e0!3m2!1sen!2sin!4v1682307960711!5m2!1sen!2sin" style="border:0; width: 100%; height: 290px;"   allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113022.88862960128!2d85.76513522680744!3d20.300807008728338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1909d2d5170aa5%3A0xfc580e2b68b33fa8!2sBhubaneswar%2C%20Odisha!5e0!3m2!1sen!2sin!4v1682307960711!5m2!1sen!2sin"
+                            style="border:0; width: 100%; height: 290px;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
                     </div>
 
                 </div>
 
                 <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <form [formGroup]="contactForm"  class="php-email-form">
+                    <form [formGroup]="contactForm" class="php-email-form">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="name" >Your Name</label>
-                                <input type="text" formControlName="name" class="form-control" id="name" >
+                                <label for="name">Your Name</label>
+                                <input type="text" formControlName="name" class="form-control" id="name">
                                 <span class="text-danger m-3"
-                                *ngIf="!contactForm.controls.name.untouched && !contactForm.controls.name.valid">Please
-                                Fill Your Name </span>
+                                    *ngIf="!contactForm.controls.name.untouched && !contactForm.controls.name.valid">Please
+                                    Fill Your Name </span>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="name">Your Email</label>
-                                <input type="email" class="form-control" formControlName="email" id="email" >
+                                <input type="email" class="form-control" formControlName="email" id="email">
                                 <span class="text-danger m-3"
-                                *ngIf="!contactForm.controls.email.untouched && !contactForm.controls.email.valid">Please
-                                Fill Correct Email ID</span>
+                                    *ngIf="!contactForm.controls.email.untouched && !contactForm.controls.email.valid">Please
+                                    Fill Correct Email ID</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="name">Phone</label>
-                            <input type="text" class="form-control" formControlName="phone_no" id="subject" >
+                            <input type="text" class="form-control" formControlName="phone_no" id="subject">
                             <span class="text-danger m-3"
-                            *ngIf="!contactForm.controls.phone_no.untouched && !contactForm.controls.phone_no.valid">Please
-                            Fill Your Phone No </span>
+                                *ngIf="!contactForm.controls.phone_no.untouched && !contactForm.controls.phone_no.valid">Please
+                                Fill Your Phone No </span>
                         </div>
                         <div class="form-group">
                             <label for="name">Message</label>
-                            <textarea class="form-control" formControlName="message" rows="10" ></textarea>
+                            <textarea class="form-control" formControlName="message" rows="10"></textarea>
                             <span class="text-danger m-3"
-                            *ngIf="!contactForm.controls.message.untouched && !contactForm.controls.message.valid">Please
-                            Fill Your Query</span>
+                                *ngIf="!contactForm.controls.message.untouched && !contactForm.controls.message.valid">Please
+                                Fill Your Query</span>
                         </div>
                         <div class="my-3">
                             <div class="loading">Loading</div>
