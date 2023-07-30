@@ -22,7 +22,7 @@ export class BecomeAgricultueInvestigratorComponent implements OnInit {
   sellOnWaywalaContactForm = new FormGroup({
     name: new FormControl(this.appServices.authStatus.name, [Validators.required]),
     email: new FormControl(this.appServices.authStatus.email, [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/), Validators.minLength(10)]),
+    phone: new FormControl(this.appServices.authStatus.phone_no, [Validators.required, Validators.pattern(/^\d{10}$/), Validators.minLength(10)]),
     additionalInfo: new FormControl('', []),
     adharNo: new FormControl('', [Validators.required, Validators.pattern(/^\d{12}$/), Validators.minLength(12), Validators.maxLength(12)]),
     addressInfo: new FormControl('', [Validators.required]),

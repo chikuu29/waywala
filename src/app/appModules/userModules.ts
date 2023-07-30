@@ -3,6 +3,7 @@ export class user{
     constructor(
         public name:String ,
         public email:String,
+        public phone_no:String,
         public isLogin:boolean,
         public role:any,
         private _refreshkey:any,

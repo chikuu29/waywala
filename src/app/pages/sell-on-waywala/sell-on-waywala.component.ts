@@ -21,7 +21,7 @@ export class SellOnWaywalaComponent implements OnInit {
   sellOnWaywalaContactForm = new FormGroup({
     name: new FormControl(this.appServices.authStatus.name, [Validators.required]),
     email: new FormControl(this.appServices.authStatus.email, [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/), Validators.minLength(10), Validators.maxLength(10)]),
+    phone: new FormControl(this.appServices.authStatus.phone_no, [Validators.required, Validators.pattern(/^\d{10}$/), Validators.minLength(10), Validators.maxLength(10)]),
     additionalInfo: new FormControl('', []),
     businessName: new FormControl('', [Validators.required]),
     adharNo: new FormControl('', [Validators.required, Validators.pattern(/^\d{12}$/), Validators.minLength(12), Validators.maxLength(12)]),
