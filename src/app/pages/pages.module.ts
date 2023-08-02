@@ -23,7 +23,7 @@ import { BecomeEducationTeacherComponent } from './become-education-teacher/beco
 import { TermsofserviceComponent } from './termsofservice/termsofservice.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { RefundPolicyComponent } from './refund-policy/refund-policy.component';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,8 @@ import { RefundPolicyComponent } from './refund-policy/refund-policy.component';
     NgxUiLoaderModule,
     ECommerceModule,
     AgricultureModule,
-    SharedModule
+    SharedModule,
+    CarouselModule
   ],
   exports: [
     CommingSoonComponent

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Title } from '@angular/platform-browser';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import Swal from 'sweetalert2';
 @Component({
@@ -44,7 +45,30 @@ export class HomeComponent implements OnInit {
 
       }]
   }
-
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 600,
+    navText: ['&#8249', '&#8250;'],
+    responsive: {
+      0: {
+        items: 1 
+      },
+      400: {
+        items: 1
+      },
+      760: {
+        items: 1
+      },
+      1000: {
+        items: 1
+      }
+    },
+    nav: false
+  }
   getToPrev() {
     console.log("getToPrev");
 

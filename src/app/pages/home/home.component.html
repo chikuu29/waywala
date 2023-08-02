@@ -2,12 +2,9 @@
 
     <div class="container">
 
-        <ngb-carousel 
-            [interval]="3000"
-            [showNavigationArrows]="false"
-            [showNavigationIndicators]="false">
-            <ng-template ngbSlide>
-                <div class="row">
+        <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide>
+                <div class="row" >
                     <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                         data-aos="fade-up" data-aos-delay="200">
                         <h1>Better Solutions For Your Agriculture Farming</h1>
@@ -26,8 +23,8 @@
                 </div>
 
             </ng-template>
-            <ng-template ngbSlide>
-                <div class="row">
+            <ng-template carouselSlide>
+                <div class="row w-100" >
                     <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                         data-aos="fade-up" data-aos-delay="200">
                         <h1>Get the best farming medicine solutions without going anywhere </h1>
@@ -40,8 +37,7 @@
                         <div class="d-flex justify-content-center justify-content-lg-start pb-3">
                             <a routerLink="agriculture/check-status" class="glightbox btn-watch-video curser-pointer"
                                 style="cursor: pointer;"><i class="bi bi-toggles2 fa-fade"></i>Track</a>
-                            <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i -->
-                            <!-- class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+                           
                             <a routerLink="/agriculture/kvks" class="glightbox btn-watch-video"><i
                                     class="bi bi-info-circle fa-fade"></i><span>Kvks Deatails</span></a>
 
@@ -55,7 +51,7 @@
                 </div>
 
             </ng-template>
-        </ngb-carousel>
+        </owl-carousel-o>
     </div>
 
 </section>
@@ -63,14 +59,17 @@
 
 <main id="main">
 
-    <section id="about" class="about">
+    <!-- <section id="about" class="about">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
                 <h2>Store</h2>
             </div>
             <app-product-section sectionName="Fresh Vegetable Product"></app-product-section>
         </div>
-    </section>
+    </section> -->
+
+
+
     <!-- End About Us Section -->
     <!-- ======= Clients Section ======= -->
     <!-- <section id="clients" class="clients section-bg">
@@ -642,6 +641,7 @@
         </div>
     </section> -->
     <!-- End Pricing Section -->
+    <app-news category_text="agriculture" country="in" [isOnlyNewsHeadlines]="true"></app-news>
 
     <!-- ======= Frequently Asked Questions Section ======= -->
     <section id="faq" class="faq section-bg">
@@ -701,7 +701,6 @@
 
         </div>
     </section><!-- End Frequently Asked Questions Section -->
-    <app-news category_text="agriculture" country="in" [isOnlyNewsHeadlines]="true"></app-news>
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
