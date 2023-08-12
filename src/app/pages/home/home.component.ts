@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
     phone_no:new FormControl('',[Validators.required]),
     message:new FormControl('',[Validators.required])
   })
+  feedBackInformation:any[]=[]
   constructor(private apiParameter: ApiParameterScript, private title:Title,) { }
   ngOnInit(): void {
     this.title.setTitle('Welcome to Waywala')
@@ -44,6 +45,16 @@ export class HomeComponent implements OnInit {
         "router_link":"/e-commerce"
 
       }]
+
+      this.apiParameter.fetchdata('feedback',{"select":"*"}).subscribe((res:any)=>{
+        console.log(res);
+        
+        if(res.success && res['data'].length>0){
+        
+          this.feedBackInformation=res['data']
+  
+        }
+      })
   }
   customOptions: OwlOptions = {
     loop: true,

@@ -18,6 +18,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { NewsComponent } from './news/news.component';
 import { CustomPipeModule } from '../customPipe/custom-pipe.module';
 import { GenericOtpVerificationComponent } from './generic-otp-verification/generic-otp-verification.component';
+import { TakeFeedbackComponent } from './take-feedback/take-feedback.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -30,7 +31,8 @@ import { GenericOtpVerificationComponent } from './generic-otp-verification/gene
     MyCoinZoneComponent,
     FileUploadComponent,
     NewsComponent,
-    GenericOtpVerificationComponent
+    GenericOtpVerificationComponent,
+    TakeFeedbackComponent
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ECommerceServicesService } from 'src/app/feature/e-commerce/services/e-commerce-services.service';
 import { AppService } from 'src/app/services/app.service';
+import { TakeFeedbackComponent } from '../take-feedback/take-feedback.component';
 
 
 @Component({
@@ -45,7 +47,8 @@ export class NavbarComponent implements OnInit {
     public toast: ToastrService,
     private auth: AuthService,
     private app: AppService,
-    private ECommerceServicesService: ECommerceServicesService
+    private ECommerceServicesService: ECommerceServicesService,
+    private modalService: NgbModal,
   ) {
   }
 
@@ -99,7 +102,9 @@ export class NavbarComponent implements OnInit {
   }
 
   public logout() {
-    this.auth.logout()
+
+    const modalRef=this.modalService.open(TakeFeedbackComponent,{ fullscreen: true });
+    // this.auth.logout()
   }
 
 }

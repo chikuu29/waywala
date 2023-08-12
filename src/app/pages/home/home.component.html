@@ -1,9 +1,9 @@
-<section id="hero" class="d-flex align-items-center">
+<section id="hero" class="hero d-flexf align-items-center">
 
     <div class="container">
 
-        <owl-carousel-o [options]="customOptions">
-            <ng-template carouselSlide>
+        <!-- <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide> -->
                 <div class="row" >
                     <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                         data-aos="fade-up" data-aos-delay="200">
@@ -22,9 +22,49 @@
                     </div>
                 </div>
 
-            </ng-template>
-            <ng-template carouselSlide>
-                <div class="row w-100" >
+            <!-- </ng-template> -->
+            <!-- <ng-template carouselSlide> -->
+                <!-- <div class="row w-100" >
+                    <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <h1>Get the best farming medicine solutions without going anywhere </h1>
+                        <h2>It's simple. You just need to tell us what's going on with your crop and send us images
+                            through a case. You can also track them. </h2>
+                        <div class="d-flex justify-content-center justify-content-lg-start mb-2">
+                            <a routerLink="/agriculture/create/case" class="btn-go-to-store scrollto"><i
+                                    class="fa-solid fa-suitcase-medical me-2"></i>Create Case</a>
+                        </div>
+                        <div class="d-flex justify-content-center justify-content-lg-start pb-3">
+                            <a routerLink="agriculture/check-status" class="glightbox btn-watch-video curser-pointer"
+                                style="cursor: pointer;"><i class="bi bi-toggles2 fa-fade"></i>Track</a>
+                           
+                            <a routerLink="/agriculture/kvks" class="glightbox btn-watch-video"><i
+                                    class="bi bi-info-circle fa-fade"></i><span>Kvks Deatails</span></a>
+
+                            <a routerLink="/agriculture/weather" class="glightbox btn-watch-video "><i
+                                    class="bi bi-cloud-drizzle fa-fade"></i><span>Weather-Forecast</span></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="assets/agri/2-34.png" class="img-fluid animated" alt="">
+                    </div>
+                </div> -->
+
+            <!-- </ng-template>
+        </owl-carousel-o> -->
+    </div>
+
+</section>
+
+<section  class="hero d-flexf align-items-center">
+
+    <div class="container p-0">
+
+        <!-- <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide> -->
+            <!-- </ng-template> -->
+            <!-- <ng-template carouselSlide> -->
+                <div class="row" >
                     <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                         data-aos="fade-up" data-aos-delay="200">
                         <h1>Get the best farming medicine solutions without going anywhere </h1>
@@ -50,8 +90,8 @@
                     </div>
                 </div>
 
-            </ng-template>
-        </owl-carousel-o>
+            <!-- </ng-template>
+        </owl-carousel-o> -->
     </div>
 
 </section>
@@ -701,6 +741,61 @@
 
         </div>
     </section><!-- End Frequently Asked Questions Section -->
+
+    <section id="faq" class="faq section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Feedback</h2>
+                <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+                    fugiat sit in iste officiis commodi quidem hic quas.</p> -->
+            </div>
+
+            <div class="review-holder">
+
+                <div style="background-color: #f8f7fd;" class="m-3">
+
+                  <ng-container *ngFor="let review of feedBackInformation">
+                    <div class="schema-item">
+                      <div class="flex-1 h-62 p-4 cursor-pointer opacity-100">
+                        <div class="flex items-center justify-start my-2">
+                          <div class="flex items-center  rounded p-1">
+                            <span class="scale-90 md:scale-100">
+                              <img src="assets/e-commerce/icons8-star-96.png" height="25" alt="reviews-stars">
+                            </span>
+                            <div class="schema-item" itemprop="reviewRating">
+                              <span class="rating__score_user">{{review?.user_rating}}</span>
+                            </div>
+                          </div>
+                          <span class="pl-2">
+                            <span class="text-[14px] font-bold" itemprop="name">{{review?.user_message}}
+                            </span></span>
+                        </div>
+                        <div class="flex flex-col mt-2"><span class="text-[14px] font-medium"
+                            itemprop="reviewBody">{{review?.user_message}}</span>
+                          <div class="h-[17px] mt-2">
+                            <div class="schema-item" itemprop="author" itemscope=""
+                              itemtype="https://schema.org/Person"><span class="text-[14px] font-semibold"
+                                itemprop="name">{{review?.user_name}}</span></div>
+                          </div>
+                          <div class="h-[15px]"><span
+                              class="text-[12px] text-gray">{{review?.created_At |date:'medium'}}</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="feedBackInformation.length==0">
+                    <button mat-button color="warn" class="w-100">No Reviews Found</button>
+                  </ng-container>
+
+                </div>
+
+              </div>
+            
+
+        </div>
+    </section>
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">

@@ -1,0 +1,25 @@
+<div class="bg"></div>
+<div class="box">
+    <div class="wrapper">
+        <p id="message">Rate Your Experience</p>
+        <div class="container">
+            <p-rating [(ngModel)]="value" [cancel]="false" (onRate)="onRate()"></p-rating>
+            
+        </div>
+        <div class="m-2" >
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Leave a feedback</mat-label>
+                <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="feedback_comment"></textarea>
+              </mat-form-field>
+        </div>
+        <div class="m-2" >
+            <p class="text-success text-center" [hidden]="!show">Thanks for your feedback. {{value}}</p>
+            <p class="text-center" [hidden]="!show">Last feedback Time  <span class="text-danger">{{created_At |date:'medium'}}</span></p>
+        </div>
+
+        <button id="submit" (click)="submit()">Submit</button>
+
+       
+    </div>
+    <a href="/"> Go Back</a>
+</div>
