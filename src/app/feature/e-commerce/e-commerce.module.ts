@@ -24,6 +24,8 @@ import { CategoryViewComponent } from './category-view/category-view.component';
 import { CustomDirectiveModule } from 'src/app/customDirective/custom-directive.module';
 import { SearchItemViewComponent } from './search-item-view/search-item-view.component';
 import { ToastrService } from 'ngx-toastr';
+import { BannerComponent } from './banner/banner.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
     declarations: [
         ECommerceComponent,
@@ -39,7 +41,8 @@ import { ToastrService } from 'ngx-toastr';
         OrderConfirmationComponent,
         OrderDetailsComponent,
         CategoryViewComponent,
-        SearchItemViewComponent
+        SearchItemViewComponent,
+        BannerComponent
     ],
     exports: [
         AllProductListComponent,
@@ -55,7 +58,8 @@ import { ToastrService } from 'ngx-toastr';
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
-        CustomDirectiveModule
+        CustomDirectiveModule,
+        NgbCarouselModule
     ]
 })
 export class ECommerceModule { }
