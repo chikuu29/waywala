@@ -437,7 +437,7 @@ h6 {
 --------------------------------------------------------------*/
 .hero {
   width: 100%;
-  height: 80vh;
+  // height: 80vh;
   background: #37517e;
 }
 
@@ -466,7 +466,7 @@ h6 {
   letter-spacing: 1px;
   display: inline-block;
   padding: 10px 28px 11px 28px;
-  border-radius: 50px;
+  border-radius: 12px;
   transition: 0.5s;
   margin: 10px 0 0 0;
   color: #fff;
@@ -484,7 +484,7 @@ h6 {
   letter-spacing: 1px;
   display: inline-block;
   padding: 10px 28px 11px 28px;
-  border-radius: 50px;
+  border-radius: 12px;
   transition: 0.5s;
   margin: 10px 0 0 0;
   color: #fff;
@@ -523,7 +523,7 @@ h6 {
 
 @media (max-width: 991px) {
   .hero {
-    height: 100vh;
+    // height: 100vh;
     text-align: center;
   }
 
