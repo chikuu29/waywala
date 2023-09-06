@@ -41,9 +41,10 @@ export class AuthService {
   private getApipath() {
     return environment.baseApiURL;
   }
-  public signIn(email: any, password: any) {
+  public signIn(email: any, password: any,phone:any) {
     return this.http.post<AuthRespose>(`${this.getApipath()}auth/login.php`, {
       email: email,
+      phone: phone,
       password: password,
       isReturnSecureToken: true
     })

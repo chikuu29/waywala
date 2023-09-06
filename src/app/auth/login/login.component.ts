@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
   redirectUrl: any
   loginForm = new FormGroup({
 
-    emailOrPhone: new FormControl('', [Validators.required, emailOrPhoneNumberValidator()]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required,Validators.pattern(/^\d{10}$/), Validators.minLength(10)]),
     password: new FormControl('', [Validators.required])
 
   });
@@ -55,15 +56,15 @@ export class LoginComponent implements OnInit {
   }
 
   getErrorMessage() {
-    if (this.loginForm.controls.emailOrPhone.hasError('required') || this.loginForm.controls.password.hasError('required')) {
+    if (this.loginForm.controls.email.hasError('required') || this.loginForm.controls.password.hasError('required')) {
       return 'You must enter a value';
-    } else if (this.loginForm.controls.emailOrPhone.hasError('invalidEmailOrPhoneNumber')) {
+    } else if (this.loginForm.controls.email.hasError('invalidEmailOrPhoneNumber')) {
       return "Please Enter Valid Email Or Phone No"
     }else{
       return "Please Enter Valid Input";
     }
 
-    // return this.loginForm.controls.emailOrPhone.hasError('emailOrPhone') ? 'Not a valid email' : '';
+    // return this.loginForm.controls.email.hasError('email') ? 'Not a valid email' : '';
   }
 
   public submitLoginBtn() {
@@ -71,7 +72,7 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
       this.loader.start()
-      this.auth.signIn(this.loginForm.value.emailOrPhone, this.loginForm.value.password).subscribe((res: any) => {
+      this.auth.signIn(this.loginForm.value.email, this.loginForm.value.password,this.loginForm.value.phone).subscribe((res: any) => {
         console.log(res);
         this.loader.stop();
         if (res.status) {
@@ -91,7 +92,7 @@ export class LoginComponent implements OnInit {
             const modalRef = this.modalService.open(OtpComponent);
             modalRef.componentInstance.modalTitle = "You Need To Valiadte Your OTP";
             modalRef.componentInstance.OtpType = "Email",
-            modalRef.componentInstance.otpSendTo = this.loginForm.value.emailOrPhone
+            modalRef.componentInstance.otpSendTo = this.loginForm.value.email
             modalRef.result.then((modalInstance: any) => {
               if (modalInstance.success) {
                 this.router.navigateByUrl('auth/login')

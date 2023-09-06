@@ -1,14 +1,14 @@
-
 <div class="container d-flex align-items-center" style="height: 100vh;">
-    <div class="row  justify-content-center" style=" box-shadow: 0.063rem 0 1.25rem 0 #ced0d3; border-radius: 30px;">
+    <div class="row justify-content-center" style=" box-shadow: 0.063rem 0 1.25rem 0 #ced0d3; border-radius: 30px;">
         <div class="col-lg-6 col-sm-12">
             <img src="/assets/agri/Build-An-Organic-E-commerce-Platform.png" class="img-fluid"
-                style="border-bottom-left-radius: 30px; border-top-left-radius: 30px;border-right: 2px solid black;" width="100%" alt="Sample image">
+                style="border-bottom-left-radius: 30px; border-top-left-radius: 30px;border-right: 2px solid black;"
+                width="100%" alt="Sample image">
         </div>
-        <div class="col-lg-6 col-sm-12 align-items-center d-flex">
-            <form [formGroup]="loginForm" class="m-auto">
+        <div class="col-lg-6 col-sm-12 p-4 ">
+            <form [formGroup]="loginForm" class="pt-4">
                 <div class="text-center mb-4">
-                    <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+                    <p class="text-muted fs-3 fw-bold ">Sign in with</p>
                     <!-- <button type="button" class="btn btn-primary btn-floating mx-1 p-2">
                         <i class="fab fa-facebook-f"></i>
                     </button>
@@ -24,11 +24,25 @@
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                     <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Enter Your Email/Phone</mat-label>
-                        <input matInput placeholder="Enter Your Email / Phone" (keyup.enter)="submitLoginBtn()"  formControlName="emailOrPhone" required type="email">
-                        <mat-icon matSuffix>{{loginForm.controls.emailOrPhone.valid
+                        <mat-label>Enter Your Email</mat-label>
+                        <input matInput placeholder="Enter Your Email / Phone" (keyup.enter)="submitLoginBtn()"
+                            formControlName="email" required type="email">
+                        <mat-icon matSuffix>{{loginForm.controls.email.valid
                             ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
-                        <mat-error *ngIf="loginForm.controls.emailOrPhone.invalid">{{getErrorMessage()}}</mat-error>
+                        <mat-error *ngIf="loginForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+                </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter Your Phone</mat-label>
+                        <input matInput placeholder="Enter Your Phone" (keyup.enter)="submitLoginBtn()"
+                            formControlName="phone" required type="email">
+                        <mat-icon matSuffix>{{loginForm.controls.phone.valid
+                            ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                        <mat-error *ngIf="loginForm.controls.phone.invalid">{{getErrorMessage()}}</mat-error>
                         <!-- <mat-hint>Hint</mat-hint> -->
                     </mat-form-field>
                 </div>
@@ -36,8 +50,8 @@
                 <div class="form-outline mb-3">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Enter Your Password</mat-label>
-                        <input matInput placeholder="Enter Your Password" (keyup.enter)="submitLoginBtn()" [type]="hide ? 'password' : 'text'"
-                            formControlName="password" required>
+                        <input matInput placeholder="Enter Your Password" (keyup.enter)="submitLoginBtn()"
+                            [type]="hide ? 'password' : 'text'" formControlName="password" required>
                         <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
                             [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
