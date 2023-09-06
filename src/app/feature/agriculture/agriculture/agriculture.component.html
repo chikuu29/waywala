@@ -31,13 +31,13 @@
     <marquee width="100%" direction="left" height="50px" class="text-marquee" onmouseover="this.stop()"
         onmouseout="this.start()">
         <ng-container *ngFor="let banner of allbannerData">
-            <span *ngIf="banner.display_banner=='Yes' && banner.display_phone_no=='No'">
+            <span *ngIf="banner.display_banner=='Yes'">
                 {{banner.message}}
             </span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a *ngIf="banner.display_banner=='Yes' && banner.display_phone_no=='Yes'" class="missedCall"
                 href="tel:{{banner.phone_no}}">
-                <span class="design missedCallText text-danger">{{banner.message}}</span></a>
+                <span class="design missedCallText text-light"> || Helpline No {{banner.phone_no}}</span></a>
         </ng-container>
 
     </marquee>
