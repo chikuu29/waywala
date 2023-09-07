@@ -10,6 +10,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProductDetailsPageComponent } from './product-details-page/product-details-page.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
 import { SearchItemViewComponent } from './search-item-view/search-item-view.component';
+import { AgricultureProductPageComponent } from './agriculture-product-page/agriculture-product-page.component';
 
 const routes: Routes = [
   { 
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path:'search',
     component:SearchItemViewComponent
+  },
+  {
+    path:'agriculture/product',
+    component:AgricultureProductPageComponent
   },
 ];
 

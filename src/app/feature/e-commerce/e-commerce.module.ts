@@ -26,6 +26,7 @@ import { SearchItemViewComponent } from './search-item-view/search-item-view.com
 import { ToastrService } from 'ngx-toastr';
 import { BannerComponent } from './banner/banner.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgricultureProductPageComponent } from './agriculture-product-page/agriculture-product-page.component';
 @NgModule({
     declarations: [
         ECommerceComponent,
@@ -42,7 +43,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
         OrderDetailsComponent,
         CategoryViewComponent,
         SearchItemViewComponent,
-        BannerComponent
+        BannerComponent,
+        AgricultureProductPageComponent
     ],
     exports: [
         AllProductListComponent,
