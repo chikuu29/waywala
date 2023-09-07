@@ -27,6 +27,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BannerComponent } from './banner/banner.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgricultureProductPageComponent } from './agriculture-product-page/agriculture-product-page.component';
+import { AgricultureProductPageCategoryComponent } from './agriculture-product-page-category/agriculture-product-page-category.component';
 @NgModule({
     declarations: [
         ECommerceComponent,
@@ -44,7 +45,8 @@ import { AgricultureProductPageComponent } from './agriculture-product-page/agri
         CategoryViewComponent,
         SearchItemViewComponent,
         BannerComponent,
-        AgricultureProductPageComponent
+        AgricultureProductPageComponent,
+        AgricultureProductPageCategoryComponent
     ],
     exports: [
         AllProductListComponent,
