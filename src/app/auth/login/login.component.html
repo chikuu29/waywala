@@ -25,7 +25,7 @@
                 <div class="form-outline mb-4">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Enter Your Email</mat-label>
-                        <input matInput placeholder="Enter Your Email / Phone" (keyup.enter)="submitLoginBtn()"
+                        <input matInput placeholder="Enter Your Email" (keyup.enter)="submitLoginBtn()"
                             formControlName="email" required type="email">
                         <mat-icon matSuffix>{{loginForm.controls.email.valid
                             ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
