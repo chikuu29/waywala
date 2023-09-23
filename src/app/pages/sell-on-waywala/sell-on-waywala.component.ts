@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import _ from 'lodash';
 import moment from 'moment';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { MessageService } from 'primeng/api';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
 import { AddressManagementComponent } from 'src/app/shared/address-management/address-management.component';
@@ -26,7 +28,9 @@ export class SellOnWaywalaComponent implements OnInit {
     businessName: new FormControl('', [Validators.required]),
     adharNo: new FormControl('', [Validators.required, Validators.pattern(/^\d{12}$/), Validators.minLength(12), Validators.maxLength(12)]),
     addressInfo: new FormControl('', [Validators.required]),
-    sellingCategory: new FormControl<any | null>(null),
+    adhar_document: new FormControl('', [Validators.required]),
+    pan_document: new FormControl('', [Validators.required]),
+    sellingCategory: new FormControl('',[Validators.required]),
     ceatedTime: new FormControl(moment().format('LLL').toString()),
     igst_no: new FormControl('', []),
     pan_no: new FormControl('', [Validators.required]),
@@ -42,16 +46,27 @@ export class SellOnWaywalaComponent implements OnInit {
     ]
   sellOnWaywalaContactFormDATA: any = []
   otpgenerationRequired: boolean = true;
+  uploadURL: string = ''
+  uploadedFiles: any = {
+    "adhar_document": [],
+    'resume': [],
+    'pan_document': [],
+    'qualification_document': []
+
+  }
   constructor(
     private Title: Title,
     private _formBuilder: FormBuilder,
     private ApiParameterScript: ApiParameterScript,
     private appServices: AppService,
     private modalService: NgbModal,
-    private http: HttpClient
+    private http: HttpClient,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
+    this.uploadURL = this.appServices.getAdminApiPath() + `generic/upload.php?token=${this.appServices.authStatus._refreshkey}`;
+
     this.Title.setTitle('Sell on Waywala : waywala.com')
     var apiData = {
       "select": "*",
@@ -106,7 +121,7 @@ export class SellOnWaywalaComponent implements OnInit {
       "multiDataSet": encodeURIComponent(JSON.stringify([this.sellOnWaywalaContactForm.value]))
     }
     if (this.sellOnWaywalaContactForm.valid) {
-   
+
 
       if (this.otpgenerationRequired) {
         this.blockUI.start('Please Wait...')
@@ -124,7 +139,7 @@ export class SellOnWaywalaComponent implements OnInit {
                 this.ApiParameterScript.dynamicApiExecute('auth/otp/otpmatch.php', { "email": this.sellOnWaywalaContactForm.value.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
 
                   if (otpMatch.success) {
-                    this.otpgenerationRequired=true;
+                    this.otpgenerationRequired = true;
                     this.blockUI.start("Please Wait")
                     this.ApiParameterScript.savedata('becomesellercontactform', apiData, true).subscribe((res: any) => {
                       console.log(res);
@@ -140,8 +155,8 @@ export class SellOnWaywalaComponent implements OnInit {
 
                     })
                   } else {
-                    this.otpgenerationRequired=false
-                    Swal.fire(otpMatch.message, '', 'error').then(()=>{
+                    this.otpgenerationRequired = false
+                    Swal.fire(otpMatch.message, '', 'error').then(() => {
                       this.send()
                     })
                   }
@@ -157,10 +172,10 @@ export class SellOnWaywalaComponent implements OnInit {
 
             })
           } else {
-            Swal.fire(otp_send_res.message,'','error')
+            Swal.fire(otp_send_res.message, '', 'error')
           }
         })
-      }else{
+      } else {
         const modalRef = this.modalService.open(GenericOtpVerificationComponent);
         modalRef.componentInstance.modalTitle = "OTP VERIFICATION PROCESS FOR YOUR SECURITY";
         modalRef.result.then((modalInstance: any) => {
@@ -169,7 +184,7 @@ export class SellOnWaywalaComponent implements OnInit {
           if (modalInstance.TYPE = "RETURN_USER_ENTER_OTP") {
             this.ApiParameterScript.dynamicApiExecute('auth/otp/otpmatch.php', { "email": this.sellOnWaywalaContactForm.value.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
 
-            // this.http.post(this.appServices.getApipath() + 'auth/otp/otpmatch.php', { "email": this.sellOnWaywalaContactForm.value.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
+              // this.http.post(this.appServices.getApipath() + 'auth/otp/otpmatch.php', { "email": this.sellOnWaywalaContactForm.value.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
 
               if (otpMatch.success) {
                 this.blockUI.start("Please Wait")
@@ -187,7 +202,7 @@ export class SellOnWaywalaComponent implements OnInit {
 
                 })
               } else {
-                Swal.fire(otpMatch.message, '', 'error').then(()=>{
+                Swal.fire(otpMatch.message, '', 'error').then(() => {
                   this.send()
                 })
               }
@@ -209,12 +224,55 @@ export class SellOnWaywalaComponent implements OnInit {
 
 
     } else {
-      Swal.fire('Please fill All ', '', 'warning')
+      const formControls: any = this.sellOnWaywalaContactForm.controls; // Assuming this is your form controls object
+      const invalidControlKeys = _.filter(_.keys(formControls), key => formControls[key].invalid);
+      console.log(invalidControlKeys);
+      const fieldLabelMapping: any = {
+        "addressInfo": "Address Info",
+        "businessName":"Business Name",
+        "adharNo": "Aadhar Number",
+        "adhar_document": "Upload Aadhar Document",
+        "pan_document": "Upload Pan Document",
+        "experienced_document": 'Experienced Document',
+        "experienced_time_period": 'Experienced time period',
+        "qualification": "Qualification",
+        "qualification_document": "Qualification Document",
+        "resume": "Resume",
+        "tell_about_you": "Tell About You",
+        "checkme": "agree all statements",
+        "sellingCategory":"Select your selling category",
+        "pan_no":"Pan No"
+      };
+
+      // Convert the array of field names to an array of objects
+      // Swal.fire('Please fill All ', '', 'warning')
+      var warningText = '<ol>'
+      invalidControlKeys.forEach((e: any) => {
+        warningText += `<li style='padding:4px;color:red;'>${fieldLabelMapping[e]}</li>`
+
+      })
+      warningText = warningText + '</0l>'
+      Swal.fire({ title: 'Please Fill All Mandtory Details', html: warningText, icon: 'warning' })
     }
   }
 
   reset() {
     this.sellOnWaywalaContactForm.reset()
   }
+  onUploadDocument(event: any, type: any) {
+    console.log(event);
 
+    var res = event.originalEvent['body'];
+    if (res.success) {
+      for (let file of event.files) {
+        this.uploadedFiles[type].push(file);
+      }
+      const control = this.sellOnWaywalaContactForm.get(type) as FormControl;
+      control.setValue(res.doc)
+      this.messageService.add({ severity: 'success', summary: 'success', detail: res.message });
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'error', detail: res.message });
+    }
+
+  }
 }
