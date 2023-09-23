@@ -88,14 +88,14 @@
                     <mat-form-field appearance="outline" class="flex-fill">
                         <mat-label>Enter Your Address</mat-label>
                         <textarea matInput placeholder="Address" formControlName="addressInfo" rows="5"></textarea>
-                       
+
                         <mat-error
                             *ngIf="sellOnWaywalaContactForm.controls.addressInfo.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
-                   
-                </div>
-                <p-button class="w-100 " icon="pi pi-search" (click)="getAddress()" label="Fetch Auto Address" styleClass="p-button-rounded p-button-success p-button-text p-button-raised"></p-button>
 
+                </div>
+                <p-button class="w-100 " icon="pi pi-search" (click)="getAddress()" label="Fetch Auto Address"
+                    styleClass="p-button-rounded p-button-success p-button-text p-button-raised"></p-button>
                 <div class="d-flex flex-row align-items-center mb-4 mt-3">
                     <mat-form-field appearance="outline" class="flex-fill">
                         <mat-label>Enter Your Adhar Card No</mat-label>
@@ -106,16 +106,109 @@
                             *ngIf="sellOnWaywalaContactForm.controls.adharNo.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
+                <div class="mt-2 mb-2">
+                    <p class="text-danger fw-bold text-center">Upload Your Adhar Document</p>
+                    <p-fileUpload name="uploadfile[]" [url]="uploadURL"
+                        (onUpload)="onUploadDocument($event,'adhar_document')" accept=".pdf,.jpg,.png" [multiple]="true"
+                        [maxFileSize]="15000000" styleClass="text-center" [chooseStyleClass]="'d-block mb-2'"
+                        [uploadStyleClass]="'d-block'" [cancelStyleClass]="'d-block'"
+                        [disabled]="uploadedFiles['adhar_document'].length>0">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles['adhar_document'].length">
+                                <li *ngFor="let file of uploadedFiles['adhar_document']">{{file.name}} - {{file.size}}
+                                    bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <div class="d-flex flex-row align-items-center">
+                    <mat-form-field appearance="outline" class="flex-fill">
+                        <mat-label>Qualification</mat-label>
+                        <input matInput placeholder="Qualification" formControlName="qualification" type="text">
+                        <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.qualification.valid
+                            ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                        <mat-error
+                            *ngIf="sellOnWaywalaContactForm.controls.qualification.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mt-2 mb-2">
+                    <p class="text-danger fw-bold text-center">Qualification Document</p>
+                    <p-fileUpload name="uploadfile[]" [url]="uploadURL"
+                        (onUpload)="onUploadDocument($event,'qualification_document')" accept=".pdf,.jpg,.png"
+                        [multiple]="false" [maxFileSize]="15000000" styleClass="text-center"
+                        [chooseStyleClass]="'d-block mb-2'" [uploadStyleClass]="'d-block'"
+                        [cancelStyleClass]="'d-block'" [disabled]="uploadedFiles['qualification_document'].length>0">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles['qualification_document'].length">
+                                <li *ngFor="let file of uploadedFiles['qualification_document']">{{file.name}} -
+                                    {{file.size}} bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+                <div class=" align-items-center mb-3">
+                    <p class="text-danger fw-bold text-start">Type Of Experienced</p>
+                    <mat-radio-group aria-label="Select an option" formControlName="experienced_type" class="m-2"
+                        (change)="onChangeTypeOfExperienced()">
+                        <mat-radio-button value="Fresher" class="me-3">Fresher</mat-radio-button>
+                        <mat-radio-button value="Experienced">Experienced</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <ng-container *ngIf="sellOnWaywalaContactForm.value.experienced_type=='Experienced'">
+                    <div class="d-flex flex-row align-items-center">
+                        <mat-form-field appearance="outline" class="flex-fill">
+                            <mat-label>Experienced Time Period / Year</mat-label>
+                            <input matInput placeholder="About You" formControlName="experienced_time_period"
+                                type="number">
+                            <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.experienced_time_period.valid
+                                ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                            <mat-error
+                                *ngIf="sellOnWaywalaContactForm.controls.experienced_time_period.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mt-2 mb-2">
+                        <p class="text-danger fw-bold text-center">Experienced Document</p>
+                        <p-fileUpload name="uploadfile[]" [url]="uploadURL"
+                            (onUpload)="onUploadDocument($event,'experienced_document')" accept=".pdf,.jpg,.png/*"
+                            [multiple]="false" [maxFileSize]="15000000" styleClass="text-center"
+                            [chooseStyleClass]="'d-block mb-2'" [uploadStyleClass]="'d-block'"
+                            [cancelStyleClass]="'d-block'" [disabled]="uploadedFiles['experienced_document'].length>0">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles['experienced_document'].length">
+                                    <li *ngFor="let file of uploadedFiles['experienced_document']">{{file.name}} -
+                                        {{file.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+                    </div>
+
+                </ng-container>
+                <div class="mt-2 mb-2">
+                    <p class="text-danger fw-bold text-center">Upload Your Resume</p>
+                    <p-fileUpload name="uploadfile[]" [url]="uploadURL" (onUpload)="onUploadDocument($event,'resume')"
+                        accept=".pdf,.jpg,.png" [multiple]="false" [maxFileSize]="15000000" styleClass="text-center"
+                        [chooseStyleClass]="'d-block mb-2'" [uploadStyleClass]="'d-block'"
+                        [cancelStyleClass]="'d-block'" [disabled]="uploadedFiles['resume'].length>0">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles['resume'].length">
+                                <li *ngFor="let file of uploadedFiles['resume']">{{file.name}} - {{file.size}} bytes
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
                 <div class="d-flex flex-row align-items-center">
                     <mat-form-field appearance="outline" class="flex-fill">
                         <mat-label>Tell About You</mat-label>
-                        <input matInput placeholder="About You" formControlName="additionalInfo" type="text">
-                        <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.additionalInfo.valid
+                        <textarea matInput placeholder="About You" formControlName="tell_about_you" type="text"
+                            rows="5"></textarea>
+                        <mat-icon matSuffix>{{sellOnWaywalaContactForm.controls.tell_about_you.valid
                             ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
                         <mat-error
-                            *ngIf="sellOnWaywalaContactForm.controls.additionalInfo.invalid">{{getErrorMessage()}}</mat-error>
+                            *ngIf="sellOnWaywalaContactForm.controls.tell_about_you.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
+
                 <div class="form-check d-flex justify-content-center mb-5">
                     <input class="form-check-input me-2" type="checkbox" id="form2Example3c" formControlName='checkme'
                         required />
@@ -124,13 +217,13 @@
                     </label>
                 </div>
 
-                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                <div class="row justify-content-center mx-4 mb-3 mb-lg-4">
                     <!-- <button type="button" class="btn btn-primary btn-lg">Register</button> -->
-                    <button mat-raised-button color="primary" type="button"
-                        style="padding-left: 2.5rem; padding-right: 2.5rem;" class="m-1"
-                        [disabled]="sellOnWaywalaContactForm.invalid" (click)="send()">Send</button>
+                    <button mat-raised-button color="primary" type="button" class="col-12 col-sm-12"
+                        (click)="send()">Submit Your Application</button>
                     <a mat-raised-button color="accent" type="button"
-                        style="padding-left: 2.5rem; padding-right: 2.5rem;" class="m-1">Reset</a>
+                        style="padding-left: 2.5rem; padding-right: 2.5rem;" class="col-12 col-sm-12 mt-2">Reset
+                        Form</a>
                 </div>
 
             </form>

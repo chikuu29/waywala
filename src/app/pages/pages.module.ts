@@ -24,6 +24,7 @@ import { TermsofserviceComponent } from './termsofservice/termsofservice.compone
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { RefundPolicyComponent } from './refund-policy/refund-policy.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CommingSoonComponent
   
   ],
-  providers:[],
+  providers:[MessageService],
   entryComponents:[OtpComponent]
 })
 export class PagesModule { }

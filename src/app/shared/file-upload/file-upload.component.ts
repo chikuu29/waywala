@@ -57,8 +57,6 @@ export class FileUploadComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imageUrls.push(e.target.result);
-
-
       };
       reader.readAsDataURL(file);
 

@@ -5,3 +5,7 @@
     box-shadow: 0px 0 30px rgba(55, 81, 126, 0.08);
 }
 
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
+  
