@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,8 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-become-agricultue-investigrator',
   templateUrl: './become-agricultue-investigrator.component.html',
-  styleUrls: ['./become-agricultue-investigrator.component.scss']
+  styleUrls: ['./become-agricultue-investigrator.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BecomeAgricultueInvestigratorComponent implements OnInit {
 
@@ -86,7 +87,7 @@ export class BecomeAgricultueInvestigratorComponent implements OnInit {
       console.log(res);
       this.blockUI.stop()
       if (res.success && res['data'].length > 0) {
-        if(res['data'][0].status=="Approved"){
+        if (res['data'][0].status == "Approved") {
           this.setupElements()
           this.renderConfetti()
         }
@@ -235,28 +236,28 @@ export class BecomeAgricultueInvestigratorComponent implements OnInit {
       const formControls: any = this.sellOnWaywalaContactForm.controls; // Assuming this is your form controls object
       const invalidControlKeys = _.filter(_.keys(formControls), key => formControls[key].invalid);
       console.log(invalidControlKeys);
-      const fieldLabelMapping :any= {
+      const fieldLabelMapping: any = {
         "addressInfo": "Address Info",
         "adharNo": "Aadhar Number",
         "adhar_document": "Aadhar Document",
-        "experienced_document":'Experienced Document',
-        "experienced_time_period":'Experienced time period',
+        "experienced_document": 'Experienced Document',
+        "experienced_time_period": 'Experienced time period',
         "qualification": "Qualification",
         "qualification_document": "Qualification Document",
         "resume": "Resume",
         "tell_about_you": "Tell About You",
         "checkme": "agree all statements"
       };
-      
+
       // Convert the array of field names to an array of objects
       // Swal.fire('Please fill All ', '', 'warning')
-      var warningText='<ol>'
-      invalidControlKeys.forEach((e:any)=>{
-        warningText+=`<li style='padding:4px;color:red;'>${fieldLabelMapping[e]}</li>`
+      var warningText = '<ol>'
+      invalidControlKeys.forEach((e: any) => {
+        warningText += `<li style='padding:4px;color:red;'>${fieldLabelMapping[e]}</li>`
 
       })
-      warningText=warningText+'</0l>'
-      Swal.fire({title:'Please Fill All Mandtory Details', html:warningText,icon:'warning'})
+      warningText = warningText + '</0l>'
+      Swal.fire({ title: 'Please Fill All Mandtory Details', html: warningText, icon: 'warning' })
     }
 
   }
