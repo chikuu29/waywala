@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import Swal from "sweetalert2";
 import { ApiService } from "../services/api.service";
 import { AppService } from "../services/app.service";
+import { error } from "jquery";
 
 
 @Injectable({
@@ -344,6 +345,10 @@ export class ApiParameterScript {
                
                 this.apiservices.dyamicApiCall(path,data).subscribe((res: any) => {
                     observer.next(res);
+                    observer.complete();
+                },(error:any)=>{
+                    // observer.next(Error);
+                    observer.error(error)
                     observer.complete();
                 })
               

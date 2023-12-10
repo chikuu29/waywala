@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +16,8 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-sell-on-waywala',
   templateUrl: './sell-on-waywala.component.html',
-  styleUrls: ['./sell-on-waywala.component.scss']
+  styleUrls: ['./sell-on-waywala.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SellOnWaywalaComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
@@ -54,6 +55,12 @@ export class SellOnWaywalaComponent implements OnInit {
     'qualification_document': []
 
   }
+
+  private confettiInterval: any;
+  private containerEl: HTMLElement;
+  private confettiFrequency = 3;
+  private confettiColors = ['#EF2964', '#00C09D', '#2D87B0', '#48485E', '#EFFF1D'];
+  private confettiAnimations = ['slow', 'medium', 'fast'];
   constructor(
     private Title: Title,
     private _formBuilder: FormBuilder,
@@ -61,7 +68,8 @@ export class SellOnWaywalaComponent implements OnInit {
     private appServices: AppService,
     private modalService: NgbModal,
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private el: ElementRef
   ) { }
 
   ngOnInit(): void {
@@ -78,6 +86,10 @@ export class SellOnWaywalaComponent implements OnInit {
       console.log(res);
       this.blockUI.stop()
       if (res.success && res['data'].length > 0) {
+        if(res['data'][0].status=="Approved"){
+          this.setupElements()
+          this.renderConfetti()
+        }
         this.sellOnWaywalaContactFormDATA = res['data']
       } else {
         this.sellOnWaywalaContactFormDATA = []
@@ -174,6 +186,8 @@ export class SellOnWaywalaComponent implements OnInit {
           } else {
             Swal.fire(otp_send_res.message, '', 'error')
           }
+        },(Error)=>{
+          this.blockUI.stop()
         })
       } else {
         const modalRef = this.modalService.open(GenericOtpVerificationComponent);
@@ -275,4 +289,43 @@ export class SellOnWaywalaComponent implements OnInit {
     }
 
   }
+
+  private setupElements(): void {
+    this.containerEl = document.createElement('div');
+    const elPosition = this.el.nativeElement.style.position;
+
+    if (elPosition !== 'relative' && elPosition !== 'absolute') {
+      this.el.nativeElement.style.position = 'relative';
+    }
+
+    this.containerEl.classList.add('confetti-container');
+    this.el.nativeElement.appendChild(this.containerEl);
+  }
+
+  private renderConfetti(): void {
+    this.confettiInterval = setInterval(() => {
+      const confettiEl = document.createElement('div');
+      const confettiSize = (Math.floor(Math.random() * 3) + 7) + 'px';
+      const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)];
+      const confettiLeft = (Math.floor(Math.random() * this.el.nativeElement.offsetWidth)) + 'px';
+      const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)];
+
+      confettiEl.classList.add('confetti', 'confetti--animation-' + confettiAnimation);
+      confettiEl.style.left = confettiLeft;
+      confettiEl.style.width = confettiSize;
+      confettiEl.style.height = confettiSize;
+      confettiEl.style.backgroundColor = confettiBackground;
+
+      setTimeout(() => {
+        this.containerEl.removeChild(confettiEl);
+      }, 1000);
+
+      this.containerEl.appendChild(confettiEl);
+    }, 25);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.confettiInterval);
+  }
+
 }

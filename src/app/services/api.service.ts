@@ -12,7 +12,7 @@ export class ApiService {
     var headers = new HttpHeaders()
       .set("Authorization",this.appservices.authStatus?this.appservices.authStatus._refreshkey:this.appservices.getApiKey())
       .set("Access-Control-Allow-Origin", "*")
-      .set("Content-Type", "application/x-www-form-urlencoded;harset=utf-8")
+      .set("Content-Type", "application/x-www-form-urlencoded;harset=utf-8,application/json")
     this.headers = headers;
 
  

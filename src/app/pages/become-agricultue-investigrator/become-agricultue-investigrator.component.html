@@ -5,7 +5,67 @@
     <h2>Become Agriculture Investigator With Us</h2>
     <p>Join Us</p>
 </div>
-<ng-container *ngIf="sellOnWaywalaContactFormDATA.length>0">
+<ng-container *ngIf="sellOnWaywalaContactFormDATA && (sellOnWaywalaContactFormDATA[0]?.status == 'Approved')">
+    <div class="text-center congratulation mb-3">
+
+        <div class="main-container">
+            <div class="check-container">
+                <div class="check-background">
+                    <svg viewBox="0 0 65 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 25L27.3077 44L58.5 7" stroke="white" stroke-width="13" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="check-shadow"></div>
+            </div>
+        </div>
+        <h4 class="fw-bold text-success">
+            <i class="fa-solid fa-check me-2"></i>Congratulation
+        </h4>
+        <p>Your account has been approved, and we have already sent your login details to the email you provided
+            during registration</p>
+        <p>
+            <span class="text-danger">You Can Login Your DashBoard
+            </span>
+            <!-- Click Below Button -->
+        </p>
+        <button mat-raised-button color="primary" class="me-2"><a href="https://admin.waywala.com/" target="_blank"
+                class="text-light"> LOGIN YOUR DASHBOARD</a></button>
+        <!-- <button mat-raised-button color="primary" class="me-2" routerLink="/profile">
+        View Profile
+    </button> -->
+    </div>
+</ng-container>
+<ng-container *ngIf="sellOnWaywalaContactFormDATA && (sellOnWaywalaContactFormDATA[0]?.status != 'Approved')">
+    <div class="alert  text-center mb-3">
+
+        <div class="main-container">
+            <div class="check-container">
+                <div class="pending-background">
+                    <img src="/assets/img/animation/icons8-pending.gif" alt="" srcset=""
+                        style="border-radius: 10px;">
+
+                </div>
+                <div class="pending-shadow"></div>
+            </div>
+        </div>
+        <h4 class="fw-bold text-danger">
+            <i class="fa-regular fa-clock me-2"></i>Processing
+        </h4>
+        <p>You fill in all your information, and we will keep it secure.</p>
+        <p>
+            <span class="text-danger">Please wait our administrator will contact you and approved your accout very
+                soon.
+            </span>
+
+        </p>
+        <!-- <button mat-raised-button color="accent" class="me-2" (click)="activeAccount()">Active Now</button> -->
+        <button mat-button color="primary" class="me-2" >
+            Stay Relax
+        </button>
+    </div>
+</ng-container>
+<ng-container *ngIf="sellOnWaywalaContactFormDATA.length>0 &&  (sellOnWaywalaContactFormDATA[0]?.status != 'Approved')">
     <div class="container">
         <p-table [value]="sellOnWaywalaContactFormDATA" [resizableColumns]="true">
             <ng-template pTemplate="caption">
