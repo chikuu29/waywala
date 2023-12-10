@@ -351,8 +351,8 @@ export class ProductDetailsPageComponent implements OnInit {
             // this.showCustomAlert()
             if (res.success) {
               this.eCommerceService.generateCartItemCount.next(true)
-
-              // this.router.navigate(["/store/my/bag"])
+              this.router.navigate(["/store/my/bag"])
+             
             }
           }
           )
