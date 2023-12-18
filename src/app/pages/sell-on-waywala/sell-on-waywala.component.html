@@ -7,7 +7,7 @@
             consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
             fugiat sit in iste officiis commodi quidem hic quas.</p> -->
     </div>
-    <ng-container *ngIf="sellOnWaywalaContactFormDATA && (sellOnWaywalaContactFormDATA[0]?.status == 'Approved')">
+    <ng-container *ngIf="sellOnWaywalaContactFormDATA.length>0 && (sellOnWaywalaContactFormDATA[0]?.status == 'Approved')">
         <div class="text-center congratulation mb-3">
 
             <div class="main-container">
@@ -38,7 +38,7 @@
         </button> -->
         </div>
     </ng-container>
-    <ng-container *ngIf="sellOnWaywalaContactFormDATA && (sellOnWaywalaContactFormDATA[0]?.status != 'Approved')">
+    <ng-container *ngIf="sellOnWaywalaContactFormDATA.length>0 && (sellOnWaywalaContactFormDATA[0]?.status != 'Approved')">
         <div class="alert  text-center mb-3">
 
             <div class="main-container">
