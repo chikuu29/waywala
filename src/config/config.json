@@ -70,7 +70,8 @@
             "becomesellercontactform",
             "become_agricultural_reviewer_request",
             "e_commerce_product_rating",
-            "feedback"
+            "feedback",
+            "market_place_information"
             
          ],
          "authorizationDBAcessForUpdate": [
@@ -81,7 +82,8 @@
             "user_address",
             "search_history",
             "e_commerce_product_rating",
-            "feedback"
+            "feedback",
+            "market_place_information"
          ],
          "authorizationDBAcessForDelete": [
             "e_commerce_product_kart",

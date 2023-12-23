@@ -1,0 +1,169 @@
+<div class="coustom-margin"></div>
+
+
+<div class="section-title">
+    <h2>Market Place Management</h2>
+    <p class="text-danger">Just update the market information about product prices to earn coins/money.</p>
+</div>
+
+
+
+<div class="container">
+
+    <mat-vertical-stepper [linear]="false" #stepper animationDuration="1000">
+        <mat-step [stepControl]="loginDeatails" >
+            <form [formGroup]="loginDeatails">
+                <ng-template matStepLabel>Fill out your details</ng-template>
+                <div class="d-flex flex-column mb-4">
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Enter Your Name</mat-label>
+                        <input matInput placeholder="Name" formControlName="name" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Enter Your Email</mat-label>
+                        <input matInput placeholder="Email" formControlName="email" required >
+                    </mat-form-field>
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Enter Your Phone</mat-label>
+                        <input matInput placeholder="Phone" formControlName="phone" required >
+                    </mat-form-field>
+
+                </div>
+                <div>
+                    
+                    <button mat-button matStepperNext color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="locationDeatails" >
+            <form [formGroup]="locationDeatails">
+                <ng-template matStepLabel>Fill out location</ng-template>
+                <div class="d-flex flex-column mb-4">
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Select State</mat-label>
+                        <mat-select formControlName="state">
+
+                            <mat-option [value]="item.value" *ngFor="let item of stateOption">{{item.name}}</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Select District</mat-label>
+                        <mat-select formControlName="district">
+
+                            <mat-option [value]="item.value"
+                                *ngFor="let item of districtOption">{{item.name}}</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext [disabled]="!locationDeatails.valid"color="primary">Next</button>
+                </div>
+
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="marketDeatails" >
+            <form [formGroup]="marketDeatails">
+                <ng-template matStepLabel>Market Info</ng-template>
+                <div class="d-flex flex-column mb-4">
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Market Name</mat-label>
+                        <input matInput placeholder="Name" formControlName="market_name" required>
+                    </mat-form-field>
+
+
+                    <mat-form-field>
+                        <mat-label>Today Date</mat-label>
+                        <input matInput formControlName="date">
+                        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                        <!-- <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker> -->
+                    </mat-form-field>
+
+
+                </div>
+                <div>
+                    
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext [disabled]="!marketDeatails.valid"color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="productDeatails" >
+            <form [formGroup]="productDeatails">
+                <ng-template matStepLabel>Product Details</ng-template>
+                <div class="d-flex flex-column mb-4">
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="category">
+
+                            <mat-option [value]="item.value"
+                                *ngFor="let item of categoryOption">{{item.name}}</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+
+
+
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput placeholder="Product Name" formControlName="product_name" required>
+                    </mat-form-field>
+
+
+
+
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext [disabled]="!productDeatails.valid"color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="productPrice" >
+            <form [formGroup]="productPrice">
+                <ng-template matStepLabel>Price Details</ng-template>
+                <div class="d-flex flex-column mb-4">
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Quntity Type"</mat-label>
+                        <mat-select formControlName="quanty">
+
+                            <mat-option [value]="item.value"
+                                *ngFor="let item of [{name:'kg',value:'kg'},{name:'Q',value:'Q'}]">{{item.name}}</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+
+
+
+                    <mat-form-field class="flex-fill mb-2">
+                        <mat-label>Price</mat-label>
+                        <input matInput placeholder="Price" formControlName="price" required>
+                    </mat-form-field>
+
+
+
+
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext [disabled]="!productPrice.valid"color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step >
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="submit(stepper)">Submit</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+</div>
+
+
+<app-footer></app-footer>

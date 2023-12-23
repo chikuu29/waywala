@@ -145,12 +145,9 @@ export class BecomeAgricultueInvestigratorComponent implements OnInit {
             const modalRef = this.modalService.open(GenericOtpVerificationComponent);
             modalRef.componentInstance.modalTitle = "OTP VERIFICATION PROCESS FOR YOUR SECURITY";
             modalRef.result.then((modalInstance: any) => {
-
               console.log(modalInstance);
               if (modalInstance.TYPE = "RETURN_USER_ENTER_OTP") {
-
                 this.ApiParameterScript.dynamicApiExecute('auth/otp/otpmatch.php', { "email": this.sellOnWaywalaContactForm.value.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
-
                   if (otpMatch.success) {
                     this.otpgenerationRequired = true;
                     this.blockUI.start("Please Wait")

@@ -25,6 +25,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { RefundPolicyComponent } from './refund-policy/refund-policy.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MessageService } from 'primeng/api';
+import { MarketPlaceManagementComponent } from './market-place-management/market-place-management.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MessageService } from 'primeng/api';
     BecomeEducationTeacherComponent,
     TermsofserviceComponent,
     PrivacyPolicyComponent,
-    RefundPolicyComponent
+    RefundPolicyComponent,
+    MarketPlaceManagementComponent
   ],
   imports: [
     CommonModule,

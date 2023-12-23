@@ -12,6 +12,7 @@ import { BecomeEducationTeacherComponent } from './become-education-teacher/beco
 import { RefundPolicyComponent } from './refund-policy/refund-policy.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsofserviceComponent } from './termsofservice/termsofservice.component';
+import { MarketPlaceManagementComponent } from './market-place-management/market-place-management.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: "profile",
-    canActivate:[AuthenticationGuard],
+    canActivate: [AuthenticationGuard],
     component: ProfileComponent
   },
   {
@@ -41,18 +42,18 @@ const routes: Routes = [
   },
   {
     path: "sell-on-waywala",
-    canActivate:[AuthenticationGuard],
+    canActivate: [AuthenticationGuard],
     component: SellOnWaywalaComponent
   },
 
   {
     path: "become-agriculture-investigator",
-    canActivate:[AuthenticationGuard],
+    canActivate: [AuthenticationGuard],
     component: BecomeAgricultueInvestigratorComponent
   }
-  ,{
+  , {
     path: "become-education-teacher",
-    canActivate:[AuthenticationGuard],
+    canActivate: [AuthenticationGuard],
     component: BecomeEducationTeacherComponent
   },
   {
@@ -66,7 +67,12 @@ const routes: Routes = [
   {
     path: "termsofservice",
     component: TermsofserviceComponent
-  }
+  },
+  {
+    path: "market_place_management",
+    canActivate: [AuthenticationGuard],
+    component: MarketPlaceManagementComponent
+  },
 ];
 
 @NgModule({
