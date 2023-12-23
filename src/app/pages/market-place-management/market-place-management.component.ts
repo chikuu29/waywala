@@ -97,7 +97,7 @@ export class MarketPlaceManagementComponent implements OnInit {
                     "keyName": encodeURIComponent(JSON.stringify(Object.keys(mergedAllStepObject))),
                     "multiDataSet": encodeURIComponent(JSON.stringify([mergedAllStepObject]))
                   }
-                  this.apiParameterScript.savedata('market_place_information', mergedAllStepObject, true).subscribe((res: any) => {
+                  this.apiParameterScript.savedata('market_place_information', apiData, true).subscribe((res: any) => {
                     console.log(res);
                     this.blockUI.stop()
                     if (res.success) {
