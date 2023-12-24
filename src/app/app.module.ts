@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule,Title,Meta  } from '@angular/platform-browser';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { BrowserModule, Title, Meta } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from './services/app.service';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,19 @@ import { BlockUIModule } from 'ng-block-ui';
 import { SharedModule } from './shared/shared.module';
 import { BlockUiCustomTemplateComponent } from './block-ui-custom-template.component';
 import { ApiService } from './services/api.service';
+import { AppInitializationServiceServiceService } from './services/app-initialization-service-service.service';
+
+export function initStartUpAPIConfiugration(AppInitializationServiceServiceService:AppInitializationServiceServiceService){
+  return ()=>{
+    return AppInitializationServiceServiceService.initStartUpAPIConfiugration()
+  }
+}
+
+export function initStartAppConfiugration(AppInitializationServiceServiceService:AppInitializationServiceServiceService){
+  return ()=>{
+    return AppInitializationServiceServiceService.initStartAppConfiugration()
+  }
+}
 @NgModule({
   declarations: [
     AppComponent
@@ -38,9 +51,27 @@ import { ApiService } from './services/api.service';
       }
     ),
     ToastrModule.forRoot(),
-   
+
   ],
-  providers: [AppService,ApiService,NgbActiveModal,Title,Meta],
+  providers: [
+    AppService,
+    ApiService,
+    NgbActiveModal,
+    Title,
+    Meta,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initStartUpAPIConfiugration,
+      deps: [AppInitializationServiceServiceService],
+      multi: true, // Indicates that there can be multiple APP_INITIALIZER functions
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initStartAppConfiugration,
+      deps: [AppInitializationServiceServiceService],
+      multi: true, // Indicates that there can be multiple APP_INITIALIZER functions
+    }
+  ],
   bootstrap: [AppComponent],
 
 })
