@@ -1,11 +1,52 @@
 <div class="coustom-margin"></div>
 
 
-<div class="section-title">
+<div class="section-title container">
     <h2>Market Place Management</h2>
     <p class="text-danger">Just update the market information about product prices to earn coins/money.</p>
 </div>
+<ng-container
+        *ngIf="marketPlaceData.length>0">
+        <div class="container mb-3">
 
+            <p-table [value]="marketPlaceData" [resizableColumns]="true">
+                <ng-template pTemplate="caption">
+                    <div class="flex align-items-center justify-content-between">
+                        All Request History
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" class="justify-content-center">
+                    <tr>
+                        <th>Request ID</th>
+                        <th>Created date</th>
+                        <th>Name</th>
+                        <th>Email</th>
+
+                        <th>Status</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-data>
+                    <tr class="border" style="box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;">
+                        <td class="justify-content-center">#{{data.id}}</td>
+                        <td class="justify-content-center">{{data.ceatedTime | date:'medium'}}</td>
+                        <td class="justify-content-center">{{data.name}}</td>
+                        <td class="justify-content-center">{{data.email}}</td>
+
+
+                        <td class="justify-content-center">
+
+                            <button mat-raised-button color="primary" type="button"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;"
+                                class="m-1">{{data.status}}</button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+
+        </div>
+    </ng-container>
 
 
 <div class="container">
@@ -40,12 +81,10 @@
             <form [formGroup]="locationDeatails">
                 <ng-template matStepLabel>Fill out location</ng-template>
                 <div class="d-flex flex-column mb-4">
-                    <mat-form-field class="flex-fill mb-2">
+                    <mat-form-field class="flex-fill mb-2" >
                         <mat-label>Select State</mat-label>
-                        <mat-select formControlName="state">
-
+                        <mat-select formControlName="state" (selectionChange)="getDistrict(locationDeatails.value.state)">
                             <mat-option [value]="item.value" *ngFor="let item of stateOption">{{item.name}}</mat-option>
-
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field class="flex-fill mb-2">
@@ -128,8 +167,8 @@
                 <ng-template matStepLabel>Price Details</ng-template>
                 <div class="d-flex flex-column mb-4">
                     <mat-form-field class="flex-fill mb-2">
-                        <mat-label>Quntity Type"</mat-label>
-                        <mat-select formControlName="quanty">
+                        <mat-label>Quantity Type"</mat-label>
+                        <mat-select formControlName="quantity">
 
                             <mat-option [value]="item.value"
                                 *ngFor="let item of [{name:'kg',value:'kg'},{name:'Q',value:'Q'}]">{{item.name}}</mat-option>
@@ -164,6 +203,7 @@
         </mat-step>
     </mat-vertical-stepper>
 </div>
+
 
 
 <app-footer></app-footer>

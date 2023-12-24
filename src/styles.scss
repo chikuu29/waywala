@@ -1892,3 +1892,20 @@ section {
     padding-top: 4px;
   }
 }
+
+
+@media only screen and (max-width: 768px) {
+  /* Your CSS styles for mobile screens go here */
+
+  .section-title h2 {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: #37517e;
+  }
+
+  /* Additional styles for mobile can be added here */
+}

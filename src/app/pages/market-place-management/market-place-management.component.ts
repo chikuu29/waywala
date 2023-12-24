@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import _ from 'lodash';
 import moment from 'moment';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
@@ -20,7 +21,7 @@ export class MarketPlaceManagementComponent implements OnInit {
     private apiParameterScript: ApiParameterScript,
     private _formBuilder: FormBuilder,
     private appServices: AppService,
-    private modalService:NgbModal
+    private modalService: NgbModal
   ) { }
   loginDeatails: FormGroup = this._formBuilder.group({
     name: new FormControl(this.appServices.authStatus.name, Validators.required),
@@ -36,7 +37,7 @@ export class MarketPlaceManagementComponent implements OnInit {
 
   marketDeatails: FormGroup = this._formBuilder.group({
     market_name: new FormControl({ value: '', disabled: false }, [Validators.required]),
-    date: new FormControl({ value: moment().toISOString(), disabled: true }, [Validators.required]),
+    date: new FormControl({ value: moment().toISOString(), disabled: false }, [Validators.required]),
   });
   productDeatails: FormGroup = this._formBuilder.group({
     category: new FormControl({ value: '', disabled: false }, [Validators.required]),
@@ -44,20 +45,14 @@ export class MarketPlaceManagementComponent implements OnInit {
   });
 
   productPrice: FormGroup = this._formBuilder.group({
-    quanty: [{ value: '', disabled: false }, [Validators.required]],
+    quantity: [{ value: '', disabled: false }, [Validators.required]],
     price: [{ value: '', disabled: false }, [Validators.required]],
   });
   stateOption: any[] = [
-    {
-      name: 'Odisha',
-      value: 'odisha'
-    }
+   
   ]
   districtOption: any[] = [
-    {
-      name: 'Puri',
-      value: 'puri'
-    }
+    
   ]
   categoryOption: any[] = [
     {
@@ -66,7 +61,41 @@ export class MarketPlaceManagementComponent implements OnInit {
     }
   ]
 
+
+
+  marketPlaceData: any[] = []
+
   ngOnInit(): void {
+
+    console.log(this.appServices.country_state_district);
+    this.stateOption = _.map(this.appServices.country_state_district, item => ({
+      name: item.state,  // Convert the state name to start case (e.g., "Andhra Pradesh")
+      value: item.state // Convert the state name to lowercase (e.g., "andhra pradesh")
+    }));
+    var fetchApiData = {
+      "select": "*",
+      "projection": `email='${this.appServices.authStatus.email}'`
+    }
+    this.apiParameterScript.fetchdata('market_place_information', fetchApiData).subscribe((res: any) => {
+
+      if (res.success && res['data'].length > 0) {
+        this.marketPlaceData = res['data']
+      }
+
+    })
+  }
+
+  getDistrict(value:string){
+    let alldistrict=_.cloneDeep(_.find(this.appServices.country_state_district,{ state: value }))
+
+    console.log(alldistrict);
+    
+    this.districtOption = _.map(alldistrict.districts, item => ({
+      name: item,  // Convert the state name to start case (e.g., "Andhra Pradesh")
+      value: item // Convert the state name to lowercase (e.g., "andhra pradesh")
+    }));
+    // this.districtOption=alldistrict
+    
   }
 
   submit(data?: any) {
@@ -74,65 +103,86 @@ export class MarketPlaceManagementComponent implements OnInit {
     console.log(this.loginDeatails);
 
     if (this.loginDeatails.valid && this.locationDeatails.valid && this.productDeatails.valid && this.productPrice.valid && this.marketDeatails.valid) {
-
+      this.marketDeatails.value['date'] = moment().toISOString();
       let mergedAllStepObject = { ...this.loginDeatails.value, ...this.locationDeatails.value, ...this.productDeatails.value, ...this.productPrice.value, ...this.marketDeatails.value };
       this.blockUI.start("Please Wait")
       console.log("mergedAllStepObject", mergedAllStepObject);
-      this.apiParameterScript.dynamicApiExecute('auth/otp/generate_otp.php', { "email": mergedAllStepObject.email, creatAT: moment().format('LLL') }).subscribe((otp_send_res: any) => {
-        this.blockUI.stop()
-        if (otp_send_res.success) {
-          const modalRef = this.modalService.open(GenericOtpVerificationComponent);
-          modalRef.componentInstance.modalTitle = "OTP VERIFICATION PROCESS FOR YOUR SECURITY";
-          modalRef.result.then((modalInstance: any) => {
+      if (false) {
+        this.apiParameterScript.dynamicApiExecute('auth/otp/generate_otp.php', { "email": mergedAllStepObject.email, creatAT: moment().format('LLL') }).subscribe((otp_send_res: any) => {
+          this.blockUI.stop()
+          if (otp_send_res.success) {
+            const modalRef = this.modalService.open(GenericOtpVerificationComponent);
+            modalRef.componentInstance.modalTitle = "OTP VERIFICATION PROCESS FOR YOUR SECURITY";
+            modalRef.result.then((modalInstance: any) => {
 
-            console.log(modalInstance);
-            if (modalInstance.TYPE = "RETURN_USER_ENTER_OTP") {
+              console.log(modalInstance);
+              if (modalInstance.TYPE = "RETURN_USER_ENTER_OTP") {
 
-              this.apiParameterScript.dynamicApiExecute('auth/otp/otpmatch.php', { "email": mergedAllStepObject.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
+                this.apiParameterScript.dynamicApiExecute('auth/otp/otpmatch.php', { "email": mergedAllStepObject.email, otp: modalInstance.OTP }).subscribe((otpMatch: any) => {
 
-                if (otpMatch.success) {
-                  // this.otpgenerationRequired = true;
-                  this.blockUI.start("Please Wait")
-                  var apiData = {
-                    "keyName": encodeURIComponent(JSON.stringify(Object.keys(mergedAllStepObject))),
-                    "multiDataSet": encodeURIComponent(JSON.stringify([mergedAllStepObject]))
-                  }
-                  this.apiParameterScript.savedata('market_place_information', apiData, true).subscribe((res: any) => {
-                    console.log(res);
-                    this.blockUI.stop()
-                    if (res.success) {
-                      Swal.fire('Success', "We Will Review Your Details & Get Back To You", 'success').then(() => {
-                        this.ngOnInit()
-                        // this.sellOnWaywalaContactForm.reset()
-                      })
-                    } else {
-                      Swal.fire('Success', res.message, 'error')
+                  if (otpMatch.success) {
+                    // this.otpgenerationRequired = true;
+                    this.blockUI.start("Please Wait")
+                    var apiData = {
+                      "keyName": encodeURIComponent(JSON.stringify(Object.keys(mergedAllStepObject))),
+                      "multiDataSet": encodeURIComponent(JSON.stringify([mergedAllStepObject]))
                     }
+                    this.apiParameterScript.savedata('market_place_information', apiData, true).subscribe((res: any) => {
+                      console.log(res);
+                      this.blockUI.stop()
+                      if (res.success) {
+                        Swal.fire('Success', "We Will Review Your Details & Get Back To You", 'success').then(() => {
+                          this.ngOnInit()
+                          // this.sellOnWaywalaContactForm.reset()
+                        })
+                      } else {
+                        Swal.fire('Success', res.message, 'error')
+                      }
 
-                  })
-                } else {
-                  // this.otpgenerationRequired = false
-                  Swal.fire(otpMatch.message, '', 'error').then(() => {
-                    this.submit()
-                  })
-                }
+                    })
+                  } else {
+                    // this.otpgenerationRequired = false
+                    Swal.fire(otpMatch.message, '', 'error').then(() => {
+                      this.submit()
+                    })
+                  }
 
-              })
+                })
 
-            } else {
+              } else {
 
-            }
-
-
+              }
 
 
-          })
-        } else {
-          Swal.fire(otp_send_res.message, '', 'error')
+
+
+            })
+          } else {
+            Swal.fire(otp_send_res.message, '', 'error')
+          }
+        }, (Error) => {
+          this.blockUI.stop()
+        })
+      } else {
+
+        var apiData = {
+          "keyName": encodeURIComponent(JSON.stringify(Object.keys(mergedAllStepObject))),
+          "multiDataSet": encodeURIComponent(JSON.stringify([mergedAllStepObject]))
         }
-      }, (Error) => {
-        this.blockUI.stop()
-      })
+        this.apiParameterScript.savedata('market_place_information', apiData, true).subscribe((res: any) => {
+          console.log(res);
+          this.blockUI.stop()
+          if (res.success) {
+            // Swal.fire('Success', "We Will Review Your Details & Get Back To You", 'success').then(() => {
+            this.ngOnInit()
+            // this.sellOnWaywalaContactForm.reset()
+            // })
+          } else {
+            Swal.fire('Success', res.message, 'error')
+          }
+
+        })
+      }
     } else {
 
       Swal.fire({
