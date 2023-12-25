@@ -1,58 +1,90 @@
 <div class="coustom-margin"></div>
 
 
+
 <div class="section-title container">
     <h2>Market Place Management</h2>
     <p class="text-danger">Just update the market information about product prices to earn coins/money.</p>
 </div>
-<ng-container
-        *ngIf="marketPlaceData.length>0">
-        <div class="container mb-3">
 
-            <p-table [value]="marketPlaceData" [resizableColumns]="true">
-                <ng-template pTemplate="caption">
-                    <div class="flex align-items-center justify-content-between">
-                        All Request History
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="header" class="justify-content-center">
-                    <tr>
-                        <th>Request ID</th>
-                        <th>Created date</th>
-                        <th>Name</th>
-                        <th>Email</th>
+<div *ngIf="tableLoader; else tableContent" class="container">
+    <!-- Loading Skeleton (Placeholder) -->
 
-                        <th>Status</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-data>
-                    <tr class="border" style="box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;">
-                        <td class="justify-content-center">#{{data.id}}</td>
-                        <td class="justify-content-center">{{data.ceatedTime | date:'medium'}}</td>
-                        <td class="justify-content-center">{{data.name}}</td>
-                        <td class="justify-content-center">{{data.email}}</td>
+    <table class="table-skeleton">
+        <tbody>
+            <tr class="table-skeleton-row" *ngFor="let item of [1, 2, 3, 4]">
+                <td class="table-skeleton-cell">
+                    <div class="table-skeleton-line"></div>
+                </td>
+                <td class="table-skeleton-cell">
+                    <div class="table-skeleton-line"></div>
+                </td>
+                <td class="table-skeleton-cell">
+                    <div class="table-skeleton-line"></div>
+                </td>
+                <!-- Add more cells as needed to match the table structure -->
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<ng-template #tableContent>
+    <div class="container table-container mb-4">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 5%;">ID</th>
+                    <th style="width: 20%;">Date</th>
+                    <th style="width: 50%;">Market Name</th>
+                    <th style="width: 30%;">Name</th>
+                    <th style="width: 30%;">Per KG/Q</th>
+                    <th style="width: 30%;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample rows -->
+                <tr *ngFor="let data of marketPlaceData">
+                    <td>#{{data.id}}</td>
+                    <td>
+                        <div class="btn btn-bold btn-sm btn-font-sm btn-label-danger "> {{data.date |
+                            date:'medium'}}</div>
+
+                    </td>
+                    <td>
+                        <div class="btn btn-bold btn-sm btn-font-sm btn-label-success "> {{data.market_name}} </div>
+                    </td>
+
+                    <td>
+                        <div class="btn btn-bold btn-sm btn-font-sm btn-label-success "> {{data.product_name}} </div>
 
 
-                        <td class="justify-content-center">
+                    </td>
+                    <td>
+                        <div class="btn btn-bold btn-sm btn-font-sm btn-label-success "> {{data.quantity}} </div>
 
-                            <button mat-raised-button color="primary" type="button"
-                                style="padding-left: 2.5rem; padding-right: 2.5rem;"
-                                class="m-1">{{data.status}}</button>
 
-                        </td>
-                    </tr>
-                </ng-template>
+                    </td>
+                    <td>
+                        <div class="btn btn-bold btn-sm btn-font-sm btn-label-danger"> {{data.price |currency:'INR'}} </div>
 
-            </p-table>
 
-        </div>
-    </ng-container>
+                    </td>
+
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</ng-template>
+
+
+
 
 
 <div class="container">
 
     <mat-vertical-stepper [linear]="false" #stepper animationDuration="1000">
-        <mat-step [stepControl]="loginDeatails" >
+        <mat-step [stepControl]="loginDeatails">
             <form [formGroup]="loginDeatails">
                 <ng-template matStepLabel>Fill out your details</ng-template>
                 <div class="d-flex flex-column mb-4">
@@ -63,27 +95,28 @@
 
                     <mat-form-field class="flex-fill mb-2">
                         <mat-label>Enter Your Email</mat-label>
-                        <input matInput placeholder="Email" formControlName="email" required >
+                        <input matInput placeholder="Email" formControlName="email" required>
                     </mat-form-field>
                     <mat-form-field class="flex-fill mb-2">
                         <mat-label>Enter Your Phone</mat-label>
-                        <input matInput placeholder="Phone" formControlName="phone" required >
+                        <input matInput placeholder="Phone" formControlName="phone" required>
                     </mat-form-field>
 
                 </div>
                 <div>
-                    
+
                     <button mat-button matStepperNext color="primary">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="locationDeatails" >
+        <mat-step [stepControl]="locationDeatails">
             <form [formGroup]="locationDeatails">
                 <ng-template matStepLabel>Fill out location</ng-template>
                 <div class="d-flex flex-column mb-4">
-                    <mat-form-field class="flex-fill mb-2" >
+                    <mat-form-field class="flex-fill mb-2">
                         <mat-label>Select State</mat-label>
-                        <mat-select formControlName="state" (selectionChange)="getDistrict(locationDeatails.value.state)">
+                        <mat-select formControlName="state"
+                            (selectionChange)="getDistrict(locationDeatails.value.state)">
                             <mat-option [value]="item.value" *ngFor="let item of stateOption">{{item.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -99,12 +132,12 @@
                 </div>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext [disabled]="!locationDeatails.valid"color="primary">Next</button>
+                    <button mat-button matStepperNext [disabled]="!locationDeatails.valid" color="primary">Next</button>
                 </div>
 
             </form>
         </mat-step>
-        <mat-step [stepControl]="marketDeatails" >
+        <mat-step [stepControl]="marketDeatails">
             <form [formGroup]="marketDeatails">
                 <ng-template matStepLabel>Market Info</ng-template>
                 <div class="d-flex flex-column mb-4">
@@ -125,13 +158,13 @@
 
                 </div>
                 <div>
-                    
+
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext [disabled]="!marketDeatails.valid"color="primary">Next</button>
+                    <button mat-button matStepperNext [disabled]="!marketDeatails.valid" color="primary">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="productDeatails" >
+        <mat-step [stepControl]="productDeatails">
             <form [formGroup]="productDeatails">
                 <ng-template matStepLabel>Product Details</ng-template>
                 <div class="d-flex flex-column mb-4">
@@ -158,11 +191,11 @@
                 </div>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext [disabled]="!productDeatails.valid"color="primary">Next</button>
+                    <button mat-button matStepperNext [disabled]="!productDeatails.valid" color="primary">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="productPrice" >
+        <mat-step [stepControl]="productPrice">
             <form [formGroup]="productPrice">
                 <ng-template matStepLabel>Price Details</ng-template>
                 <div class="d-flex flex-column mb-4">
@@ -189,11 +222,11 @@
                 </div>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext [disabled]="!productPrice.valid"color="primary">Next</button>
+                    <button mat-button matStepperNext [disabled]="!productPrice.valid" color="primary">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step >
+        <mat-step>
             <ng-template matStepLabel>Done</ng-template>
             You are now done.
             <div>

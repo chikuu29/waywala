@@ -26,6 +26,7 @@ import { RefundPolicyComponent } from './refund-policy/refund-policy.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MessageService } from 'primeng/api';
 import { MarketPlaceManagementComponent } from './market-place-management/market-place-management.component';
+import { SearchMarketInformationComponent } from './search-market-information/search-market-information.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MarketPlaceManagementComponent } from './market-place-management/market
     TermsofserviceComponent,
     PrivacyPolicyComponent,
     RefundPolicyComponent,
-    MarketPlaceManagementComponent
+    MarketPlaceManagementComponent,
+    SearchMarketInformationComponent
   ],
   imports: [
     CommonModule,

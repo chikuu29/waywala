@@ -1,0 +1,63 @@
+<div class="section-title">
+    <h2>New Market status</h2>
+    <p>Hear you can check what is price of agriculture product with state wise manner</p>
+</div>
+<div class="container">
+    <form class="marketDataSelected-dropdown" [formGroup]="searchMarketInfoForm">
+        <div class="marketDataSelected-item pb-3">
+            <p-dropdown [options]="stateOption" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+                placeholder="Select State" formControlName="state" [style]="{'width':'100%'}" optionLabel="name" optionValue="value" (onChange)="getDistrictstate()">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value">
+                        <div>{{searchMarketInfoForm.value.state}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-item pTemplate="item">
+                    <div class="country-item">
+                        <div>{{item.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="marketDataSelected-item pb-3">
+            <p-dropdown [options]="districtOption" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+                placeholder="Select Districts" formControlName="district" [style]="{'width':'100%'}" optionLabel="name" optionValue="value"  (onChange)="getMarketName()">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value">
+                        <div>{{searchMarketInfoForm.value.district}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-item pTemplate="item">
+                    <div class="country-item">
+                        <div>{{item.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="marketDataSelected-item pb-3">
+            <p-dropdown [options]="marketNameOption" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+                placeholder="Select Market" formControlName="market_name" [style]="{'width':'100%'}" optionLabel="name" optionValue="value" >
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value">
+                        <div>{{searchMarketInfoForm.value.market_name}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-item pTemplate="item">
+                    <div class="country-item">
+                        <div>{{item.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="marketDataSelected-item pb-3 ">
+            <p-button label="Search" icon="pi pi-search" [loading]="false" ></p-button>
+        </div>
+    </form>
+    <h2 class="header-text">Reported Price:</h2>
+    <div class="price-container">
+        <div class="price-option btn btn-label-success">10-20</div>
+        <div class="price-option btn btn-label-success">20-30</div>
+        <div class="price-option btn btn-label-danger">30-40</div>
+        <div class="price-option btn btn-label-success">40-50</div>
+    </div>
+</div>

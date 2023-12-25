@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class MarketPlaceManagementComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
+  tableLoader:boolean=true;
   isEditable: true;
   constructor(
     private apiParameterScript: ApiParameterScript,
@@ -78,6 +79,7 @@ export class MarketPlaceManagementComponent implements OnInit {
     }
     this.apiParameterScript.fetchdata('market_place_information', fetchApiData).subscribe((res: any) => {
 
+      this.tableLoader=false
       if (res.success && res['data'].length > 0) {
         this.marketPlaceData = res['data']
       }
