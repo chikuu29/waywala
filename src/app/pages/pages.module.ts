@@ -27,6 +27,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MessageService } from 'primeng/api';
 import { MarketPlaceManagementComponent } from './market-place-management/market-place-management.component';
 import { SearchMarketInformationComponent } from './search-market-information/search-market-information.component';
+import { CustomPipeModule } from '../customPipe/custom-pipe.module';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { SearchMarketInformationComponent } from './search-market-information/se
     ECommerceModule,
     AgricultureModule,
     SharedModule,
-    CarouselModule
+    CarouselModule,
+    CustomPipeModule
   ],
   exports: [
     CommingSoonComponent

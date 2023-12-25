@@ -20,6 +20,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { AccordionModule } from 'primeng/accordion';
 import { SidebarModule } from 'primeng/sidebar';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { CalendarModule } from 'primeng/calendar';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -43,7 +45,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     ConfirmDialogModule,
     AccordionModule,
     SidebarModule,
-    MultiSelectModule
+    MultiSelectModule,
+    CalendarModule
    
   ],
   exports:[
@@ -66,7 +69,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     ConfirmDialogModule,
     AccordionModule,
     SidebarModule,
-    MultiSelectModule
+    MultiSelectModule,
+    CalendarModule
   ]
 })
 export class PrimengModule { }

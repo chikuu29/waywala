@@ -49,15 +49,50 @@
                 </ng-template>
             </p-dropdown>
         </div>
+        <div class="marketDataSelected-item pb-3">
+            <p-calendar formControlName="date" dateFormat="yy-mm-dd" styleClass="w-100 mb-3" placeholder="Select Date"></p-calendar>
+
+        </div>
         <div class="marketDataSelected-item pb-3 ">
-            <p-button label="Search" icon="pi pi-search" [loading]="false" ></p-button>
+            <p-button label="Search" icon="pi pi-search" [loading]="false" (onClick)="search()" [disabled]="!searchMarketInfoForm.valid"></p-button>
         </div>
     </form>
-    <h2 class="header-text">Reported Price:</h2>
+
+    <div>
+       
+        <div class="d-flex justify-content-between align-items-cente">
+            <div>
+                <h2 class="header-text">Product List:</h2>
+            </div>
+            <div>
+                <input type="text" pInputText placeholder="Search" class="w-full" [(ngModel)]="filterText" />
+            </div>
+        </div>
+        <div class="text-center mb-5">
+            <span class="btn btn-label-danger">{{searchMarketInfoForm.value.date |date:'fullDate'}}</span>
+        </div>
+        <div class="product-container">
+            <ng-container *ngFor="let item of productNameList | fillter :['product_name','average_price']:filterText ">
+                <div class="product-item" >
+                    <span class="circle-text btn btn-label-success">{{item.quantity}}</span>
+                    <div class="product-name">{{item.product_name}}</div>
+                    <div class="product-price btn btn-label-danger">AVG :{{item.average_price |currency:'INR'}} Per {{item.quantity}}</div>
+                  
+                </div>
+            </ng-container>
+            <ng-container *ngIf="productNameList.length==0">
+               <span class="btn btn-label-danger">Sorry No Product Listed This Market</span>
+            </ng-container>
+          
+            
+            <!-- Add more product items as needed -->
+        </div>
+    </div>
+    <!-- <h2 class="header-text">Reported Price:</h2>
     <div class="price-container">
         <div class="price-option btn btn-label-success">10-20</div>
         <div class="price-option btn btn-label-success">20-30</div>
         <div class="price-option btn btn-label-danger">30-40</div>
         <div class="price-option btn btn-label-success">40-50</div>
-    </div>
+    </div> -->
 </div>
