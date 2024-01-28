@@ -68,6 +68,17 @@
   z-index: 1;            /* Ensure the text is above the background */
 }
 
+
+.expand-icon {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;            /* Ensure the text is above the background */
+}
+
 .header-text {
     font-size: 24px; /* Adjust font size as needed */
     margin-bottom: 20px; /* Space between the header and options */

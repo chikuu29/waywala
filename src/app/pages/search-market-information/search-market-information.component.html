@@ -6,7 +6,8 @@
     <form class="marketDataSelected-dropdown" [formGroup]="searchMarketInfoForm">
         <div class="marketDataSelected-item pb-3">
             <p-dropdown [options]="stateOption" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
-                placeholder="Select State" formControlName="state" [style]="{'width':'100%'}" optionLabel="name" optionValue="value" (onChange)="getDistrictstate()">
+                placeholder="Select State" formControlName="state" [style]="{'width':'100%'}" optionLabel="name"
+                optionValue="value" (onChange)="getDistrictstate()">
                 <ng-template pTemplate="selectedItem">
                     <div class="country-item country-item-value">
                         <div>{{searchMarketInfoForm.value.state}}</div>
@@ -21,7 +22,8 @@
         </div>
         <div class="marketDataSelected-item pb-3">
             <p-dropdown [options]="districtOption" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
-                placeholder="Select Districts" formControlName="district" [style]="{'width':'100%'}" optionLabel="name" optionValue="value"  (onChange)="getMarketName()">
+                placeholder="Select Districts" formControlName="district" [style]="{'width':'100%'}" optionLabel="name"
+                optionValue="value" (onChange)="getMarketName()">
                 <ng-template pTemplate="selectedItem">
                     <div class="country-item country-item-value">
                         <div>{{searchMarketInfoForm.value.district}}</div>
@@ -35,8 +37,9 @@
             </p-dropdown>
         </div>
         <div class="marketDataSelected-item pb-3">
-            <p-dropdown [options]="marketNameOption" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
-                placeholder="Select Market" formControlName="market_name" [style]="{'width':'100%'}" optionLabel="name" optionValue="value" >
+            <p-dropdown [options]="marketNameOption" optionLabel="name" [filter]="true" filterBy="name"
+                [showClear]="true" placeholder="Select Market" formControlName="market_name" [style]="{'width':'100%'}"
+                optionLabel="name" optionValue="value">
                 <ng-template pTemplate="selectedItem">
                     <div class="country-item country-item-value">
                         <div>{{searchMarketInfoForm.value.market_name}}</div>
@@ -50,16 +53,18 @@
             </p-dropdown>
         </div>
         <div class="marketDataSelected-item pb-3">
-            <p-calendar formControlName="date" dateFormat="yy-mm-dd" styleClass="w-100 mb-3" placeholder="Select Date"></p-calendar>
+            <p-calendar formControlName="date" dateFormat="yy-mm-dd" styleClass="w-100 mb-3"
+                placeholder="Select Date"></p-calendar>
 
         </div>
         <div class="marketDataSelected-item pb-3 ">
-            <p-button label="Search" icon="pi pi-search" [loading]="false" (onClick)="search()" [disabled]="!searchMarketInfoForm.valid"></p-button>
+            <p-button label="Search" icon="pi pi-search" [loading]="false" (onClick)="search()"
+                [disabled]="!searchMarketInfoForm.valid"></p-button>
         </div>
     </form>
 
     <div>
-       
+
         <div class="d-flex justify-content-between align-items-cente">
             <div>
                 <h2 class="header-text">Product List:</h2>
@@ -72,19 +77,42 @@
             <span class="btn btn-label-danger">{{searchMarketInfoForm.value.date |date:'fullDate'}}</span>
         </div>
         <div class="product-container">
-            <ng-container *ngFor="let item of productNameList | fillter :['product_name','average_price']:filterText ">
-                <div class="product-item" >
-                    <span class="circle-text btn btn-label-success">{{item.quantity}}</span>
-                    <div class="product-name">{{item.product_name}}</div>
-                    <div class="product-price btn btn-label-danger">AVG :{{item.average_price |currency:'INR'}} Per {{item.quantity}}</div>
-                  
+            <ng-container *ngFor="let item of productNameList | fillter :['product_name','average_price','state','market_name','district']:filterText ">
+                <div class="product-item">
+                    <span class="circle-text btn btn-label-danger">{{item.quantity}}</span>
+                    <span class="expand-icon btn btn-label-primary" routerLink="/"><i class="fa-solid fa-up-right-from-square"></i></span>
+                    <div class="product-name fw-bold text-muted">{{item.product_name |uppercase}}</div>
+                    <div class="product-price btn btn-label-danger m-1"><i class="fa-solid fa-bullhorn"></i> AVG :
+                        {{item.average_price |currency:'INR'}} /
+                        {{item.quantity}}</div>
+                    <div class="product-price btn btn-label-success m-1">Address <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                    <div class="text-start btn btn-label-success w-100">
+                        <p class="text-muted fw-700" style="font-size: 0.6rem;">
+                            <span class="fw-bold">Market <i class="fa-solid fa-caret-right"></i></span>
+                             {{item.market_name | uppercase}}
+                        </p>
+                        <p class="text-muted fw-700" style="font-size: 0.6rem;">
+                            <span class="fw-bold">District <i class="fa-solid fa-caret-right"></i> </span>
+                             {{item.district}}
+                        </p>
+                        <p class="text-muted fw-700" style="font-size: 0.6rem;">
+                            <span class="fw-bold">State <i class="fa-solid fa-caret-right"></i> </span> {{item.state}}
+                        </p>
+                    </div>
+                    <div>
+                        <p class="p-2 text-muted">Base on <strong class="text-success">{{item.total_review_made}}</strong> Review</p> 
+                    </div>
+
+
+
                 </div>
             </ng-container>
             <ng-container *ngIf="productNameList.length==0">
-               <span class="btn btn-label-danger">Sorry No Product Listed This Market</span>
+                <span class="btn btn-label-danger">Sorry No Product Listed This Market</span>
             </ng-container>
-          
-            
+
+
             <!-- Add more product items as needed -->
         </div>
     </div>
