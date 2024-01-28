@@ -28,6 +28,7 @@ import { MessageService } from 'primeng/api';
 import { MarketPlaceManagementComponent } from './market-place-management/market-place-management.component';
 import { SearchMarketInformationComponent } from './search-market-information/search-market-information.component';
 import { CustomPipeModule } from '../customPipe/custom-pipe.module';
+import { DetailsOfMarketInformationComponent } from './details-of-market-information/details-of-market-information.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CustomPipeModule } from '../customPipe/custom-pipe.module';
     PrivacyPolicyComponent,
     RefundPolicyComponent,
     MarketPlaceManagementComponent,
-    SearchMarketInformationComponent
+    SearchMarketInformationComponent,
+    DetailsOfMarketInformationComponent
   ],
   imports: [
     CommonModule,

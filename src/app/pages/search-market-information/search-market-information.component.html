@@ -80,7 +80,7 @@
             <ng-container *ngFor="let item of productNameList | fillter :['product_name','average_price','state','market_name','district']:filterText ">
                 <div class="product-item">
                     <span class="circle-text btn btn-label-danger">{{item.quantity}}</span>
-                    <span class="expand-icon btn btn-label-primary" routerLink="/"><i class="fa-solid fa-up-right-from-square"></i></span>
+                    <span class="expand-icon btn btn-label-primary" (click)="expand(item)"><i class="fa-solid fa-up-right-from-square"></i></span>
                     <div class="product-name fw-bold text-muted">{{item.product_name |uppercase}}</div>
                     <div class="product-price btn btn-label-danger m-1"><i class="fa-solid fa-bullhorn"></i> AVG :
                         {{item.average_price |currency:'INR'}} /
@@ -103,9 +103,6 @@
                     <div>
                         <p class="p-2 text-muted">Base on <strong class="text-success">{{item.total_review_made}}</strong> Review</p> 
                     </div>
-
-
-
                 </div>
             </ng-container>
             <ng-container *ngIf="productNameList.length==0">

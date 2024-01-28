@@ -39,11 +39,12 @@ export class AppComponent {
   }
 
   display_fottor() {
+console.log(this._router.url);
 
-    var hidden_footer = ['auth/login', 'e-commerce/my/bag','/e-commerce/my/order','agriculture/mycase','/pages/profile','/e-commerce/product/','/pages/register','/agriculture/weather','/agriculture/kvks','/agriculture/check-status','/e-commerce/search']
+    var hidden_footer = ['auth/login', 'e-commerce/my/bag', '/e-commerce/my/order', 'agriculture/mycase', '/pages/profile', '/e-commerce/product/', '/pages/register', '/agriculture/weather', '/agriculture/kvks', '/agriculture/check-status', '/e-commerce/search']
     var isAllowTo_show_footer = true;
     hidden_footer.forEach((url: any) => {
-          if(this._router.url.includes(url))isAllowTo_show_footer=false
+      if (this._router.url.includes(url)) isAllowTo_show_footer = false
     })
 
     return isAllowTo_show_footer;

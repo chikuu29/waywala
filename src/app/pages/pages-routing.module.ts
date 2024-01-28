@@ -13,6 +13,7 @@ import { RefundPolicyComponent } from './refund-policy/refund-policy.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsofserviceComponent } from './termsofservice/termsofservice.component';
 import { MarketPlaceManagementComponent } from './market-place-management/market-place-management.component';
+import { DetailsOfMarketInformationComponent } from './details-of-market-information/details-of-market-information.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,11 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard],
     component: MarketPlaceManagementComponent
   },
+  {
+    path: 'details_of_market_price',
+     component: DetailsOfMarketInformationComponent 
+    
+  }
 ];
 
 @NgModule({

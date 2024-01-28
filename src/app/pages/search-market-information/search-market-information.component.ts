@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import _, { capitalize } from 'lodash';
 import moment from 'moment';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
@@ -27,7 +28,8 @@ export class SearchMarketInformationComponent implements OnInit {
   filterText:string=''
   // SELECT market_name, product_name, quantity, DATE(date) AS extracted_date, COUNT(*) as total_count, SUM(quantity) as total_quantity, AVG(price) as average_price FROM market_place_information GROUP BY market_name, product_name, quantity, DATE(date) ORDER BY market_name, product_name, quantity, extracted_date;
   constructor(
-    private api: ApiParameterScript
+    private api: ApiParameterScript,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -100,6 +102,12 @@ export class SearchMarketInformationComponent implements OnInit {
     })
 
     
+  }
+
+  expand(queryParams:any){
+    console.log(queryParams);
+    this.router.navigate(['/pages/details_of_market_price'], { queryParams });
+
   }
 
 }

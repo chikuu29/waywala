@@ -1,0 +1,62 @@
+<div class="coustom-margin"></div>
+
+<div class="container ">
+    <div class="row ">
+        <div class=" col-md-4 col-sm-12">
+            <div class="product-item">
+                <span class="circle-text btn btn-label-danger">{{queryParams.quantity}}</span>
+                <span class="expand-icon btn btn-label-success"><i class="fa-regular fa-circle-check"></i></span>
+                <div class="product-name fw-bold text-muted">{{queryParams.product_name |uppercase}}</div>
+                <div class="product-price btn btn-label-danger m-1 fa-fade"><i class="fa-solid fa-bullhorn"></i> AVG :
+                    {{queryParams.average_price |currency:'INR'}} /
+                    {{queryParams.quantity}}</div>
+                <div class="product-price btn btn-label-success m-1">Address <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="text-start btn btn-label-success w-100">
+                    <p class="text-muted fw-700" style="font-size: 1rem;">
+                        <span class="fw-bold">Market <i class="fa-solid fa-caret-right"></i></span>
+                        {{queryParams.market_name | uppercase}}
+                    </p>
+                    <p class="text-muted fw-700" style="font-size: 1rem;">
+                        <span class="fw-bold">District <i class="fa-solid fa-caret-right"></i> </span>
+                        {{queryParams.district}}
+                    </p>
+                    <p class="text-muted fw-700" style="font-size: 1rem;">
+                        <span class="fw-bold">State <i class="fa-solid fa-caret-right"></i> </span>
+                        {{queryParams.state}}
+                    </p>
+                </div>
+                <div>
+                    <p class="p-2 text-muted">Base on <strong
+                            class="text-success">{{queryParams.total_review_made}}</strong> Review</p>
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-8 col-sm-12 ">
+            <div class="price-item " >
+
+                <span class="expand-icon btn btn-label-success fa-fade">Accurate Price {{ acuratePrice()|currency:'INR'}}</span>
+
+
+                <span class="text-uppercase  circle-text btn btn-label-danger">Price Option</span>
+
+
+                <div class="row pt-6">
+                    <ng-container *ngFor="let data of priceList">
+                        <div class="col">
+                            <button class="w-100 btn "
+                                [ngClass]="data.total_review_made>=data.highestReview?'btn-label-success fa-fade':'btn-label-danger'"><i
+                                    class="fa-regular fa-thumbs-up"
+                                    *ngIf="data.total_review_made>=data.highestReview?true:false"></i> {{data.price
+                                |currency:'INR'}}</button>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<app-footer></app-footer>
