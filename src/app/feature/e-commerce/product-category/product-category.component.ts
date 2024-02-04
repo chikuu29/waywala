@@ -11,7 +11,7 @@ export class ProductCategoryComponent implements OnInit {
   @Input() categoryList: categoryList[] = [
     {
       taitel: "Special Offer",
-      url: "",
+      url: "/store/my-offer",
       image: 'assets/e-commerce/special-offer.png'
     },
     {

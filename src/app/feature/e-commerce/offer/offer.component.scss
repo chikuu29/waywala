@@ -1,0 +1,104 @@
+.copun-holder {
+  position: relative;
+}
+
+.btn.btn-label-success {
+  background-color: rgba(10, 187, 135, 0.1);
+  color: #0abb87;
+  cursor: text !important;
+}
+
+.expand-icon {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1; /* Ensure the text is above the background */
+}
+
+.coupon .kanan {
+  border-left: 1px dashed #ddd;
+  width: 40% !important;
+  position: relative;
+}
+
+.coupon .kanan .info::after,
+.coupon .kanan .info::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #dedede;
+  border-radius: 100%;
+}
+.coupon .kanan .info::before {
+  top: -10px;
+  left: -10px;
+}
+
+.coupon .kanan .info::after {
+  bottom: -10px;
+  left: -10px;
+}
+.coupon .time {
+  font-size: 1.6rem;
+}
+
+.coupon-card {
+  background: linear-gradient(135deg, #7158fe, #9d4de6);
+  color: #fff;
+  text-align: center;
+  padding: 40px 80px;
+  border-radius: 15px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+.logo {
+  width: 80px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.coupon-card h3 {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 40px;
+}
+.coupon-card p {
+  font-size: 15px;
+}
+.coupon-row {
+  display: flex;
+  align-items: center;
+  margin: 25px auto;
+  width: fit-content;
+}
+#cpnCode {
+  border: 1px dashed black;
+  padding: 10px 20px;
+  border-right: 0;
+}
+#cpnBtn {
+  border: 1px solid green;
+  background: #fff;
+  padding: 10px 20px;
+  color: #7158fe;
+  cursor: pointer;
+}
+.circle1,
+.circle2 {
+  background: #f0fff3;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.circle1 {
+  left: -25px;
+}
+.circle2 {
+  right: -25px;
+}

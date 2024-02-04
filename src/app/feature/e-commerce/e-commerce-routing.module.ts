@@ -12,6 +12,7 @@ import { CategoryViewComponent } from './category-view/category-view.component';
 import { SearchItemViewComponent } from './search-item-view/search-item-view.component';
 import { AgricultureProductPageComponent } from './agriculture-product-page/agriculture-product-page.component';
 import { AgricultureProductPageCategoryComponent } from './agriculture-product-page-category/agriculture-product-page-category.component';
+import { OfferComponent } from './offer/offer.component';
 
 const routes: Routes = [
   { 
@@ -58,6 +59,11 @@ const routes: Routes = [
     path:'agriculture/product/:category',
     component:AgricultureProductPageCategoryComponent
   },
+  {
+    path:'my-offer',
+    component:OfferComponent
+
+  }
 ];
 
 @NgModule({

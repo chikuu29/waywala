@@ -21,7 +21,7 @@ export class AgricultureProductPageComponent implements OnInit {
     this.categoryList = [
       {
         taitel: "Special Offer",
-        url: "",
+        url: "/store/my-offer",
         image: 'assets/e-commerce/special-offer.png'
       },
       {
