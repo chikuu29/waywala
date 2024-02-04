@@ -29,8 +29,10 @@ export class DetailsOfMarketInformationComponent implements OnInit {
     console.log(fetchQuery);
 
     this.apiParameterScript.fetchDataFormQuery(fetchQuery).subscribe((res: any) => {
-  
+      console.log("iiidsuudu",res);
+      
       const entryWithHighestReview:any = _.maxBy(res['data'], 'total_review_made');
+      
       _.map(res['data'],(i:any)=>{
         i['highestReview']=entryWithHighestReview['total_review_made']
       })

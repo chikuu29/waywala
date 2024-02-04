@@ -91,14 +91,25 @@ export class WeatherForecastComponent implements OnInit {
               this.locationInfo['countryCode'] = res.countryCode;
               this.locationInfo['locality'] = res.locality;
               this.weatherForcastService.currentWeatherReportThroughCity(res.city).subscribe((weatherdata) => {
+                console.log(weatherdata);
+                
                 // console.log('weatherdata', weatherdata);
-                this.setWeatherData(weatherdata)
+                
+              },(error:any)=>{
+                  this.weatherForcastService.currentWeatherReportThroughCity(res.locality).subscribe((dt:any)=>{
+                    this.setWeatherData(dt)
+                  })
               })
               this.weatherForcastService.getfutureWeatherData(res.city).subscribe((futureWeatherData: any) => {
                 // console.log("futureWeatherData", futureWeatherData);
                 this.setCurrentPredictionWeatherData(futureWeatherData['list'], true);
                 this.setPredictionWeatherData(futureWeatherData);
 
+              },(err:any)=>{
+                this.weatherForcastService.getfutureWeatherData(res.locality).subscribe((dt:any)=>{
+                  this.setCurrentPredictionWeatherData(dt['list'], true);
+                  this.setPredictionWeatherData(dt);
+                })
               })
             }else{
               alert("Some Things Went Wrong")

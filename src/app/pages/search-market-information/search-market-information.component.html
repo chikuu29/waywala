@@ -74,13 +74,22 @@
             </div>
         </div>
         <div class="text-center mb-5">
-            <span class="btn btn-label-danger">{{searchMarketInfoForm.value.date |date:'fullDate'}}</span>
+            <span class="btn btn-label-danger">{{selectedDate['formatDate']}}</span>
         </div>
         <div class="product-container">
-            <ng-container *ngFor="let item of productNameList | fillter :['product_name','average_price','state','market_name','district']:filterText ">
+
+            <mat-tab-group (selectedTabChange)="selectDate($event)">
+                <ng-container *ngFor="let item of pastDates">
+                    <mat-tab [label]="item.formatDate"> </mat-tab>
+                </ng-container>
+
+            </mat-tab-group>
+            <ng-container
+                *ngFor="let item of productNameList | fillter :['product_name','average_price','state','market_name','district']:filterText ">
                 <div class="product-item">
                     <span class="circle-text btn btn-label-danger">{{item.quantity}}</span>
-                    <span class="expand-icon btn btn-label-primary" (click)="expand(item)"><i class="fa-solid fa-up-right-from-square"></i></span>
+                    <span class="expand-icon btn btn-label-primary" (click)="expand(item)"><i
+                            class="fa-solid fa-up-right-from-square"></i></span>
                     <div class="product-name fw-bold text-muted">{{item.product_name |uppercase}}</div>
                     <div class="product-price btn btn-label-danger m-1"><i class="fa-solid fa-bullhorn"></i> AVG :
                         {{item.average_price |currency:'INR'}} /
@@ -90,18 +99,19 @@
                     <div class="text-start btn btn-label-success w-100">
                         <p class="text-muted fw-700" style="font-size: 0.6rem;">
                             <span class="fw-bold">Market <i class="fa-solid fa-caret-right"></i></span>
-                             {{item.market_name | uppercase}}
+                            {{item.market_name | uppercase}}
                         </p>
                         <p class="text-muted fw-700" style="font-size: 0.6rem;">
                             <span class="fw-bold">District <i class="fa-solid fa-caret-right"></i> </span>
-                             {{item.district}}
+                            {{item.district}}
                         </p>
                         <p class="text-muted fw-700" style="font-size: 0.6rem;">
                             <span class="fw-bold">State <i class="fa-solid fa-caret-right"></i> </span> {{item.state}}
                         </p>
                     </div>
                     <div>
-                        <p class="p-2 text-muted">Base on <strong class="text-success">{{item.total_review_made}}</strong> Review</p> 
+                        <p class="p-2 text-muted">Base on <strong
+                                class="text-success">{{item.total_review_made}}</strong> Review</p>
                     </div>
                 </div>
             </ng-container>
@@ -113,11 +123,6 @@
             <!-- Add more product items as needed -->
         </div>
     </div>
-    <!-- <h2 class="header-text">Reported Price:</h2>
-    <div class="price-container">
-        <div class="price-option btn btn-label-success">10-20</div>
-        <div class="price-option btn btn-label-success">20-30</div>
-        <div class="price-option btn btn-label-danger">30-40</div>
-        <div class="price-option btn btn-label-success">40-50</div>
-    </div> -->
+
+
 </div>

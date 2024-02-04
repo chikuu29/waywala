@@ -15,6 +15,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   declarations: [],
   imports: [
@@ -33,7 +34,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatBadgeModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTabsModule
     
     
     
@@ -53,7 +55,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatBadgeModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTabsModule
 
     
 
