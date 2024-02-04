@@ -51,6 +51,32 @@ export class AgricultureProductPageCategoryComponent implements OnInit {
         taitel: "Agricultural Products",
         url: "/store/agriculture/product/Agricultural Products",
         image: 'assets/e-commerce/AgriculturalProducts.png'
+      },
+      {
+        taitel: "Agricultural Products",
+        url: "/store/agriculture/product/Agricultural Products",
+        image: 'assets/e-commerce/AgriculturalProducts.png'
+      }
+      ,
+      {
+        taitel: "Agricultural Seeds",
+        url: "/store/agriculture/product/Seeds",
+        image: 'assets/e-commerce/AgriculturalProducts.png'
+      },
+      {
+        taitel: "Agricultural Vegetables",
+        url: "/store/agriculture/product/Vegetables",
+        image: 'assets/e-commerce/AgriculturalProducts.png'
+      },
+      {
+        taitel: "Agricultural Fruits",
+        url: "/store/agriculture/product/Fruits",
+        image: 'assets/e-commerce/AgriculturalProducts.png'
+      },
+      {
+        taitel: "Agricultural Fertilizers",
+        url: "/store/agriculture/product/Fertilizers",
+        image: 'assets/e-commerce/AgriculturalProducts.png'
       }
     ]
     this._rout.params.subscribe((res: any) => {
