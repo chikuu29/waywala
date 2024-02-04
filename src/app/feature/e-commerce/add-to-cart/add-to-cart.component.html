@@ -115,11 +115,16 @@
               <div class="card-body">
                 <mat-form-field appearance="outline" class="d-block">
                   <mat-label>Discound code</mat-label>
-                  <input matInput placeholder="Discound code" required />
+                  <input matInput placeholder="Discound code" [(ngModel)]="cuponCode" required />
                 </mat-form-field>
-                <button type="button" class="btn btn-outline-warning">
+                <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-warning" (click)="applyCupon()">
                   Apply
                 </button>
+                <button type="button" class="btn btn-primary"  (click)="viewCupon()">
+                  View Cupon
+                </button>
+              </div>
               </div>
             </div>
           </div>

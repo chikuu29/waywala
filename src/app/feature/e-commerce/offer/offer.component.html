@@ -1,34 +1,38 @@
 <div class="coustom-margin"></div>
 
 <div class="container">
-	<div class="row">
-		<div class="copun-holder col-sm-6 p-2 bg-white rounded">
-            <span class="expand-icon btn btn-label-success" >Valid</span>
-		    <div class="coupon rounded mb-3 d-flex justify-content-between">
-                <div class="kiri p-3">
-                    <div class="icon-container ">
-                        <div class="icon-container_box">
-                            <img src="/assets/e-commerce/cupon.png" width="85" alt="totoprayogo.com" class="" />
+    <div class="row">
+        <ng-container *ngFor="let data of allCopunCode;let i=index">
+            <div class="copun-holder col-12 mb-3 rounded border">
+                <span class="expand-icon btn btn-label-success">Valid</span>
+                <div class="coupon rounded d-flex justify-content-between align-items-center">
+                    <div class="kiri p-3">
+                        <div class="icon-container ">
+                            <div class="icon-container_box">
+                                <img src="/assets/e-commerce/cupon.png" width="85" alt="totoprayogo.com" class="" />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="tengah py-3 w-100 justify-content-center">
-                    <div>
-                        
-                        <h3 class="lead">Coupon Detail goes here </h3>
-                        <p class="text-muted mb-0">Short info about voucher</p>
+                    <div class="tengah py-3 w-100 justify-content-center">
+                        <div>
+
+                            <p class="text-danger mb-0 ">MIN ORDER {{data.minimum_order_value |currency:'INR' }} </p>
+                            <p class="text-success mb-0">MAX DISCOUNT {{data.maximum_Discount |currency:'INR'}}</p>
+                            <p *ngIf="data.first_order=='Yes'" class="text-success">Only Applicable For First Order</p>
+                        </div>
+
                     </div>
-                  
+
                 </div>
-                
-            </div>
-            <div>
-                <div class="coupon-row">
-                    <span id="cpnCode">STEALDEAL20</span>
-                    <span id="cpnBtn"> <i class="fa-regular fa-copy me-2"></i> Copy Code</span>
+                <div>
+                    <div class="coupon-row">
+                        <span id="cpnCode">{{data.cuppon_Code |uppercase}}</span>
+                        <span id="cpnBtn" [cdkCopyToClipboard]="data.cuppon_Code|uppercase" [ngClass]="i==copiedIndex ? 'bg-success text-light':''"  (cdkCopyToClipboardCopied)="onCopySuccess($event,i)" > <i class="fa-regular fa-copy me-2"></i>
+                            {{i==copiedIndex?'Copied':'Copy Cupon'}}</span>
+                    </div>
                 </div>
             </div>
-		</div>
-		
-	</div>
+        </ng-container>
+
+    </div>
 </div>

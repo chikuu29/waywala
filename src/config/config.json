@@ -71,7 +71,8 @@
             "become_agricultural_reviewer_request",
             "e_commerce_product_rating",
             "feedback",
-            "market_place_information"
+            "market_place_information",
+            "cuppon_code"
             
          ],
          "authorizationDBAcessForUpdate": [

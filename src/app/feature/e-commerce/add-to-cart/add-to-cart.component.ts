@@ -41,6 +41,8 @@ export class AddToCartComponent implements OnInit {
   order_payment_mode: string = 'COD';
   order_shipping_billing_address_details: any = {}
 
+  cuponCode:string
+
   constructor(
     private ApiParameterScript: ApiParameterScript,
     private AppService: AppService,
@@ -338,5 +340,17 @@ export class AddToCartComponent implements OnInit {
 
     })
 
+  }
+
+
+  viewCupon(){
+    window.open('/store/my-offer', '_blank');
+  }
+
+
+  applyCupon(){
+    console.log("Apply Cupon");
+    console.log(this.allKartItem);
+    
   }
 }

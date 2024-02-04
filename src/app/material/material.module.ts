@@ -16,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 @NgModule({
   declarations: [],
   imports: [
@@ -35,7 +36,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTabsModule
+    MatTabsModule,
+    ClipboardModule
     
     
     
@@ -56,7 +58,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTabsModule
+    MatTabsModule,
+    ClipboardModule
 
     
 
