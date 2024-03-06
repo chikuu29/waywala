@@ -1,0 +1,146 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "Agriculture",
+            "subcategories": [
+                "Seeds",
+                "Vegetables",
+                "Fruits",
+                "Fertilizers",
+                "Agricultural Medicine",
+                "Agricultural Machineries",
+                "Agriculture Instruments",
+                "Agricultural Products"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Fashion & Beauty",
+            "subcategories": [
+                "Men's clothing",
+                "Women's clothing",
+                "Beauty & Makeup",
+                "Shoes & Footwear",
+                "Travel & Accessories",
+                "Jewellery",
+                "Eyewear"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "TVs & Appliances",
+            "subcategories": [
+                "Televisions",
+                "Kitchen Appliances",
+                "Washing machines",
+                "Heating Appliances",
+                "Cooling Appliances",
+                "Home Appliances",
+                "Refrigerators",
+                "Air Conditioners"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Mobiles",
+            "subcategories": [
+                "Shop by Brand",
+                "Mobile Accessories"
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Electronics",
+            "subcategories": [
+                "Laptops",
+                "Headphones",
+                "Smart Watches",
+                "Personal Care Appliances",
+                "Tablets",
+                "Computer Accessories",
+                "Computer Peripheral",
+                "Storage",
+                "Camera",
+                "Power bank",
+                "Speakers",
+                "Smart Automations",
+                "Software"
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Home, Furniture & Decor",
+            "subcategories": [
+                "Home & Kitchen",
+                "Furniture",
+                "Cookware & Dinning",
+                "Garden & Outdoor",
+                "Decor & Lighting",
+                "Handloom & Handicrafts"
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Personal Care",
+            "subcategories": [
+                "Skin Care",
+                "Beauty",
+                "Fragrance",
+                "Hair Care",
+                "Daily essentials"
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Toys and Baby",
+            "subcategories": [
+                "Toys",
+                "Baby Care",
+                "Stationery & School Supplies"
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Sports & Fitness",
+            "subcategories": [
+                "Footwear",
+                "Sports",
+                "Nutrition & Healthcare",
+                "Fitness",
+                "Sports Clothing",
+                "Accessories"
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Pharmacy",
+            "subcategories": [
+                "Medicine",
+                "Health Care Devices",
+                "First Aid",
+                "Ayurvedic",
+                "Supplements"
+            ]
+        },
+        {
+            "id": 11,
+            "name": "Groceries, Pet & Household Supplies",
+            "subcategories": [
+                "Staples",
+                "Snacks & Beverages",
+                "Packaged food",
+                "Household Care"
+            ]
+        },
+        {
+            "id": 12,
+            "name": "Books & Education",
+            "subcategories": [
+                "Books",
+                "eBooks",
+                "Audible Audiobook"
+            ]
+        }
+    ]
+}
