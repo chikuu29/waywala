@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { categoryList } from 'src/app/appInterface/categoryList';
 
@@ -8,7 +9,7 @@ import { categoryList } from 'src/app/appInterface/categoryList';
 })
 export class ProductCategoryComponent implements OnInit {
 
-  @Input() categoryList: categoryList[] = [
+  @Input() categoryList: any[] = [
     {
       taitel: "Special Offer",
       url: "/store/my-offer",
@@ -34,14 +35,21 @@ export class ProductCategoryComponent implements OnInit {
       url: "/store/category/Agricultural Medicine",
       image: 'assets/e-commerce/agricultural.jpg'
     }
-    
+
 
 
   ]
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
 
+    this.http.get('../../../../config/productCategory.json').subscribe((res: any) => {
+      console.log(res);
+      this.categoryList = res
+
+    })
   }
 
 }

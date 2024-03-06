@@ -8,18 +8,19 @@
               <div>
                 <img style="border-radius: 20px;border:2px solid black;" [src]="category?.image" [alt]="category?.image"
                   width="70px" height="70px" />
+                <!-- <i class="fa-solid fa-wheat-awn"></i> -->
               </div>
               <div class="category-item-taitel pt-2 dropdown">
-                <span class="fw-bold me-2">{{category?.taitel}}</span>
-                <i class="bi-chevron-down for-mobail"></i>
-                <ul class="for-mobail">
-                  <li><a routerLink="agriculture">Agriculture</a></li>
-                  <li><a routerLink="store">E-Commerce</a></li>
-                  <li><a routerLink="education">Education</a></li>
-                  <li><a href="#">Drop Down 2</a></li>
-                  <li><a href="#">Drop Down 3</a></li>
-                  <li><a href="#">Drop Down 4</a></li>
-                </ul>
+                <span class="fw-bold me-2">{{category?.categories}}</span>
+                <ng-container *ngIf="category.subcategories && category.subcategories.length>0">
+                  <i class="bi-chevron-down for-mobail"></i>
+                  <ul class="for-mobail" *ngIf="category.subcategories && category.subcategories.length>0">
+                    <ng-container *ngFor="let subcategories of category.subcategories">
+                      <li><a routerLink="agriculture">{{subcategories}}</a></li>
+                    </ng-container>
+
+                  </ul>
+                </ng-container>
               </div>
             </div>
 

@@ -1,7 +1,7 @@
 .shopping-category-holder {
     display: flex;
     // position: fixed;
-    flex-wrap: nowrap !important;
+    // flex-wrap: nowrap !important;
     justify-content: space-between;
     align-items: center;
 
@@ -46,7 +46,8 @@
             display: none;
         }
 
-        // display: flex;
+        display: flex;
+        flex-wrap: nowrap !important;
         // justify-content: center;
         // align-items: center;
         overflow-x: scroll;
