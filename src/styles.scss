@@ -10,6 +10,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: sans-serif, "Helvetica Neue";
@@ -35,10 +36,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(13, 130, 233);
 }
+
 .cdk-overlay-container {
   position: fixed;
   z-index: 9999999999999999999999999;
 }
+
 .cdk-overlay-container,
 .cdk-global-overlay-wrapper {
   cursor: pointer;
@@ -53,6 +56,7 @@ body {
 .coustom-margin {
   margin-top: 8rem;
 }
+
 @media only screen and (min-width: 280px) and (max-width: 599px) {
   .coustom-margin {
     margin-top: 5rem;
@@ -255,7 +259,7 @@ h6 {
 }
 
 .navbar .dropdown ul {
-  display: block;
+  display: none;
   position: absolute;
   left: 14px;
   top: calc(100% + 30px);
@@ -293,12 +297,14 @@ h6 {
 }
 
 .navbar .dropdown:hover>ul {
+  display: block;
   opacity: 1;
   top: 100%;
   visibility: visible;
 }
 
 .navbar .dropdown .dropdown ul {
+  // display: none;
   top: 0;
   left: calc(100% - 30px);
   visibility: hidden;

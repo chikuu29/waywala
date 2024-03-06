@@ -1,14 +1,19 @@
 .shopping-category-holder {
     display: flex;
+    // position: fixed;
+    flex-wrap: nowrap !important;
     justify-content: space-between;
     align-items: center;
-    overflow-x: scroll;
+
+    // overflow-x: scroll;
     .category-item {
         gap: 0.5rem;
         cursor: pointer;
         text-align: center;
+
         a {
             text-decoration: none;
+
             .category-item-taitel {
                 font-weight: 500;
                 color: black;
@@ -29,9 +34,7 @@
 
 @media (min-width: 992px) and (max-width: 1199px) {}
 
-@media (min-width: 768px) and (max-width: 991px) {
-
-}
+@media (min-width: 768px) and (max-width: 991px) {}
 
 @media (min-width: 576px) and (max-width: 767px) {}
 
@@ -39,10 +42,15 @@
 @media (max-width: 575px) {
 
     .shopping-category-holder {
+        .for-mobail {
+            display: none;
+        }
 
         // display: flex;
         // justify-content: center;
         // align-items: center;
+        overflow-x: scroll;
+
         .category-item {
             margin: 5px;
             cursor: pointer;

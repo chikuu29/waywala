@@ -25,7 +25,7 @@ import { CustomDirectiveModule } from 'src/app/customDirective/custom-directive.
 import { SearchItemViewComponent } from './search-item-view/search-item-view.component';
 import { ToastrService } from 'ngx-toastr';
 import { BannerComponent } from './banner/banner.component';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgricultureProductPageComponent } from './agriculture-product-page/agriculture-product-page.component';
 import { AgricultureProductPageCategoryComponent } from './agriculture-product-page-category/agriculture-product-page-category.component';
 import { OfferComponent } from './offer/offer.component';
@@ -65,7 +65,8 @@ import { OfferComponent } from './offer/offer.component';
         ReactiveFormsModule,
         SharedModule,
         CustomDirectiveModule,
-        NgbCarouselModule
+        NgbCarouselModule,
+        NgbPopoverModule
     ]
 })
 export class ECommerceModule { }
