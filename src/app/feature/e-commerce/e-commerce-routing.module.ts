@@ -13,6 +13,7 @@ import { SearchItemViewComponent } from './search-item-view/search-item-view.com
 import { AgricultureProductPageComponent } from './agriculture-product-page/agriculture-product-page.component';
 import { AgricultureProductPageCategoryComponent } from './agriculture-product-page-category/agriculture-product-page-category.component';
 import { OfferComponent } from './offer/offer.component';
+import { CategorySubcategoryProductComponent } from './category-subcategory-product/category-subcategory-product.component';
 
 const routes: Routes = [
   { 
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path:'category/:category',
     component:CategoryViewComponent
+  },
+  {
+    path:':category/:subcategory',
+    component:CategorySubcategoryProductComponent
   },
   {
     path:'search',
