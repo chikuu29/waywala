@@ -14,6 +14,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { TermsofserviceComponent } from './termsofservice/termsofservice.component';
 import { MarketPlaceManagementComponent } from './market-place-management/market-place-management.component';
 import { DetailsOfMarketInformationComponent } from './details-of-market-information/details-of-market-information.component';
+import { MyCoinZoneComponent } from '../shared/my-coin-zone/my-coin-zone.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,11 @@ const routes: Routes = [
   {
     path: 'details_of_market_price',
      component: DetailsOfMarketInformationComponent 
+    
+  },
+  {
+    path: 'mycoin',
+     component: MyCoinZoneComponent 
     
   }
 ];
