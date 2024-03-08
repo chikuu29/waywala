@@ -58,7 +58,7 @@ export class ProductCategoryComponent implements OnInit {
     console.log("category",category);
     console.log("subcategory",subcategory);
 
-    var url=`/store/${category.categories}/${subcategory}`
+    var url=`/store/${category.categories}/subcategory/${subcategory}`
     this.router.navigateByUrl(url)
 
 

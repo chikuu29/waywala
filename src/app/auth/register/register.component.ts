@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AppService } from 'src/app/services/app.service';
+// import { AppService } from 'src/app/services/app.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
   lodarConfig:any;
 
   constructor(
-    private appservices: AppService,
+    // private appservices: AppService,
     private router:Router,
     private registrationService: RegistrationService,
     private toastr: ToastrService,

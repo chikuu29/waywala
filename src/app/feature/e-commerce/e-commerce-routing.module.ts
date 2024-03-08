@@ -49,7 +49,8 @@ const routes: Routes = [
     component:CategoryViewComponent
   },
   {
-    path:':category/:subcategory',
+    path:':category/subcategory/:subcategory',
+    pathMatch:'full',
     component:CategorySubcategoryProductComponent
   },
   {

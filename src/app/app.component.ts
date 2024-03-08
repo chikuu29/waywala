@@ -39,7 +39,7 @@ export class AppComponent {
   }
 
   display_fottor() {
-console.log(this._router.url);
+    console.log(this._router.url);
 
     var hidden_footer = ['auth/login', 'e-commerce/my/bag', '/e-commerce/my/order', 'agriculture/mycase', '/pages/profile', '/e-commerce/product/', '/pages/register', '/agriculture/weather', '/agriculture/kvks', '/agriculture/check-status', '/e-commerce/search']
     var isAllowTo_show_footer = true;

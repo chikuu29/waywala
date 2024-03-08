@@ -5,7 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register/register.component';
+// import { RegisterComponent } from '../auth/register/register.component';
 import { SellOnWaywalaComponent } from './sell-on-waywala/sell-on-waywala.component';
 import { BecomeAgricultueInvestigratorComponent } from './become-agricultue-investigrator/become-agricultue-investigrator.component';
 import { BecomeEducationTeacherComponent } from './become-education-teacher/become-education-teacher.component';
@@ -27,10 +27,6 @@ const routes: Routes = [
   {
     path: "error",
     component: ErrorPageComponent
-  },
-  {
-    path: "register",
-    component: RegisterComponent
   },
   {
     path: "profile",
