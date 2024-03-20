@@ -23,9 +23,9 @@
             <i class="bi-chevron-down"></i>
           </a>
           <ul [ngClass]="activeServiceDropDown?'dropdown-active':''">
-            <li ><a routerLink="agriculture" (click)="onclickHideNav();">Agriculture</a></li>
-            <li><a routerLink="store" (click)="onclickHideNav();">E-Commerce</a></li>
-            <li><a routerLink="education" (click)="onclickHideNav();">Education</a></li>
+            <li ><a routerLink="/agriculture" (click)="onclickHideNav();">Agriculture</a></li>
+            <li><a routerLink="/store" (click)="onclickHideNav();">E-Commerce</a></li>
+            <li><a routerLink="/education" (click)="onclickHideNav();">Education</a></li>
             <!-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="fa-solid fa-caret-down"></i></a>
               <ul>
                 <li><a href="#">Deep Drop Down 1</a></li>
@@ -100,9 +100,9 @@
           </ng-container>
           <div class="mt-3">
             <h4 class="fw-bold">{{authInfo.name}}</h4>
-            <button class="btn btn-outline-primary mb-2 w-100" routerLink="pages/sell-on-waywala" (click)="sidebarVisible=false">Sell on waywala</button>
-            <button class="btn btn-outline-primary mb-2 w-100" routerLink="pages/become-agriculture-investigator" (click)="sidebarVisible=false">Agriculture Investigator</button>
-            <button class="btn btn-outline-primary mb-2 w-100" routerLink="pages/become-education-teacher" (click)="sidebarVisible=false">Education</button>
+            <button class="btn btn-outline-primary mb-2 w-100" routerLink="/pages/sell-on-waywala" (click)="sidebarVisible=false">Sell on waywala</button>
+            <button class="btn btn-outline-primary mb-2 w-100" routerLink="/pages/become-agriculture-investigator" (click)="sidebarVisible=false">Agriculture Investigator</button>
+            <button class="btn btn-outline-primary mb-2 w-100" routerLink="/pages/become-education-teacher" (click)="sidebarVisible=false">Education</button>
 
           </div>
         </div>
@@ -120,7 +120,7 @@
         </div>
       </div>
     </div>
-    <div class="user_Navigation_Menu_Item" routerLink="/mycoin" (click)="sidebarVisible=false">
+    <div class="user_Navigation_Menu_Item" routerLink="/pages/mycoin" (click)="sidebarVisible=false">
       <div class="d-flex align-items-center">
         <div class="me-4">
           <i class="fa-solid fa-coins fs-2"></i>

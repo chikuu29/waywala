@@ -29,6 +29,7 @@ import { NgbCarouselModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap'
 import { AgricultureProductPageComponent } from './agriculture-product-page/agriculture-product-page.component';
 import { AgricultureProductPageCategoryComponent } from './agriculture-product-page-category/agriculture-product-page-category.component';
 import { OfferComponent } from './offer/offer.component';
+import { CategorySubcategoryProductComponent } from './category-subcategory-product/category-subcategory-product.component';
 @NgModule({
     declarations: [
         ECommerceComponent,
@@ -48,7 +49,8 @@ import { OfferComponent } from './offer/offer.component';
         BannerComponent,
         AgricultureProductPageComponent,
         AgricultureProductPageCategoryComponent,
-        OfferComponent
+        OfferComponent,
+        CategorySubcategoryProductComponent
     ],
     exports: [
         AllProductListComponent,

@@ -139,6 +139,17 @@
             "Supplements"
         ]
     },
+  
+    {
+        "id": 12,
+        "categories": "Books & Education",
+        "image": "assets/e-commerce/books.jpg",
+        "subcategories": [
+            "Books",
+            "eBooks",
+            "Audible Audiobook"
+        ]
+    },
     {
         "id": 11,
         "categories": "Groceries, Pet & Household Supplies",
@@ -148,16 +159,6 @@
             "Snacks & Beverages",
             "Packaged food",
             "Household Care"
-        ]
-    },
-    {
-        "id": 12,
-        "categories": "Books & Education",
-        "image": "assets/e-commerce/books.jpg",
-        "subcategories": [
-            "Books",
-            "eBooks",
-            "Audible Audiobook"
         ]
     }
 ]

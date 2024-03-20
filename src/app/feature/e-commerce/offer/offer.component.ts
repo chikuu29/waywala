@@ -9,9 +9,9 @@ import { ApiParameterScript } from 'src/app/script/api-parameter';
 })
 export class OfferComponent implements OnInit {
 
-  copiedIndex:number;
-  allCopunCode:any[]=[]
-textToCopy: any='';
+  copiedIndex: number;
+  allCopunCode: any[] = []
+  textToCopy: any = '';
   constructor(
     private apiParameterScript: ApiParameterScript,
     private alert: ToastrService
@@ -21,29 +21,29 @@ textToCopy: any='';
 
     var apiData = {
       "select": "*",
-      'projection':"active='Yes'"
-      
+      'projection': "active='Yes'"
+
     }
     this.apiParameterScript.fetchdata('cuppon_code', apiData).subscribe((res: any) => {
       console.log(res);
-      if(res.success && res['data'].length>0){
-        this.allCopunCode=res['data']
-      }else{
-        this.allCopunCode=[]
+      if (res.success && res['data'].length > 0) {
+        this.allCopunCode = res['data']
+      } else {
+        this.allCopunCode = []
       }
 
     })
   }
 
 
-  onCopySuccess(event:any,index:any) {
+  onCopySuccess(event: any, index: any) {
 
-    if(event){
-      this.copiedIndex=index
+    if (event) {
+      this.copiedIndex = index
 
       this.alert.success('Cupon copied successfully')
     }
-    console.log('Text copied successfully',event);
+    console.log('Text copied successfully', event);
   }
 
   onCopyError() {

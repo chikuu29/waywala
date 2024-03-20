@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Clipboard } from '@angular/cdk/clipboard';
 import _ from 'lodash';
 import moment from 'moment';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -12,6 +13,7 @@ import { CoustomAlertMaterialUiComponent } from 'src/app/shared/coustom-alert-ma
 import { Meta, Title } from '@angular/platform-browser';
 import { Location } from '@angular/common'
 import { elements } from 'chart.js';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -69,7 +71,7 @@ export class ProductDetailsPageComponent implements OnInit {
         "average_rating": 5
       },
     },
-  
+
   }
   constructor(
     private _rout: ActivatedRoute,
@@ -80,7 +82,9 @@ export class ProductDetailsPageComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private title: Title,
     private meta: Meta,
-    private location: Location
+    private location: Location,
+    private alert: ToastrService,
+    private clipboard: Clipboard
   ) {
     this.imageURL = this.appservices.getAdminApiPath() + "shop/images/";
     console.log("this", this.imageURL);
@@ -138,7 +142,7 @@ export class ProductDetailsPageComponent implements OnInit {
       var ratingData = {
         "select": "*",
         "projection": `product_Id='${res.productID}'`,
-        "order":"product_Raiting_ID"
+        "order": "product_Raiting_ID"
       }
       this.apiParameterScript.fetchdata('e_commerce_product_rating', ratingData).subscribe((ratingInfo: any) => {
         if (ratingInfo.success && ratingInfo['data'].length > 0) {
@@ -165,7 +169,7 @@ export class ProductDetailsPageComponent implements OnInit {
         if (res.success && res['data'].length > 0) {
 
           res['data'].forEach((element: any) => {
-          
+
 
             switch (parseInt(element.rating_category_type)) {
               case 0:
@@ -210,8 +214,8 @@ export class ProductDetailsPageComponent implements OnInit {
 
           });
 
-          console.log("ratingInformation",this.ratingInformation);
-          
+          console.log("ratingInformation", this.ratingInformation);
+
 
         }
 
@@ -352,7 +356,7 @@ export class ProductDetailsPageComponent implements OnInit {
             if (res.success) {
               this.eCommerceService.generateCartItemCount.next(true)
               this.router.navigate(["/store/my/bag"])
-             
+
             }
           }
           )
@@ -386,13 +390,34 @@ export class ProductDetailsPageComponent implements OnInit {
     window.open(url, '_blank', 'height=600,width=800');
   }
 
+
+  copy() {
+
+    const url = `${this.appservices.baseURL}store/product/${this.product.product_Id}`;
+    this.clipboard.copy(url)
+    this.alert.success('Link Copied Successfully')
+
+  }
+
   vlidate_pincode(pincode: any) {
     console.log(pincode);
 
   }
 
 
+  onCopySuccess(event: any) {
 
+    if (event) {
+      // this.copiedIndex = 
+
+      this.alert.success('Cupon copied successfully')
+    }
+    console.log('Text copied successfully', event);
+  }
+
+  onCopyError() {
+    console.error('Error copying text');
+  }
 
 
 }

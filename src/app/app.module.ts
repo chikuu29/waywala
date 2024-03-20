@@ -17,6 +17,9 @@ import { SharedModule } from './shared/shared.module';
 import { BlockUiCustomTemplateComponent } from './block-ui-custom-template.component';
 import { ApiService } from './services/api.service';
 import { AppInitializationServiceServiceService } from './services/app-initialization-service-service.service';
+import { AuthViewComponent } from './layout/auth-view/auth-view.component';
+import { DefaultViewComponent } from './layout/default-view/default-view.component';
+import { StoreViewComponent } from './layout/store-view/store-view.component';
 
 export function initStartUpAPIConfiugration(AppInitializationServiceServiceService:AppInitializationServiceServiceService){
   return ()=>{
@@ -31,7 +34,10 @@ export function initStartAppConfiugration(AppInitializationServiceServiceService
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthViewComponent,
+    DefaultViewComponent,
+    StoreViewComponent
   ],
   imports: [
     BrowserModule,

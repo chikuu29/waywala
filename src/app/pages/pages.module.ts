@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { CommingSoonComponent } from './comming-soon/comming-soon.component';
-import { RegisterComponent } from './register/register.component';
 import { MaterialModule } from '../material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
@@ -35,7 +34,6 @@ import { ServicesPageComponent } from './services-page/services-page.component';
   declarations: [
     ErrorPageComponent,
     CommingSoonComponent,
-    RegisterComponent,
     ProfileComponent,
     AboutComponent,
     HomeComponent,

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { categoryList } from 'src/app/appInterface/categoryList';
 
 @Component({
@@ -40,7 +41,8 @@ export class ProductCategoryComponent implements OnInit {
 
   ]
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +52,16 @@ export class ProductCategoryComponent implements OnInit {
       this.categoryList = res
 
     })
+  }
+
+  viewSubcategoryPage(category:any,subcategory:any){
+    console.log("category",category);
+    console.log("subcategory",subcategory);
+
+    var url=`/store/${category.categories}/subcategory/${subcategory}`
+    this.router.navigateByUrl(url)
+
+
   }
 
 }

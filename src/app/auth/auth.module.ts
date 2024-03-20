@@ -7,15 +7,19 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AuthService } from './auth.service';
+import { RegisterComponent } from './register/register.component';
+import { SharedModule } from '../shared/shared.module';
 // import { ToastrModule, ToastrService } from 'ngx-toastr';
 const routes: Routes = [
   {path:"login",component:LoginComponent,pathMatch:'full'},
+  {path:"register",component:RegisterComponent},
   {path:"login:returnUrl",component:LoginComponent}
 ];
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +28,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     NgxUiLoaderModule,
+    SharedModule,
     RouterModule.forChild(routes),
     // ToastrModule.forRoot()
   ]
