@@ -29,6 +29,7 @@ import { MarketPlaceManagementComponent } from './market-place-management/market
 import { SearchMarketInformationComponent } from './search-market-information/search-market-information.component';
 import { CustomPipeModule } from '../customPipe/custom-pipe.module';
 import { DetailsOfMarketInformationComponent } from './details-of-market-information/details-of-market-information.component';
+import { ServicesPageComponent } from './services-page/services-page.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DetailsOfMarketInformationComponent } from './details-of-market-informa
     RefundPolicyComponent,
     MarketPlaceManagementComponent,
     SearchMarketInformationComponent,
-    DetailsOfMarketInformationComponent
+    DetailsOfMarketInformationComponent,
+    ServicesPageComponent
   ],
   imports: [
     CommonModule,
