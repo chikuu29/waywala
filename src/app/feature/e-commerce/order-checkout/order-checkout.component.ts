@@ -3,6 +3,7 @@ import { ECommerceServicesService } from '../services/e-commerce-services.servic
 import { Product } from '../product-section/product';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-order-checkout',
@@ -12,7 +13,10 @@ import { Router } from '@angular/router';
 export class OrderCheckoutComponent implements OnInit {
 
   public checkOutProductList:Product[]=[]
-  constructor(private ecommerceServices: ECommerceServicesService, private router: Router) { }
+  imageURL: string = 'https://admin.waywala.com/api/shop/images/'
+  constructor(private ecommerceServices: ECommerceServicesService, private router: Router,private app:AppService) { 
+    this.imageURL = this.app.getAdminApiPath() + "/shop/images/";
+  }
 
   ngOnInit(): void {
 
