@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
+import { Product } from '../product-section/product';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ECommerceServicesService {
 
   refreshComponent=new BehaviorSubject<any>(null)
   public generateCartItemCount = new BehaviorSubject<any>(true)
+  public checkoutItemList= new BehaviorSubject<Product[]>([])
   constructor(
     private AppService: AppService,
     private apiParameterScrpt: ApiParameterScript

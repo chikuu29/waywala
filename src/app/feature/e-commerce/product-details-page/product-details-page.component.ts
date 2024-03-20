@@ -329,8 +329,10 @@ export class ProductDetailsPageComponent implements OnInit {
       product_CART_CREATED_TIME: moment().format('MMMM Do YYYY, h:mm:ss a').toString(),
       product_CART_BY_Email: "Not Availble"
     }
-
     if (this.appservices.authStatus && this.appservices.authStatus.isLogin) {
+      console.log("Buy Producr", product);
+
+      this.eCommerceService.checkoutItemList.next([product])
 
       this.blockUI.start('Adding To Your Bag...')
       this.apiParameterScript.fetchdata('e_commerce_product_kart', { "select": "user_CART_ID", "projection": `product_CART_ID='${addToKartProductObject.product_CART_ID}' AND product_CART_BY_Email='${this.appservices.authStatus.email}'` }).subscribe((res: any) => {
@@ -342,7 +344,7 @@ export class ProductDetailsPageComponent implements OnInit {
           this.apiParameterScript.updatedata('e_commerce_product_kart', updateApiData).subscribe((res: any) => {
             this.blockUI.stop()
             // this.showCustomAlert()  
-            this.router.navigate(["/store/my/bag"])
+            this.router.navigate(["/store/checkout"])
           }
           )
         } else {
@@ -355,14 +357,11 @@ export class ProductDetailsPageComponent implements OnInit {
             // this.showCustomAlert()
             if (res.success) {
               this.eCommerceService.generateCartItemCount.next(true)
-              this.router.navigate(["/store/my/bag"])
-
+              this.router.navigate(["/store/checkout"])
             }
           }
           )
         }
-
-
       })
 
     } else {
@@ -380,7 +379,6 @@ export class ProductDetailsPageComponent implements OnInit {
       window.localStorage.setItem('myKartData', JSON.stringify(myKart))
       this.router.navigate(["/store/my/bag"])
     }
-
   }
 
 
