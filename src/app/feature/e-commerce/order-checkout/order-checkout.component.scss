@@ -139,6 +139,16 @@ label {
   color: #8592a3 !important;
 }
 
+h5, .h5 {
+  font-size: 1.125rem;
+}
+h6, .h6 {
+  font-size: 0.9375rem;
+}
+.bg-lighter {
+  --bs-bg-opacity: 1;
+  background-color: rgba(67, 89, 113, .05) !important;
+}
 //stepper
 
 .bs-stepper .step-trigger {
