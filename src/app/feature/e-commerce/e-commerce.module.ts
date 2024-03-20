@@ -30,6 +30,7 @@ import { AgricultureProductPageComponent } from './agriculture-product-page/agri
 import { AgricultureProductPageCategoryComponent } from './agriculture-product-page-category/agriculture-product-page-category.component';
 import { OfferComponent } from './offer/offer.component';
 import { CategorySubcategoryProductComponent } from './category-subcategory-product/category-subcategory-product.component';
+import { OrderCheckoutComponent } from './order-checkout/order-checkout.component';
 @NgModule({
     declarations: [
         ECommerceComponent,
@@ -50,7 +51,8 @@ import { CategorySubcategoryProductComponent } from './category-subcategory-prod
         AgricultureProductPageComponent,
         AgricultureProductPageCategoryComponent,
         OfferComponent,
-        CategorySubcategoryProductComponent
+        CategorySubcategoryProductComponent,
+        OrderCheckoutComponent
     ],
     exports: [
         AllProductListComponent,
