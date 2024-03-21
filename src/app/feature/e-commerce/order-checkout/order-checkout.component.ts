@@ -6,23 +6,27 @@ import { Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 import { AddressManagementComponent } from 'src/app/shared/address-management/address-management.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiParameterScript } from 'src/app/script/api-parameter';
 
 @Component({
   selector: 'app-order-checkout',
   templateUrl: './order-checkout.component.html',
-  styleUrls: ['./order-checkout.component.scss']
+  styleUrls: ['./order-checkout.component.scss'],
 })
 export class OrderCheckoutComponent implements OnInit {
 
   public checkOutProductList: Product[] = []
   public activeStepperNumber: number = 1;
-
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
+
+  order_shipping_billing_address_details: any = {}
+
   constructor(
     private ecommerceServices: ECommerceServicesService,
     private router: Router,
     private app: AppService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private ApiParameterScript:ApiParameterScript
   ) {
     this.imageURL = this.app.getAdminApiPath() + "/shop/images/";
   }
@@ -49,6 +53,24 @@ export class OrderCheckoutComponent implements OnInit {
 
       }
     })
+
+    if (this.app.authStatus) {
+
+      this.ApiParameterScript.fetchDataFormQuery(`SELECT *  FROM user_address WHERE user_ID='${this.app.authStatus.email}'`).subscribe((res: any) => {
+        if (res.success && res['data'].length > 0) {
+          //  console.log("hi",res);
+          this.order_shipping_billing_address_details = JSON.parse(res['data'][0]['address_INFO'])
+          console.log("Selected Address");
+          
+
+        } else {
+          console.log("no Address Found");
+          // this.firstFormGroup.setValue({ isAddressAvailble: 'no' })
+        }
+      })
+     
+
+    }
   }
 
   activeStepper(index: any) {
@@ -98,4 +120,6 @@ export class OrderCheckoutComponent implements OnInit {
 
     })
   }
+
+ 
 }
