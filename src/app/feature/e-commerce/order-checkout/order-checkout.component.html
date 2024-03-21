@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="bs-stepper-content border-top">
-        <form id="wizard-checkout-form" onsubmit="return false">
+        <form id="wizard-checkout-form" >
 
             <!-- Cart -->
             <div id="checkout-cart" class="content fv-plugins-bootstrap5 fv-plugins-framework active dstepper-block ">
@@ -260,7 +260,7 @@
                             </dl>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-primary btn-next">Place Order</button>
+                            <button class="btn btn-primary btn-next" (click)="placeorder()">Place Order</button>
                         </div>
                     </div>
                 </div>

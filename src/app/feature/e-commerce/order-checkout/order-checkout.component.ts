@@ -13,6 +13,7 @@ import { AppService } from 'src/app/services/app.service';
 export class OrderCheckoutComponent implements OnInit {
 
   public checkOutProductList:Product[]=[]
+  
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
   constructor(private ecommerceServices: ECommerceServicesService, private router: Router,private app:AppService) { 
     this.imageURL = this.app.getAdminApiPath() + "/shop/images/";
@@ -41,5 +42,9 @@ export class OrderCheckoutComponent implements OnInit {
       }
     })
   }
-
+  
+  placeorder(){
+    console.log("place Order");
+    
+  }
 }
