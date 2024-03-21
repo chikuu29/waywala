@@ -192,11 +192,11 @@
             </div>
             <div class="row">
                 <span class="fw-bold mb-2">State</span>
-                <p-dropdown formControlName="state" [options]="state" [filter]="true" filterBy="name" class="w-100"
-                    [showClear]="true" placeholder="State" class="w-100">
+                <p-dropdown formControlName="state" [options]="stateOption" [filter]="true" filterBy="name" class="w-100"
+                    [showClear]="true" placeholder="State" class="w-100" optionValue="name" optionLabel="name">
                     <ng-template pTemplate="selectedItem">
                         <div class="country-item country-item-value">
-                            <div>{{addAddressForm.value.state?.name}}</div>
+                            <div>{{addAddressForm.value.state}}</div>
                         </div>
                     </ng-template>
                     <ng-template let-state pTemplate="item">
@@ -213,7 +213,7 @@
     <ng-container *ngIf="active_edit_update_mode">
         <button mat-raised-button color="primary" [disabled]="!addAddressForm.valid" (click)="save_Address()"
         class="me-2 mb-2">{{btnText}}</button>
-        <button mat-raised-button color="accent" (click)="active_edit_update_mode=false" class="me-2 mb-2">Close</button>
+        <button mat-raised-button color="accent" (click)="deactiveEditMode()" class="me-2 mb-2">Close</button>
 
     </ng-container>
     <ng-container *ngIf="!active_edit_update_mode">

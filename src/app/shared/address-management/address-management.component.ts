@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import _ from 'lodash';
@@ -26,16 +26,17 @@ export class AddressManagementComponent implements OnInit {
     alternative_phone: new FormControl('', [Validators.pattern('^[0-9]{10}$')]),
     pin_code: new FormControl('', [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]),
     city: new FormControl('', [Validators.required]),
-    state: new FormControl({ name: 'Odisha' }, [Validators.required]),
+    state: new FormControl('Odisha', [Validators.required]),
     country: new FormControl("INDIA", [Validators.required]),
     locality: new FormControl('', [Validators.required])
 
   })
 
   addressType: string[] = ["HOME", "OFFICE", "OTHER"]
-  state: any[] = []
+  stateOption: any[] = []
   btnText: string = "Save"
   updateID: any = ''
+  @Input() isDirectOpenEditMode: boolean = false
   constructor(
     public activeModal: NgbActiveModal,
     private appservices: AppService,
@@ -45,44 +46,36 @@ export class AddressManagementComponent implements OnInit {
   ngOnInit(): void {
     this.operation = "Choose Address"
     // console.log("country_state_district.json", this.appservices.country_state_district);
-    this.active_edit_update_mode = false;
-    this.state = _.map(this.appservices.country_state_district, state => ({ name: state.state }))
+    this.active_edit_update_mode = this.isDirectOpenEditMode;
+    this.stateOption = _.map(this.appservices.country_state_district, state => ({ name: state.state }))
     // console.log(this.state);
     this.userInfo = this.appservices.authStatus
-    var apiData = `SELECT *  FROM user_address WHERE user_ID='${this.appservices.authStatus.email}'`
-    this.ApiParameterScript.fetchDataFormQuery(apiData).subscribe((res: any) => {
-      console.log(res);
-      if (res.success) {
-        res['data'].map((address: any) => {
-          var data = JSON.parse(address['address_INFO'])
-          var temp = []
-          // temp.push('Name: ' + data['name']);
-          // temp.push('Address: ' + data['address']);
-          // temp.push('Phone: ' + data['original_phone'] + ',' + data['alternative_phone']);
-          // temp.push('Locality: ' + data['locality']);
-          // temp.push('City: ' + data['city']);
-          // temp.push('Pincode: ' + data['pin_code']);
-          // temp.push('Country: ' + data['country']);
-          // temp.push('State: ' + data['state'].name);
+    if (!this.isDirectOpenEditMode) {
+      var apiData = `SELECT *  FROM user_address WHERE user_ID='${this.appservices.authStatus.email}'`
+      this.ApiParameterScript.fetchDataFormQuery(apiData).subscribe((res: any) => {
+        console.log(res);
+        if (res.success) {
+          res['data'].map((address: any) => {
+            var data = JSON.parse(address['address_INFO'])
+            var temp = []
+            temp.push(data['name']);
+            temp.push(data['address']);
+            temp.push(data['landmark']);
+            temp.push(data['original_phone'] + ',' + data['alternative_phone']);
+            temp.push(data['locality']);
+            temp.push(data['city']);
+            temp.push(data['pin_code']);
+            temp.push(data['state']);
+            temp.push(data['country']);
+            address['display_address_INFO'] = temp.join(",\n")
+          })
+          this.allAddress = res['data']
+          console.log(this.allAddress);
+        }
 
 
-          temp.push(data['name']);
-          temp.push(data['address']);
-          temp.push(data['landmark']);
-          temp.push(data['original_phone'] + ',' + data['alternative_phone']);
-          temp.push(data['locality']);
-          temp.push(data['city']);
-          temp.push(data['pin_code']);
-          temp.push(data['state'].name);
-          temp.push(data['country']);
-          address['display_address_INFO'] = temp.join(",\n")
-        })
-        this.allAddress = res['data']
-        console.log(this.allAddress);
-      }
-
-
-    })
+      })
+    }
   }
   public getErrorMessage(fieldName: string) {
     // console.log(this.addAddressForm);
@@ -124,14 +117,8 @@ export class AddressManagementComponent implements OnInit {
 
         console.log(res);
         if (res.success) {
-
-          this.addAddressForm.reset();
-          this.active_edit_update_mode = false
-          this.ngOnInit()
-
-        } else {
-
-        }
+          this.deactiveEditMode()
+        } 
 
 
       })
@@ -142,13 +129,11 @@ export class AddressManagementComponent implements OnInit {
         "projection": `id=${this.updateID}`
       }
       // console.log(updateApiData);
-
       this.ApiParameterScript.updatedata("user_address", updateApiData).subscribe((res: any) => {
         // this.blockUI.stop()
         if (res.success) {
           Swal.fire("Success", res.message, 'success').then((res: any) => {
-            this.addAddressForm.reset()
-            this.ngOnInit()
+            this.deactiveEditMode()
           })
         } else {
           Swal.fire("OPPS!", res.message, 'error')
@@ -174,12 +159,13 @@ export class AddressManagementComponent implements OnInit {
       alternative_phone: null,
       pin_code: null,
       city: null,
-      state: {name:'Odisha'},
+      state: 'Odisha',
       locality: null
     })
   }
 
   public edit(address: any) {
+    console.log("edit Address", address);
     this.operation = "Update address"
     this.active_edit_update_mode = true
     this.btnText = "Update"
@@ -223,9 +209,16 @@ export class AddressManagementComponent implements OnInit {
 
   playAudio() {
     let audio = new Audio();
-    audio.src = this.appservices.baseURL+"assets/audio/remove.mp3";
+    audio.src = this.appservices.baseURL + "assets/audio/remove.mp3";
     console.log(audio.src);
     audio.load();
     audio.play();
+  }
+
+  deactiveEditMode() {
+    this.active_edit_update_mode = false
+    this.isDirectOpenEditMode = false
+    this.addAddressForm.reset()
+    this.ngOnInit()
   }
 }

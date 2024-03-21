@@ -20,7 +20,7 @@ export class OrderCheckoutComponent implements OnInit {
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
 
   order_shipping_billing_address_details: any = {}
-
+  selectedAddress:any
   constructor(
     private ecommerceServices: ECommerceServicesService,
     private router: Router,
@@ -60,8 +60,23 @@ export class OrderCheckoutComponent implements OnInit {
         if (res.success && res['data'].length > 0) {
           //  console.log("hi",res);
           this.order_shipping_billing_address_details = JSON.parse(res['data'][0]['address_INFO'])
+
           console.log("Selected Address");
-          
+          res['data'].map((address: any) => {
+            var data = JSON.parse(address['address_INFO'])
+            var temp = []
+            temp.push(data['name']);
+            temp.push(data['address']);
+            temp.push(data['landmark']);
+            temp.push(data['original_phone'] + ',' + data['alternative_phone']);
+            temp.push(data['locality']);
+            temp.push(data['city']);
+            temp.push(data['pin_code']);
+            temp.push(data['state'].name);
+            temp.push(data['country']);
+            address['display_address_INFO'] = temp.join(",\n")
+          })
+          this.selectedAddress= res['data'][0]
 
         } else {
           console.log("no Address Found");
@@ -121,5 +136,28 @@ export class OrderCheckoutComponent implements OnInit {
     })
   }
 
+  editAddress(){
+
+    const option = { size: 'xl', scrollable: true }
+    const modalRef = this.modalService.open(AddressManagementComponent, option);
+    modalRef.componentInstance.isDirectOpenEditMode =true
+    modalRef.componentInstance.edit(this.selectedAddress)
+    // modalRef.componentInstance.OtpType = "Email",
+    // modalRef.componentInstance.otpSendTo = res.email
+    modalRef.result.then((modalInstance: any) => {
+      if (modalInstance.success) {
+
+        // this.firstFormGroup.setValue({ isAddressAvailble: 'yes' })
+        // this.order_shipping_billing_address_details = JSON.parse(modalInstance.address.address_INFO)
+        console.log(modalInstance);
+
+
+      }
+    }, (reason: any) => {
+      // this.firstFormGroup.setValue({ isAddressAvailble: 'no' })
+      console.log(reason);
+
+    })
+}
  
 }
