@@ -1,8 +1,8 @@
 <div class="coustom-margin"></div>
 <div id="wizard-checkout" class="container bs-stepper wizard-icons wizard-icons-example mb-5">
     <div class="bs-stepper-header m-auto border-0 py-4">
-        <div class="step active" data-target="#checkout-cart">
-            <button type="button" class="step-trigger" aria-selected="true">
+        <div class="step" data-target="#checkout-cart" (click)="activeStepper(1)" [class.active]="activeStepperNumber==1">
+            <button type="button" class="step-trigger" [attr.aria-selected]="activeStepperNumber === 1">
                 <span class="bs-stepper-icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </span>
@@ -10,10 +10,10 @@
             </button>
         </div>
         <div class="line">
-            <i class="bx bx-chevron-right"></i>
+            <i class="fa-solid fa-chevron-right"></i>
         </div>
-        <div class="step" data-target="#checkout-address">
-            <button type="button" class="step-trigger" aria-selected="false">
+        <div class="step" data-target="#checkout-address" (click)="activeStepper(2)" [class.active]="activeStepperNumber==2">
+            <button type="button" class="step-trigger" [attr.aria-selected]="activeStepperNumber === 2">
                 <span class="bs-stepper-icon">
                     <i class="fa-regular fa-address-book"></i>
                 </span>
@@ -21,33 +21,33 @@
             </button>
         </div>
         <div class="line">
-            <i class="bx bx-chevron-right"></i>
+            <i class="fa-solid fa-chevron-right"></i>
         </div>
-        <div class="step" data-target="#checkout-payment">
-            <button type="button" class="step-trigger" aria-selected="false">
+        <div class="step" data-target="#checkout-payment" (click)="activeStepper(3)" [class.active]="activeStepperNumber==3">
+            <button type="button" class="step-trigger" [attr.aria-selected]="activeStepperNumber === 3">
                 <span class="bs-stepper-icon">
                     <i class="fa-solid fa-credit-card"></i>
                 </span>
                 <span class="bs-stepper-label">Payment</span>
             </button>
         </div>
-        <div class="line">
-            <i class="bx bx-chevron-right"></i>
+        <!-- <div class="line">
+            <i class="fa-solid fa-chevron-right"></i>
         </div>
-        <div class="step" data-target="#checkout-confirmation">
-            <button type="button" class="step-trigger" aria-selected="false">
+        <div class="step" data-target="#checkout-confirmation" (click)="activeStepper(4)" [class.active]="activeStepperNumber==4">
+            <button type="button" class="step-trigger" [attr.aria-selected]="activeStepperNumber === 3">
                 <span class="bs-stepper-icon">
                     <i class="fa-solid fa-circle-check"></i>
                 </span>
                 <span class="bs-stepper-label">Confirmation</span>
             </button>
-        </div>
+        </div> -->
     </div>
     <div class="bs-stepper-content border-top">
         <form id="wizard-checkout-form" >
 
             <!-- Cart -->
-            <div id="checkout-cart" class="content fv-plugins-bootstrap5 fv-plugins-framework active dstepper-block ">
+            <div id="checkout-cart" class="content active dstepper-block " *ngIf="activeStepperNumber==1" >
                 <div class="row">
                     <!-- Cart left -->
                     <div class="col-xl-8 mb-3 mb-xl-0">
@@ -267,7 +267,7 @@
             </div>
 
             <!-- Address -->
-            <div id="checkout-address" class="content fv-plugins-bootstrap5 fv-plugins-framework ">
+            <div id="checkout-address" class="content active dstepper-block" *ngIf="activeStepperNumber==2" >
                 <div class="row">
                     <!-- Address left -->
                     <div class="col-xl-8  col-xxl-9 mb-3 mb-xl-0">
@@ -318,8 +318,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-label-primary mb-4" data-bs-toggle="modal"
-                            data-bs-target="#addNewAddress">Add new address</button>
+                        <button type="button" class="btn btn-label-primary mb-4" (click)="addAddress()" >Add new address</button>
 
                         <!-- Choose Delivery -->
                         <p>Choose Delivery Speed</p>
@@ -428,7 +427,7 @@
             </div>
 
             <!-- Payment -->
-            <div id="checkout-payment" class="content fv-plugins-bootstrap5 fv-plugins-framework ">
+            <div id="checkout-payment" class="content active dstepper-block " *ngIf="activeStepperNumber==3" >
                 <div class="row">
                     <!-- Payment left -->
                     <div class="col-xl-8 col-xxl-9 mb-3 mb-xl-0">
@@ -595,7 +594,7 @@
             </div>
 
             <!-- Confirmation -->
-            <div id="checkout-confirmation" class="content fv-plugins-bootstrap5 fv-plugins-framework ">
+            <div id="checkout-confirmation" class="content active dstepper-block" *ngIf="activeStepperNumber==4 && false">
                 <div class="row mb-3">
                     <div class="col-12 col-lg-8 mx-auto text-center mb-3">
                         <h4 class="mt-2">Thank You! 😇</h4>
