@@ -279,9 +279,14 @@
                     <div class="col-xl-8  col-xxl-9 mb-3 mb-xl-0">
 
                         <!-- Select address -->
-                        <p>Select your preferable address</p>
+
+                        <div class="row ">
+                            <p>Select your preferable address</p>
+                            <button type="button" class="btn btn-label-primary" (click)="addAddress()">Add new
+                                address</button>
+                        </div>
                         <div class="row mb-3">
-                            <div class="col-12 mb-md-0 mb-2">
+                            <div class="col-12 mb-md-0 mb-2" *ngIf="selectedAddress">
 
                                 <div class="form-check custom-option custom-option-basic checked">
                                     <label class="form-check-label custom-option-content" for="customRadioAddress1">
@@ -304,7 +309,7 @@
                                                 Card / Cash on delivery available</small>
                                             <span class="my-2 border-bottom d-block"></span>
                                             <span class="d-flex">
-                                                <a class="me-2" (click)="editAddress()">Edit</a> 
+                                                <a class="me-2" (click)="editAddress()">Edit</a>
                                                 <!-- <a href="javascript:void(0)">Remove</a> -->
                                             </span>
                                         </span>
@@ -333,8 +338,7 @@
                                 </div>
                             </div> -->
                         </div>
-                        <button type="button" class="btn btn-label-primary mb-4" (click)="addAddress()">Add new
-                            address</button>
+
 
                         <!-- Choose Delivery -->
                         <p>Choose Delivery Speed</p>
