@@ -59,16 +59,16 @@
                         <!-- Offer alert -->
                         <div class="alert alert-success mb-3" role="alert">
                             <div class="d-flex">
-                                <span
+                                <!-- <span
                                     class="badge badge-center rounded-pill bg-success border-label-success p-3 me-2"><i
-                                        class="fa-solid fa-bookmark fs-4"></i></span>
+                                        class="fa-solid fa-bookmark fs-4"></i></span> -->
                                 <div class="flex-grow-1 ps-1">
                                     <div class="fw-medium fs-5 mb-2">Available Offers</div>
                                     <ul class="list-unstyled mb-0">
-                                        <li> - 10% Instant Discount on Bank of America Corp Bank Debit and Credit cards
+                                        <li> -10% Coin You Can Use This Order
                                         </li>
-                                        <li> - 25% Cashback Voucher of up to $60 on first ever PayPal transaction. TCA
-                                        </li>
+                                        <!-- <li> - 25% Cashback Voucher of up to $60 on first ever PayPal transaction. TCA
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -79,27 +79,27 @@
                         <!-- Shopping bag -->
                         <h5>My Shopping Bag ({{checkOutProductList.length}} Items)</h5>
                         <ul class="list-group mb-3">
-                            <li class="list-group-item p-4" *ngFor="let item of checkOutProductList">
-                                <div class="d-flex gap-3">
-                                    <div class="flex-shrink-0 d-flex align-items-center">
+                            <li class="list-group-item p-4" *ngFor="let item of checkOutProductList;let i=index">
+                                <div class="row gap-3">
+                                    <div class="col-md-4 flex-shrink-0 d-flex align-items-center">
                                         <img [src]="imageURL + item['product_Images'][0]" alt="google home"
                                             class="w-px-100" height="200" width="200">
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="flex-grow-1 col-md-8">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <p class="me-3"><a href="javascript:void(0)" class="text-body">Google -
-                                                        Google Home - White</a></p>
+                                                <p class="me-3"><a href="javascript:void(0)"
+                                                        class="text-body fs-4">{{item?.product_Name |uppercase}}</a></p>
                                                 <div class="text-muted mb-2 d-flex flex-wrap"><span class="me-1">Sold
                                                         by:</span> <a href="javascript:void(0)" class="me-3">Apple</a>
                                                     <span class="badge bg-label-success">In Stock</span>
                                                 </div>
-                                                <div class="read-only-ratings mb-3 jq-ry-container"
+                                                <!-- <div class="read-only-ratings mb-3 jq-ry-container"
                                                     data-rateyo-read-only="true" readonly="readonly"
                                                     style="width: 100px;">
                                                     <div class="jq-ry-group-wrapper">
                                                         <div class="jq-ry-normal-group jq-ry-group">
-                                                            <!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            <svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -107,7 +107,7 @@
                                                                 <polygon
                                                                     points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 ">
                                                                 </polygon>
-                                                            </svg><!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            </svg><svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -115,7 +115,7 @@
                                                                 <polygon
                                                                     points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 ">
                                                                 </polygon>
-                                                            </svg><!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            </svg><svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -123,7 +123,7 @@
                                                                 <polygon
                                                                     points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 ">
                                                                 </polygon>
-                                                            </svg><!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            </svg><svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -131,7 +131,7 @@
                                                                 <polygon
                                                                     points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 ">
                                                                 </polygon>
-                                                            </svg><!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            </svg><svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -142,7 +142,7 @@
                                                             </svg>
                                                         </div>
                                                         <div class="jq-ry-rated-group jq-ry-group" style="width: 80%;">
-                                                            <!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            <svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -150,7 +150,7 @@
                                                                 <polygon
                                                                     points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 ">
                                                                 </polygon>
-                                                            </svg><!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            </svg><svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -158,7 +158,7 @@
                                                                 <polygon
                                                                     points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 ">
                                                                 </polygon>
-                                                            </svg><!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            </svg><svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -166,7 +166,7 @@
                                                                 <polygon
                                                                     points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 ">
                                                                 </polygon>
-                                                            </svg><!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            </svg><svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -174,7 +174,7 @@
                                                                 <polygon
                                                                     points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 ">
                                                                 </polygon>
-                                                            </svg><!--?xml version="1.0" encoding="utf-8"?--><svg
+                                                            </svg><svg
                                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 12.705 512 486.59" x="0px" y="0px"
                                                                 xml:space="preserve" width="20px" height="20px"
@@ -185,20 +185,42 @@
                                                             </svg>
                                                         </div>
                                                     </div>
+                                                </div> -->
+
+                                                <!-- Quantity -->
+                                                <div class="d-flex mb-4" style="max-width: 300px">
+                                                    <button class="btn btn-primary me-2" (click)="stepDown(i)">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button>
+
+                                                    <div class="form-outline">
+                                                        <input [min]="1" name="quantity"
+                                                            [(ngModel)]="item.order_quantity"
+                                                            (change)="onChangeQuantity($event, i)"
+                                                            [max]="item.product_Quantity_Available" type="number"
+                                                            class="form-control" readonly />
+
+                                                    </div>
+
+                                                    <button class="btn btn-primary ms-2" (click)="stepUp(i)">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
                                                 </div>
-                                                <input type="number" class="form-control form-control-sm w-px-100 mt-2"
-                                                    value="1" min="1" max="5">
+                                                <!-- Quantity -->
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="text-md-end">
                                                     <button type="button" class="btn-close btn-pinned"
                                                         aria-label="Close"></button>
                                                     <div class="my-2 my-md-4 mb-md-5"><span
-                                                            class="text-primary">$299/</span><s
-                                                            class="text-muted">$359</s></div>
-                                                    <button type="button"
+                                                            class="text-success fs-3">{{item.product_Selling_Price*item.order_quantity
+                                                            |currency:'INR'}}/</span><s
+                                                            class="text-muted fs-3">{{item.product_Mrp_Price*item.order_quantity
+                                                            |currency:'INR'}}</s>
+                                                    </div>
+                                                    <!-- <button type="button"
                                                         class="btn btn-sm btn-label-primary mt-md-3">Move to
-                                                        wishlist</button>
+                                                        wishlist</button> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -208,12 +230,12 @@
                         </ul>
 
                         <!-- Wishlist -->
-                        <div class="list-group">
+                        <!-- <div class="list-group">
                             <a href="javascript:void(0)" class="list-group-item d-flex justify-content-between">
                                 <span>Add more products from wishlist</span>
                                 <i class="bx bx-sm bx-chevron-right scaleX-n1-rtl"></i>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- Cart right -->
@@ -229,40 +251,40 @@
                                 </div>
                                 <div class="col-4 col-xxl-4 col-xl-12">
                                     <div class="d-grid">
-                                        <button type="button" class="btn btn-label-primary">Apply</button>
+                                        <button type="button" class="btn btn-label-primary" (click)="appyCopun()">Apply</button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Gift wrap -->
-                            <div class="bg-lighter rounded p-3">
+                            <!-- <div class="bg-lighter rounded p-3">
                                 <p class="fw-medium mb-2">Buying gift for a loved one?</p>
                                 <p class="mb-2">Gift wrap and personalized message on card, Only for $2.</p>
                                 <a href="javascript:void(0)" class="fw-medium">Add a gift wrap</a>
-                            </div>
+                            </div> -->
                             <hr class="mx-n4">
 
                             <!-- Price Details -->
                             <h6>Price Details</h6>
                             <dl class="row mb-0">
                                 <dt class="col-6 fw-normal">Bag Total</dt>
-                                <dd class="col-6 text-end">$1198.00</dd>
+                                <s class="col-6 text-end">{{order_price_details.total_mrp_price |currency:'INR'}}</s>
 
                                 <dt class="col-sm-6 fw-normal">Coupon Discount</dt>
-                                <dd class="col-sm-6 text-end"><a href="javascript:void(0)">Apply Coupon</a></dd>
+                                <dd class="col-sm-6 text-end">{{order_price_details.total_copun_discount|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Order Total</dt>
-                                <dd class="col-6 text-end">$1198.00</dd>
+                                <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <dd class="col-6 text-end"><s class="text-muted">$5.00</s> <span
+                                <dd class="col-6 text-end"><s class="text-muted">{{0|currency:'INR'}}</s> <span
                                         class="badge bg-label-success ms-1">Free</span></dd>
                             </dl>
 
                             <hr class="mx-n4">
                             <dl class="row mb-0">
                                 <dt class="col-6">Total</dt>
-                                <dd class="col-6 fw-medium text-end mb-0">$1198.00</dd>
+                                <dd class="col-6 fw-medium text-end mb-0">{{order_price_details.final_price |currency:'INR'}}</dd>
                             </dl>
                         </div>
                         <div class="d-grid">

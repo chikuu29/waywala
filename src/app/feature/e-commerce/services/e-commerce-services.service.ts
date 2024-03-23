@@ -12,7 +12,7 @@ export class ECommerceServicesService {
 
   refreshComponent=new BehaviorSubject<any>(null)
   public generateCartItemCount = new BehaviorSubject<any>(true)
-  public checkoutItemList= new BehaviorSubject<Product[]>([])
+  public checkoutItemList= new BehaviorSubject<any>(null)
   constructor(
     private AppService: AppService,
     private apiParameterScrpt: ApiParameterScript

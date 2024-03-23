@@ -1,105 +1,104 @@
+<div class="container d-flex align-items-center" style="height: 100vh;">
 
-  <div class=" h-100">
+  <div class="row justify-content-center align-items-center" style=" box-shadow: 0.063rem 0 1.25rem 0 #ced0d3; border-radius: 30px;">
+    <!-- <div class="col-lg-12 col-xl-11 ">
+      <div class="card text-black" style="border: none; box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;border-radius: 25px;">
+        <div class="card-body p-md-5">
+          <div class="row justify-content-center"> -->
+            <div class="col-lg-6 col-sm-12 p-4">
 
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11 ">
-        <div class="card text-black" style="border: none; box-shadow: 0.063rem 0 1.25rem 0 #ced0d3;border-radius: 25px;">
-          <div class="card-body p-md-5">
-            <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+              <img src="/assets/agri/Build-An-Organic-E-commerce-Platform.png" class="img-fluid" alt="Sample image"
+                style="border-radius: 25px;">
 
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-                <p class="text-danger" style="margin-left: 22px;">It's Take Less a minute</p>
-
-                <form class="mx-1 mx-md-4" [formGroup]="registerForm">
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <mat-form-field appearance="outline" class="flex-fill">
-                      <mat-label>Enter Your Name</mat-label>
-                      <input matInput placeholder="Placeholder" formControlName="name" required>
-                      <mat-icon matSuffix>{{registerForm.controls.name.valid
-                        ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
-                      <mat-error *ngIf="registerForm.controls.name.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <mat-form-field appearance="outline" class="flex-fill">
-                      <mat-label>Enter Your Email</mat-label>
-                      <input matInput placeholder="Placeholder" formControlName="email" required type="email">
-                      <mat-icon matSuffix>{{registerForm.controls.email.valid
-                        ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
-                      <mat-error *ngIf="registerForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <mat-form-field appearance="outline" class="flex-fill">
-                      <mat-label>Enter Your Phone No</mat-label>
-                      <input matInput placeholder="Placeholder" formControlName="phone" required type="text" maxlength="10">
-                      <mat-icon matSuffix>{{registerForm.controls.phone.valid
-                        ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
-                      <mat-error *ngIf="registerForm.controls.phone.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <mat-form-field appearance="outline" class="flex-fill">
-                      <mat-label>Enter Your Password</mat-label>
-                      <input matInput placeholder="Placeholder" [type]="hide ? 'password' : 'text'"
-                        formControlName="password" required>
-                      <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
-                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                      </button>
-                      <mat-error *ngIf="registerForm.controls.password.invalid">{{getErrorMessage()}}</mat-error>
-
-                    </mat-form-field>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <mat-form-field appearance="outline" class="flex-fill">
-                      <mat-label>Enter Your Re-Password</mat-label>
-                      <input matInput placeholder="Placeholder" placeholder="repassword" required="" formControlName="confirm_password" [type]="hide2 ? 'password' : 'text'">
-                      <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2"
-                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                     
-                      </button>
-                      <mat-error *ngIf="registerForm.controls.confirm_password.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="form-check d-flex justify-content-center mb-5">
-                    <input class="form-check-input me-2" type="checkbox"  id="form2Example3c" formControlName='checkbox' required/>
-                    <label class="form-check-label" for="form2Example3">
-                      I agree all statements in <a href="#!">Terms of service</a>
-                    </label>
-                  </div>
-
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <!-- <button type="button" class="btn btn-primary btn-lg">Register</button> -->
-                    <button mat-raised-button color="primary" type="button"
-                      style="padding-left: 2.5rem; padding-right: 2.5rem;" class="m-1"
-                      [disabled]="registerForm.invalid" (click)="registerSubmitBtn()">Register</button>
-                    <a mat-raised-button color="accent" type="button"
-                      style="padding-left: 2.5rem; padding-right: 2.5rem;" class="m-1" routerLink="/auth/login"
-                      href="">Login</a>
-                  </div>
-
-                </form>
-
-              </div>
-              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                <img src="/assets/agri/Build-An-Organic-E-commerce-Platform.png"
-                  class="img-fluid" alt="Sample image" style="border-radius: 25px;">
-
-              </div>
             </div>
-          </div>
+            <div class="col-lg-6 col-sm-12">
+
+              <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+              <p class="text-danger" style="margin-left: 22px;">It's Take Less a minute</p>
+
+              <form class="mx-1 mx-md-4" [formGroup]="registerForm">
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <mat-form-field appearance="outline" class="flex-fill">
+                    <mat-label>Enter Your Name</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="name" required>
+                    <mat-icon matSuffix>{{registerForm.controls.name.valid
+                      ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                    <mat-error *ngIf="registerForm.controls.name.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <mat-form-field appearance="outline" class="flex-fill">
+                    <mat-label>Enter Your Email</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="email" required type="email">
+                    <mat-icon matSuffix>{{registerForm.controls.email.valid
+                      ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                    <mat-error *ngIf="registerForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <mat-form-field appearance="outline" class="flex-fill">
+                    <mat-label>Enter Your Phone No</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="phone" required type="text"
+                      maxlength="10">
+                    <mat-icon matSuffix>{{registerForm.controls.phone.valid
+                      ?'sentiment_very_satisfied':'sentiment_very_dissatisfied'}}</mat-icon>
+                    <mat-error *ngIf="registerForm.controls.phone.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <mat-form-field appearance="outline" class="flex-fill">
+                    <mat-label>Enter Your Password</mat-label>
+                    <input matInput placeholder="Placeholder" [type]="hide ? 'password' : 'text'"
+                      formControlName="password" required>
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                      [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="registerForm.controls.password.invalid">{{getErrorMessage()}}</mat-error>
+
+                  </mat-form-field>
+                </div>
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <mat-form-field appearance="outline" class="flex-fill">
+                    <mat-label>Enter Your Re-Password</mat-label>
+                    <input matInput placeholder="Placeholder" placeholder="repassword" required=""
+                      formControlName="confirm_password" [type]="hide2 ? 'password' : 'text'">
+                    <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2"
+                      [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+                    </button>
+                    <mat-error *ngIf="registerForm.controls.confirm_password.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="form-check d-flex justify-content-center mb-5">
+                  <input class="form-check-input me-2" type="checkbox" id="form2Example3c" formControlName='checkbox'
+                    required />
+                  <label class="form-check-label" for="form2Example3">
+                    I agree all statements in <a href="#!">Terms of service</a>
+                  </label>
+                </div>
+
+                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                  <!-- <button type="button" class="btn btn-primary btn-lg">Register</button> -->
+                  <button mat-raised-button color="primary" type="button"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;" class="m-1" [disabled]="registerForm.invalid"
+                    (click)="registerSubmitBtn()">Register</button>
+                  <!-- <a mat-raised-button color="accent" type="button" style="padding-left: 2.5rem; padding-right: 2.5rem;"
+                    class="m-1" routerLink="/auth/login" href="">Login</a> -->
+                </div>
+
+              </form>
+
+            </div>
+          
+          <!-- </div>
         </div>
-      </div>
-    </div>
- 
+      </div> -->
+    <!-- </div> -->
   </div>
 
-<ngx-ui-loader
-[text]="'Please Wait'"
-></ngx-ui-loader>
+</div>
 
+<ngx-ui-loader [text]="'Please Wait'"></ngx-ui-loader>

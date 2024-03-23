@@ -7,6 +7,8 @@ import { AppService } from 'src/app/services/app.service';
 import { AddressManagementComponent } from 'src/app/shared/address-management/address-management.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
+import { CheckOutProductOrder, priceDetails } from 'src/app/appInterface/checkOutProductOrder';
+import _, { isNumber } from 'lodash';
 
 @Component({
   selector: 'app-order-checkout',
@@ -15,28 +17,39 @@ import { ApiParameterScript } from 'src/app/script/api-parameter';
 })
 export class OrderCheckoutComponent implements OnInit {
 
-  public checkOutProductList: Product[] = []
+  public checkOutProductList: any[] = []
   public activeStepperNumber: number = 1;
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
 
   order_shipping_billing_address_details: any = {}
-  selectedAddress:any
+  selectedAddress: any
+  order_price_details: priceDetails = {
+    total_price: 0,
+    final_price: 0,
+    total_copun_discount: 0,
+    total_mrp_price: 0
+  }
+  private orderCheckOutInfo: CheckOutProductOrder = {}
   constructor(
     private ecommerceServices: ECommerceServicesService,
     private router: Router,
     private app: AppService,
     private modalService: NgbModal,
-    private ApiParameterScript:ApiParameterScript
+    private api: ApiParameterScript
   ) {
     this.imageURL = this.app.getAdminApiPath() + "/shop/images/";
   }
 
   ngOnInit(): void {
 
-    this.ecommerceServices.checkoutItemList.subscribe((checkOutProductList: Product[]) => {
-      console.log("CheckOutProcutList", checkOutProductList);
-      if (checkOutProductList.length > 0) {
-        this.checkOutProductList = checkOutProductList
+    this.ecommerceServices.checkoutItemList.subscribe((product_id) => {
+      console.log("CheckOutProcutList", product_id);
+      product_id = "fe01ce2a7fbac8fafaed7c982a04e2295441678284309"
+      if (product_id && product_id != '') {
+        // this.checkOutProductList = checkOutProductList
+        // this.orderCheckOutInfo.order_product_inventory=checkOutProductList
+
+        this.getProduct(product_id);
       } else {
         Swal.fire({
           title: "Something Went Wrong",
@@ -56,7 +69,7 @@ export class OrderCheckoutComponent implements OnInit {
 
     if (this.app.authStatus) {
 
-      this.ApiParameterScript.fetchDataFormQuery(`SELECT *  FROM user_address WHERE user_ID='${this.app.authStatus.email}'`).subscribe((res: any) => {
+      this.api.fetchDataFormQuery(`SELECT *  FROM user_address WHERE user_ID='${this.app.authStatus.email}'`).subscribe((res: any) => {
         if (res.success && res['data'].length > 0) {
           //  console.log("hi",res);
           this.order_shipping_billing_address_details = JSON.parse(res['data'][0]['address_INFO'])
@@ -76,14 +89,107 @@ export class OrderCheckoutComponent implements OnInit {
             temp.push(data['country']);
             address['display_address_INFO'] = temp.join(",\n")
           })
-          this.selectedAddress= res['data'][0]
+          this.selectedAddress = res['data'][0]
 
         } else {
           console.log("no Address Found");
           // this.firstFormGroup.setValue({ isAddressAvailble: 'no' })
         }
       })
+
+
+    }
+  }
+
+
+  getProduct(product_id: string) {
+    var query = `SELECT p.product_Shipped_Pincode,p.product_Has_Own_Delivery,p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_Quantity_Available,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE e_commerce_product.product_Live_Status='active' AND e_commerce_product.product_Id='${product_id}') p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`;
+
+    this.api.fetchDataFormQuery(query).subscribe((res: any) => {
+      if (res.success && res['data'].length > 0) {
+        console.log(res);
+
+        res.data.map((data: any) => {
+          data['product_Images'] = data.product_Images.split(',');
+        })
+
+        this.checkOutProductList = res['data']
+        this.createOrderCheckOutInfo();
+
+
+      } else {
+
+      }
+
+
+
+    })
+
+  }
+
+
+  createOrderCheckOutInfo() {
+
+    // const product=this.checkOutProductList
+    this.orderCheckOutInfo['order_product_inventory'] = this.generateProductInventory(this.checkOutProductList)
+    this.orderCheckOutInfo['order_price_details'] = this.calculateTotalProductPrice(this.checkOutProductList)
+    this.orderCheckOutInfo['order_offer_details'] = this.generateOffer()
+    console.log("final", this.orderCheckOutInfo);
+    this.order_price_details = this.orderCheckOutInfo['order_price_details']
+  }
+
+  generateProductInventory(productList: any[]): any[] {
+    _.map(productList, (product) => {
+
+      product['order_quantity'] = product['order_quantity'] ? product['order_quantity'] : 1
+
+    })
+
+    return productList
+  }
+
+
+  appyCopun() {
+
+    this.orderCheckOutInfo.order_copun_details = {
+      copun_code: 'TEXT',
+      copun_discount_price: 10
+    }
+    console.log("apply",this.orderCheckOutInfo);
+    
+    // const totalPrice = this.order_price_details.total_price ? this.order_price_details.total_price : 0
+    this.order_price_details.total_copun_discount = 10
+    // this.order_price_details.final_price = totalPrice - this.order_price_details.total_copun_discount
+    // this.createOrderCheckOutInfo()
+    this.updatePrice()
+  }
+
+
+  updatePrice() {
+
+    try {
+
+
+
+      var total_copun_discount = 0
+      if (this.orderCheckOutInfo.order_copun_details) {
+        total_copun_discount = isNumber(this.orderCheckOutInfo.order_copun_details.copun_discount_price) ? this.orderCheckOutInfo.order_copun_details.copun_discount_price : 0
+      }
+
+      var total_price = _.sumBy(this.checkOutProductList, (product: any) => product.product_Selling_Price * product.order_quantity)
+      // var final_price = _.sumBy(productList, (product: any) => product.product_Selling_Price * product.order_quantity)
+     console.log(total_copun_discount);
      
+      var updatedPrice: priceDetails = {
+        total_mrp_price: _.sumBy(this.checkOutProductList, (product: any) => product.product_Mrp_Price * product.order_quantity),
+        total_copun_discount: total_copun_discount,
+        total_price: isNumber(total_price) ? total_price : 0,
+        final_price: total_price - total_copun_discount
+      };
+      this.order_price_details=updatedPrice
+      this.orderCheckOutInfo.order_price_details = updatedPrice
+    } catch (error) {
+      console.log(error);
 
     }
   }
@@ -107,8 +213,15 @@ export class OrderCheckoutComponent implements OnInit {
     }
   }
   placeorder() {
-    console.log("place Order");
-    this.next()
+    console.log("place Order",this.orderCheckOutInfo);
+
+    try {
+      // this.createOrderCheckOutInfo()
+    } catch (error) {
+      console.log(error);
+
+    }
+
 
   }
 
@@ -136,11 +249,11 @@ export class OrderCheckoutComponent implements OnInit {
     })
   }
 
-  editAddress(){
+  editAddress() {
 
     const option = { size: 'xl', scrollable: true }
     const modalRef = this.modalService.open(AddressManagementComponent, option);
-    modalRef.componentInstance.isDirectOpenEditMode =true
+    modalRef.componentInstance.isDirectOpenEditMode = true
     modalRef.componentInstance.edit(this.selectedAddress)
     // modalRef.componentInstance.OtpType = "Email",
     // modalRef.componentInstance.otpSendTo = res.email
@@ -158,6 +271,67 @@ export class OrderCheckoutComponent implements OnInit {
       console.log(reason);
 
     })
-}
- 
+  }
+
+
+  stepUp(index: number) {
+
+
+    if (this.checkOutProductList[index].product_Quantity_Available > this.checkOutProductList[index].order_quantity) {
+      this.checkOutProductList[index].order_quantity += 1;
+      this.updatePrice()
+    }
+
+  }
+  stepDown(index: number) {
+    if (1 < this.checkOutProductList[index].order_quantity) {
+      this.checkOutProductList[index].order_quantity -= 1
+      this.updatePrice()
+    }
+
+  }
+  onChangeQuantity(event: any, index: number) {
+    console.log("onChangeQuantity", this.checkOutProductList[index].order_quantity);
+    try {
+
+
+      if (this.checkOutProductList[index].order_quantity && this.checkOutProductList[index].order_quantity <= this.checkOutProductList[index].product_Quantity_Available) {
+
+
+      } else {
+        this.checkOutProductList[index].order_quantity = this.checkOutProductList[index].product_Quantity_Available
+      }
+      this.updatePrice()
+    } catch (error) {
+      console.log(error);
+
+    }
+
+
+  }
+
+
+
+  private calculateTotalProductPrice(productList: Product[]): priceDetails {
+    // console.log("calculasteTotalProductPrice", this.checkOutProductList);
+    var total_copun_discount = 0
+    if (this.orderCheckOutInfo.order_copun_details) {
+      total_copun_discount = isNumber(this.orderCheckOutInfo.order_copun_details.copun_discount_price) ? this.orderCheckOutInfo.order_copun_details.copun_discount_price : 0
+    }
+
+    var total_price = _.sumBy(productList, (product: any) => product.product_Selling_Price * product.order_quantity)
+    // var final_price = _.sumBy(productList, (product: any) => product.product_Selling_Price * product.order_quantity)
+
+    return {
+      total_mrp_price: _.sumBy(productList, (product: any) => product.product_Mrp_Price * product.order_quantity),
+      total_copun_discount: total_copun_discount,
+      total_price: isNumber(total_price) ? total_price : 0,
+      final_price: total_price - total_copun_discount
+    };
+
+  }
+
+  private generateOffer() {
+    return {}
+  }
 }
