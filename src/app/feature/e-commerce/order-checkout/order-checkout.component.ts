@@ -9,6 +9,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { CheckOutProductOrder, priceDetails } from 'src/app/appInterface/checkOutProductOrder';
 import _, { isNumber } from 'lodash';
+import moment from 'moment';
+import { PaymentGetwayService } from '../services/payment-getway.service';
 
 @Component({
   selector: 'app-order-checkout',
@@ -36,7 +38,8 @@ export class OrderCheckoutComponent implements OnInit {
     private router: Router,
     private app: AppService,
     private modalService: NgbModal,
-    private api: ApiParameterScript
+    private api: ApiParameterScript,
+    private payment_getway:PaymentGetwayService
   ) {
     this.imageURL = this.app.getAdminApiPath() + "/shop/images/";
   }
@@ -363,6 +366,50 @@ export class OrderCheckoutComponent implements OnInit {
   pay(payment_mode:string){
     console.log(payment_mode);
     if(this.isAddressSelected){
+
+      this.orderCheckOutInfo.order_id=this.generateOrderID()
+      this.orderCheckOutInfo.order_payment_mode=payment_mode
+      this.orderCheckOutInfo.order_details=this.orderCheckOutInfo.order_product_inventory
+      this.orderCheckOutInfo.order_currency="INR"
+      this.orderCheckOutInfo.order_created_time=moment().format('DD MMM YYYY, hh:mm A')
+      this.orderCheckOutInfo.customer_details={
+        "customer_id": "not_availble",
+        "customer_name": this.orderCheckOutInfo.order_shipping_address.name,
+        "customer_email": `${this.app.authStatus.email}`,
+        "customer_phone": this.orderCheckOutInfo.order_shipping_address.original_phone
+      },
+      this.orderCheckOutInfo.order_shipping_billing_address_details=this.orderCheckOutInfo.order_shipping_address
+      this.orderCheckOutInfo.order_amount=this.orderCheckOutInfo.order_price_details?.final_price
+      this.orderCheckOutInfo.order_meta={
+        "notify_url": "https://test.cashfree.com/pgappsdemos/return.php",
+        "return_url": `${this.app.baseURL}store/order/confirmation/status/{order_id}`,
+        "payment_methods": "cc,dc,upi"
+      }
+      this.orderCheckOutInfo.order_note="NA"
+
+      this.payment_getway.createOrder(this.orderCheckOutInfo, payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
+        // this.blockUI.stop();
+        console.log(res);
+        // var paymentSessionId = res.payment_session_id;
+        if (res.success) {
+          var apiData = {
+            "projection": `product_CART_BY_Email='${this.app.authStatus.email}'`,
+          }
+          // this.api.deletedata("e_commerce_product_kart", apiData, false).subscribe((res: any) => {
+          // })
+          if (res.order_Payment_Method == 'ONLINE_GETWAY') {
+            // this.startCapturingPayment(res.payment_session_id);
+          } else {
+            // console.log("This IS a COD ORDER");
+            document.location.href = `${this.app.baseURL}store/order/confirmation/status/${res.order_id}`
+          }
+        } else {
+          alert("SOMETHIGS WENT WRONG")
+        }
+
+      })
+      console.log(this.orderCheckOutInfo);
+      
 
     }else{
       Swal.fire('Warning', 'Please Select Address', 'warning')
