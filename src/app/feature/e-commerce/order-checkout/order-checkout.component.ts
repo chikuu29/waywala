@@ -30,6 +30,7 @@ export class OrderCheckoutComponent implements OnInit {
     total_mrp_price: 0
   }
   private orderCheckOutInfo: CheckOutProductOrder = {}
+  isAddressSelected: boolean = false
   constructor(
     private ecommerceServices: ECommerceServicesService,
     private router: Router,
@@ -44,7 +45,7 @@ export class OrderCheckoutComponent implements OnInit {
 
     this.ecommerceServices.checkoutItemList.subscribe((product_id) => {
       console.log("CheckOutProcutList", product_id);
-      product_id = "fe01ce2a7fbac8fafaed7c982a04e2295441678284309"
+      // product_id = "fe01ce2a7fbac8fafaed7c982a04e2295441678284309"
       if (product_id && product_id != '') {
         // this.checkOutProductList = checkOutProductList
         // this.orderCheckOutInfo.order_product_inventory=checkOutProductList
@@ -58,10 +59,10 @@ export class OrderCheckoutComponent implements OnInit {
           denyButtonText: `Don't save`
         }).then((result) => {
           /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
+          // if (result.isConfirmed) {
             this.router.navigateByUrl('/store/my/bag');
             // Swal.fire("Saved!", "", "success");
-          }
+          // }
         });
 
       }
@@ -90,9 +91,13 @@ export class OrderCheckoutComponent implements OnInit {
             address['display_address_INFO'] = temp.join(",\n")
           })
           this.selectedAddress = res['data'][0]
-
+          this.order_shipping_billing_address_details=JSON.parse(res['data'][0]['address_INFO'])
+          this.orderCheckOutInfo.order_biling_address = JSON.parse(res['data'][0]['address_INFO'])
+          this.orderCheckOutInfo.order_shipping_address = JSON.parse(res['data'][0]['address_INFO'])
+          this.isAddressSelected = true
         } else {
           console.log("no Address Found");
+          this.isAddressSelected = false
           // this.firstFormGroup.setValue({ isAddressAvailble: 'no' })
         }
       })
@@ -155,8 +160,8 @@ export class OrderCheckoutComponent implements OnInit {
       copun_code: 'TEXT',
       copun_discount_price: 10
     }
-    console.log("apply",this.orderCheckOutInfo);
-    
+    console.log("apply", this.orderCheckOutInfo);
+
     // const totalPrice = this.order_price_details.total_price ? this.order_price_details.total_price : 0
     this.order_price_details.total_copun_discount = 10
     // this.order_price_details.final_price = totalPrice - this.order_price_details.total_copun_discount
@@ -168,25 +173,20 @@ export class OrderCheckoutComponent implements OnInit {
   updatePrice() {
 
     try {
-
-
-
       var total_copun_discount = 0
       if (this.orderCheckOutInfo.order_copun_details) {
         total_copun_discount = isNumber(this.orderCheckOutInfo.order_copun_details.copun_discount_price) ? this.orderCheckOutInfo.order_copun_details.copun_discount_price : 0
       }
-
       var total_price = _.sumBy(this.checkOutProductList, (product: any) => product.product_Selling_Price * product.order_quantity)
       // var final_price = _.sumBy(productList, (product: any) => product.product_Selling_Price * product.order_quantity)
-     console.log(total_copun_discount);
-     
+      console.log(total_copun_discount);
       var updatedPrice: priceDetails = {
         total_mrp_price: _.sumBy(this.checkOutProductList, (product: any) => product.product_Mrp_Price * product.order_quantity),
         total_copun_discount: total_copun_discount,
         total_price: isNumber(total_price) ? total_price : 0,
         final_price: total_price - total_copun_discount
       };
-      this.order_price_details=updatedPrice
+      this.order_price_details = updatedPrice
       this.orderCheckOutInfo.order_price_details = updatedPrice
     } catch (error) {
       console.log(error);
@@ -213,15 +213,26 @@ export class OrderCheckoutComponent implements OnInit {
     }
   }
   placeorder() {
-    console.log("place Order",this.orderCheckOutInfo);
+    console.log("place Order", this.orderCheckOutInfo);
 
     try {
-      // this.createOrderCheckOutInfo()
+      this.next()
     } catch (error) {
       console.log(error);
 
     }
 
+
+  }
+
+  confirmOrder() {
+    console.log("confrimOrder", this.orderCheckOutInfo);
+
+    if (this.isAddressSelected) {
+        this.next()
+    } else {
+      Swal.fire('Warning', 'Please Select Address', 'warning')
+    }
 
   }
 
@@ -235,14 +246,16 @@ export class OrderCheckoutComponent implements OnInit {
 
     modalRef.result.then((modalInstance: any) => {
       if (modalInstance.success) {
-
         // this.firstFormGroup.setValue({ isAddressAvailble: 'yes' })
-        // this.order_shipping_billing_address_details = JSON.parse(modalInstance.address.address_INFO)
-        console.log(modalInstance);
-
-
+        this.selectedAddress=modalInstance.address
+        this.order_shipping_billing_address_details=JSON.parse(modalInstance.address.address_INFO)
+        this.orderCheckOutInfo.order_biling_address = JSON.parse(modalInstance.address.address_INFO)
+        this.orderCheckOutInfo.order_shipping_address = JSON.parse(modalInstance.address.address_INFO)
+        // console.log(modalInstance);
+        this.isAddressSelected=true
       }
     }, (reason: any) => {
+      this.isAddressSelected=false
       // this.firstFormGroup.setValue({ isAddressAvailble: 'no' })
       console.log(reason);
 
@@ -262,7 +275,13 @@ export class OrderCheckoutComponent implements OnInit {
 
         // this.firstFormGroup.setValue({ isAddressAvailble: 'yes' })
         // this.order_shipping_billing_address_details = JSON.parse(modalInstance.address.address_INFO)
-        console.log(modalInstance);
+        // console.log(modalInstance);
+        this.selectedAddress=modalInstance.address
+        this.order_shipping_billing_address_details=JSON.parse(modalInstance.address.address_INFO)
+        this.orderCheckOutInfo.order_biling_address = JSON.parse(modalInstance.address.address_INFO)
+        this.orderCheckOutInfo.order_shipping_address = JSON.parse(modalInstance.address.address_INFO)
+        // console.log(modalInstance);
+        this.isAddressSelected=true
 
 
       }
@@ -333,5 +352,21 @@ export class OrderCheckoutComponent implements OnInit {
 
   private generateOffer() {
     return {}
+  }
+  private generateOrderID() {
+    const prefix = 'WORD';
+    const date = new Date().toLocaleDateString('en-GB').replace(/\//g, ''); // Get today's date in ddmmyyyy format
+    const randomNumber = Math.floor(Math.random() * new Date().getTime()); // Generate a 10-digit random number
+    return prefix + date + randomNumber;
+  }
+
+  pay(payment_mode:string){
+    console.log(payment_mode);
+    if(this.isAddressSelected){
+
+    }else{
+      Swal.fire('Warning', 'Please Select Address', 'warning')
+    }
+    
   }
 }

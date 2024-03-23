@@ -34,7 +34,7 @@
                 <span class="bs-stepper-label">Payment</span>
             </button>
         </div>
-        <div class="line">
+        <!-- <div class="line">
             <i class="fa-solid fa-chevron-right"></i>
         </div>
         <div class="step" data-target="#checkout-confirmation" (click)="activeStepper(4)"
@@ -45,7 +45,7 @@
                 </span>
                 <span class="bs-stepper-label">Confirmation</span>
             </button>
-        </div>
+        </div> -->
     </div>
     <div class="bs-stepper-content border-top">
         <form id="wizard-checkout-form">
@@ -251,7 +251,8 @@
                                 </div>
                                 <div class="col-4 col-xxl-4 col-xl-12">
                                     <div class="d-grid">
-                                        <button type="button" class="btn btn-label-primary" (click)="appyCopun()">Apply</button>
+                                        <button type="button" class="btn btn-label-primary"
+                                            (click)="appyCopun()">Apply</button>
                                     </div>
                                 </div>
                             </div>
@@ -271,7 +272,8 @@
                                 <s class="col-6 text-end">{{order_price_details.total_mrp_price |currency:'INR'}}</s>
 
                                 <dt class="col-sm-6 fw-normal">Coupon Discount</dt>
-                                <dd class="col-sm-6 text-end">{{order_price_details.total_copun_discount|currency:'INR'}}</dd>
+                                <dd class="col-sm-6 text-end">
+                                    {{order_price_details.total_copun_discount|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Order Total</dt>
                                 <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
@@ -284,7 +286,8 @@
                             <hr class="mx-n4">
                             <dl class="row mb-0">
                                 <dt class="col-6">Total</dt>
-                                <dd class="col-6 fw-medium text-end mb-0">{{order_price_details.final_price |currency:'INR'}}</dd>
+                                <dd class="col-6 fw-medium text-end mb-0">{{order_price_details.final_price
+                                    |currency:'INR'}}</dd>
                             </dl>
                         </div>
                         <div class="d-grid">
@@ -308,7 +311,7 @@
                                 address</button>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-12 mb-md-0 mb-2" *ngIf="selectedAddress">
+                            <div class="col-12 mb-md-0 mb-2" *ngIf="isAddressSelected">
 
                                 <div class="form-check custom-option custom-option-basic checked">
                                     <label class="form-check-label custom-option-content" for="customRadioAddress1">
@@ -323,7 +326,7 @@
                                         </span>
                                         <span class="custom-option-body">
                                             <small>{{order_shipping_billing_address_details.address}},
-                                                {{order_shipping_billing_address_details.state?.name}},
+                                                {{order_shipping_billing_address_details.state}},
                                                 {{order_shipping_billing_address_details.city}},
                                                 {{order_shipping_billing_address_details.pin_code}}
                                                 .<br> Mobile :
@@ -380,7 +383,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md mb-md-0 mb-2">
+                            <!-- <div class="col-md mb-md-0 mb-2">
                                 <div class="form-check custom-option custom-option-icon position-relative">
                                     <label class="form-check-label custom-option-content" for="customRadioDelivery2">
                                         <span class="custom-option-body">
@@ -408,7 +411,7 @@
                                             id="customRadioDelivery3">
                                     </label>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -417,7 +420,7 @@
                         <div class="border rounded p-4 pb-3 mb-3">
 
                             <!-- Estimated Delivery -->
-                            <h6>Estimated Delivery Date</h6>
+                            <!-- <h6>Estimated Delivery Date</h6>
                             <ul class="list-unstyled">
                                 <li class="d-flex gap-3 align-items-center">
                                     <div class="flex-shrink-0">
@@ -439,30 +442,38 @@
                                         <p class="fw-medium">20th Nov 2021</p>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul> -->
 
                             <hr class="mx-n4">
 
                             <!-- Price Details -->
+
                             <h6>Price Details</h6>
                             <dl class="row mb-0">
+                                <dt class="col-6 fw-normal">Bag Total</dt>
+                                <s class="col-6 text-end">{{order_price_details.total_mrp_price |currency:'INR'}}</s>
+
+                                <dt class="col-sm-6 fw-normal">Coupon Discount</dt>
+                                <dd class="col-sm-6 text-end">
+                                    {{order_price_details.total_copun_discount|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Order Total</dt>
-                                <dd class="col-6 text-end">$1198.00</dd>
+                                <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <dd class="col-6 text-end"><s class="text-muted">$5.00</s> <span
+                                <dd class="col-6 text-end"><s class="text-muted">{{0|currency:'INR'}}</s> <span
                                         class="badge bg-label-success ms-1">Free</span></dd>
-
                             </dl>
+
                             <hr class="mx-n4">
                             <dl class="row mb-0">
                                 <dt class="col-6">Total</dt>
-                                <dd class="col-6 fw-medium text-end mb-0">$1198.00</dd>
+                                <dd class="col-6 fw-medium text-end mb-0">{{order_price_details.final_price
+                                    |currency:'INR'}}</dd>
                             </dl>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-primary btn-next">Place Order</button>
+                            <button class="btn btn-primary btn-next" (click)="confirmOrder()">Confirm Order</button>
                         </div>
                     </div>
                 </div>
@@ -474,7 +485,7 @@
                     <!-- Payment left -->
                     <div class="col-xl-8 col-xxl-9 mb-3 mb-xl-0">
                         <!-- Offer alert -->
-                        <div class="alert alert-success" role="alert">
+                        <!-- <div class="alert alert-success" role="alert">
                             <div class="d-flex">
                                 <span
                                     class="badge badge-center rounded-pill bg-success border-label-success p-3 me-2"><i
@@ -489,33 +500,33 @@
                             </div>
                             <button type="button" class="btn-close btn-pinned" data-bs-dismiss="alert"
                                 aria-label="Close"></button>
-                        </div>
+                        </div> -->
 
                         <!-- Payment Tabs -->
                         <div class="col-xxl-6 col-lg-8">
                             <ul class="nav nav-pills mb-3" id="paymentTabs" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pills-cc-tab" data-bs-toggle="pill"
+                                    <button class="nav-link active me-2" id="pills-cc-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-cc" type="button" role="tab" aria-controls="pills-cc"
-                                        aria-selected="true">Card</button>
+                                        aria-selected="true">Online</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-cod-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-cod" type="button" role="tab" aria-controls="pills-cod"
                                         aria-selected="false" tabindex="-1">Cash On Delivery</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                <!-- <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-gift-card-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-gift-card" type="button" role="tab"
                                         aria-controls="pills-gift-card" aria-selected="false" tabindex="-1">Gift
                                         Card</button>
-                                </li>
+                                </li> -->
                             </ul>
                             <div class="tab-content px-0 border-0" id="paymentTabsContent">
                                 <!-- Credit card -->
                                 <div class="tab-pane fade show active" id="pills-cc" role="tabpanel"
                                     aria-labelledby="pills-cc-tab">
-                                    <div class="row g-3">
+                                    <!-- <div class="row g-3">
                                         <div class="col-12">
                                             <label class="form-label w-100" for="paymentCard">Card Number</label>
                                             <div class="input-group input-group-merge">
@@ -562,7 +573,11 @@
                                                 class="btn btn-primary btn-next me-sm-3 me-1">Submit</button>
                                             <button type="reset" class="btn btn-label-secondary">Cancel</button>
                                         </div>
-                                    </div>
+                                    </div> -->
+
+                                    <p>Pay Online is a type of payment method where the recipient make payment for
+                                        the order at the time of delivery rather than in advance.</p>
+                                    <button type="button" class="btn btn-primary btn-next" (click)="pay('ONLINE_GETWAY')">Pay Online</button>
                                 </div>
 
                                 <!-- COD -->
@@ -570,7 +585,7 @@
                                     aria-labelledby="pills-cod-tab">
                                     <p>Cash on Delivery is a type of payment method where the recipient make payment for
                                         the order at the time of delivery rather than in advance.</p>
-                                    <button type="button" class="btn btn-primary btn-next">Pay On Delivery</button>
+                                    <button type="button" class="btn btn-primary btn-next" (click)="pay('COD')"> Pay On Delivery</button>
                                 </div>
 
                                 <!-- Gift card -->
@@ -603,33 +618,60 @@
                         <div class="border rounded p-4">
 
                             <!-- Price Details -->
+                       
                             <h6>Price Details</h6>
-                            <dl class="row">
+                            <dl class="row mb-0">
+                                <dt class="col-6 fw-normal">Bag Total</dt>
+                                <s class="col-6 text-end">{{order_price_details.total_mrp_price |currency:'INR'}}</s>
+
+                                <dt class="col-sm-6 fw-normal">Coupon Discount</dt>
+                                <dd class="col-sm-6 text-end">{{order_price_details.total_copun_discount|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Order Total</dt>
-                                <dd class="col-6 text-end">$1198.00</dd>
+                                <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <dd class="col-6 text-end"><s class="text-muted">$5.00</s> <span
+                                <dd class="col-6 text-end"><s class="text-muted">{{0|currency:'INR'}}</s> <span
                                         class="badge bg-label-success ms-1">Free</span></dd>
                             </dl>
-                            <hr class="mx-n4">
-                            <dl class="row">
-                                <dt class="col-6 mb-3">Total</dt>
-                                <dd class="col-6 fw-medium text-end mb-0">$1198.00</dd>
 
-                                <dt class="col-6 fw-normal">Deliver to:</dt>
-                                <dd class="col-6 fw-medium text-end mb-0"><span
-                                        class="badge bg-label-primary">Home</span></dd>
+                            <hr class="mx-n4">
+                            <dl class="row mb-0">
+                                <dt class="col-6">Total</dt>
+                                <dd class="col-6 fw-medium text-end mb-0">{{order_price_details.final_price |currency:'INR'}}</dd>
                             </dl>
                             <!-- Address Details -->
-                            <address class="text-heading">
-                                <span> John Doe (Default),</span>
+                            <!-- <address class="text-heading">
+                                <span> {{order_shipping_billing_address_details}}</span>
                                 4135 Parkway Street,
                                 Los Angeles, CA, 90017.<br>
                                 Mobile : +1 906 568 2332
-                            </address>
-                            <a href="javascript:void(0)">Change address</a>
+                            </address> -->
+                            <div class="form-check custom-option custom-option-basic checked">
+                                <label class="form-check-label custom-option-content" for="customRadioAddress1">
+                                    <input name="customRadioTemp" class="form-check-input" type="radio" value=""
+                                        id="customRadioAddress1" checked="">
+                                    <span class="custom-option-header mb-2">
+                                        <span class="fw-medium mb-0">{{order_shipping_billing_address_details.name}}
+                                            (Default)</span>
+                                        <span
+                                            class="badge bg-label-primary">{{order_shipping_billing_address_details.address_Type
+                                            }}</span>
+                                    </span>
+                                    <span class="custom-option-body">
+                                        <small>{{order_shipping_billing_address_details.address}},
+                                            {{order_shipping_billing_address_details.state}},
+                                            {{order_shipping_billing_address_details.city}},
+                                            {{order_shipping_billing_address_details.pin_code}}
+                                            .<br> Mobile :
+                                            {{order_shipping_billing_address_details.original_phone}},{{order_shipping_billing_address_details.alternative_phone}}
+                                            Card / Cash on delivery available</small>
+                                        <span class="my-2 border-bottom d-block"></span>
+                                        
+                                    </span>
+                                </label>
+                            </div>
+                            <a href="javascript:void(0)" (click)="addAddress()">Change address</a>
                         </div>
                     </div>
                 </div>
