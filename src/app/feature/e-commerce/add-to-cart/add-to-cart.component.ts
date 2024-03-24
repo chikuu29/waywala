@@ -41,7 +41,7 @@ export class AddToCartComponent implements OnInit {
   order_payment_mode: string = 'COD';
   order_shipping_billing_address_details: any = {}
 
-  cuponCode:string
+  cuponCode: string
 
   constructor(
     private ApiParameterScript: ApiParameterScript,
@@ -203,7 +203,18 @@ export class AddToCartComponent implements OnInit {
   }
 
   place_order() {
-    this.activeOrderProcessStage = true
+    // this.activeOrderProcessStage = true
+    console.log("productId", this);
+    var listOfProductItem: any[] = []
+    this.allKartItem.map((i: any) => {
+      listOfProductItem.push(i.product_Id)
+    })
+    console.log(listOfProductItem);
+    if (listOfProductItem.length == this.allKartItem.length) {
+      this.eCommerceService.checkoutItemList.next(listOfProductItem)
+      this.router.navigate(["/store/checkout"])
+    }
+
   }
 
   private startCapturingPayment(payment_session_id: any) {
@@ -251,57 +262,57 @@ export class AddToCartComponent implements OnInit {
   confirm_order() {
 
     // console.log(this.order_shipping_billing_address_details);
-    
 
-      if (this.firstFormGroup.value.isAddressAvailble == 'yes') {
-        this.blockUI.start("Please Wait")
-        var orderDetails = {
-          "order_shipping_billing_address_details": this.order_shipping_billing_address_details,
-          "order_details": this.allKartItem,
-          "order_id": this.generateOrderID(),
-          "order_created_time": moment().format('DD MMM YYYY, hh:mm A'),
-          "customer_details": {
-            "customer_id": "not_availble",
-            "customer_name": this.order_shipping_billing_address_details.name,
-            "customer_email": `${this.AppService.authStatus.email}`,
-            "customer_phone": this.order_shipping_billing_address_details.original_phone
-          },
-          "order_amount": _.sumBy(this.allKartItem, (product) => product.product_Selling_Price * product.product_CART_QUANTITY) + this.totalShippingPrice,
-          "order_currency": "INR",
-          "order_payment_mode": this.order_payment_mode,
-          "order_note": "",
-          "order_meta": {
-            "notify_url": "https://test.cashfree.com/pgappsdemos/return.php",
-            "return_url": `${this.AppService.baseURL}store/order/confirmation/status/{order_id}`,
-            "payment_methods": "cc,dc,upi"
-          }
+
+    if (this.firstFormGroup.value.isAddressAvailble == 'yes') {
+      this.blockUI.start("Please Wait")
+      var orderDetails = {
+        "order_shipping_billing_address_details": this.order_shipping_billing_address_details,
+        "order_details": this.allKartItem,
+        "order_id": this.generateOrderID(),
+        "order_created_time": moment().format('DD MMM YYYY, hh:mm A'),
+        "customer_details": {
+          "customer_id": "not_availble",
+          "customer_name": this.order_shipping_billing_address_details.name,
+          "customer_email": `${this.AppService.authStatus.email}`,
+          "customer_phone": this.order_shipping_billing_address_details.original_phone
+        },
+        "order_amount": _.sumBy(this.allKartItem, (product) => product.product_Selling_Price * product.product_CART_QUANTITY) + this.totalShippingPrice,
+        "order_currency": "INR",
+        "order_payment_mode": this.order_payment_mode,
+        "order_note": "",
+        "order_meta": {
+          "notify_url": "https://test.cashfree.com/pgappsdemos/return.php",
+          "return_url": `${this.AppService.baseURL}store/order/confirmation/status/{order_id}`,
+          "payment_methods": "cc,dc,upi"
         }
-        console.log("orderDetails", orderDetails);
-        this.payment_getway.createOrder(orderDetails, this.order_payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
-          this.blockUI.stop();
-          console.log(res);
-          // var paymentSessionId = res.payment_session_id;
-          if (res.success) {
-            var apiData = {
-              "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'`,
-            }
-            this.ApiParameterScript.deletedata("e_commerce_product_kart", apiData, false).subscribe((res: any) => {
-            })
-            if (res.order_Payment_Method == 'ONLINE_GETWAY') {
-              this.startCapturingPayment(res.payment_session_id);
-            } else {
-              // console.log("This IS a COD ORDER");
-              document.location.href = `${this.AppService.baseURL}store/order/confirmation/status/${res.order_id}`
-            }
-          } else {
-            alert("SOMETHIGS WENT WRONG")
-          }
-
-        })
-      } else {
-        Swal.fire('Please Select Your Address', '', 'warning')
       }
-   
+      console.log("orderDetails", orderDetails);
+      this.payment_getway.createOrder(orderDetails, this.order_payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
+        this.blockUI.stop();
+        console.log(res);
+        // var paymentSessionId = res.payment_session_id;
+        if (res.success) {
+          var apiData = {
+            "projection": `product_CART_BY_Email='${this.AppService.authStatus.email}'`,
+          }
+          this.ApiParameterScript.deletedata("e_commerce_product_kart", apiData, false).subscribe((res: any) => {
+          })
+          if (res.order_Payment_Method == 'ONLINE_GETWAY') {
+            this.startCapturingPayment(res.payment_session_id);
+          } else {
+            // console.log("This IS a COD ORDER");
+            document.location.href = `${this.AppService.baseURL}store/order/confirmation/status/${res.order_id}`
+          }
+        } else {
+          alert("SOMETHIGS WENT WRONG")
+        }
+
+      })
+    } else {
+      Swal.fire('Please Select Your Address', '', 'warning')
+    }
+
 
 
 
@@ -343,14 +354,14 @@ export class AddToCartComponent implements OnInit {
   }
 
 
-  viewCupon(){
+  viewCupon() {
     window.open('/store/my-offer', '_blank');
   }
 
 
-  applyCupon(){
+  applyCupon() {
     console.log("Apply Cupon");
     console.log(this.allKartItem);
-    
+
   }
 }

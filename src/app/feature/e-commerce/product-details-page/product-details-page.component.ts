@@ -332,7 +332,7 @@ export class ProductDetailsPageComponent implements OnInit {
     if (this.appservices.authStatus && this.appservices.authStatus.isLogin) {
       console.log("Buy Producr", product);
 
-      this.eCommerceService.checkoutItemList.next(product.product_Id)
+      this.eCommerceService.checkoutItemList.next([product.product_Id])
 
       this.blockUI.start('Adding To Your Bag...')
       this.apiParameterScript.fetchdata('e_commerce_product_kart', { "select": "user_CART_ID", "projection": `product_CART_ID='${addToKartProductObject.product_CART_ID}' AND product_CART_BY_Email='${this.appservices.authStatus.email}'` }).subscribe((res: any) => {

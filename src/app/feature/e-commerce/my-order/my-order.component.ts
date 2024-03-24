@@ -67,8 +67,12 @@ export class MyOrderComponent implements OnInit {
       console.log(res);
       if (res.success) {
 
+        console.log("hii",res['data']);
+        
         res['data'].map((data: any) => {
-          data['product_Images'] = data.product_Images.split(',');
+          console.log("hii",data.product_Images);
+          
+          data['product_Images'] = data.product_Images?data.product_Images.split(','):[];
         })
 
         // this.order_history= _.orderBy( res['data'], ['created_at'], ['desc']);

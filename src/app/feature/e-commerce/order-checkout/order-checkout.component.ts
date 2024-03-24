@@ -46,14 +46,14 @@ export class OrderCheckoutComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.ecommerceServices.checkoutItemList.subscribe((product_id) => {
-      console.log("CheckOutProcutList", product_id);
+    this.ecommerceServices.checkoutItemList.subscribe((product_id_list) => {
+      console.log("CheckOutProcutList", product_id_list);
       // product_id = "fe01ce2a7fbac8fafaed7c982a04e2295441678284309"
-      if (product_id && product_id != '') {
+      if (product_id_list.length>0) {
         // this.checkOutProductList = checkOutProductList
         // this.orderCheckOutInfo.order_product_inventory=checkOutProductList
 
-        this.getProduct(product_id);
+        this.getProduct(product_id_list);
       } else {
         Swal.fire({
           title: "Something Went Wrong",
@@ -110,10 +110,14 @@ export class OrderCheckoutComponent implements OnInit {
   }
 
 
-  getProduct(product_id: string) {
-    var query = `SELECT p.product_Shipped_Pincode,p.product_Has_Own_Delivery,p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_Quantity_Available,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE e_commerce_product.product_Live_Status='active' AND e_commerce_product.product_Id='${product_id}') p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`;
-
+  getProduct(product_id: string[]) {
+    const formattedIds = product_id.map(id => `'${id}'`).join(',');
+    var query = `SELECT p.product_Shipped_Pincode,p.product_Has_Own_Delivery,p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_Quantity_Available,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE e_commerce_product.product_Live_Status='active' AND e_commerce_product.product_Id IN (${formattedIds})) p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`;
+   console.log(query);
+   
     this.api.fetchDataFormQuery(query).subscribe((res: any) => {
+      console.log(res);
+      
       if (res.success && res['data'].length > 0) {
         console.log(res);
 
@@ -395,10 +399,10 @@ export class OrderCheckoutComponent implements OnInit {
           var apiData = {
             "projection": `product_CART_BY_Email='${this.app.authStatus.email}'`,
           }
-          // this.api.deletedata("e_commerce_product_kart", apiData, false).subscribe((res: any) => {
-          // })
-          if (res.order_Payment_Method == 'ONLINE_GETWAY') {
-            // this.startCapturingPayment(res.payment_session_id);
+          this.api.deletedata("e_commerce_product_kart", apiData, false).subscribe((res: any) => {
+          })
+          if (res.order_Payment_Method == 'ONLINE') {
+            this.startCapturingPayment(res.payment_session_id);
           } else {
             // console.log("This IS a COD ORDER");
             document.location.href = `${this.app.baseURL}store/order/confirmation/status/${res.order_id}`
@@ -415,5 +419,43 @@ export class OrderCheckoutComponent implements OnInit {
       Swal.fire('Warning', 'Please Select Address', 'warning')
     }
     
+  }
+  private startCapturingPayment(payment_session_id: any) {
+    // this.activeOrderProcessStage=true
+    // const dropinConfig = {
+    //   components: [
+    //     "order-details",
+    //     "card",
+    //     "app",
+    //     "upi",
+    //     "netbanking",
+    //     "paylater",
+    //     "creditcardemi",
+    //     "debitcardemi",
+    //     "cardlessemi",
+    //   ],
+    //   onSuccess: function (data: any) {
+    //     console.log(data);
+
+    //     //on success
+    //   },
+    //   onFailure: function (data: any) {
+    //     console.log(data);
+    //     //on success
+    //   },
+    //   style: {
+    //     backgroundColor: "#ffffff",
+    //     color: "#11385b",
+    //     fontFamily: "Lato",
+    //     fontSize: "14px",
+    //     errorColor: "#ff0000",
+    //     theme: "light",
+    //   }
+
+    // }
+
+    const cashfree = new this.payment_getway.native_window.Cashfree(payment_session_id);
+    cashfree.redirect();
+
   }
 }
