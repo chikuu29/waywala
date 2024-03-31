@@ -5,6 +5,7 @@ import moment from 'moment';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 export interface marketInformation {
   id?:number;
+  name?:string;
   crop?:string;
   country?:string;
   state?:string;
@@ -39,6 +40,7 @@ export class MarketPlaceGraphComponent implements OnInit {
       console.log(query);
       this.apiparemeter.marketPlaceApi(1003, query).subscribe(
         (res: any) => {
+         console.log("huu",res);
          
           if(res.success && res['data'].length>0){
             console.log("res", res);
@@ -95,6 +97,9 @@ export class MarketPlaceGraphComponent implements OnInit {
         }
       ]
     };
+
+    console.log("basic",this.basicData);
+    
   }
 
 }
