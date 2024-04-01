@@ -53,25 +53,13 @@ export class DetailsOfMarketInformationComponent implements OnInit {
 
     this.getAllPriceInfo()
 
-    this.marketGraphData = {
-      "country": "India",
-      "crop": "Tomato",
-      "currentDate": "10 March 2023",
-      "currentPrice": 1000,
-      "district": "Khordha",
-      "graphDateArray": ["01 Feb", "12 Feb", "23 Feb", "20 Mar"],
-      "graphPriceArray": [650, 700, 100, 1000],
-      "state": "Odisha"
-    }
+   
 
   }
 
   acuratePrice() {
     if (this.priceList.length > 0) {
-
-
       const entryWithHighestReview: any = _.maxBy(this.priceList, 'total_review_made');
-
       return entryWithHighestReview['price']
     } else {
       return 0
