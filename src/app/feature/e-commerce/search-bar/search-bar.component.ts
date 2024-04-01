@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import _ from 'lodash';
+import moment from 'moment';
 import { Subject, debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { ApiParameterScript } from 'src/app/script/api-parameter';
 import { AppService } from 'src/app/services/app.service';
@@ -38,6 +39,8 @@ export class SearchBarComponent implements OnInit {
     ).subscribe(searchText => {
       // Call your API function with the searchText here
       this.fetchSearchResults(searchText);
+
+      this.createSearch_HISTORY(searchText)
     });
   }
 
@@ -168,13 +171,38 @@ export class SearchBarComponent implements OnInit {
       };
       this.router.navigate(['store/search'], navigationExtras);
     } else {
+      
        var url=this.appservice.baseURL+data.url
        window.open(url, '_blank');
-
-       
     }
   }
+  createSearch_HISTORY(data: any) {
 
+
+
+    if(this.appservice.authStatus){
+    var query = {
+      "select": "*",
+      "projection": `search_BY='${this.appservice.authStatus ? this.appservice.authStatus.email : ''}' AND search_text='${data}'`
+    }
+
+    this.ApiParameterScript.fetchdata('search_history', query).subscribe((res: any) => {
+      console.log(res);
+      if (res.success && res['data'].length > 0) {
+      } else {
+        var apiData = {
+          "data": `search_BY='${this.appservice.authStatus ? this.appservice.authStatus.email : ''}',create_modify_date_time='${moment().format('DD MMM YYYY, hh:mm A')}',search_text='${data}',search_category='${data}'`
+
+        }
+        this.ApiParameterScript.savedata('search_history', apiData, false).subscribe((res) => {
+          console.log(res);
+
+        })
+      }
+    })
+  }
+
+  }
   public active() {
     const result = document.getElementById('result');
     result?.classList.remove('hidden');
