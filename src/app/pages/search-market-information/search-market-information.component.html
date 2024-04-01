@@ -82,12 +82,14 @@
         </div>
         <div class="product-container">
 
-            <mat-tab-group (selectedTabChange)="selectDate($event)">
-                <ng-container *ngFor="let item of pastDates">
-                    <mat-tab [label]="item.formatDate"> </mat-tab>
-                </ng-container>
+            <ng-container *ngIf="!displaySearchRecord">
+                <mat-tab-group (selectedTabChange)="selectDate($event)">
+                    <ng-container *ngFor="let item of pastDates">
+                        <mat-tab [label]="item.formatDate"> </mat-tab>
+                    </ng-container>
 
-            </mat-tab-group>
+                </mat-tab-group>
+            </ng-container>
             <ng-container
                 *ngFor="let item of productNameList | fillter :['product_name','average_price','state','market_name','district']:filterText ">
                 <div class="product-item">

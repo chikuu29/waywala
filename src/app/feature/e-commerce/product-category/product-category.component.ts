@@ -10,58 +10,28 @@ import { categoryList } from 'src/app/appInterface/categoryList';
 })
 export class ProductCategoryComponent implements OnInit {
 
-  @Input() categoryList: any[] = [
-    {
-      taitel: "Special Offer",
-      url: "/store/my-offer",
-      image: 'assets/e-commerce/special-offer.png'
-    },
-    {
-      taitel: "Vegetable",
-      url: "/store/category/Vegetable",
-      image: 'assets/e-commerce/vegitable.jpg'
-    },
-    {
-      taitel: "Grocery",
-      url: "/store/category/Grocery",
-      image: 'assets/e-commerce/grocery.png'
-    },
-    {
-      taitel: "Fashion",
-      url: "/store/category/Fashion",
-      image: 'assets/e-commerce/fashion.png'
-    },
-    {
-      taitel: "Agricultural Medicine",
-      url: "/store/category/Agricultural Medicine",
-      image: 'assets/e-commerce/agricultural.jpg'
-    }
-
-
-
-  ]
+  @Input() categoryList: any[] = []
   constructor(
     private http: HttpClient,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    if (this.categoryList.length == 0) {
+      this.http.get('../../../../config/productCategory.json').subscribe((res: any) => {
+        console.log(res);
+        this.categoryList = res
 
-    this.http.get('../../../../config/productCategory.json').subscribe((res: any) => {
-      console.log(res);
-      this.categoryList = res
-
-    })
+      })
+    }
   }
 
-  viewSubcategoryPage(category:any,subcategory:any){
-    console.log("category",category);
-    console.log("subcategory",subcategory);
-
-    var url=`/store/${category.categories}/subcategory/${subcategory}`
+  viewSubcategoryPage(category: any, subcategory: any) {
+    console.log("category", category);
+    console.log("subcategory", subcategory);
+    var url = `/store/category/${category.categories}/subcategory/${subcategory}`
     this.router.navigateByUrl(url)
-
-
+    // /store/category/Agriculture
   }
 
 }

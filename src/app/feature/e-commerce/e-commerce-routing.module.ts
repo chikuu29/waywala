@@ -50,7 +50,7 @@ const routes: Routes = [
     component:CategoryViewComponent
   },
   {
-    path:':category/subcategory/:subcategory',
+    path:'category/:category/subcategory/:subcategory',
     pathMatch:'full',
     component:CategorySubcategoryProductComponent
   },

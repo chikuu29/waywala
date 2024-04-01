@@ -19,15 +19,12 @@ export class AgricultureProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryList = [
-      {
-        taitel: "Special Offer",
-        url: "/store/my-offer",
-        image: 'assets/e-commerce/special-offer.png'
-      },
+      
       {
         taitel: "Agricultural Medicine",
         url: "/store/agriculture/product/Agricultural Medicine",
-        image: 'assets/e-commerce/agricultural.jpg'
+        image: 'assets/e-commerce/agricultural.jpg',
+        subcategories:[]
       },
       {
         taitel: "Agricultural Machineries",

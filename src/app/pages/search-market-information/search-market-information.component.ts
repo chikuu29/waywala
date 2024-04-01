@@ -28,6 +28,8 @@ export class SearchMarketInformationComponent implements OnInit {
     formatDate: "Today"
   };
 
+  displaySearchRecord: boolean = false
+
   filterText: string = ''
   pastDates: any[] = []
   // SELECT market_name, product_name, quantity, DATE(date) AS extracted_date, COUNT(*) as total_count, SUM(quantity) as total_quantity, AVG(price) as average_price FROM market_place_information GROUP BY market_name, product_name, quantity, DATE(date) ORDER BY market_name, product_name, quantity, extracted_date;
@@ -133,11 +135,18 @@ export class SearchMarketInformationComponent implements OnInit {
 
   search() {
     console.log("Search", this.searchMarketInfoForm.value);
-
+    this.selectedDate['formatDate']=this.searchMarketInfoForm.value.date
     let fetchApiQuery = `SELECT MAX(market_name) AS grouped_market_name, market_name, MAX(price) AS price, SOUNDEX(product_name) AS product_soundex, product_name, MAX(product_name) AS grouped_product_name, MAX(quantity) AS quantity, DATE(DATE) AS extracted_date, COUNT(*) AS total_review_made, SUM(quantity) AS total_quantity, AVG(price) AS average_price, MAX(state) AS state, MAX(district) AS district FROM market_place_information WHERE DATE(DATE) = '${moment(this.searchMarketInfoForm.value.date).format('YYYY-MM-DD')}' AND market_name='${this.searchMarketInfoForm.value.market_name}' AND district='${this.searchMarketInfoForm.value.district}' AND state='${this.searchMarketInfoForm.value.state}' GROUP BY SOUNDEX(market_name), state, district, product_soundex, extracted_date ORDER BY grouped_market_name, grouped_product_name, quantity, extracted_date;`
     // let fetchApiQuery=`SELECT market_name,price, product_name, quantity, DATE(date) AS extracted_date, COUNT(*) as total_count, SUM(quantity) as total_quantity, AVG(price) as average_price FROM market_place_information WHERE DATE(date) = '${moment(this.searchMarketInfoForm.value.date).format('YYYY-MM-DD')}' AND market_name='${this.searchMarketInfoForm.value.market_name}' AND district='${this.searchMarketInfoForm.value.district}' AND state='${this.searchMarketInfoForm.value.state}' GROUP BY market_name, product_name, quantity, extracted_date ORDER BY market_name, product_name, quantity, extracted_date;`
     this.api.fetchDataFormQuery(fetchApiQuery).subscribe((res: any) => {
-      this.productNameList = res['data']
+
+      if (res.success && res['data'].length > 0) {
+        this.displaySearchRecord = true
+        this.productNameList = res['data']
+      }else{
+        this.productNameList = []
+      }
+
       console.log(res['data']);
 
     })

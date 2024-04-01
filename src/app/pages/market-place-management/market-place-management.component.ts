@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class MarketPlaceManagementComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
-  tableLoader:boolean=true;
+  tableLoader: boolean = true;
   isEditable: true;
   constructor(
     private apiParameterScript: ApiParameterScript,
@@ -47,13 +47,13 @@ export class MarketPlaceManagementComponent implements OnInit {
 
   productPrice: FormGroup = this._formBuilder.group({
     quantity: [{ value: '', disabled: false }, [Validators.required]],
-    price: [{ value: '', disabled: false }, [Validators.required]],
+    price: [{ value: '', disabled: false }, [Validators.required, Validators.min(1)]],
   });
   stateOption: any[] = [
-   
+
   ]
   districtOption: any[] = [
-    
+
   ]
   categoryOption: any[] = [
     {
@@ -79,7 +79,7 @@ export class MarketPlaceManagementComponent implements OnInit {
     }
     this.apiParameterScript.fetchdata('market_place_information', fetchApiData).subscribe((res: any) => {
 
-      this.tableLoader=false
+      this.tableLoader = false
       if (res.success && res['data'].length > 0) {
         this.marketPlaceData = res['data']
       }
@@ -87,17 +87,17 @@ export class MarketPlaceManagementComponent implements OnInit {
     })
   }
 
-  getDistrict(value:string){
-    let alldistrict=_.cloneDeep(_.find(this.appServices.country_state_district,{ state: value }))
+  getDistrict(value: string) {
+    let alldistrict = _.cloneDeep(_.find(this.appServices.country_state_district, { state: value }))
 
     console.log(alldistrict);
-    
+
     this.districtOption = _.map(alldistrict.districts, item => ({
       name: item,  // Convert the state name to start case (e.g., "Andhra Pradesh")
       value: item // Convert the state name to lowercase (e.g., "andhra pradesh")
     }));
     // this.districtOption=alldistrict
-    
+
   }
 
   submit(data?: any) {
@@ -175,10 +175,11 @@ export class MarketPlaceManagementComponent implements OnInit {
           console.log(res);
           this.blockUI.stop()
           if (res.success) {
-            // Swal.fire('Success', "We Will Review Your Details & Get Back To You", 'success').then(() => {
-            this.ngOnInit()
-            // this.sellOnWaywalaContactForm.reset()
-            // })
+            Swal.fire('Success', "Thank you For Adding Market Information That Realy Help Us For Tracking Market Details", 'success').then(() => {
+              this.marketDeatails.reset()
+              this.ngOnInit()
+              // this.sellOnWaywalaContactForm.reset()
+            })
           } else {
             Swal.fire('Success', res.message, 'error')
           }
