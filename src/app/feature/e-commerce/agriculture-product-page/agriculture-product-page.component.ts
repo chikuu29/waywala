@@ -74,37 +74,37 @@ export class AgricultureProductPageComponent implements OnInit {
     this.categoryList = [
       {
         "categories": "Seeds",
-        "image": "assets/e-commerce/fashion.png",
+        "image": "assets/e-commerce/vegitable.png",
         "subcategories": [],
         "actualCategory": "Agriculture"
       },
       {
         "categories": "Vegetables",
-        "image": "assets/e-commerce/fashion.png",
+        "image": "assets/e-commerce/vegitable.jpg",
         "subcategories": [],
         "actualCategory": "Agriculture"
       },
       {
         "categories": "Fruits",
-        "image": "assets/e-commerce/fashion.png",
+        "image": "assets/e-commerce/fruits.jpg",
         "subcategories": [],
         "actualCategory": "Agriculture"
       },
       {
         "categories": "Fertilizers",
-        "image": "assets/e-commerce/fashion.png",
+        "image": "assets/e-commerce/Fertilizers.png",
         "subcategories": [],
         "actualCategory": "Agriculture"
       },
       {
         "categories": "Agricultural Medicine",
-        "image": "assets/e-commerce/fashion.png",
+        "image": "assets/e-commerce/farmacy.jpg",
         "subcategories": [],
         "actualCategory": "Agriculture"
       },
       {
         "categories": "Agricultural Machineries",
-        "image": "assets/e-commerce/fashion.png",
+        "image": "assets/e-commerce/Agricultural_machineries.png",
         "subcategories": [],
         "actualCategory": "Agriculture"
       },
@@ -116,7 +116,7 @@ export class AgricultureProductPageComponent implements OnInit {
       },
       {
         "categories": "Agricultural Products",
-        "image": "assets/e-commerce/fashion.png",
+        "image": "assets/e-commerce/agruculture.png",
         "subcategories": [],
         "actualCategory": "Agriculture"
       }
