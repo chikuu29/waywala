@@ -1,26 +1,5 @@
 [
-    {
-        "id": 1,
-        "categories": "Special Offer",
-        "url": "/store/my-offer",
-        "image": "assets/e-commerce/special-offer.png",
-        "subcategories": []
-    },
-    {
-        "id": 1,
-        "categories": "Agriculture",
-        "image": "assets/e-commerce/agricultural.jpg",
-        "subcategories": [
-            "Seeds",
-            "Vegetables",
-            "Fruits",
-            "Fertilizers",
-            "Agricultural Medicine",
-            "Agricultural Machineries",
-            "Agriculture Instruments",
-            "Agricultural Products"
-        ]
-    },
+    
     {
         "id": 2,
         "categories": "Fashion & Beauty",

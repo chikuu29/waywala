@@ -9,7 +9,7 @@ import { categoryList } from 'src/app/appInterface/categoryList';
 })
 export class AgricultureProductPageComponent implements OnInit {
 
-  categoryList: categoryList[] = []
+  categoryList: any[] = []
   public category: string = '';
   public allProductList: any[] = []
   public loadingSkeltonLoader: boolean = true
@@ -19,12 +19,12 @@ export class AgricultureProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryList = [
-      
+
       {
         taitel: "Agricultural Medicine",
         url: "/store/agriculture/product/Agricultural Medicine",
         image: 'assets/e-commerce/agricultural.jpg',
-        subcategories:[]
+        subcategories: []
       },
       {
         taitel: "Agricultural Machineries",
@@ -68,6 +68,63 @@ export class AgricultureProductPageComponent implements OnInit {
         image: 'assets/e-commerce/AgriculturalProducts.png'
       }
     ]
+
+
+
+    this.categoryList = [
+      {
+        "categories": "Seeds",
+        "image": "assets/e-commerce/fashion.png",
+        "subcategories": [],
+        "actualCategory": "Agriculture"
+      },
+      {
+        "categories": "Vegetables",
+        "image": "assets/e-commerce/fashion.png",
+        "subcategories": [],
+        "actualCategory": "Agriculture"
+      },
+      {
+        "categories": "Fruits",
+        "image": "assets/e-commerce/fashion.png",
+        "subcategories": [],
+        "actualCategory": "Agriculture"
+      },
+      {
+        "categories": "Fertilizers",
+        "image": "assets/e-commerce/fashion.png",
+        "subcategories": [],
+        "actualCategory": "Agriculture"
+      },
+      {
+        "categories": "Agricultural Medicine",
+        "image": "assets/e-commerce/fashion.png",
+        "subcategories": [],
+        "actualCategory": "Agriculture"
+      },
+      {
+        "categories": "Agricultural Machineries",
+        "image": "assets/e-commerce/fashion.png",
+        "subcategories": [],
+        "actualCategory": "Agriculture"
+      },
+      {
+        "categories": "Agriculture Instruments",
+        "image": "assets/e-commerce/fashion.png",
+        "subcategories": [],
+        "actualCategory": "Agriculture"
+      },
+      {
+        "categories": "Agricultural Products",
+        "image": "assets/e-commerce/fashion.png",
+        "subcategories": [],
+        "actualCategory": "Agriculture"
+      }
+    ]
+    
+
+
+
     this._rout.params.subscribe((res: any) => {
       console.log(res);
       // this.eCommerceServicesService.refreshComponent.next(true)
