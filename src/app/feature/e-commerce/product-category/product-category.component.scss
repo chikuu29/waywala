@@ -34,6 +34,12 @@
 }
 
 
+.forSingleScoller{
+    flex-wrap: nowrap !important;
+    overflow-x: scroll !important;
+    justify-content: unset !important;
+}
+
 /*------------------------------------------------------------------- 599px x 280px ---------------------------------------------------------------------*/
 
 @media only screen and (min-width: 280px) and (max-width: 599px) {

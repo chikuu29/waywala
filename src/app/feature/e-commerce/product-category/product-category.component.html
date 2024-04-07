@@ -1,6 +1,6 @@
 <div class="container-fluid container-md">
   <div class="mt-3 pt-4">
-    <div class="shopping-category-holder navbar ">
+    <div class="shopping-category-holder navbar"  [ngClass]="singleLineScoller?'forSingleScoller':''">
       <ng-container *ngFor="let category of categoryList">
         <div class="category-item ">
           <a class="for-mobail ">

@@ -11,6 +11,7 @@ import { categoryList } from 'src/app/appInterface/categoryList';
 export class ProductCategoryComponent implements OnInit {
 
   @Input() categoryList: any[] = []
+  @Input() singleLineScoller:boolean=false
   constructor(
     private http: HttpClient,
     private router: Router
