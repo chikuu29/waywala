@@ -1,0 +1,279 @@
+.product-container {
+    box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);
+    // padding: 50px 30px;
+    border-radius: 10px;
+    transition: all ease-in-out 0.4s;
+    background: #fff;
+}
+
+.product-container .product-img-container:hover .product-img {
+    transform: scale(1.15);
+}
+
+.product-container .product-img-container .product-img {
+    transition: all 0.6s;
+}
+
+.px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.flex {
+    display: flex;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.gap-3 {
+    gap: 0.75rem;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.w-full {
+    width: 100%;
+}
+
+.grid {
+    display: grid !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.border {
+    border-width: 1px;
+}
+
+.rounded-md {
+    border-radius: 0.375rem;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.rounded-md {
+    border-radius: 0.375rem;
+}
+
+.overflow-clip {
+    overflow: clip;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex: 1 1;
+}
+
+.rounded-t-lg {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex: 1 1;
+}
+
+.flex {
+    display: flex;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.aspect-square {
+    aspect-ratio: 1/1;
+}
+
+.z-0 {
+    z-index: 0;
+}
+
+.rounded-bl-full {
+    border-bottom-left-radius: 9999px;
+}
+
+.rounded-tl-full {
+    border-top-left-radius: 9999px;
+}
+
+.Ribbon_ribbon-text-container__V7O6V {
+    -webkit-clip-path: polygon(100% 0,
+            calc(100% - 10px) 50%,
+            100% 100%,
+            0 95%,
+            0 50%,
+            0 0);
+    clip-path: polygon(100% 0,
+            calc(100% - 10px) 50%,
+            100% 100%,
+            0 95%,
+            0 50%,
+            0 0);
+}
+
+.fit {
+    min-height: calc(100vh - 88px);
+}
+
+.max-w-7xl {
+    max-width: 80rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Button_naked__xwcQp:hover {
+    border-width: 0;
+}
+
+.Button_naked__xwcQp,
+.Button_naked__xwcQp:active,
+.Button_naked__xwcQp:focus,
+.Button_naked__xwcQp:hover {
+    border-style: none;
+    background-color: transparent;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.text-indigo-500 {
+    font-weight: 500;
+    color: rgb(90 75 218);
+}
+
+.transition-all {
+    transition-property: all !important;
+    transition-duration: 300ms;
+}
+
+.ease-in-out:hover {
+    gap: 10px !important;
+    padding-right: 0px !important;
+}
+
+.bg-green {
+    background-color: #46b586;
+}
+
+.text-green {
+    color: #46b586;
+}
+
+.text-primary {
+    color: #1b2124 !important;
+}
+
+.price-text-size {
+    font-size: 16px;
+}
+
+.product-rating {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 5px;
+}
+
+.text-12px {
+    font-size: 12px;
+}
+
+.line-clamp-1,
+.line-clamp-2 {
+    /* overflow: hidden; */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.h-11px {
+    height: 11px;
+}
+
+.h-36px {
+    height: 36px;
+}
+
+.Text_bold__lt4Nl {
+    font-weight: 700;
+}
+
+.custom-shadow-on-hover {
+    border: 2px solid red;
+}
+
+@media (min-width: 1280px) {
+    .xl\:grid-cols-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .text-14px {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 660px) {
+    .xl\:grid-cols-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .Text_textMedium__Fxf2U {
+        font-size: 24px;
+        line-height: 38px;
+    }
+}
+
+@media (min-width: 640px) {
+    .Text_textMedium__Fxf2U {
+        font-size: 20px;
+    }
+}

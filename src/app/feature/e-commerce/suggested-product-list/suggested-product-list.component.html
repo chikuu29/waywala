@@ -1,0 +1,170 @@
+<div class="container-fluid container-md">
+    <div class="py-4">
+        <div>
+            <ng-container *ngIf="productSectionMode">
+                <div class="flex justify-between mb-4 px-3">
+                    <span class="Text_bold__lt4Nl Text_textMedium__Fxf2U">{{sectionName}}</span>
+                    <div class="flex items-center transition-all cursor-pointer ease-in-out"
+                        style="gap: 6px; padding-right: 4px">
+                        <button active="" class="Button_root__G_l9X Button_naked__xwcQp"><span
+                                class="Text_semibold__5N59J text-indigo-500">See All</span></button>
+                        <i class="fa-solid fa-arrow-right-long" style="color: rgb(90 75 218);"></i>
+                    </div>
+                </div>
+            </ng-container>
+
+            <div>
+                <div class="w-100 grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+                    <ng-container *ngIf="loadingSkeltonLoader">
+                        <div class="custom-skeleton p-4">
+                            <p-skeleton width="100%" height="150px"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                            <div class="flex justify-content-between mt-3">
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="custom-skeleton p-4">
+                            <p-skeleton width="100%" height="150px"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                            <div class="flex justify-content-between mt-3">
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="custom-skeleton p-4">
+                            <p-skeleton width="100%" height="150px"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                            <div class="flex justify-content-between mt-3">
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="custom-skeleton p-4">
+                            <p-skeleton width="100%" height="150px"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                            <div class="flex justify-content-between mt-3">
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="custom-skeleton p-4">
+                            <p-skeleton width="100%" height="150px"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                            <div class="flex justify-content-between mt-3">
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="custom-skeleton p-4">
+                            <p-skeleton width="100%" height="150px"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mt-3 mb-2"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+                            <div class="flex justify-content-between mt-3">
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngFor="let product of allProductList">
+                        <div class="relative product-container" routerLink="/store/product/{{product.product_Id}}">
+                            <div class=" cursor-pointer overflow-hidden transition-all duration-300 ">
+                                <div class="absolute -translate-y-1/2 z-10" style="left: -8px;z-index: 1;">
+                                    <div class="relative flex">
+                                        <div class="absolute bottom-0 left-0 translate-y-1/2">
+                                            <div class="h-11px rounded-tl-full rounded-bl-full"
+                                                style="background-color: rgb(177, 114, 18); width: 8px"></div>
+                                        </div>
+                                        <div class="Ribbon_ribbon-text-container__V7O6V pl-2 pr-4 sm:pl-3 sm:pr-5 rounded-tl-md flex justify-center items-center"
+                                            style="
+                          background: linear-gradient(
+                            270deg,
+                            rgb(56, 199, 68) 0%,
+                            rgb(38, 211, 227) 98.02%
+                          );
+                          height: 22px;
+                        ">
+                                            <span
+                                                class="text-[10px] sm:text-[14px] md:text-[14px] text-white font-semibold">Fresh</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="overflow-clip rounded-md lg:rounded-xl flex flex-col justify-between relative flex-1">
+                                    <div
+                                        class="relative flex items-center justify-center overflow-hidden rounded-t-lg flex-1 flex-col">
+                                        <div class=" relative w-full aspect-square product-img-container ">
+                                            <div class="w-full h-full bg-cover product-img "
+                                                style="z-index: 0; background-image: url('{{imageURL+product.product_Images[0]}}');">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="py-1 lg:py-2 bg-white rounded-b-lg flex flex-col justify-between">
+                                        <div class="px-1 lg:px-2">
+                                            <span
+                                                class="text-12px text-14px font-semibold line-clamp-2 h-36px sm:h-[40px]">{{product.product_Name}}</span>
+                                            <div class="pb-0 pt-0 md:pb-1 md:pt-1">
+                                                <span class="flex opacity-0">
+                                                    <div
+                                                        class="bg-indigo-50 rounded-sm md:rounded-[4px] px-1.5 md:px-2 py-0.5 flex justify-center items-start">
+                                                        <span
+                                                            class="text-indigo-500 font-semibold text-xs md:text-sm">dummy</span>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="pl-1 lg:pl-2">
+                                            <div class="flex items-start justify-between">
+                                                <div>
+                                                    <div class="flex justify-start items-center">
+                                                        <span
+                                                            class="text-[16px] sm:text-[18px] md:text-[18px] font-bold text-primary">{{product.product_Selling_Price
+                                                            | currency:'INR'}}</span><span class="ml-1"><span
+                                                                class="text-[12px] sm:text-[14px] md:text-[14px] text-green fw-bold">({{product.product_Discoute_Percentage}}%
+                                                                OFF)</span></span>
+                                                    </div>
+                                                    <div>
+                                                        <div class="h-3 flex items-center">
+                                                            <del style="color:#8D9091;font-size: 12px;"
+                                                                class="font-medium">{{product.product_Mrp_Price |
+                                                                currency:'INR'}}</del>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="flex my-1">
+                                                    <div class="d-flex items-center product-rating bg-green"
+                                                        style="gap: 6px; color: white">
+                                                        <span class="scale-90 md:scale-100"><i
+                                                                class="fa-solid fa-star"></i></span>
+                                                        <span
+                                                            class="text-[12px] sm:text-[14px] md:text-[14px] font-semibold text-white">{{product.product_AVG_Rating}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+
+                </div>
+                <ng-container *ngIf="allProductList.length==0 && nodataVisible">
+                    <app-no-data-available></app-no-data-available>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

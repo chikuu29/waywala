@@ -20,7 +20,7 @@ export class ProductCategoryComponent implements OnInit {
   ngOnInit(): void {
     if (this.categoryList.length == 0) {
       this.http.get('../../../../config/productCategory.json').subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         this.categoryList = res
 
       })
@@ -41,10 +41,10 @@ export class ProductCategoryComponent implements OnInit {
     // const currentUrl = this.router.url;
     const categoryUrl = `/store/category/${category.categories}`;
     const subcategoryUrlPrefix = `/store/category/${category.categories}/subcategory/`;
-    console.log("cu", currentUrl);
-    console.log(currentUrl.startsWith(categoryUrl));
+    // console.log("cu", currentUrl);
     // console.log(currentUrl.startsWith(categoryUrl));
-    console.log(currentUrl.startsWith(subcategoryUrlPrefix));
+    // // console.log(currentUrl.startsWith(categoryUrl));
+    // console.log(currentUrl.startsWith(subcategoryUrlPrefix));
 
 
     return currentUrl.startsWith(categoryUrl) || currentUrl.startsWith(subcategoryUrlPrefix);

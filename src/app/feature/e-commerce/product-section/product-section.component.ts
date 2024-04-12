@@ -49,6 +49,7 @@ export class ProductSectionComponent implements OnInit {
       )
     }else{
       this.loadingSkeltonLoader=false
+      this.allProductList = []
     }
   }
 
