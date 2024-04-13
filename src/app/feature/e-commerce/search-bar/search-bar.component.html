@@ -1,8 +1,8 @@
 <div class="search fixed-top w-100" id="search-bar">
-  <div class="container p-3">
+  <div class="container p-3" appClickedoutside>
     <div class="serch-box-container">
-      <input type="text" class="serch-input-field text-muted" appClickedoutside (clickoutside)="deactive()"
-        (keyup)="looking($event)" (keyup.enter)="search()" (blur)="deactive()" (click)="active()"
+      <input type="text" class="serch-input-field text-muted"   (clickoutside)="deactive()"
+        (keyup)="looking($event)" (keyup.enter)="search()" (click)="active()"
         [(ngModel)]="serchinputValue" placeholder="Search for products, brands and more">
       <i class="fa fa-search fs-4 p-2 cursor-pointer" (click)="search()"></i>
     </div>

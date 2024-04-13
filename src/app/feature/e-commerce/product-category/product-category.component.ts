@@ -39,13 +39,24 @@ export class ProductCategoryComponent implements OnInit {
     // return this.router.isActive('/store/category/' + category.categories, true);
     const currentUrl = decodeURIComponent(this.router.url); // Decode the current URL
     // const currentUrl = this.router.url;
-    const categoryUrl = `/store/category/${category.categories}`;
+    var categoryUrl = `/store/category/${category.categories}`;
     const subcategoryUrlPrefix = `/store/category/${category.categories}/subcategory/`;
     // console.log("cu", currentUrl);
     // console.log(currentUrl.startsWith(categoryUrl));
     // // console.log(currentUrl.startsWith(categoryUrl));
     // console.log(currentUrl.startsWith(subcategoryUrlPrefix));
+    // const agri_categoryUrl = `/store/category/${category.categories}`;
+    // const agri_subcategoryUrlPrefix = `/store/category/${category.categories}/subcategory/`;
+    // console.log(categoryUrl,subcategoryUrlPrefix);
+    
+    if (category.actualCategory) {
 
+      categoryUrl=`/store/agriculture/product/${category?.categories}`
+
+    } else {
+      categoryUrl = `/store/category/${category?.categories}`
+     
+    }
 
     return currentUrl.startsWith(categoryUrl) || currentUrl.startsWith(subcategoryUrlPrefix);
   }

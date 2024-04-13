@@ -209,11 +209,13 @@ export class SearchBarComponent implements OnInit {
   }
 
   public deactive() {
+    console.log("deactive",event);
+    
     // console.log("clicked outside");
     // appClickedoutside (clickoutside)="deactive()"
-    console.log();
+    // console.log();
 
-    const result = document.getElementById('result');
+    // const result = document.getElementById('result');
     // result?.classList.add('hidden');
   }
 

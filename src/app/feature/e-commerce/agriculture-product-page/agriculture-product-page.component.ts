@@ -68,9 +68,6 @@ export class AgricultureProductPageComponent implements OnInit {
         image: 'assets/e-commerce/AgriculturalProducts.png'
       }
     ]
-
-
-
     this.categoryList = [
       {
         "categories": "Seeds",
@@ -121,10 +118,6 @@ export class AgricultureProductPageComponent implements OnInit {
         "actualCategory": "Agriculture"
       }
     ]
-    
-
-
-
     this._rout.params.subscribe((res: any) => {
       console.log(res);
       // this.eCommerceServicesService.refreshComponent.next(true)
@@ -135,7 +128,7 @@ export class AgricultureProductPageComponent implements OnInit {
   }
   deactive() {
     console.log("outside");
-    const result = document.getElementById('result');
-    result?.classList.add('hidden');
+    // const result = document.getElementById('result');
+    // result?.classList.add('hidden');
   }
 }
