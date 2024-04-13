@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import _ from 'lodash';
 import moment from 'moment';
@@ -12,6 +12,7 @@ import { AppService } from 'src/app/services/app.service';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
+  @ViewChild('serch_result_box', { static: false }) serchResultBox: ElementRef;
 
   @HostListener('window:scroll', ['$event'])
   onscroll(event: any) {
@@ -209,14 +210,11 @@ export class SearchBarComponent implements OnInit {
   }
 
   public deactive() {
-    console.log("deactive",event);
+   
+    const resultBoxElement: HTMLElement = this.serchResultBox.nativeElement;
+    resultBoxElement.classList.add('hidden');
+   
     
-    // console.log("clicked outside");
-    // appClickedoutside (clickoutside)="deactive()"
-    // console.log();
-
-    // const result = document.getElementById('result');
-    // result?.classList.add('hidden');
   }
 
 
