@@ -17,6 +17,7 @@ import { WeatherForecastComponent } from './weather-forecast/weather-forecast.co
 import { CustomPipeModule } from 'src/app/customPipe/custom-pipe.module';
 import { MarketPlaceComponent } from './market-place/market-place.component';
 import { MarketPlaceGraphComponent } from './market-place/market-place-graph/market-place-graph.component';
+import { PagesModule } from 'src/app/pages/pages.module';
 @NgModule({
     declarations: [
         AgricultureComponent,
@@ -29,6 +30,9 @@ import { MarketPlaceGraphComponent } from './market-place/market-place-graph/mar
         MarketPlaceComponent,
         MarketPlaceGraphComponent
     ],
+    exports: [
+        MarketPlaceComponent
+    ],
     imports: [
         CommonModule,
         AgricultureRoutingModule,
@@ -40,12 +44,7 @@ import { MarketPlaceGraphComponent } from './market-place/market-place-graph/mar
         SharedModule,
         PrimengModule,
         CustomPipeModule,
-
-    ],
-    exports:[
-        MarketPlaceComponent
+        PagesModule
     ]
-
-
 })
 export class AgricultureModule { }

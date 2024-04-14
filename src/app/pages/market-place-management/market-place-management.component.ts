@@ -57,10 +57,27 @@ export class MarketPlaceManagementComponent implements OnInit {
   ]
   categoryOption: any[] = [
     {
-      name: 'Vegitable',
-      value: 'vegitable'
+      name: 'Vegetables',
+      value: 'vegetable'
+    },
+    {
+      name: 'Fruits',
+      value: 'fruit'
+    },
+    {
+      name: 'Cereals',
+      value: 'cereal'
+    },
+    {
+      name: 'Pulses',
+      value: 'pulse'
+    },
+    {
+      name: 'Oilseeds',
+      value: 'oilseed'
     }
-  ]
+  ];
+  
 
 
 

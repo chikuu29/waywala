@@ -1,102 +1,110 @@
 .shopping-category-holder {
-    display: flex;
-    // position: fixed;
-    // flex-wrap: nowrap !important;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  // position: fixed;
+  // flex-wrap: nowrap !important;
+  justify-content: space-between;
+  align-items: center;
 
-    // overflow-x: scroll;
-    .category-item {
-        gap: 0.5rem;
-        cursor: pointer;
-        text-align: center;
+  // overflow-x: scroll;
+  .category-item {
+    gap: 0.5rem;
+    cursor: pointer;
+    text-align: center;
 
-        a {
-            text-decoration: none;
+    a {
+      text-decoration: none;
 
-            .category-item-taitel {
-                font-weight: 500;
-                color: black;
-            }
-        }
+      .category-item-taitel {
+        font-weight: 500;
+        color: black;
+      }
     }
+  }
 
-
-    .activeItems{
-        border-radius: 12px;
-        background: #fff;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    }
+  .activeItems {
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
 }
 
 .shopping-category-holder::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
-
-.forSingleScoller{
-    flex-wrap: nowrap !important;
-    overflow-x: scroll !important;
-    justify-content: unset !important;
+.forSingleScoller {
+  flex-wrap: nowrap !important;
+  overflow-x: scroll !important;
+  justify-content: unset !important;
 }
 
 /*------------------------------------------------------------------- 599px x 280px ---------------------------------------------------------------------*/
 
 @media only screen and (min-width: 280px) and (max-width: 599px) {
-
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {}
+@media (min-width: 992px) and (max-width: 1199px) {
+}
 
-@media (min-width: 768px) and (max-width: 991px) {}
+@media (min-width: 768px) and (max-width: 991px) {
+}
 
-@media (min-width: 576px) and (max-width: 767px) {}
-
+@media (min-width: 576px) and (max-width: 767px) {
+}
 
 @media (max-width: 575px) {
-
-    .shopping-category-holder {
-        .for-mobail {
-            // display: none;
-            padding: 0;
-        }
-
-        display: flex;
-        // flex-wrap: nowrap !important;
-        justify-content: center;
-        // align-items: center;
-        // overflow-x: scroll;
-        align-items: stretch;
-
-        .category-item {
-            flex: 1;
-            margin: 5px;
-            cursor: pointer;
-            text-align: center;
-
-            a {
-                text-decoration: none;
-
-                .category-item-taitel {
-                    font-size: small;
-                    font-weight: 500;
-                    color: black;
-                    text-align: center;
-                    .taitel-size{
-                        line-height: 1;
-                        font-size: 0.5rem;
-                        text-wrap:wrap;
-                    }
-                }
-            }
-
-            img{
-                width: 50px;
-                height: 50px;
-            }
-            
-        }
-
+  .shopping-category-holder {
+    .for-mobail {
+      // display: none;
+      padding: 0;
     }
 
+    display: flex;
+    // flex-wrap: nowrap !important;
+    // justify-content: center;
+    // align-items: center;
+    // overflow-x: scroll;
+    align-items: stretch;
+    flex-wrap: wrap;
+    .category-item {
+      flex: 0 0 15%; /* Each item takes 20% of the container width */
+      //   padding: 10px;
+      box-sizing: border-box;
+      // flex: 1;
+      margin: 5px;
+      cursor: pointer;
+      text-align: center;
+
+      a {
+        text-decoration: none;
+
+        .category-item-taitel {
+        //   font-size: 8px;
+          font-weight: 500;
+          color: black;
+          text-align: center;
+          .taitel-size {
+            line-height: 1;
+            // font-size: 0.2rem;
+            font-size: 0.3rem;
+            text-wrap: wrap;
+          }
+          .d-flex {
+            align-items: center !important;
+            justify-content: center !important;
+            display: flex !important;
+            // display: unset !important;
+          }
+          .icon-size{
+            font-size: 9px;
+          }
+        }
+      }
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
 }

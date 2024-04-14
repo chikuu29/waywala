@@ -58,13 +58,14 @@ import { ServicesPageComponent } from './services-page/services-page.component';
     NgbModule,
     NgxUiLoaderModule,
     ECommerceModule,
-    AgricultureModule,
+    // AgricultureModule,
     SharedModule,
     CarouselModule,
     CustomPipeModule
   ],
   exports: [
-    CommingSoonComponent
+    CommingSoonComponent,
+    SearchMarketInformationComponent
   
   ],
   providers:[MessageService],

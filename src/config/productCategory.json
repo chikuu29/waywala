@@ -30,19 +30,12 @@
         ]
     },
     {
-        "id": 4,
-        "categories": "Mobiles",
-        "image": "assets/e-commerce/mobail.png",
-        "subcategories": [
-            "Shop by Brand",
-            "Mobile Accessories"
-        ]
-    },
-    {
         "id": 5,
         "categories": "Electronics",
         "image": "assets/e-commerce/elctronics.png",
         "subcategories": [
+            "Shop by Brand",
+            "Mobile Accessories",
             "Laptops",
             "Headphones",
             "Smart Watches",
