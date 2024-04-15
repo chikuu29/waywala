@@ -32,8 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./feature/e-commerce/e-commerce.module').then(m => m.ECommerceModule)
 
   },
-
-
   {
     path: "pages",
     component: DefaultViewComponent,

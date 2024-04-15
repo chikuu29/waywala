@@ -15,6 +15,7 @@ import { TermsofserviceComponent } from './termsofservice/termsofservice.compone
 import { MarketPlaceManagementComponent } from './market-place-management/market-place-management.component';
 import { DetailsOfMarketInformationComponent } from './details-of-market-information/details-of-market-information.component';
 import { ServicesPageComponent } from './services-page/services-page.component';
+import { MyCoinZoneComponent } from '../shared/my-coin-zone/my-coin-zone.component';
 
 const routes: Routes = [
   {
@@ -79,6 +80,11 @@ const routes: Routes = [
   {
     path: 'services',
     component: ServicesPageComponent
+
+  },
+  {
+    path: 'mycoin',
+    component: MyCoinZoneComponent
 
   }
 ];
