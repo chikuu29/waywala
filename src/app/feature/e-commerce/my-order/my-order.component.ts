@@ -67,12 +67,12 @@ export class MyOrderComponent implements OnInit {
       console.log(res);
       if (res.success) {
 
-        console.log("hii",res['data']);
-        
+        console.log("hii", res['data']);
+
         res['data'].map((data: any) => {
-          console.log("hii",data.product_Images);
-          
-          data['product_Images'] = data.product_Images?data.product_Images.split(','):[];
+          console.log("hii", data.product_Images);
+
+          data['product_Images'] = data.product_Images ? data.product_Images.split(',') : [];
         })
 
         // this.order_history= _.orderBy( res['data'], ['created_at'], ['desc']);
@@ -174,6 +174,17 @@ export class MyOrderComponent implements OnInit {
 
   }
 
+  getRowClass(order: any) {
+    if (order.is_order_cancle === 'Yes') {
+      return 'order-cancelled';
+    } else if (order.order_current_status === 'DELIVERY') {
+      return 'order-delivered';
+    } else if (order.order_status === 'Confirmed') {
+      return 'order-placed';
+    } else {
+      return 'order-shipped';
+    }
+  }
 
 
 }

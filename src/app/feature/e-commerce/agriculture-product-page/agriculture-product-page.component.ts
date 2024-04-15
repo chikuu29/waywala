@@ -13,6 +13,14 @@ export class AgricultureProductPageComponent implements OnInit {
   public category: string = '';
   public allProductList: any[] = []
   public loadingSkeltonLoader: boolean = true
+  bannerItems:any[]=[
+    // {
+    //   image_url:"assets/e-commerce/248_Fashion_sale_facebook_cover_page_template.jpg"
+    // },
+    {
+      image_url:"assets/e-commerce/7874805.jpg"
+    }
+  ]
   constructor(
     private _rout: ActivatedRoute,
   ) { }

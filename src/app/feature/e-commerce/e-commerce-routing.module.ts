@@ -41,7 +41,7 @@ const routes: Routes = [
     component:OrderConfirmationComponent
   },
   {
-    path:'order-details/:order_id/:product_id',
+    path:'track-order/:order_id/:product_id',
     canActivate:[AuthenticationGuard],
     component:OrderDetailsComponent
   },

@@ -1,7 +1,7 @@
 <div class="margin"></div>
 <app-search-bar appClickedoutside (clickoutside)="deactive()"></app-search-bar>
 <app-product-category></app-product-category>
-<app-banner></app-banner>
+<app-banner [images]="bannerItems"></app-banner>
 
 <app-suggested-product-list [search_by]="'books'" [productSectionMode]="false"></app-suggested-product-list>
 <!-- <app-product-section sectionName="Products" sectionCategory="Agriculture"></app-product-section> -->

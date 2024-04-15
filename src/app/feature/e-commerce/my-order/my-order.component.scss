@@ -328,3 +328,19 @@ small {
 //     width: 70px;
 //   }
 // }
+
+.order-placed {
+  background-color: #cce5ff; /* Light Blue */
+}
+
+.order-shipped {
+  background-color: #e0d6ff; /* Light Purple */
+}
+
+.order-cancelled {
+  background-color: #ffd2d2; /* Light Red */
+}
+
+.order-delivered {
+  background-color: #d4edda; /* Light Green */
+}

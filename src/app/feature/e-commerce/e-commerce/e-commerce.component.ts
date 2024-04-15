@@ -20,6 +20,15 @@ export class ECommerceComponent implements OnInit {
 
   sortField: string;
 
+  bannerItems:any[]=[
+    {
+      image_url:"assets/e-commerce/248_Fashion_sale_facebook_cover_page_template.jpg"
+    },
+    {
+      image_url:"assets/e-commerce/7874805.jpg"
+    }
+  ]
+
   constructor(private productService: ProductService, private title:Title) { }
 
   ngOnInit() {
