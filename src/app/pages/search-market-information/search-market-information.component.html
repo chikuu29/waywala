@@ -4,7 +4,10 @@
     <h2>New Market status</h2>
     <p>Hear you can check what is price of agriculture product with state wise manner</p>
     <p class="text danger">Add Your Nearest Market Information That Help Other </p>
-    <p class="btn btn-label-success mt-2" routerLink="/pages/market_place_management">Add Market Information</p>
+    <!-- <p class="btn btn-label-success mt-2" routerLink="/pages/market_place_management">Add Market Information</p> -->
+    <div class="d-flex justify-content-center justify-content-lg-start mb-2">
+        <a routerLink="/pages/market_place_management" class="btn btn-success "><i class="fa-solid fa-info me-2"></i>Add Market Information</a>
+    </div>
 </div>
 <div class="container">
     <form class="marketDataSelected-dropdown" [formGroup]="searchMarketInfoForm">

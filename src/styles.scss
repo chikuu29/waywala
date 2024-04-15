@@ -494,11 +494,30 @@ h6 {
   transition: 0.5s;
   margin: 10px 0 0 0;
   color: #fff;
-  background: #EE4B2B;
+  background: green;
 }
 
 .hero .btn-go-to-store:hover {
-  background: #be3013;
+  background: green;
+}
+
+
+.hero .btn-go-to-shopping-store {
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 28px 11px 28px;
+  border-radius: 12px;
+  transition: 0.5s;
+  margin: 10px 0 0 0;
+  color: #fff;
+  background: blue;
+}
+
+.hero .btn-go-to-shopping-store:hover {
+  background: blue;
 }
 
 .hero .btn-watch-video {
