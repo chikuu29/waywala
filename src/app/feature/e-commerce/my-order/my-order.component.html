@@ -8,13 +8,16 @@
         <ng-container *ngFor="let order of order_history">
             <div class="p-2 ">
                 <div class="box-sadow p-2 order align-items-center">
+                    <p><span class="text-muted">Order ID :</span><span class="text-primary"
+                            [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
+                            {{order.order_id}}</span> </p>
                     <div class="row align-items-center">
 
 
-                        <div class="col-4" [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
-                            <img [src]="imageURL + order['product_Images'][0]" class="order-image" alt="" srcset="">
+                        <div class="col-3  justify-content-center" [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
+                            <img  [src]="imageURL + order['product_Images'][0]" class="order-image border" alt="" srcset="">
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <ng-container
                                 *ngIf="order.order_current_status !=='DELIVERY' && order.is_order_cancle=='No'">
                                 <h3 *ngIf="order.order_status == 'Failed'" class="fw-bold text-warning">Order Not Placed
@@ -35,7 +38,7 @@
                                     cancelled
                                 </h3>
                             </ng-container>
-                            <p class="text-truncate" style="max-width: 100%;"
+                            <p 
                                 [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
                                 {{order.product_Name}}</p>
                             <ng-container *ngIf="order.order_current_status =='DELIVERY'">
@@ -47,9 +50,7 @@
 
                         </div>
                     </div>
-                    <p><span class="text-muted">Order ID :</span><span class="text-primary"
-                            [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
-                            {{order.order_id}}</span> </p>
+
                 </div>
 
             </div>

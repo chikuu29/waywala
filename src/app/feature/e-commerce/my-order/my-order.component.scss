@@ -317,11 +317,14 @@ small {
 }
 
 .order-image{
-  width: 100%;
+  // width: 70px;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
 }
 
-@media (min-width: 500px) {
-  .order-image{
-    width: 70px;
-  }
-}
+// @media (min-width: 500px) {
+//   .order-image{
+//     width: 70px;
+//   }
+// }
