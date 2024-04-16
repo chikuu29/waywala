@@ -59,10 +59,6 @@ export class OrderConfirmationComponent implements OnInit {
         this.productconfirmationDATA = mergedObject;
         // console.log(mergedObject);
         this.title.setTitle(`${res.orderID} : ${this.productconfirmationDATA.order_status}`)
-
-
-
-
       })
 
 
