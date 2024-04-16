@@ -14,6 +14,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Location } from '@angular/common'
 import { elements } from 'chart.js';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -105,7 +106,7 @@ export class ProductDetailsPageComponent implements OnInit {
         if (res.success && res['data'].length > 0) {
           res.data.map((data: any) => {
             data['product_Images'] = data.product_Images.split(',');
-            data['product_delevery_pincodes'] = data.product_delevery_pincodes!=null? data.product_delevery_pincodes.split(','):[];
+            data['product_delevery_pincodes'] = data.product_delevery_pincodes != null ? data.product_delevery_pincodes.split(',') : [];
           })
 
           this.product = res['data'][0];
@@ -251,7 +252,7 @@ export class ProductDetailsPageComponent implements OnInit {
           address['display_address_INFO'] = temp.join(",\n")
         })
         this.user_pincode = res['data'][0]['pin_code']
-        this.vlidate_pincode()
+        this.vlidate_pincode(false)
         // console.log("userAddress", res);
         // this.allAddress = res['data']
         // console.log(this.allAddress);
@@ -432,17 +433,28 @@ export class ProductDetailsPageComponent implements OnInit {
 
   }
 
-  vlidate_pincode() {
-    if (this.user_pincode !== '') {
+  vlidate_pincode(needAlert: boolean = true) {
 
+
+
+    if (this.user_pincode !== '') {
       console.log(this.product);
       if (this.product.product_delevery_pincodes && this.product.product_delevery_pincodes.includes(this.user_pincode)) {
         this.isProductAvailble = true
       } else {
         this.isProductAvailble = false
       }
+      if (needAlert && this.isProductAvailble) {
+        Swal.fire(
+          {
+            title: `<strong style='color:#5c54a0; font-size:30px;'>This product is available in This Picode ${this.user_pincode}</strong>`,
+            html: '<h2>Congratulation</h2> <div class="pyro"><div class="before"></div><div class="after"></div></div>',
+            icon: 'success'
 
+          }).then((res: any) => {
 
+          })
+      } 
     } else {
       this.isProductAvailble = false
     }
