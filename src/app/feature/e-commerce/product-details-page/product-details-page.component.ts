@@ -105,7 +105,7 @@ export class ProductDetailsPageComponent implements OnInit {
         if (res.success && res['data'].length > 0) {
           res.data.map((data: any) => {
             data['product_Images'] = data.product_Images.split(',');
-            data['product_delevery_pincodes'] = data.product_delevery_pincodes.split(',');
+            data['product_delevery_pincodes'] = data.product_delevery_pincodes!=null? data.product_delevery_pincodes.split(','):[];
           })
 
           this.product = res['data'][0];
