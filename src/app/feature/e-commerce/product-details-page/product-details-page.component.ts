@@ -27,7 +27,8 @@ export class ProductDetailsPageComponent implements OnInit {
   product_QUANTITY: any = 1
   images: any[] = [];
   displayBasic: boolean = false
-  requested_pincode: any = ''
+  user_pincode: any = ''
+  isProductAvailble: boolean = true
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -104,10 +105,11 @@ export class ProductDetailsPageComponent implements OnInit {
         if (res.success && res['data'].length > 0) {
           res.data.map((data: any) => {
             data['product_Images'] = data.product_Images.split(',');
+            data['product_delevery_pincodes'] = data.product_delevery_pincodes.split(',');
           })
 
           this.product = res['data'][0];
-          // this.requested_pincode = this.product.product_Shipped_Pincode
+          // this.user_pincode = this.product.product_Shipped_Pincode
           this.activeImage = this.imageURL + this.product['product_Images'][0]
           // var images = this.product.product_Images;
           this.product.product_Images.forEach((e: any) => {
@@ -120,6 +122,7 @@ export class ProductDetailsPageComponent implements OnInit {
               }
             )
           })
+          this.checkProductAvailbility()
           // console.log(this.images);
           this.title.setTitle(this.product.product_Name || 'No Product found');
           this.meta.updateTag({ property: 'description', content: this.product.product_Name || '' });
@@ -224,6 +227,38 @@ export class ProductDetailsPageComponent implements OnInit {
 
     })
 
+  }
+
+  checkProductAvailbility() {
+    var apiData = `SELECT *  FROM user_address WHERE user_ID='${this.appservices.authStatus.email}'`
+
+    this.apiParameterScript.fetchDataFormQuery(apiData).subscribe((res: any) => {
+      console.log(res);
+      if (res.success) {
+        res['data'].map((address: any) => {
+          var data = JSON.parse(address['address_INFO'])
+          address['pin_code'] = data['pin_code']
+          var temp = []
+          temp.push(data['name']);
+          temp.push(data['address']);
+          temp.push(data['landmark']);
+          temp.push(data['original_phone'] + ',' + data['alternative_phone']);
+          temp.push(data['locality']);
+          temp.push(data['city']);
+          temp.push(data['pin_code']);
+          temp.push(data['state']);
+          temp.push(data['country']);
+          address['display_address_INFO'] = temp.join(",\n")
+        })
+        this.user_pincode = res['data'][0]['pin_code']
+        this.vlidate_pincode()
+        // console.log("userAddress", res);
+        // this.allAddress = res['data']
+        // console.log(this.allAddress);
+      }
+
+
+    })
   }
   showCustomAlert() {
     this._snackBar.openFromComponent(CoustomAlertMaterialUiComponent, {
@@ -397,8 +432,20 @@ export class ProductDetailsPageComponent implements OnInit {
 
   }
 
-  vlidate_pincode(pincode: any) {
-    console.log(pincode);
+  vlidate_pincode() {
+    if (this.user_pincode !== '') {
+
+      console.log(this.product);
+      if (this.product.product_delevery_pincodes && this.product.product_delevery_pincodes.includes(this.user_pincode)) {
+        this.isProductAvailble = true
+      } else {
+        this.isProductAvailble = false
+      }
+
+
+    } else {
+      this.isProductAvailble = false
+    }
 
   }
 
