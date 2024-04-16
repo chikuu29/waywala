@@ -13,7 +13,9 @@ export interface Product {
     product_Total_Rating?:number;
     product_Seller_ID?:string;
     product_Has_Own_Delivery?:string;
-    product_Shipped_Pincode?:string
+    product_delevery_pincodes?:string
+    product_delevery_charges?:string[]
+    
 }
 
 // {

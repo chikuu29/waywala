@@ -14,6 +14,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Location } from '@angular/common'
 import { elements } from 'chart.js';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
@@ -27,7 +28,8 @@ export class ProductDetailsPageComponent implements OnInit {
   product_QUANTITY: any = 1
   images: any[] = [];
   displayBasic: boolean = false
-  requested_pincode: any = ''
+  user_pincode: any = ''
+  isProductAvailble: boolean = true
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -95,18 +97,20 @@ export class ProductDetailsPageComponent implements OnInit {
     this.blockUI.start('Loading...')
     this._rout.params.subscribe((res: any) => {
       console.log(res);
-      var query = `SELECT p.product_Shipped_Pincode,p.product_Has_Own_Delivery,p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_Quantity_Available,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE e_commerce_product.product_Live_Status='active' AND e_commerce_product.product_Id='${res.productID}') p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`;
-
+      var query = `SELECT  * FROM e_commerce_product p WHERE 
+    p.product_Live_Status = 'active'
+    AND p.product_Id = '${res.productID}'`
       this.apiParameterScript.fetchDataFormQuery(query).subscribe((res: any) => {
         this.blockUI.stop()
         console.log(res);
         if (res.success && res['data'].length > 0) {
           res.data.map((data: any) => {
             data['product_Images'] = data.product_Images.split(',');
+            data['product_delevery_pincodes'] = data.product_delevery_pincodes != null ? data.product_delevery_pincodes.split(',') : [];
           })
 
           this.product = res['data'][0];
-          this.requested_pincode = this.product.product_Shipped_Pincode
+          // this.user_pincode = this.product.product_Shipped_Pincode
           this.activeImage = this.imageURL + this.product['product_Images'][0]
           // var images = this.product.product_Images;
           this.product.product_Images.forEach((e: any) => {
@@ -119,6 +123,7 @@ export class ProductDetailsPageComponent implements OnInit {
               }
             )
           })
+          this.checkProductAvailbility()
           // console.log(this.images);
           this.title.setTitle(this.product.product_Name || 'No Product found');
           this.meta.updateTag({ property: 'description', content: this.product.product_Name || '' });
@@ -131,7 +136,6 @@ export class ProductDetailsPageComponent implements OnInit {
 
 
         } else {
-
           this.product = {}
           this.location.back();
         }
@@ -224,6 +228,38 @@ export class ProductDetailsPageComponent implements OnInit {
 
     })
 
+  }
+
+  checkProductAvailbility() {
+    var apiData = `SELECT *  FROM user_address WHERE user_ID='${this.appservices.authStatus.email}'`
+
+    this.apiParameterScript.fetchDataFormQuery(apiData).subscribe((res: any) => {
+      console.log(res);
+      if (res.success) {
+        res['data'].map((address: any) => {
+          var data = JSON.parse(address['address_INFO'])
+          address['pin_code'] = data['pin_code']
+          var temp = []
+          temp.push(data['name']);
+          temp.push(data['address']);
+          temp.push(data['landmark']);
+          temp.push(data['original_phone'] + ',' + data['alternative_phone']);
+          temp.push(data['locality']);
+          temp.push(data['city']);
+          temp.push(data['pin_code']);
+          temp.push(data['state']);
+          temp.push(data['country']);
+          address['display_address_INFO'] = temp.join(",\n")
+        })
+        this.user_pincode = res['data'][0]['pin_code']
+        this.vlidate_pincode(false)
+        // console.log("userAddress", res);
+        // this.allAddress = res['data']
+        // console.log(this.allAddress);
+      }
+
+
+    })
   }
   showCustomAlert() {
     this._snackBar.openFromComponent(CoustomAlertMaterialUiComponent, {
@@ -397,8 +433,31 @@ export class ProductDetailsPageComponent implements OnInit {
 
   }
 
-  vlidate_pincode(pincode: any) {
-    console.log(pincode);
+  vlidate_pincode(needAlert: boolean = true) {
+
+
+
+    if (this.user_pincode !== '') {
+      console.log(this.product);
+      if (this.product.product_delevery_pincodes && this.product.product_delevery_pincodes.includes(this.user_pincode)) {
+        this.isProductAvailble = true
+      } else {
+        this.isProductAvailble = false
+      }
+      if (needAlert && this.isProductAvailble) {
+        Swal.fire(
+          {
+            title: `<strong style='color:#5c54a0; font-size:30px;'>This product is available in This Picode ${this.user_pincode}</strong>`,
+            html: '<h2>Congratulation</h2> <div class="pyro"><div class="before"></div><div class="after"></div></div>',
+            icon: 'success'
+
+          }).then((res: any) => {
+
+          })
+      } 
+    } else {
+      this.isProductAvailble = false
+    }
 
   }
 
