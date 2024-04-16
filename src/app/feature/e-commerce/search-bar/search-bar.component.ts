@@ -101,7 +101,9 @@ export class SearchBarComponent implements OnInit {
   }
   fetchSearchResults(searchText: string) {
     console.log("getSerch result");
-    var searchQuery = `SELECT product_Id ,product_Name,product_Images FROM e_commerce_product WHERE product_Name LIKE '%${searchText}%' OR  product_Description LIKE '%${searchText}%' OR product_Category LIKE '%${searchText}%' OR product_SubCategory LIKE '%${searchText}%' AND product_Live_Status='active'`;
+    var searchQuery = `SELECT product_Id ,product_Name,product_Images FROM e_commerce_product WHERE  product_Live_Status='active' AND e_commerce_product.product_stock_count>0 AND (product_Name LIKE '%${searchText}%' OR  product_Description LIKE '%${searchText}%' OR product_Category LIKE '%${searchText}%' OR product_SubCategory LIKE '%${searchText}%') `;
+
+    console.log("serch query",searchQuery)
 
 
 

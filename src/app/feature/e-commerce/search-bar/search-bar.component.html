@@ -1,6 +1,6 @@
 <div class="search fixed-top w-100" id="search-bar">
   <div class="container p-3">
-    <div  appClickedoutside (clickoutside)="deactive()">
+    <div appClickedoutside (clickoutside)="deactive()">
       <div class="serch-box-container">
         <input type="text" class="serch-input-field text-muted" (keyup)="looking($event)" (keyup.enter)="search()"
           (click)="active()" [(ngModel)]="serchinputValue" placeholder="Search for products, brands and more">
@@ -9,8 +9,6 @@
       <div class="search-result-box-container">
         <div class="search-result hidden" #serch_result_box id="result">
           <ng-container *ngFor="let item of DEFULT_SERCH_HISTORY">
-
-
             <div (click)="searchResult(item)">
               <div class="d-flex  align-items-center search-result-hover p-2">
                 <div class="me-4">
@@ -29,11 +27,7 @@
                 </div>
               </div>
             </div>
-
-
           </ng-container>
-
-
         </div>
       </div>
     </div>

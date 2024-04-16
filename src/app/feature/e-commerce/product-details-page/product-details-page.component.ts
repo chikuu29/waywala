@@ -131,10 +131,6 @@ export class ProductDetailsPageComponent implements OnInit {
           this.meta.updateTag({ property: 'og:title', content: this.product.product_Name || '' });
           this.meta.updateTag({ property: 'og:description', content: this.product.product_Name || '' });
           this.meta.updateTag({ property: 'og:image:alt', content: this.product.product_Name || '' });
-
-
-
-
         } else {
           this.product = {}
           this.location.back();

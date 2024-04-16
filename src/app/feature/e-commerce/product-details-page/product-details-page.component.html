@@ -1,4 +1,9 @@
 <div class="coustom-margin"></div>
+
+
+
+
+<div *ngIf="product.product_Category">
 <main class="fit">
   <div class="py-2 mx-auto max-w-7xl px-0 w-full" style="margin-top: 0.5rem">
     <div class="ProductView_root__hqkHp fit">
@@ -486,7 +491,10 @@
   </div>
 </main>
 
-<app-product-section sectionName="Related Item"></app-product-section>
+<!-- <app-product-section sectionName="Related Item"></app-product-section> -->
+
+<app-suggested-product-list [search_by]="product.product_Category"></app-suggested-product-list>
+</div>
 
 <p-galleria [value]="images" [(visible)]="displayBasic" [responsiveOptions]="responsiveOptions"
   [containerStyle]="{'max-width': '100%'}" [numVisible]="images.length" [circular]="true" [fullScreen]="true"
