@@ -51,7 +51,7 @@
 
                       <div class="form-outline">
                         <input (change)="onChangeQuantity($event, i)" [min]="1" name="quantity"
-                          [(ngModel)]="item.product_CART_QUANTITY" [max]="item.product_Quantity_Available" type="number"
+                          [(ngModel)]="item.product_CART_QUANTITY" [max]="item.product_stock_count" type="number"
                           class="form-control" />
                       </div>
 
@@ -318,7 +318,7 @@
 
                     <div class="form-outline">
                       <input (change)="onChangeQuantity($event, i)" [min]="1" name="quantity"
-                        [value]="item.product_CART_QUANTITY" [max]="item.product_Quantity_Available" type="number"
+                        [value]="item.product_CART_QUANTITY" [max]="item.product_stock_count" type="number"
                         class="form-control" />
                     </div>
 

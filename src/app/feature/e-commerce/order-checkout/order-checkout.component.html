@@ -197,7 +197,7 @@
                                                         <input [min]="1" name="quantity"
                                                             [(ngModel)]="item.order_quantity"
                                                             (change)="onChangeQuantity($event, i)"
-                                                            [max]="item.product_Quantity_Available" type="number"
+                                                            [max]="item.product_stock_count" type="number"
                                                             class="form-control" readonly />
 
                                                     </div>

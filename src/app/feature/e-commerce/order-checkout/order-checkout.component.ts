@@ -112,7 +112,7 @@ export class OrderCheckoutComponent implements OnInit {
 
   getProduct(product_id: string[]) {
     const formattedIds = product_id.map(id => `'${id}'`).join(',');
-    var query = `SELECT p.product_Shipped_Pincode,p.product_Has_Own_Delivery,p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_Quantity_Available,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE e_commerce_product.product_Live_Status='active' AND e_commerce_product.product_Id IN (${formattedIds})) p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`;
+    var query = `SELECT p.product_Shipped_Pincode,p.product_Has_Own_Delivery,p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_stock_count,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE e_commerce_product.product_Live_Status='active' AND e_commerce_product.product_Id IN (${formattedIds})) p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`;
    console.log(query);
    
     this.api.fetchDataFormQuery(query).subscribe((res: any) => {
@@ -303,7 +303,7 @@ export class OrderCheckoutComponent implements OnInit {
   stepUp(index: number) {
 
 
-    if (this.checkOutProductList[index].product_Quantity_Available > this.checkOutProductList[index].order_quantity) {
+    if (this.checkOutProductList[index].product_stock_count > this.checkOutProductList[index].order_quantity) {
       this.checkOutProductList[index].order_quantity += 1;
       this.updatePrice()
     }
@@ -321,11 +321,11 @@ export class OrderCheckoutComponent implements OnInit {
     try {
 
 
-      if (this.checkOutProductList[index].order_quantity && this.checkOutProductList[index].order_quantity <= this.checkOutProductList[index].product_Quantity_Available) {
+      if (this.checkOutProductList[index].order_quantity && this.checkOutProductList[index].order_quantity <= this.checkOutProductList[index].product_stock_count) {
 
 
       } else {
-        this.checkOutProductList[index].order_quantity = this.checkOutProductList[index].product_Quantity_Available
+        this.checkOutProductList[index].order_quantity = this.checkOutProductList[index].product_stock_count
       }
       this.updatePrice()
     } catch (error) {

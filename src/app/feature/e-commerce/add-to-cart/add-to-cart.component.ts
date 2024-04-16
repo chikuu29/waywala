@@ -140,7 +140,7 @@ export class AddToCartComponent implements OnInit {
 
 
   stepUp(index: number) {
-    if (this.allKartItem[index].product_Quantity_Available >= this.allKartItem[index].product_CART_QUANTITY) this.allKartItem[index].product_CART_QUANTITY += 1;
+    if (this.allKartItem[index].product_stock_count >= this.allKartItem[index].product_CART_QUANTITY) this.allKartItem[index].product_CART_QUANTITY += 1;
     this.calculateTotalProductPrice()
   }
   stepDown(index: number) {
@@ -153,7 +153,7 @@ export class AddToCartComponent implements OnInit {
     try {
 
 
-      if (this.allKartItem[index].product_CART_QUANTITY && this.allKartItem[index].product_CART_QUANTITY <= this.allKartItem[index].product_Quantity_Available) {
+      if (this.allKartItem[index].product_CART_QUANTITY && this.allKartItem[index].product_CART_QUANTITY <= this.allKartItem[index].product_stock_count) {
         console.log("hi");
 
       } else {

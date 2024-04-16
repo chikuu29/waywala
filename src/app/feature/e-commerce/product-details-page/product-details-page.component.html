@@ -102,7 +102,7 @@
                 </div>
 
               </div>
-              <div style="z-index: 999999999999" *ngIf="isProductAvailble && product.product_Quantity_Available>0"
+              <div style="z-index: 999999999999" *ngIf="isProductAvailble && product.product_stock_count>0"
                 class="fixed bottom-0 lg:static left-0 right-0 px-3 lg:px-0 py-4 bg-white lg:pt-6 lg:pb-0 lg:py-0 z-20 shadow-top md:shadow-none rounded-t-lg md:rounded-none">
                 <div class="grid grid-cols-2 gap-2 justify-content-center">
                   <button
@@ -254,8 +254,8 @@
                   <button (click)="stepDown()" class="qty-btn-minus btn-danger btn-rounded mr-1" type="button">
                     <i class="fa fa-chevron-left"></i>
                   </button>
-                  <input (change)="onChangeQuantity($event,product.product_Quantity_Available)"
-                    [(ngModel)]="product_QUANTITY" type="number" [min]="1" [max]="product.product_Quantity_Available"
+                  <input (change)="onChangeQuantity($event,product.product_stock_count)"
+                    [(ngModel)]="product_QUANTITY" type="number" [min]="1" [max]="product.product_stock_count"
                     class="input-qty input-rounded" />
                   <button (click)="stepUp()" class="qty-btn-plus btn-danger btn-rounded ml-1" type="button">
                     <i class="fa fa-chevron-right"></i>

@@ -269,7 +269,7 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
   stepUp() {
-    if (this.product.product_Quantity_Available >= this.product_QUANTITY) this.product_QUANTITY += 1
+    if (this.product.product_stock_count >= this.product_QUANTITY) this.product_QUANTITY += 1
   }
   stepDown() {
     if (1 < this.product_QUANTITY) this.product_QUANTITY -= 1

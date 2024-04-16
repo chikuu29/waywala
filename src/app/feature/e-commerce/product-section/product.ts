@@ -6,7 +6,7 @@ export interface Product {
     product_Selling_Price?:number;
     product_Discoute_Percentage?:number;
     product_Category?:string;
-    product_Quantity_Available?:any;
+    product_stock_count?:any;
     product_Images?:any;
     product_Expires?:any;
     product_AVG_Rating?:number;
@@ -26,7 +26,7 @@ export interface Product {
 //     "product_Selling_Price": 45,
 //     "product_Discoute_Percentage": 10,
 //     "product_Category": "Vegetable",
-//     "product_Quantity_Available": 12,
+//     "product_stock_count": 12,
 //     "product_Seller_ID": "W-FARMS_123",
 //     "product_Images": "01678601275.jpg,11678601275.jpg",
 //     "product_Expires": "2023-3-8",
