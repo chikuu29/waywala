@@ -1,97 +1,5 @@
 <div class="coustom-margin"></div>
-<div class="container-fluid container-lg " *ngif="false">
 
-    <div class="section-title">
-        <h2> Order History</h2>
-    </div>
-    <div class="mt-3">
-        <!-- <ng-container *ngFor="let order of order_history">
-            <div class="p-2 ">
-                <div class="box-sadow p-2 order align-items-center">
-                    <p><span class="text-muted">Order ID :</span><span class="text-primary"
-                            [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
-                            {{order.order_id}}</span> </p>
-                    <div class="row align-items-center">
-
-
-                        <div class="col-3  justify-content-center" [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
-                            <img  [src]="imageURL + order['product_Images'][0]" class="order-image border" alt="" srcset="">
-                        </div>
-                        <div class="col-9">
-                            <ng-container
-                                *ngIf="order.order_current_status !=='DELIVERY' && order.is_order_cancle=='No'">
-                                <h3 *ngIf="order.order_status == 'Failed'" class="fw-bold text-warning">Order Not Placed
-                                </h3>
-                                <h3 *ngIf="order.order_status == 'Confirmed'" class="fw-bold text-success">Order Placed
-                                    On
-                                    {{order.created_at |date}}</h3>
-                            </ng-container>
-                            <ng-container *ngIf="order.order_current_status =='DELIVERY'">
-                                <h3 *ngIf="order.order_status == 'Confirmed'" class="fw-bold"
-                                    [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">Delivered
-                                    On
-                                    {{order.order_delivery_date }}</h3>
-                            </ng-container>
-                            <ng-container *ngIf="order.is_order_cancle=='Yes'">
-                                <h3 class="fw-bold text-danger"
-                                    [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">Order
-                                    cancelled
-                                </h3>
-                            </ng-container>
-                            <p 
-                                [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
-                                {{order.product_Name}}</p>
-                            <ng-container *ngIf="order.order_current_status =='DELIVERY'">
-                                <p-rating [ngModel]="order.product_Rating" [cancel]="false" [readonly]="false"
-                                    (onRate)="onrate($event,order)"></p-rating>
-                                <p class="text-muted text-success">Rate this product now</p>
-                            </ng-container>
-
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </ng-container> -->
-        <ng-container *ngFor="let order of order_history">
-            <div class="p-2">
-                <div class="box-shadow p-2 order align-items-center">
-                    <p><span class="text-muted">Order ID:</span>
-                        <span class="text-primary" [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
-                            {{order.order_id}}
-                        </span>
-                    </p>
-                    <div class="row align-items-center">
-                        <div class="col-md-3 col-sm-6 justify-content-center" [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">
-                            <img [src]="imageURL + order['product_Images'][0]" class="order-image border img-fluid" alt="" srcset="">
-                        </div>
-                        <div class="col-md-9 col-sm-6">
-                            <ng-container *ngIf="order.order_current_status !== 'DELIVERY' && order.is_order_cancle === 'No'">
-                                <h3 *ngIf="order.order_status == 'Failed'" class="fw-bold text-warning">Order Not Placed</h3>
-                                <h3 *ngIf="order.order_status == 'Confirmed'" class="fw-bold text-success">Order Placed On {{order.created_at | date}}</h3>
-                            </ng-container>
-                            <ng-container *ngIf="order.order_current_status === 'DELIVERY'">
-                                <h3 *ngIf="order.order_status == 'Confirmed'" class="fw-bold" [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">Delivered On {{order.order_delivery_date}}</h3>
-                            </ng-container>
-                            <ng-container *ngIf="order.is_order_cancle === 'Yes'">
-                                <h3 class="fw-bold text-danger" [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">Order cancelled</h3>
-                            </ng-container>
-                            <p [routerLink]="'/order-details/'+order.order_id+'/'+order.order_product_ID">{{order.product_Name}}</p>
-                            <ng-container *ngIf="order.order_current_status === 'DELIVERY'">
-                                <p-rating [ngModel]="order.product_Rating" [cancel]="false" [readonly]="false" (onRate)="onrate($event, order)"></p-rating>
-                                <p class="text-muted text-success">Rate this product now</p>
-                            </ng-container>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </ng-container>
-        
-
-    </div>
-</div>
 <div class="container">
     <div class="section-title">
         <h2> Order History</h2>
@@ -100,40 +8,46 @@
         <div class="row mb-3 p-2 border align-items-center " [ngClass]="getRowClass(order)">
             <div class="col-md-4">
                 <p><span class="text-muted">Order ID:</span>
-                    <span class="text-primary" >
+                    <span class="text-primary">
                         {{order.order_id}}
                     </span>
                 </p>
-                <img [src]="imageURL + order['product_Images'][0]" class="order-image border img-fluid" alt="" srcset="">
+                <img [src]="imageURL + order['product_Images'][0]" class="order-image border img-fluid" alt=""
+                    srcset="">
             </div>
             <div class="col-md-6">
                 <ng-container *ngIf="order.order_current_status !== 'DELIVERY' && order.is_order_cancle === 'No'">
                     <h3 *ngIf="order.order_status == 'Failed'" class="fw-bold text-warning">Order Not Placed</h3>
-                    <h3 *ngIf="order.order_status == 'Confirmed'" class="fw-bold text-success">Order Placed On {{order.created_at | date}}</h3>
+                    <h3 *ngIf="order.order_status == 'Confirmed'" class="fw-bold text-success">Order Placed On
+                        {{order.created_at | date}}</h3>
                 </ng-container>
                 <ng-container *ngIf="order.order_current_status === 'DELIVERY'">
-                    <h3 *ngIf="order.order_status == 'Confirmed'" class="fw-bold" >Delivered On {{order.order_delivery_date}}</h3>
+                    <h3 *ngIf="order.order_status == 'Confirmed'" class="fw-bold">Delivered On
+                        {{order.order_delivery_date}}</h3>
                 </ng-container>
                 <ng-container *ngIf="order.is_order_cancle === 'Yes'">
-                    <h3 class="fw-bold text-danger" >Order cancelled</h3>
+                    <h3 class="fw-bold text-danger">Order cancelled</h3>
                 </ng-container>
                 <a [routerLink]="'/store/product/'+order.product_id" class="mt-2 mb-2">{{order.product_Name}}</a>
                 <ng-container *ngIf="order.order_current_status === 'DELIVERY'">
-                    <p-rating [ngModel]="order.product_Rating" [cancel]="false" [readonly]="false" (onRate)="onrate($event, order)"></p-rating>
+                    <p-rating [ngModel]="order.product_Rating" [cancel]="false" [readonly]="false"
+                        (onRate)="onrate($event, order)"></p-rating>
                     <p class="text-muted text-success">Rate this product now</p>
                 </ng-container>
             </div>
             <div class="col-md-2  ">
-                <button class="btn btn-outline-secondary w-100" [routerLink]="'/track-order/'+order.order_id+'/'+order.order_product_ID">
+                <button class="btn btn-outline-secondary w-100"
+                    [routerLink]="'/track-order/'+order.order_id+'/'+order.order_product_ID">
                     <i class="fas fa-map-marker-alt"></i> Track
                 </button>
             </div>
         </div>
     </ng-container>
+    <ng-container *ngIf="order_history.length == 0">
+        <app-no-data-available></app-no-data-available>
+    </ng-container>
 </div>
-<ng-container *ngIf="order_history.length == 0">
-    <app-no-data-available></app-no-data-available>
-</ng-container>
+
 
 
 
