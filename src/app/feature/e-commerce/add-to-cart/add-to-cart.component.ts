@@ -154,7 +154,7 @@ export class AddToCartComponent implements OnInit {
 
 
       if (this.allKartItem[index].product_CART_QUANTITY && this.allKartItem[index].product_CART_QUANTITY <= this.allKartItem[index].product_stock_count) {
-        console.log("hi");
+        
 
       } else {
         this.allKartItem[index].product_CART_QUANTITY = 1
