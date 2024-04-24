@@ -31,6 +31,7 @@ export class OrderCheckoutComponent implements OnInit {
     total_copun_discount: 0,
     total_mrp_price: 0
   }
+  totalDeliveryCharges:any=0
   private orderCheckOutInfo: CheckOutProductOrder = {}
   isAddressSelected: boolean = false
   constructor(
@@ -112,7 +113,7 @@ export class OrderCheckoutComponent implements OnInit {
 
   getProduct(product_id: string[]) {
     const formattedIds = product_id.map(id => `'${id}'`).join(',');
-    var query = `SELECT p.product_Has_Own_Delivery,p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_stock_count,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE e_commerce_product.product_Live_Status='active' AND e_commerce_product.product_Id IN (${formattedIds})) p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`;
+    var query = `SELECT p.product_delevery_charges,p.product_expected_delivery_days,p.product_Has_Own_Delivery,p.product_Id,p.product_Name,p.product_Description,p.product_Mrp_Price,p.product_Selling_Price,p.product_Discoute_Percentage,p.product_Category,p.product_stock_count,p.product_Seller_ID,p.product_Images,p.product_Expires,p.product_Created_Date,p.product_Live_Status, CAST(COALESCE(AVG(pr.product_Rating),0)AS INTEGER) AS product_AVG_Rating,COUNT(pr.product_Rating) AS product_Total_Rating FROM (SELECT * FROM e_commerce_product WHERE e_commerce_product.product_Live_Status='active' AND e_commerce_product.product_Id IN (${formattedIds})) p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id, p.product_name;`;
    console.log(query);
    
     this.api.fetchDataFormQuery(query).subscribe((res: any) => {
@@ -123,8 +124,10 @@ export class OrderCheckoutComponent implements OnInit {
 
         res.data.map((data: any) => {
           data['product_Images'] = data.product_Images.split(',');
+          data['deliveryCharges']=data.product_delevery_charges?data.product_delevery_charges:0
+          data['estimatedeliveryCharges']=data.product_expected_delivery_days && data.product_expected_delivery_days !=0?data.product_expected_delivery_days +' Days': " Between 5 Days"
         })
-
+        this.totalDeliveryCharges=_.sumBy(res.data, "deliveryCharges")
         this.checkOutProductList = res['data']
         this.createOrderCheckOutInfo();
 
@@ -184,14 +187,14 @@ export class OrderCheckoutComponent implements OnInit {
       if (this.orderCheckOutInfo.order_copun_details) {
         total_copun_discount = isNumber(this.orderCheckOutInfo.order_copun_details.copun_discount_price) ? this.orderCheckOutInfo.order_copun_details.copun_discount_price : 0
       }
-      var total_price = _.sumBy(this.checkOutProductList, (product: any) => product.product_Selling_Price * product.order_quantity)
+      var total_price = _.sumBy(this.checkOutProductList, (product: any) => product.product_Selling_Price * product.order_quantity) 
       // var final_price = _.sumBy(productList, (product: any) => product.product_Selling_Price * product.order_quantity)
       console.log(total_copun_discount);
       var updatedPrice: priceDetails = {
         total_mrp_price: _.sumBy(this.checkOutProductList, (product: any) => product.product_Mrp_Price * product.order_quantity),
         total_copun_discount: total_copun_discount,
         total_price: isNumber(total_price) ? total_price : 0,
-        final_price: total_price - total_copun_discount
+        final_price: total_price+this.totalDeliveryCharges - total_copun_discount
       };
       this.order_price_details = updatedPrice
       this.orderCheckOutInfo.order_price_details = updatedPrice
@@ -345,14 +348,14 @@ export class OrderCheckoutComponent implements OnInit {
       total_copun_discount = isNumber(this.orderCheckOutInfo.order_copun_details.copun_discount_price) ? this.orderCheckOutInfo.order_copun_details.copun_discount_price : 0
     }
 
-    var total_price = _.sumBy(productList, (product: any) => product.product_Selling_Price * product.order_quantity)
+    var total_price = _.sumBy(productList, (product: any) => product.product_Selling_Price * product.order_quantity) 
     // var final_price = _.sumBy(productList, (product: any) => product.product_Selling_Price * product.order_quantity)
 
     return {
       total_mrp_price: _.sumBy(productList, (product: any) => product.product_Mrp_Price * product.order_quantity),
       total_copun_discount: total_copun_discount,
       total_price: isNumber(total_price) ? total_price : 0,
-      final_price: total_price - total_copun_discount
+      final_price: total_price+this.totalDeliveryCharges - total_copun_discount
     };
 
   }
@@ -420,6 +423,15 @@ export class OrderCheckoutComponent implements OnInit {
       Swal.fire('Warning', 'Please Select Address', 'warning')
     }
     
+  }
+
+  remove(Item:any){
+    console.log(Item);
+    
+    _.remove(this.checkOutProductList, (product:any) => product.product_Id === Item.product_Id);
+    this.updatePrice()
+    this.totalDeliveryCharges=_.sumBy(this.checkOutProductList, "deliveryCharges")
+
   }
   private startCapturingPayment(payment_session_id: any) {
     // this.activeOrderProcessStage=true

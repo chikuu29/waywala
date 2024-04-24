@@ -88,12 +88,14 @@
                                     <div class="flex-grow-1 col-md-8">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <p class="me-3"><a href="javascript:void(0)"
-                                                        class="text-body fs-4">{{item?.product_Name |uppercase}}</a></p>
-                                                <div class="text-muted mb-2 d-flex flex-wrap"><span class="me-1">Sold
-                                                        by:</span> <a href="javascript:void(0)" class="me-3">Apple</a>
-                                                    <span class="badge bg-label-success">In Stock</span>
+                                                <p class="me-3"><a [routerLink]="'/store/product/'+item?.product_Id"
+                                                        class="text-body text-primary">{{item?.product_Name |uppercase}}</a></p>
+                                                <div class="text-muted mb-2 d-flex flex-wrap"><span class="me-1">Delivery Charges:</span> <a href="javascript:void(0)" class="me-3"></a>
+                                                    <span class="badge bg-label-success">{{item.deliveryCharges |currency:'INR' }}</span>
                                                 </div>
+
+                                                <!-- <p><button class="btn btn-danger btn-sm"> Delivery Charges :{{item.deliveryCharges |currency:'INR' }}</button></p> -->
+                                                <!-- <p><span class="text-success btn-sm"> Estimate Delivery By :{{item.estimatedeliveryCharges}}</span></p> -->
                                                 <!-- <div class="read-only-ratings mb-3 jq-ry-container"
                                                     data-rateyo-read-only="true" readonly="readonly"
                                                     style="width: 100px;">
@@ -197,6 +199,7 @@
                                                         <input [min]="1" name="quantity"
                                                             [(ngModel)]="item.order_quantity"
                                                             (change)="onChangeQuantity($event, i)"
+                                                            [readOnly]="true"
                                                             [max]="item.product_stock_count" type="number"
                                                             class="form-control" readonly />
 
@@ -205,17 +208,18 @@
                                                     <button class="btn btn-primary ms-2" (click)="stepUp(i)">
                                                         <i class="fas fa-plus"></i>
                                                     </button>
+
                                                 </div>
                                                 <!-- Quantity -->
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="text-md-end">
-                                                    <button type="button" class="btn-close btn-pinned"
+                                                    <button type="button" (click)="remove(item)" class="btn-close btn-pinned"
                                                         aria-label="Close"></button>
                                                     <div class="my-2 my-md-4 mb-md-5"><span
-                                                            class="text-success fs-3">{{item.product_Selling_Price*item.order_quantity
+                                                            class="text-success ">{{item.product_Selling_Price*item.order_quantity
                                                             |currency:'INR'}}/</span><s
-                                                            class="text-muted fs-3">{{item.product_Mrp_Price*item.order_quantity
+                                                            class="text-muted ">{{item.product_Mrp_Price*item.order_quantity
                                                             |currency:'INR'}}</s>
                                                     </div>
                                                     <!-- <button type="button"
@@ -223,6 +227,8 @@
                                                         wishlist</button> -->
                                                 </div>
                                             </div>
+                                            <p><span class="text-success btn-sm"> Estimate Delivery By :{{item.estimatedeliveryCharges}}</span></p>
+
                                         </div>
                                     </div>
                                 </div>
@@ -279,8 +285,11 @@
                                 <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <dd class="col-6 text-end"><s class="text-muted">{{0|currency:'INR'}}</s> <span
-                                        class="badge bg-label-success ms-1">Free</span></dd>
+                                <span  class="col-6 text-end">{{totalDeliveryCharges|currency:'INR'}}</span>
+                                <dd *ngIf="totalDeliveryCharges==0" class="col-6 text-end"><s class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
+                                        class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span></dd>
+
+
                             </dl>
 
                             <hr class="mx-n4">
@@ -366,13 +375,13 @@
 
 
                         <!-- Choose Delivery -->
-                        <p>Choose Delivery Speed</p>
+                        <!-- <p>Choose Delivery Speed</p>
                         <div class="row mt-2">
                             <div class="col-md mb-md-0 mb-2">
                                 <div class="form-check custom-option custom-option-icon position-relative checked">
                                     <label class="form-check-label custom-option-content" for="customRadioDelivery1">
                                         <span class="custom-option-body">
-                                            <!-- <i class="bx bx-user bx-lg"></i> -->
+                                         
                                             <i class="fa-solid fa-user"></i>
                                             <span class="custom-option-title mb-1">Standard</span>
                                             <span class="badge bg-label-success btn-pinned">FREE</span>
@@ -383,7 +392,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <!-- <div class="col-md mb-md-0 mb-2">
+                            <div class="col-md mb-md-0 mb-2">
                                 <div class="form-check custom-option custom-option-icon position-relative">
                                     <label class="form-check-label custom-option-content" for="customRadioDelivery2">
                                         <span class="custom-option-body">
@@ -411,8 +420,8 @@
                                             id="customRadioDelivery3">
                                     </label>
                                 </div>
-                            </div> -->
-                        </div>
+                            </div>
+                        </div> -->
                     </div>
 
                     <!-- Address right -->
@@ -461,8 +470,8 @@
                                 <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <dd class="col-6 text-end"><s class="text-muted">{{0|currency:'INR'}}</s> <span
-                                        class="badge bg-label-success ms-1">Free</span></dd>
+                                <dd class="col-6 text-end"><s class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
+                                        class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span></dd>
                             </dl>
 
                             <hr class="mx-n4">
@@ -526,55 +535,7 @@
                                 <!-- Credit card -->
                                 <div class="tab-pane fade show active" id="pills-cc" role="tabpanel"
                                     aria-labelledby="pills-cc-tab">
-                                    <!-- <div class="row g-3">
-                                        <div class="col-12">
-                                            <label class="form-label w-100" for="paymentCard">Card Number</label>
-                                            <div class="input-group input-group-merge">
-                                                <input id="paymentCard" name="paymentCard"
-                                                    class="form-control credit-card-mask" type="text"
-                                                    placeholder="1356 3215 6548 7898" aria-describedby="paymentCard2">
-                                                <span class="input-group-text cursor-pointer p-1"
-                                                    id="paymentCard2"><span class="card-type"></span></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <label class="form-label" for="paymentCardName">Name</label>
-                                            <input type="text" id="paymentCardName" class="form-control"
-                                                placeholder="John Doe">
-                                        </div>
-                                        <div class="col-6 col-md-3">
-                                            <label class="form-label" for="paymentCardExpiryDate">Exp. Date</label>
-                                            <input type="text" id="paymentCardExpiryDate"
-                                                class="form-control expiry-date-mask" placeholder="MM/YY">
-                                        </div>
-                                        <div class="col-6 col-md-3">
-                                            <label class="form-label" for="paymentCardCvv">CVV Code</label>
-                                            <div class="input-group input-group-merge">
-                                                <input type="text" id="paymentCardCvv"
-                                                    class="form-control cvv-code-mask" maxlength="3" placeholder="654">
-                                                <span class="input-group-text cursor-pointer" id="paymentCardCvv2"><i
-                                                        class="bx bx-help-circle text-muted" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" aria-label="Card Verification Value"
-                                                        data-bs-original-title="Card Verification Value"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <label class="switch">
-                                                <input type="checkbox" class="switch-input">
-                                                <span class="switch-toggle-slider">
-                                                    <span class="switch-on"></span>
-                                                    <span class="switch-off"></span>
-                                                </span>
-                                                <span class="switch-label">Save card for future billing?</span>
-                                            </label>
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="button"
-                                                class="btn btn-primary btn-next me-sm-3 me-1">Submit</button>
-                                            <button type="reset" class="btn btn-label-secondary">Cancel</button>
-                                        </div>
-                                    </div> -->
-
+                                    
                                     <p>Pay Online is a type of payment method where the recipient make payment for
                                         the order at the time of delivery rather than in advance.</p>
                                     <button type="button" class="btn btn-primary btn-next" (click)="pay('ONLINE')">Pay Online</button>
@@ -625,53 +586,26 @@
                                 <s class="col-6 text-end">{{order_price_details.total_mrp_price |currency:'INR'}}</s>
 
                                 <dt class="col-sm-6 fw-normal">Coupon Discount</dt>
-                                <dd class="col-sm-6 text-end">{{order_price_details.total_copun_discount|currency:'INR'}}</dd>
+                                <dd class="col-sm-6 text-end">
+                                    {{order_price_details.total_copun_discount|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Order Total</dt>
                                 <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <dd class="col-6 text-end"><s class="text-muted">{{0|currency:'INR'}}</s> <span
-                                        class="badge bg-label-success ms-1">Free</span></dd>
+                                <dd class="col-6 text-end"><s class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
+                                        class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span></dd>
                             </dl>
 
                             <hr class="mx-n4">
                             <dl class="row mb-0">
                                 <dt class="col-6">Total</dt>
-                                <dd class="col-6 fw-medium text-end mb-0">{{order_price_details.final_price |currency:'INR'}}</dd>
+                                <dd class="col-6 fw-medium text-end mb-0">{{order_price_details.final_price
+                                    |currency:'INR'}}</dd>
                             </dl>
-                            <!-- Address Details -->
-                            <!-- <address class="text-heading">
-                                <span> {{order_shipping_billing_address_details}}</span>
-                                4135 Parkway Street,
-                                Los Angeles, CA, 90017.<br>
-                                Mobile : +1 906 568 2332
-                            </address> -->
-                            <div class="form-check custom-option custom-option-basic checked">
-                                <label class="form-check-label custom-option-content" for="customRadioAddress1">
-                                    <input name="customRadioTemp" class="form-check-input" type="radio" value=""
-                                        id="customRadioAddress1" checked="">
-                                    <span class="custom-option-header mb-2">
-                                        <span class="fw-medium mb-0">{{order_shipping_billing_address_details.name}}
-                                            (Default)</span>
-                                        <span
-                                            class="badge bg-label-primary">{{order_shipping_billing_address_details.address_Type
-                                            }}</span>
-                                    </span>
-                                    <span class="custom-option-body">
-                                        <small>{{order_shipping_billing_address_details.address}},
-                                            {{order_shipping_billing_address_details.state}},
-                                            {{order_shipping_billing_address_details.city}},
-                                            {{order_shipping_billing_address_details.pin_code}}
-                                            .<br> Mobile :
-                                            {{order_shipping_billing_address_details.original_phone}},{{order_shipping_billing_address_details.alternative_phone}}
-                                            Card / Cash on delivery available</small>
-                                        <span class="my-2 border-bottom d-block"></span>
-                                        
-                                    </span>
-                                </label>
-                            </div>
-                            <a href="javascript:void(0)" (click)="addAddress()">Change address</a>
+
+                           
+                           
                         </div>
                     </div>
                 </div>

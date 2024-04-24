@@ -116,10 +116,14 @@ export class AddToCartComponent implements OnInit {
     var sqlQuery = `SELECT p.*, CAST(COALESCE(AVG(pr.product_Rating),0) AS INTEGER) AS product_AVG_Rating, COUNT(pr.product_Rating) AS product_Total_Rating FROM ( SELECT * FROM e_commerce_product ep INNER JOIN e_commerce_product_kart epk ON epk.product_CART_ID = ep.product_Id WHERE ep.product_Live_Status = 'active' AND epk.product_CART_BY_Email = '${this.AppService.authStatus.email}' ) p LEFT JOIN e_commerce_product_rating pr ON p.product_Id = pr.product_Id GROUP BY p.product_Id;`
     this.ApiParameterScript.fetchDataFormQuery(sqlQuery).subscribe((res: any) => {
       // console.log("kart data", res);
-      if (res.success) {
+      if (res.success && res.data.length>0) {
         res.data.map((data: any) => {
           data['product_Images'] = data.product_Images.split(',');
+          data['deliveryCharges']=data.product_delevery_charges?data.product_delevery_charges:0
+          data['estimatedeliveryCharges']=data.product_expected_delivery_days && data.product_expected_delivery_days !=0?data.product_expected_delivery_days +' Days': " Between 5 Days"
         })
+        this.totalShippingPrice=_.sumBy(res.data, "deliveryCharges")
+        // alert(this.totalShippingPrice)
         this.allKartItem = res['data'];
         this.calculateTotalProductPrice()
         // console.log("allKartItem", this.allKartItem);
