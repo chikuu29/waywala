@@ -11,6 +11,7 @@ import { CheckOutProductOrder, priceDetails } from 'src/app/appInterface/checkOu
 import _, { isNumber } from 'lodash';
 import moment from 'moment';
 import { PaymentGetwayService } from '../services/payment-getway.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-order-checkout',
@@ -18,7 +19,7 @@ import { PaymentGetwayService } from '../services/payment-getway.service';
   styleUrls: ['./order-checkout.component.scss'],
 })
 export class OrderCheckoutComponent implements OnInit {
-
+  @BlockUI() blockUI: NgBlockUI;
   public checkOutProductList: any[] = []
   public activeStepperNumber: number = 1;
   imageURL: string = 'https://admin.waywala.com/api/shop/images/'
@@ -304,8 +305,8 @@ export class OrderCheckoutComponent implements OnInit {
 
 
   stepUp(index: number) {
-
-
+    
+    console.log("index",this.checkOutProductList);
     if (this.checkOutProductList[index].product_stock_count > this.checkOutProductList[index].order_quantity) {
       this.checkOutProductList[index].order_quantity += 1;
       this.updatePrice()
@@ -313,6 +314,8 @@ export class OrderCheckoutComponent implements OnInit {
 
   }
   stepDown(index: number) {
+    console.log("checkOutProductList",this.checkOutProductList);
+    console.log("index",index);
     if (1 < this.checkOutProductList[index].order_quantity) {
       this.checkOutProductList[index].order_quantity -= 1
       this.updatePrice()
@@ -320,6 +323,8 @@ export class OrderCheckoutComponent implements OnInit {
 
   }
   onChangeQuantity(event: any, index: number) {
+    console.log("index",index);
+    
     console.log("onChangeQuantity", this.checkOutProductList[index].order_quantity);
     try {
 
@@ -395,8 +400,9 @@ export class OrderCheckoutComponent implements OnInit {
       this.orderCheckOutInfo.order_note="NA"
 
       // console.log(this.orderCheckOutInfo)
+      this.blockUI.start("Please Wait...")
       this.payment_getway.createOrder(this.orderCheckOutInfo, payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
-        // this.blockUI.stop();
+        this.blockUI.stop();
         console.log(res);
         // var paymentSessionId = res.payment_session_id;
         if (res.success) {

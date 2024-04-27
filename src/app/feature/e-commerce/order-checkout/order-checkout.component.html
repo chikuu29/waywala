@@ -89,9 +89,13 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <p class="me-3"><a [routerLink]="'/store/product/'+item?.product_Id"
-                                                        class="text-body text-primary">{{item?.product_Name |uppercase}}</a></p>
-                                                <div class="text-muted mb-2 d-flex flex-wrap"><span class="me-1">Delivery Charges:</span> <a href="javascript:void(0)" class="me-3"></a>
-                                                    <span class="badge bg-label-success">{{item.deliveryCharges |currency:'INR' }}</span>
+                                                        class="text-body text-primary">{{item?.product_Name
+                                                        |uppercase}}</a></p>
+                                                <div class="text-muted mb-2 d-flex flex-wrap"><span
+                                                        class="me-1">Delivery Charges:</span> <a
+                                                        href="javascript:void(0)" class="me-3"></a>
+                                                    <span class="badge bg-label-success">{{item.deliveryCharges
+                                                        |currency:'INR' }}</span>
                                                 </div>
 
                                                 <!-- <p><button class="btn btn-danger btn-sm"> Delivery Charges :{{item.deliveryCharges |currency:'INR' }}</button></p> -->
@@ -196,10 +200,9 @@
                                                     </button>
 
                                                     <div class="form-outline">
-                                                        <input [min]="1" name="quantity"
+                                                        <input [min]="1" [name]="'quantity_'+i"
                                                             [(ngModel)]="item.order_quantity"
-                                                            (change)="onChangeQuantity($event, i)"
-                                                            [readOnly]="true"
+                                                            (change)="onChangeQuantity($event, i)" [readOnly]="true"
                                                             [max]="item.product_stock_count" type="number"
                                                             class="form-control" readonly />
 
@@ -214,8 +217,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="text-md-end">
-                                                    <button type="button" (click)="remove(item)" class="btn-close btn-pinned"
-                                                        aria-label="Close"></button>
+                                                    <button type="button" (click)="remove(item)"
+                                                        class="btn-close btn-pinned" aria-label="Close"></button>
                                                     <div class="my-2 my-md-4 mb-md-5"><span
                                                             class="text-success ">{{item.product_Selling_Price*item.order_quantity
                                                             |currency:'INR'}}/</span><s
@@ -227,7 +230,8 @@
                                                         wishlist</button> -->
                                                 </div>
                                             </div>
-                                            <p><span class="text-success btn-sm"> Estimate Delivery By :{{item.estimatedeliveryCharges}}</span></p>
+                                            <p><span class="text-success btn-sm"> Estimate Delivery By
+                                                    :{{item.estimatedeliveryCharges}}</span></p>
 
                                         </div>
                                     </div>
@@ -285,9 +289,11 @@
                                 <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <span  class="col-6 text-end">{{totalDeliveryCharges|currency:'INR'}}</span>
-                                <dd *ngIf="totalDeliveryCharges==0" class="col-6 text-end"><s class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
-                                        class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span></dd>
+                                <span class="col-6 text-end">{{totalDeliveryCharges|currency:'INR'}}</span>
+                                <dd *ngIf="totalDeliveryCharges==0" class="col-6 text-end"><s
+                                        class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
+                                        class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span>
+                                </dd>
 
 
                             </dl>
@@ -470,8 +476,10 @@
                                 <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <dd class="col-6 text-end"><s class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
-                                        class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span></dd>
+                                <dd class="col-6 text-end"><s
+                                        class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
+                                        class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span>
+                                </dd>
                             </dl>
 
                             <hr class="mx-n4">
@@ -491,8 +499,46 @@
             <!-- Payment -->
             <div id="checkout-payment" class="content active dstepper-block " *ngIf="activeStepperNumber==3">
                 <div class="row">
+
+
+                    <!-- Address right -->
+                    <div class="col-xl-8 col-xxl-3">
+                        <div class="border rounded p-4">
+
+                            <!-- Price Details -->
+
+                            <h6>Price Details</h6>
+                            <dl class="row mb-0">
+                                <dt class="col-6 fw-normal">Bag Total</dt>
+                                <s class="col-6 text-end">{{order_price_details.total_mrp_price |currency:'INR'}}</s>
+
+                                <dt class="col-sm-6 fw-normal">Coupon Discount</dt>
+                                <dd class="col-sm-6 text-end">
+                                    {{order_price_details.total_copun_discount|currency:'INR'}}</dd>
+
+                                <dt class="col-6 fw-normal">Order Total</dt>
+                                <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
+
+                                <dt class="col-6 fw-normal">Delivery Charges</dt>
+                                <dd class="col-6 text-end"><s
+                                        class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
+                                        class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span>
+                                </dd>
+                            </dl>
+
+                            <hr class="mx-n4">
+                            <dl class="row mb-0">
+                                <dt class="col-6">Total</dt>
+                                <dd class="col-6 fw-medium text-end mb-0">{{order_price_details.final_price
+                                    |currency:'INR'}}</dd>
+                            </dl>
+
+
+
+                        </div>
+                    </div>
                     <!-- Payment left -->
-                    <div class="col-xl-8 col-xxl-9 mb-3 mb-xl-0">
+                    <div class="col-xl-4 col-xxl-9 mb-3 mb-xl-0">
                         <!-- Offer alert -->
                         <!-- <div class="alert alert-success" role="alert">
                             <div class="d-flex">
@@ -514,11 +560,11 @@
                         <!-- Payment Tabs -->
                         <div class="col-xxl-6 col-lg-8">
                             <ul class="nav nav-pills mb-3" id="paymentTabs" role="tablist">
-                                <li class="nav-item" role="presentation">
+                                <!-- <li class="nav-item" role="presentation">
                                     <button class="nav-link active me-2" id="pills-cc-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-cc" type="button" role="tab" aria-controls="pills-cc"
                                         aria-selected="true">Online</button>
-                                </li>
+                                </li> -->
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-cod-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-cod" type="button" role="tab" aria-controls="pills-cod"
@@ -533,20 +579,21 @@
                             </ul>
                             <div class="tab-content px-0 border-0" id="paymentTabsContent">
                                 <!-- Credit card -->
-                                <div class="tab-pane fade show active" id="pills-cc" role="tabpanel"
+                                <!-- <div class="tab-pane fade show active" id="pills-cc" role="tabpanel"
                                     aria-labelledby="pills-cc-tab">
                                     
                                     <p>Pay Online is a type of payment method where the recipient make payment for
                                         the order at the time of delivery rather than in advance.</p>
                                     <button type="button" class="btn btn-primary btn-next" (click)="pay('ONLINE')">Pay Online</button>
-                                </div>
+                                </div> -->
 
                                 <!-- COD -->
                                 <div class="tab-pane fade" id="pills-cod" role="tabpanel"
                                     aria-labelledby="pills-cod-tab">
                                     <p>Cash on Delivery is a type of payment method where the recipient make payment for
                                         the order at the time of delivery rather than in advance.</p>
-                                    <button type="button" class="btn btn-primary btn-next" (click)="pay('COD')"> Pay On Delivery</button>
+                                    <button type="button" class="btn btn-primary btn-next" (click)="pay('COD')"> Pay On
+                                        Delivery</button>
                                 </div>
 
                                 <!-- Gift card -->
@@ -574,40 +621,7 @@
                         </div>
 
                     </div>
-                    <!-- Address right -->
-                    <div class="col-xl-4 col-xxl-3">
-                        <div class="border rounded p-4">
 
-                            <!-- Price Details -->
-                       
-                            <h6>Price Details</h6>
-                            <dl class="row mb-0">
-                                <dt class="col-6 fw-normal">Bag Total</dt>
-                                <s class="col-6 text-end">{{order_price_details.total_mrp_price |currency:'INR'}}</s>
-
-                                <dt class="col-sm-6 fw-normal">Coupon Discount</dt>
-                                <dd class="col-sm-6 text-end">
-                                    {{order_price_details.total_copun_discount|currency:'INR'}}</dd>
-
-                                <dt class="col-6 fw-normal">Order Total</dt>
-                                <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
-
-                                <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <dd class="col-6 text-end"><s class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
-                                        class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span></dd>
-                            </dl>
-
-                            <hr class="mx-n4">
-                            <dl class="row mb-0">
-                                <dt class="col-6">Total</dt>
-                                <dd class="col-6 fw-medium text-end mb-0">{{order_price_details.final_price
-                                    |currency:'INR'}}</dd>
-                            </dl>
-
-                           
-                           
-                        </div>
-                    </div>
                 </div>
             </div>
 
