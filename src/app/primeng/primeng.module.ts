@@ -21,7 +21,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { SidebarModule } from 'primeng/sidebar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { CalendarModule } from 'primeng/calendar';
-
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   declarations: [],
   imports: [
@@ -46,7 +46,8 @@ import { CalendarModule } from 'primeng/calendar';
     AccordionModule,
     SidebarModule,
     MultiSelectModule,
-    CalendarModule
+    CalendarModule,
+    DialogModule
    
   ],
   exports:[
@@ -70,7 +71,8 @@ import { CalendarModule } from 'primeng/calendar';
     AccordionModule,
     SidebarModule,
     MultiSelectModule,
-    CalendarModule
+    CalendarModule,
+    DialogModule
   ]
 })
 export class PrimengModule { }

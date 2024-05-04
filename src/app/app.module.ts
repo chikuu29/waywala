@@ -21,6 +21,7 @@ import { AuthViewComponent } from './layout/auth-view/auth-view.component';
 import { DefaultViewComponent } from './layout/default-view/default-view.component';
 import { StoreViewComponent } from './layout/store-view/store-view.component';
 import { AuthorizationInterceptor } from './utils/authorization.interceptor';
+import { MessageService } from 'primeng/api';
 
 export function initStartUpAPIConfiugration(AppInitializationServiceServiceService:AppInitializationServiceServiceService){
   return ()=>{
@@ -61,6 +62,7 @@ export function initStartAppConfiugration(AppInitializationServiceServiceService
 
   ],
   providers: [
+    MessageService,
     AppService,
     ApiService,
     NgbActiveModal,

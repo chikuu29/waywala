@@ -15,7 +15,7 @@ import { ProductSectionComponent } from './product-section/product-section.compo
 import { ECommerceServicesService } from './services/e-commerce-services.service';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import { MyOrderComponent } from './my-order/my-order.component';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { SharedModule } from "../../shared/shared.module";
@@ -60,7 +60,7 @@ import { SuggestedProductListComponent } from './suggested-product-list/suggeste
         AllProductListComponent,
         ProductSectionComponent
     ],
-    providers: [ProductService, ConfirmationService,ToastrService],
+    providers: [ProductService, ConfirmationService,MessageService,ToastrService],
     imports: [
         CommonModule,
         ECommerceRoutingModule,

@@ -339,11 +339,11 @@ export class ApiParameterScript {
         return simpleObservable;
     }
 
-    public dynamicApiExecute(path:any,data:any){
+    public dynamicApiExecute(path:any,apiData:any){
         const simpleObservable = new Observable((observer) => {
             try {
-               
-                this.apiservices.dyamicApiCall(path,data).subscribe((res: any) => {
+                apiData['loginInfo'] =this.appservices.authStatus;
+                this.apiservices.dyamicApiCall(path,apiData).subscribe((res: any) => {
                     observer.next(res);
                     observer.complete();
                 },(error:any)=>{
@@ -361,5 +361,7 @@ export class ApiParameterScript {
         return simpleObservable;
 
     }
+
+
 
 }

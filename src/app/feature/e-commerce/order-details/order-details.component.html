@@ -139,3 +139,22 @@
         </div>
     </section>
 </div>
+
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<p-dialog header="Please Enter Reason For Cancle
+" [(visible)]="visible" [style]="{width: '50vw'}">
+
+  <form [formGroup]="statusTextForm">
+    <div class="form-outline mb-2">
+      <span class="">Please Enter Reason For Cancle</span>
+      <mat-form-field appearance="outline" class="w-100 mt-2">
+        <mat-label>Reason Text</mat-label>
+        <textarea matInput placeholder="Enter The Reason Details" formControlName="reasonText"></textarea>
+        <mat-icon matSuffix class="text-success">{{'done'}}</mat-icon>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="accent" [disabled]="!statusTextForm.valid" (click)="cancle_With_reason()">Submit</button>
+  </form>
+</p-dialog>
