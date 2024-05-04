@@ -78,54 +78,63 @@ export class AgricultureProductPageComponent implements OnInit {
     ]
     this.categoryList = [
       {
-        "categories": "Seeds",
-        "image": "assets/e-commerce/vegitable.png",
-        "subcategories": [],
-        "actualCategory": "Agriculture"
+          "categories": "Seeds",
+          "image": "assets/e-commerce/vegitable.png",
+          "subcategories": [],
+          "actualCategory": "Agriculture",
+          "text": "Seeds"
       },
       {
-        "categories": "Vegetables",
-        "image": "assets/e-commerce/vegitable.jpg",
-        "subcategories": [],
-        "actualCategory": "Agriculture"
+          "categories": "Vegetables",
+          "image": "assets/e-commerce/vegitable.jpg",
+          "subcategories": [],
+          "actualCategory": "Agriculture",
+          "text": "Vegetables"
       },
       {
-        "categories": "Fruits",
-        "image": "assets/e-commerce/fruits.jpg",
-        "subcategories": [],
-        "actualCategory": "Agriculture"
+          "categories": "Fruits",
+          "image": "assets/e-commerce/fruits.jpg",
+          "subcategories": [],
+          "actualCategory": "Agriculture",
+          "text": "Fruits"
       },
       {
-        "categories": "Fertilizers",
-        "image": "assets/e-commerce/Fertilizers.png",
-        "subcategories": [],
-        "actualCategory": "Agriculture"
+          "categories": "Fertilizers",
+          "image": "assets/e-commerce/Fertilizers.png",
+          "subcategories": [],
+          "actualCategory": "Agriculture",
+          "text": "Fertilizers"
       },
       {
-        "categories": "Agricultural Medicine",
-        "image": "assets/e-commerce/farmacy.jpg",
-        "subcategories": [],
-        "actualCategory": "Agriculture"
+          "categories": "Agricultural Medicine",
+          "image": "assets/e-commerce/farmacy.jpg",
+          "subcategories": [],
+          "actualCategory": "Agriculture",
+          "text": "Agricultural Medicine"
       },
       {
-        "categories": "Agricultural Machineries",
-        "image": "assets/e-commerce/Agricultural_machineries.png",
-        "subcategories": [],
-        "actualCategory": "Agriculture"
+          "categories": "Agricultural Machineries",
+          "image": "assets/e-commerce/Agricultural_machineries.png",
+          "subcategories": [],
+          "actualCategory": "Agriculture",
+          "text": "Agricultural Machineries"
       },
       {
-        "categories": "Agriculture Instruments",
-        "image": "assets/e-commerce/fashion.png",
-        "subcategories": [],
-        "actualCategory": "Agriculture"
+          "categories": "Agriculture Instruments",
+          "image": "assets/e-commerce/fashion.png",
+          "subcategories": [],
+          "actualCategory": "Agriculture",
+          "text": "Agriculture Instruments"
       },
       {
-        "categories": "Agricultural Products",
-        "image": "assets/e-commerce/agruculture.png",
-        "subcategories": [],
-        "actualCategory": "Agriculture"
+          "categories": "Agricultural Products",
+          "image": "assets/e-commerce/agruculture.png",
+          "subcategories": [],
+          "actualCategory": "Agriculture",
+          "text": "Agricultural Products"
       }
-    ]
+  ]
+  
     this._rout.params.subscribe((res: any) => {
       console.log(res);
       // this.eCommerceServicesService.refreshComponent.next(true)

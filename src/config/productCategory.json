@@ -1,8 +1,8 @@
 [
-    
     {
         "id": 2,
         "categories": "Fashion & Beauty",
+        "text": "Fashion & Beauty",
         "image": "assets/e-commerce/fashion.png",
         "subcategories": [
             "Mens clothing",
@@ -17,7 +17,8 @@
     {
         "id": 3,
         "categories": "TVs & Appliances",
-        "image":"assets/e-commerce/1162332_ORH85K0.jpg",
+        "text": "TVs & Appliances",
+        "image": "assets/e-commerce/1162332_ORH85K0.jpg",
         "subcategories": [
             "Televisions",
             "Kitchen Appliances",
@@ -32,6 +33,7 @@
     {
         "id": 5,
         "categories": "Electronics",
+        "text": "Mobail & Electronics",
         "image": "assets/e-commerce/elctronics.png",
         "subcategories": [
             "Shop by Brand",
@@ -54,6 +56,7 @@
     {
         "id": 6,
         "categories": "Home, Furniture & Decor",
+        "text": "Home, Furniture & Decor",
         "image": "assets/e-commerce/home_funiture.jpg",
         "subcategories": [
             "Home & Kitchen",
@@ -67,7 +70,8 @@
     {
         "id": 7,
         "categories": "Personal Care",
-        "image":"assets/e-commerce/persional_care.jpg",
+        "text": "Personal Care",
+        "image": "assets/e-commerce/persional_care.jpg",
         "subcategories": [
             "Skin Care",
             "Beauty",
@@ -79,6 +83,7 @@
     {
         "id": 8,
         "categories": "Toys and Baby",
+        "text": "Toys and Baby",
         "image": "assets/e-commerce/toy.png",
         "subcategories": [
             "Toys",
@@ -89,6 +94,7 @@
     {
         "id": 9,
         "categories": "Sports & Fitness",
+        "text": "Sports & Fitness",
         "image": "assets/e-commerce/fitness.png",
         "subcategories": [
             "Footwear",
@@ -102,6 +108,7 @@
     {
         "id": 10,
         "categories": "Pharmacy",
+        "text": "Pharmacy",
         "image": "assets/e-commerce/farmacy.jpg",
         "subcategories": [
             "Medicine",
@@ -111,10 +118,10 @@
             "Supplements"
         ]
     },
-  
     {
         "id": 12,
         "categories": "Books & Education",
+        "text": "Books & Education",
         "image": "assets/e-commerce/books.jpg",
         "subcategories": [
             "Books",
@@ -125,7 +132,8 @@
     {
         "id": 11,
         "categories": "Groceries, Pet & Household Supplies",
-        "image":"assets/e-commerce/Groceries, Pet & Household Supplies.jpg",
+        "text": "Groceries, Pet & Household Supplies",
+        "image": "assets/e-commerce/Groceries, Pet & Household Supplies.jpg",
         "subcategories": [
             "Staples",
             "Snacks & Beverages",
