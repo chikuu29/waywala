@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { RegistrationService } from 'src/app/services/registration.service';
@@ -13,6 +13,8 @@ import { CoinService } from 'src/app/services/coin.service';
   styleUrls: ['./otp.component.scss']
 })
 export class OtpComponent implements OnInit {
+
+  @Input() resendotpRequired:boolean=true;
   public OtpType: String = ''
   public modalTitle: String = ''
   public otpSendTo: any;

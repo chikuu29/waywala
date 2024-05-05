@@ -20,7 +20,7 @@ export class MyCoinZoneComponent implements OnInit {
     "isCoinAccountActive": false,
     "account_Deatais": {},
     "account_Trasaction": [],
-    "trasaction_History_FREE_COIN":[]
+    "trasaction_History_FREE_COIN": []
 
   };
   constructor(
@@ -42,12 +42,13 @@ export class MyCoinZoneComponent implements OnInit {
       if (res.success && !res.isCoinAccountActive) {
 
         const modalRef = this.modalService.open(OtpComponent);
+        modalRef.componentInstance.resendotpRequired = false
         modalRef.componentInstance.modalTitle = res.name;
         modalRef.componentInstance.otpForCoin = true;
         modalRef.componentInstance.OtpType = "Email",
-        modalRef.componentInstance.otpSendTo = res.email
+          modalRef.componentInstance.otpSendTo = res.email
         modalRef.result.then((modalInstance: any) => {
-
+          this.ngOnInit()
           console.log("log");
 
 
@@ -57,8 +58,8 @@ export class MyCoinZoneComponent implements OnInit {
         this.coinAccountInfo = {
           "isCoinAccountActive": res.isCoinAccountActive,
           "account_Deatais": res['account'],
-          "trasaction_History":res['trasaction_History'],
-          "trasaction_History_FREE_COIN":res['trasaction_History_FREE_COIN']
+          "trasaction_History": res['trasaction_History'],
+          "trasaction_History_FREE_COIN": res['trasaction_History_FREE_COIN']
         }
 
       }
@@ -88,7 +89,7 @@ export class MyCoinZoneComponent implements OnInit {
 
     })
 
-    
+
 
   }
 

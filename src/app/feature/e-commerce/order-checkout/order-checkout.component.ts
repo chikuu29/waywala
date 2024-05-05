@@ -404,7 +404,7 @@ export class OrderCheckoutComponent implements OnInit {
       }
       this.orderCheckOutInfo.order_note = "NA"
 
-      // console.log(this.orderCheckOutInfo)
+      console.log(this.orderCheckOutInfo)
       this.blockUI.start("Please Wait...")
       this.payment_getway.createOrder(this.orderCheckOutInfo, payment_mode == "COD" ? 1200 : 1201).subscribe((res: any) => {
         this.blockUI.stop();
