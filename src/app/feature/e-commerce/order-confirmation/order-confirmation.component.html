@@ -327,13 +327,13 @@
                         <dt class="col-sm-6 fw-normal">Dicount</dt>
                         <dd class="col-sm-6 text-end">{{ productconfirmationDATA.total_dicout_price| currency : "INR" : "symbol" : "1.0-0"}}</dd>
                         <dt class="col-sm-6 fw-normal">Delivery Charges</dt>
-                        <dd class="col-sm-6 text-end"><s class="text-muted">{{0| currency : "INR" : "symbol" : "1.0-0"}}</s> <span
-                                class="badge bg-label-success ms-1">Free</span></dd>
+                        <dd class="col-sm-6 text-end"><span class="text-muted">{{productconfirmationDATA.total_deliver_charges| currency : "INR" : "symbol" : "1.0-0"}}</span> </dd>
                     </dl>
                     <hr class="mx-n4">
                     <dl class="row mb-0">
                         <dt class="col-6">Total</dt>
-                        <dd class="col-6 fw-medium text-end mb-0">{{ productconfirmationDATA.total_selling_price| currency : "INR" : "symbol" : "1.0-0"}}</dd>
+                        <dd class="col-6 fw-medium text-end mb-0">{{ productconfirmationDATA.total_selling_price +productconfirmationDATA.total_deliver_charges
+                            | currency : "INR" : "symbol" : "1.0-0"}}</dd>
                     </dl>
                 </div>
             </div>

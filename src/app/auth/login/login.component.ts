@@ -79,7 +79,9 @@ export class LoginComponent implements OnInit {
           this.toastr.success(res.message, "Done");
           res['isLogin'] = true;
           // localStorage.setItem('loginiinfo', JSON.stringify(res))
-          var expiration_date = new Date(new Date().getTime() + 86400 * 1000).toString();
+          // var expiration_date = new Date(new Date().getTime() + 86400 * 1000).toString();
+          var expiration_date = new Date(new Date().getTime() + 5 * 60 * 60 * 1000).toString();
+
           this.auth.authentication(res.username, res.useremail,res.userphone, true, "LOGIN_USER", res.token, expiration_date, res.user_profile_image);
           this.router.navigateByUrl(this.redirectUrl)
         } else {

@@ -97,7 +97,7 @@ export class AuthService {
 
   }
   public autoLogout(expiration_date: any) {
-    console.log("activating Auto Logout");
+    console.log("activating Auto Logoutn in ",expiration_date);
     this.deactiveAutoLogout = setTimeout(() => {
       this.logout()
     }, expiration_date);
