@@ -288,7 +288,7 @@
                                 <dt class="col-6 fw-normal">Order Total</dt>
                                 <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
-                                <dt class="col-6 fw-normal">Delivery Charges</dt>
+                                <span class="col-6 fw-normal">Delivery Charges</span>
                                 <span class="col-6 text-end">{{totalDeliveryCharges|currency:'INR'}}</span>
                                 <dd *ngIf="totalDeliveryCharges==0" class="col-6 text-end"><span
                                         class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</span> <span
@@ -476,8 +476,8 @@
                                 <dd class="col-6 text-end">{{order_price_details.total_price|currency:'INR'}}</dd>
 
                                 <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                <dd class="col-6 text-end"><s
-                                        class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</s> <span
+                                <dd class="col-6 text-end">
+                                      {{totalDeliveryCharges|currency:'INR'}} <span
                                         class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span>
                                 </dd>
                             </dl>
