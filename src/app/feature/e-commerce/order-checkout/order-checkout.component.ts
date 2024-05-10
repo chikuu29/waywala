@@ -126,7 +126,7 @@ export class OrderCheckoutComponent implements OnInit {
         console.log(res);
 
         res.data.map((data: any) => {
-          data['product_delevery_pincodes'] = data.product_delevery_pincodes.split(',');
+          data['product_delevery_pincodes'] = data.product_delevery_pincodes? data.product_delevery_pincodes.split(','):[];
           data['product_Images'] = data.product_Images.split(',');
           data['deliveryCharges'] = data.product_delevery_charges ? data.product_delevery_charges : 0
           data['estimatedeliveryCharges'] = data.product_expected_delivery_days && data.product_expected_delivery_days != 0 ? data.product_expected_delivery_days + ' Days' : " Between 5 Days"
@@ -230,7 +230,12 @@ export class OrderCheckoutComponent implements OnInit {
     console.log("place Order", this.orderCheckOutInfo);
 
     try {
-      this.next()
+      if(this.checkOutProductList.length>0){
+        this.next()
+      }else{
+        Swal.fire('Error','Your Cart Is Empty','error')
+      }
+     
     } catch (error) {
       console.log(error);
 
@@ -382,7 +387,7 @@ export class OrderCheckoutComponent implements OnInit {
 
   pay(payment_mode: string) {
     console.log(payment_mode);
-    if (this.isAddressSelected) {
+    if (this.isAddressSelected && this.checkOutProductList.length>0) {
 
       this.orderCheckOutInfo.order_id = this.generateOrderID()
       this.orderCheckOutInfo.order_payment_mode = payment_mode
@@ -431,7 +436,7 @@ export class OrderCheckoutComponent implements OnInit {
 
 
     } else {
-      Swal.fire('Warning', 'Please Select Address', 'warning')
+      Swal.fire('Warning', 'Please Select Address OR Your Cart Should Not Be Empty', 'warning')
     }
 
   }

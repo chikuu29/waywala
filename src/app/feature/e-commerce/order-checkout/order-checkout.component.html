@@ -1,7 +1,8 @@
 <div class="coustom-margin"></div>
 <div id="wizard-checkout" class="container bs-stepper wizard-icons wizard-icons-example mb-5">
     <div class="bs-stepper-header m-auto border-0 py-4">
-        <div class="step" data-target="#checkout-cart" (click)="activeStepper(1)"
+        <div class="step" data-target="#checkout-cart"
+         (click)="activeStepper(1)"
             [class.active]="activeStepperNumber==1">
             <button type="button" class="step-trigger" [attr.aria-selected]="activeStepperNumber === 1">
                 <span class="bs-stepper-icon">
@@ -290,10 +291,10 @@
 
                                 <span class="col-6 fw-normal">Delivery Charges</span>
                                 <span class="col-6 text-end">{{totalDeliveryCharges|currency:'INR'}}</span>
-                                <dd *ngIf="totalDeliveryCharges==0" class="col-6 text-end"><span
+                                <!-- <dd *ngIf="totalDeliveryCharges==0" class="col-6 text-end"><span
                                         class="text-muted">{{totalDeliveryCharges|currency:'INR'}}</span> <span
                                         class="badge bg-label-success ms-1" *ngIf="totalDeliveryCharges==0">Free</span>
-                                </dd>
+                                </dd> -->
 
 
                             </dl>
@@ -306,7 +307,7 @@
                             </dl>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-primary btn-next" (click)="placeorder()">Place Order</button>
+                            <button class="btn btn-primary btn-next" (click)="placeorder()" [disabled]="checkOutProductList.length==0">Place Order</button>
                         </div>
                     </div>
                 </div>
