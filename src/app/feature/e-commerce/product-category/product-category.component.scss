@@ -23,8 +23,14 @@
 
   .activeItems {
     border-radius: 12px;
-    background: #fff;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    // background: #fff;
+    background-color: green;
+    // color: #ffff !important;
+    box-shadow: rgba(169, 243, 181, 0.2) 0px 7px 29px 0px;
+    .category-item-taitel{
+      color: #ffff !important;
+      font-weight: 500;
+    }
   }
 }
 
@@ -81,7 +87,7 @@
         .category-item-taitel {
         //   font-size: 8px;
           font-weight: 500;
-          color: black;
+          // color: black;
           text-align: center;
           .taitel-size {
             line-height: 1;
