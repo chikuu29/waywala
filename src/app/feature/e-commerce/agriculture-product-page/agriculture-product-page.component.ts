@@ -13,12 +13,12 @@ export class AgricultureProductPageComponent implements OnInit {
   public category: string = '';
   public allProductList: any[] = []
   public loadingSkeltonLoader: boolean = true
-  bannerItems:any[]=[
+  bannerItems: any[] = [
     // {
     //   image_url:"assets/e-commerce/248_Fashion_sale_facebook_cover_page_template.jpg"
     // },
     {
-      image_url:"assets/e-commerce/7874805.jpg"
+      image_url: "assets/e-commerce/7874805.jpg"
     }
   ]
   constructor(
@@ -26,115 +26,115 @@ export class AgricultureProductPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categoryList = [
+    // this.categoryList = [
 
+    //   {
+    //     taitel: "Agricultural Medicine",
+    //     url: "/store/agriculture/product/Agricultural Medicine",
+    //     image: 'assets/e-commerce/agricultural.jpg',
+    //     subcategories: []
+    //   },
+    //   {
+    //     taitel: "Agricultural Machineries",
+    //     url: "/store/agriculture/product/Agricultural Machineries",
+    //     image: 'assets/e-commerce/Agricultural_machineries.png'
+    //   },
+    //   {
+    //     taitel: "Agricultural Instruments",
+    //     url: "/store/agriculture/product/Agricultural Instruments",
+    //     image: 'assets/e-commerce/AgriculturalInstruments.png'
+    //   },
+    //   {
+    //     taitel: "Agricultural Products",
+    //     url: "/store/agriculture/product/Agricultural Products",
+    //     image: 'assets/e-commerce/AgriculturalProducts.png'
+    //   },
+    //   {
+    //     taitel: "Agricultural Products",
+    //     url: "/store/agriculture/product/Agricultural Products",
+    //     image: 'assets/e-commerce/AgriculturalProducts.png'
+    //   }
+    //   ,
+    //   {
+    //     taitel: "Agricultural Seeds",
+    //     url: "/store/agriculture/product/Seeds",
+    //     image: 'assets/e-commerce/AgriculturalProducts.png'
+    //   },
+    //   {
+    //     taitel: "Agricultural Vegetables",
+    //     url: "/store/agriculture/product/Vegetables",
+    //     image: 'assets/e-commerce/AgriculturalProducts.png'
+    //   },
+    //   {
+    //     taitel: "Agricultural Fruits",
+    //     url: "/store/agriculture/product/Fruits",
+    //     image: 'assets/e-commerce/AgriculturalProducts.png'
+    //   },
+    //   {
+    //     taitel: "Agricultural Fertilizers",
+    //     url: "/store/agriculture/product/Fertilizers",
+    //     image: 'assets/e-commerce/AgriculturalProducts.png'
+    //   }
+    // ]
+    this.categoryList = [
       {
-        taitel: "Agricultural Medicine",
-        url: "/store/agriculture/product/Agricultural Medicine",
-        image: 'assets/e-commerce/agricultural.jpg',
-        subcategories: []
+        "categories": "Seeds",
+        "image": "assets/e-commerce/seeds.jpg",
+        "subcategories": [],
+        "actualCategory": "Agriculture",
+        "text": "Seeds"
       },
       {
-        taitel: "Agricultural Machineries",
-        url: "/store/agriculture/product/Agricultural Machineries",
-        image: 'assets/e-commerce/Agricultural_machineries.png'
+        "categories": "Vegetables",
+        "image": "assets/e-commerce/vegetables.jpg",
+        "subcategories": [],
+        "actualCategory": "Agriculture",
+        "text": "Vegetables"
       },
       {
-        taitel: "Agricultural Instruments",
-        url: "/store/agriculture/product/Agricultural Instruments",
-        image: 'assets/e-commerce/AgriculturalInstruments.png'
+        "categories": "Fruits",
+        "image": "assets/e-commerce/fruits.jpg",
+        "subcategories": [],
+        "actualCategory": "Agriculture",
+        "text": "Fruits"
       },
       {
-        taitel: "Agricultural Products",
-        url: "/store/agriculture/product/Agricultural Products",
-        image: 'assets/e-commerce/AgriculturalProducts.png'
+        "categories": "Fertilizers",
+        "image": "assets/e-commerce/fertilizer.jpg",
+        "subcategories": [],
+        "actualCategory": "Agriculture",
+        "text": "Fertilizers"
       },
       {
-        taitel: "Agricultural Products",
-        url: "/store/agriculture/product/Agricultural Products",
-        image: 'assets/e-commerce/AgriculturalProducts.png'
-      }
-      ,
-      {
-        taitel: "Agricultural Seeds",
-        url: "/store/agriculture/product/Seeds",
-        image: 'assets/e-commerce/AgriculturalProducts.png'
+        "categories": "Agricultural Medicine",
+        "image": "assets/e-commerce/agriculture_medicine.jpg",
+        "subcategories": [],
+        "actualCategory": "Agriculture",
+        "text": "Agricultural Medicine"
       },
       {
-        taitel: "Agricultural Vegetables",
-        url: "/store/agriculture/product/Vegetables",
-        image: 'assets/e-commerce/AgriculturalProducts.png'
+        "categories": "Agricultural Machineries",
+        "image": "assets/e-commerce/agriculture_machinary.jpg",
+        "subcategories": [],
+        "actualCategory": "Agriculture",
+        "text": "Agricultural Machineries"
       },
       {
-        taitel: "Agricultural Fruits",
-        url: "/store/agriculture/product/Fruits",
-        image: 'assets/e-commerce/AgriculturalProducts.png'
+        "categories": "Agriculture Instruments",
+        "image": "assets/e-commerce/agriculture_instruments.jpg",
+        "subcategories": [],
+        "actualCategory": "Agriculture",
+        "text": "Agriculture Instruments"
       },
       {
-        taitel: "Agricultural Fertilizers",
-        url: "/store/agriculture/product/Fertilizers",
-        image: 'assets/e-commerce/AgriculturalProducts.png'
+        "categories": "Agricultural Products",
+        "image": "assets/e-commerce/agriculture_produts.jpg",
+        "subcategories": [],
+        "actualCategory": "Agriculture",
+        "text": "Agricultural Products"
       }
     ]
-    this.categoryList = [
-      {
-          "categories": "Seeds",
-          "image": "assets/e-commerce/vegitable.png",
-          "subcategories": [],
-          "actualCategory": "Agriculture",
-          "text": "Seeds"
-      },
-      {
-          "categories": "Vegetables",
-          "image": "assets/e-commerce/vegitable.jpg",
-          "subcategories": [],
-          "actualCategory": "Agriculture",
-          "text": "Vegetables"
-      },
-      {
-          "categories": "Fruits",
-          "image": "assets/e-commerce/fruits.jpg",
-          "subcategories": [],
-          "actualCategory": "Agriculture",
-          "text": "Fruits"
-      },
-      {
-          "categories": "Fertilizers",
-          "image": "assets/e-commerce/Fertilizers.png",
-          "subcategories": [],
-          "actualCategory": "Agriculture",
-          "text": "Fertilizers"
-      },
-      {
-          "categories": "Agricultural Medicine",
-          "image": "assets/e-commerce/farmacy.jpg",
-          "subcategories": [],
-          "actualCategory": "Agriculture",
-          "text": "Agricultural Medicine"
-      },
-      {
-          "categories": "Agricultural Machineries",
-          "image": "assets/e-commerce/Agricultural_machineries.png",
-          "subcategories": [],
-          "actualCategory": "Agriculture",
-          "text": "Agricultural Machineries"
-      },
-      {
-          "categories": "Agriculture Instruments",
-          "image": "assets/e-commerce/fashion.png",
-          "subcategories": [],
-          "actualCategory": "Agriculture",
-          "text": "Agriculture Instruments"
-      },
-      {
-          "categories": "Agricultural Products",
-          "image": "assets/e-commerce/agruculture.png",
-          "subcategories": [],
-          "actualCategory": "Agriculture",
-          "text": "Agricultural Products"
-      }
-  ]
-  
+
     this._rout.params.subscribe((res: any) => {
       console.log(res);
       // this.eCommerceServicesService.refreshComponent.next(true)

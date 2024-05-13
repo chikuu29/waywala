@@ -29,14 +29,14 @@ export class AgricultureProductPageCategoryComponent implements OnInit {
     this.categoryList = [
       {
           "categories": "Seeds",
-          "image": "assets/e-commerce/vegitable.png",
+          "image": "assets/e-commerce/seeds.jpg",
           "subcategories": [],
           "actualCategory": "Agriculture",
           "text": "Seeds"
       },
       {
           "categories": "Vegetables",
-          "image": "assets/e-commerce/vegitable.jpg",
+          "image": "assets/e-commerce/vegetables.jpg",
           "subcategories": [],
           "actualCategory": "Agriculture",
           "text": "Vegetables"
@@ -50,35 +50,35 @@ export class AgricultureProductPageCategoryComponent implements OnInit {
       },
       {
           "categories": "Fertilizers",
-          "image": "assets/e-commerce/Fertilizers.png",
+          "image": "assets/e-commerce/fertilizer.jpg",
           "subcategories": [],
           "actualCategory": "Agriculture",
           "text": "Fertilizers"
       },
       {
           "categories": "Agricultural Medicine",
-          "image": "assets/e-commerce/farmacy.jpg",
+          "image": "assets/e-commerce/agriculture_medicine.jpg",
           "subcategories": [],
           "actualCategory": "Agriculture",
           "text": "Agricultural Medicine"
       },
       {
           "categories": "Agricultural Machineries",
-          "image": "assets/e-commerce/Agricultural_machineries.png",
+          "image": "assets/e-commerce/agriculture_machinary.jpg",
           "subcategories": [],
           "actualCategory": "Agriculture",
           "text": "Agricultural Machineries"
       },
       {
           "categories": "Agriculture Instruments",
-          "image": "assets/e-commerce/fashion.png",
+          "image": "assets/e-commerce/agriculture_instruments.jpg",
           "subcategories": [],
           "actualCategory": "Agriculture",
           "text": "Agriculture Instruments"
       },
       {
           "categories": "Agricultural Products",
-          "image": "assets/e-commerce/agruculture.png",
+          "image": "assets/e-commerce/agriculture_produts.jpg",
           "subcategories": [],
           "actualCategory": "Agriculture",
           "text": "Agricultural Products"
