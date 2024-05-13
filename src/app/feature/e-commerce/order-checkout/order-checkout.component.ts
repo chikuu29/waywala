@@ -128,7 +128,7 @@ export class OrderCheckoutComponent implements OnInit {
         res.data.map((data: any) => {
           data['product_delevery_pincodes'] = data.product_delevery_pincodes? data.product_delevery_pincodes.split(','):[];
           data['product_Images'] = data.product_Images.split(',');
-          data['deliveryCharges'] = data.product_delevery_charges ? data.product_delevery_charges : 0
+          data['deliveryCharges'] = data.product_delevery_charges && data.product_delevery_charges!=null ? data.product_delevery_charges : 0
           data['estimatedeliveryCharges'] = data.product_expected_delivery_days && data.product_expected_delivery_days != 0 ? data.product_expected_delivery_days + ' Days' : " Between 5 Days"
         })
         this.totalDeliveryCharges = _.sumBy(res.data, "deliveryCharges")
