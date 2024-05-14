@@ -4,6 +4,8 @@ import moment from 'moment';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { WeatherForcastService } from '../services/weather-forcast.service';
 import { Title } from '@angular/platform-browser';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 moment.locale('yourlang', {
   calendar: {
     nextDay: function () {
@@ -55,7 +57,8 @@ export class WeatherForecastComponent implements OnInit {
 
   constructor(
     private weatherForcastService: WeatherForcastService,
-    private title: Title
+    private title: Title,
+    private router:Router
     ) { }
 
   ngOnInit(): void {
@@ -91,27 +94,36 @@ export class WeatherForecastComponent implements OnInit {
               this.locationInfo['country'] = res.countryName;
               this.locationInfo['countryCode'] = res.countryCode;
               this.locationInfo['locality'] = res.locality;
-              this.weatherForcastService.currentWeatherReportThroughCity(res.city).subscribe((weatherdata) => {
+              this.weatherForcastService.currentWeatherReportThroughCity(res.city).subscribe((weatherdata:any) => {
                 console.log(weatherdata);
                 
+                if(weatherdata.success){
+                  this.setWeatherData(weatherdata['weather_info']['data'])
+                  this.setCurrentPredictionWeatherData(weatherdata['forcast_info']['data']['list'], true);
+                  this.setPredictionWeatherData(weatherdata['forcast_info']['data']);
+                }else{
+                  Swal.fire('Could not fetch weather infomation in your city ','Please Try After SomeTime or change your location','error').then((res:any)=>{
+                     this.router.navigate(['/agriculture'])
+                  })
+                }
                 // console.log('weatherdata', weatherdata);
                 
               },(error:any)=>{
-                  this.weatherForcastService.currentWeatherReportThroughCity(res.locality).subscribe((dt:any)=>{
-                    this.setWeatherData(dt)
-                  })
+                  // this.weatherForcastService.currentWeatherReportThroughCity(res.locality).subscribe((dt:any)=>{
+                  //   this.setWeatherData(dt)
+                  // })
               })
-              this.weatherForcastService.getfutureWeatherData(res.city).subscribe((futureWeatherData: any) => {
-                // console.log("futureWeatherData", futureWeatherData);
-                this.setCurrentPredictionWeatherData(futureWeatherData['list'], true);
-                this.setPredictionWeatherData(futureWeatherData);
+              // this.weatherForcastService.getfutureWeatherData(res.city).subscribe((futureWeatherData: any) => {
+              //   // console.log("futureWeatherData", futureWeatherData);
+              //   this.setCurrentPredictionWeatherData(futureWeatherData['list'], true);
+              //   this.setPredictionWeatherData(futureWeatherData);
 
-              },(err:any)=>{
-                this.weatherForcastService.getfutureWeatherData(res.locality).subscribe((dt:any)=>{
-                  this.setCurrentPredictionWeatherData(dt['list'], true);
-                  this.setPredictionWeatherData(dt);
-                })
-              })
+              // },(err:any)=>{
+              //   this.weatherForcastService.getfutureWeatherData(res.locality).subscribe((dt:any)=>{
+              //     this.setCurrentPredictionWeatherData(dt['list'], true);
+              //     this.setPredictionWeatherData(dt);
+              //   })
+              // })
             }else{
               alert("Some Things Went Wrong")
               console.log(res);
