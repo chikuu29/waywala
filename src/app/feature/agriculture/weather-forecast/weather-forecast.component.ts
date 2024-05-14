@@ -71,7 +71,8 @@ export class WeatherForecastComponent implements OnInit {
   }
   private getLocation() {
 
-
+    console.log("getLocation",navigator);
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         console.log(position);

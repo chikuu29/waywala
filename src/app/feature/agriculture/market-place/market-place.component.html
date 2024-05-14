@@ -1,5 +1,7 @@
 <div class="coustom-margin"></div>
-<div class="section-title">
+
+<app-search-market-information></app-search-market-information>
+<!-- <div class="section-title">
     <h2>Market status</h2>
     <p>Hear you can check what is price of agriculture product with state wise manner</p>
 </div>
@@ -53,15 +55,12 @@
         </div>
         <div class="col-4 m-3">
             <p-button label="Search" icon="pi pi-search" [loading]="false" (onClick)="search()"></p-button>
-            <!-- <p-button icon="pi pi-search" [loading]="true" (onClick)="search()"
-                    [disabled]="!marketdetailsForm.valid"></p-button> -->
+            
         </div>
     </form>
     <p-table [value]="marketData" [resizableColumns]="true">
         <ng-template pTemplate="caption">
-            <!-- <div class="flex align-items-center justify-content-between">
-                Market Status
-            </div> -->
+        
             <div class="caption-item">
                 <i class="fa-solid fa-chart-simple me-2 text-primary fs-5"></i>
                 <span class="fs-5">Showing {{marketData.length}} of {{marketData.length}} results</span>
@@ -100,4 +99,4 @@
     <ng-container *ngIf="marketData.length==0">
         <app-no-data-available></app-no-data-available>
     </ng-container>
-</div>
+</div> -->

@@ -74,8 +74,8 @@ const routes: Routes = [
   },
   {
     path: 'details_of_market_price',
-     component: DetailsOfMarketInformationComponent 
-    
+    component: DetailsOfMarketInformationComponent
+
   },
   {
     path: 'services',
