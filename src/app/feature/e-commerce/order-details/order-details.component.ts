@@ -56,7 +56,7 @@ export class OrderDetailsComponent implements OnInit {
 
 
   cancle_order() {
-    console.log("order", this.orderDetails);
+    // console.log("order", this.orderDetails);
     // Current time
     const currentTime: any = new Date();
 
@@ -64,7 +64,7 @@ export class OrderDetailsComponent implements OnInit {
     const specificDate: any = new Date(this.orderDetails['created_at']);
 
     // Calculate the difference in milliseconds
-    const timeDifferenceMs = specificDate - currentTime;
+    const timeDifferenceMs =  currentTime-specificDate;
 
     // Convert milliseconds to seconds
     const timeDifferenceSec = timeDifferenceMs / 1000;
@@ -72,10 +72,10 @@ export class OrderDetailsComponent implements OnInit {
     // Convert seconds to hours, minutes, and seconds
     const hours = Math.floor(timeDifferenceSec / 3600);
 
-    console.log(hours);
+    // console.log(hours);
 
     if (hours < this.orderDetails.product_canclation_hours) {
-      console.log("hii");
+      // console.log("hii");
 
       this.confirmationService.confirm({
 
