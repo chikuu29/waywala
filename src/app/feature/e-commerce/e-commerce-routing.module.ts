@@ -17,66 +17,76 @@ import { CategorySubcategoryProductComponent } from './category-subcategory-prod
 import { OrderCheckoutComponent } from './order-checkout/order-checkout.component';
 
 const routes: Routes = [
-  { 
-    path:'',
-    component:ECommerceComponent
-  },
-  {
-    path:'product/:productID',
-    component:ProductDetailsPageComponent
-  },
-  {
-    path:'my/bag',
-    canActivate:[AuthenticationGuard],
-    component:AddToCartComponent
-  },
-  {
-    path:'my/order',
-    canActivate:[AuthenticationGuard],
-    component:MyOrderComponent
-  },
-  {
-    path:'order/confirmation/status/:orderID',
-    canActivate:[AuthenticationGuard],
-    component:OrderConfirmationComponent
-  },
-  {
-    path:'track-order/:order_id/:product_id',
-    canActivate:[AuthenticationGuard],
-    component:OrderDetailsComponent
-  },
-  {
-    path:'category/:category',
-    component:CategoryViewComponent
-  },
-  {
-    path:'category/:category/subcategory/:subcategory',
-    pathMatch:'full',
-    component:CategorySubcategoryProductComponent
-  },
-  {
-    path:'search',
-    component:SearchItemViewComponent
-  },
-  {
-    path:'agriculture/product',
-    component:AgricultureProductPageComponent
-  },
-  {
-    path:'agriculture/product/:category',
-    pathMatch:'full',
-    component:AgricultureProductPageCategoryComponent
-  },
-  {
-    path:'my-offer',
-    component:OfferComponent
 
-  },
   {
-    path:'checkout',
-    component:OrderCheckoutComponent
+
+    path:'',
+    children:[
+
+      { 
+        path:'',
+        component:ECommerceComponent
+      },
+      {
+        path:'product/:productID',
+        component:ProductDetailsPageComponent
+      },
+      {
+        path:'my/bag',
+        canActivate:[AuthenticationGuard],
+        component:AddToCartComponent
+      },
+      {
+        path:'my/order',
+        canActivate:[AuthenticationGuard],
+        component:MyOrderComponent
+      },
+      {
+        path:'order/confirmation/status/:orderID',
+        canActivate:[AuthenticationGuard],
+        component:OrderConfirmationComponent
+      },
+      {
+        path:'track-order/:order_id/:product_id',
+        canActivate:[AuthenticationGuard],
+        component:OrderDetailsComponent
+      },
+      {
+        path:'category/:category',
+        component:CategoryViewComponent
+      },
+      {
+        path:'category/:category/subcategory/:subcategory',
+        // pathMatch:'full',
+        component:CategorySubcategoryProductComponent
+      },
+      {
+        path:'search',
+        component:SearchItemViewComponent
+      },
+      {
+        path:'agriculture/product',
+        component:AgricultureProductPageComponent
+      },
+      {
+        path:'agriculture/product/:category',
+        // pathMatch:'full',
+        component:AgricultureProductPageCategoryComponent
+      },
+      {
+        path:'my-offer',
+        component:OfferComponent
+    
+      },
+      {
+        path:'checkout',
+        component:OrderCheckoutComponent
+    
+      }
+    ]
 
   }
+ 
 
 ];
 

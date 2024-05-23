@@ -57,7 +57,7 @@ import { ServicesPageComponent } from './services-page/services-page.component';
     ReactiveFormsModule,
     NgbModule,
     NgxUiLoaderModule,
-    ECommerceModule,
+    // ECommerceModule,
     // AgricultureModule,
     SharedModule,
     CarouselModule,
