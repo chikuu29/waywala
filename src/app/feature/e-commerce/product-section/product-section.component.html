@@ -79,26 +79,26 @@
           <ng-container *ngFor="let product of allProductList">
             <div class="relative product-container" routerLink="/store/product/{{product.product_Id}}">
               <div class=" cursor-pointer overflow-hidden transition-all duration-300 ">
-                <!-- <div class="absolute -translate-y-1/2 z-10" style="left: -8px;z-index: 1;">
+                <div class="absolute -translate-y-1/2 z-10" style="left: -8px;z-index: 1;" *ngIf="['Vegetables','Fruits'].includes(product.product_SubCategory?product.product_SubCategory:'')">
                   <div class="relative flex">
-                    <div class="absolute bottom-0 left-0 translate-y-1/2">
-                      <div class="h-11px rounded-tl-full rounded-bl-full"
-                        style="background-color: rgb(177, 114, 18); width: 8px"></div>
-                    </div>
-                    <div
-                      class="Ribbon_ribbon-text-container__V7O6V pl-2 pr-4 sm:pl-3 sm:pr-5 rounded-tl-md flex justify-center items-center"
-                      style="
-                          background: linear-gradient(
-                            270deg,
-                            rgb(56, 199, 68) 0%,
-                            rgb(38, 211, 227) 98.02%
-                          );
-                          height: 22px;
-                        ">
-                      <span class="text-[10px] sm:text-[14px] md:text-[14px] text-white font-semibold">New</span>
-                    </div>
+                      <div class="absolute bottom-0 left-0 translate-y-1/2">
+                          <div class="h-11px rounded-tl-full rounded-bl-full"
+                              style="background-color: rgb(177, 114, 18); width: 8px"></div>
+                      </div>
+                      <div class="Ribbon_ribbon-text-container__V7O6V pl-2 pr-4 sm:pl-3 sm:pr-5 rounded-tl-md flex justify-center items-center"
+                          style="
+        background: linear-gradient(
+          270deg,
+          rgb(56, 199, 68) 0%,
+          rgb(38, 211, 227) 98.02%
+        );
+        height: 22px;
+      ">
+                          <span
+                              class="text-[10px] sm:text-[14px] md:text-[14px] text-white font-semibold">Fresh</span>
+                      </div>
                   </div>
-                </div> -->
+              </div>
                 <div class="overflow-clip rounded-md lg:rounded-xl flex flex-col justify-between relative flex-1">
                   <div class="relative flex items-center justify-center overflow-hidden rounded-t-lg flex-1 flex-col">
                     <div class=" relative w-full aspect-square product-img-container ">

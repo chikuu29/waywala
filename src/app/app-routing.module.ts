@@ -29,6 +29,7 @@ const routes: Routes = [
   {
     path: "store",
     component: StoreViewComponent,
+    pathMatch:'prefix',
     loadChildren: () => import('./feature/e-commerce/e-commerce.module').then(m => m.ECommerceModule)
 
   },

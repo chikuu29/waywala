@@ -64,6 +64,7 @@ const routes: Routes = [
   },
   {
     path:'agriculture/product/:category',
+    pathMatch:'full',
     component:AgricultureProductPageCategoryComponent
   },
   {
