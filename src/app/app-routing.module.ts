@@ -50,7 +50,6 @@ import { StoreViewComponent } from './layout/store-view/store-view.component';
 const routes: Routes = [
   {
     path: '',
-   
     children: [
       {
         path: '',
@@ -72,17 +71,16 @@ const routes: Routes = [
         component: DefaultViewComponent,
         loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
       },
-     
       {
         path: 'store',
         component: StoreViewComponent,
         loadChildren: () => import('./feature/e-commerce/e-commerce.module').then(m => m.ECommerceModule)
       },
-      {
-        path: '**',
-        redirectTo: '/pages/error',
-        // pathMatch: 'full'
-      }
+      // {
+      //   path: '**',
+      //   redirectTo: '/pages/error',
+      //   // pathMatch: 'full'
+      // }
     ]
   },
   {

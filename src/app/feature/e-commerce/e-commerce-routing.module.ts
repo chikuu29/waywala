@@ -80,6 +80,7 @@ const routes: Routes = [
       },
       {
         path:'checkout',
+        canActivate:[AuthenticationGuard],
         component:OrderCheckoutComponent
     
       }
